@@ -55,17 +55,18 @@ export const hero = {
 };
 
 export const clientsIntro = { fr: "Ils m'ont fait confiance", en: "Trusted by" } as L;
-export const clients = [
-  "TF1",
-  "France Télévisions",
-  "Décathlon",
-  "Radio France",
-  "SNCF",
-  "IP-Label",
-  "Webnet",
-  "Groupe Ayed",
-  "PIC-SIDE",
-  "workoutLife",
+/* Logos officiels (masque CSS charcoal) ou repli wordmark texte. ratio = largeur/hauteur du logo. */
+export const clients: { name: string; logo?: string; ratio?: number }[] = [
+  { name: "TF1", logo: "/logos/tf1.svg", ratio: 2.74 },
+  { name: "France Télévisions", logo: "/logos/francetv.svg", ratio: 9.93 },
+  { name: "Décathlon", logo: "/logos/decathlon.svg", ratio: 4.02 },
+  { name: "Radio France", logo: "/logos/radiofrance.svg", ratio: 6.61 },
+  { name: "SNCF", logo: "/logos/sncf.svg", ratio: 4.31 },
+  { name: "IP-Label" },
+  { name: "Webnet" },
+  { name: "Groupe Ayed" },
+  { name: "Pic Side" },
+  { name: "workoutLife" },
 ];
 
 export const offersHead = {
@@ -227,7 +228,7 @@ export const more: L[] = [
   { fr: "Secours Populaire", en: "Secours Populaire" },
   { fr: "TGV Pro", en: "TGV Pro" },
   { fr: "Moods", en: "Moods" },
-  { fr: "Réseau social image (Pixide)", en: "Image social network (Pixide)" },
+  { fr: "Réseau social image (Pic Side)", en: "Image social network (Pic Side)" },
   { fr: "Audit réseaux mobiles (IP-Label)", en: "Mobile network audit (IP-Label)" },
   { fr: "Chiffrement et contrôle parental", en: "Encryption and parental control" },
 ];
@@ -242,7 +243,7 @@ export const journey: { year: L; role: L; meta: L; desc: L }[] = [
   { year: { fr: "2023 - 2026", en: "2023 - 2026" }, role: { fr: "Consultant iOS senior", en: "Senior iOS consultant" }, meta: { fr: "Décathlon, Lille", en: "Décathlon, Lille" }, desc: { fr: "Applications RIDE et GearTrack. Conception de zéro, architecture modulaire et delivery autonome.", en: "RIDE and GearTrack apps. From-scratch design, modular architecture and autonomous delivery." } },
   { year: { fr: "2020 - 2023", en: "2020 - 2023" }, role: { fr: "Lead mobile et consultant iOS senior", en: "Mobile lead and senior iOS consultant" }, meta: { fr: "France Télévisions et Radio France, Paris", en: "France Télévisions and Radio France, Paris" }, desc: { fr: "Applications franceinfo, La Première et Régions. Migration vers SwiftUI et encadrement d'équipe.", en: "franceinfo, La Première and Régions apps. SwiftUI migration and team leadership." } },
   { year: { fr: "2016 - 2020", en: "2016 - 2020" }, role: { fr: "Lead iOS", en: "iOS lead" }, meta: { fr: "TF1, Paris", en: "TF1, Paris" }, desc: { fr: "Refonte de MYTF1 et conception du SDK lecteur vidéo interne, déployé sur l'écosystème du groupe.", en: "MYTF1 rebuild and design of the in-house video player SDK, deployed across the group's ecosystem." } },
-  { year: { fr: "2012 - 2016", en: "2012 - 2016" }, role: { fr: "Développeur iOS et macOS", en: "iOS and macOS developer" }, meta: { fr: "Webnet, Pixide, IP-Label, EAG", en: "Webnet, Pixide, IP-Label, EAG" }, desc: { fr: "Applications métiers et grand public, réseau social image, audit réseaux, sécurité et chiffrement.", en: "Business and consumer apps, image social network, network audit, security and encryption." } },
+  { year: { fr: "2012 - 2016", en: "2012 - 2016" }, role: { fr: "Développeur iOS et macOS", en: "iOS and macOS developer" }, meta: { fr: "Webnet, Pic Side, IP-Label, Groupe Ayed", en: "Webnet, Pic Side, IP-Label, Groupe Ayed" }, desc: { fr: "Applications métiers et grand public, réseau social image, audit réseaux, sécurité et chiffrement.", en: "Business and consumer apps, image social network, network audit, security and encryption." } },
   { year: { fr: "2009 - 2012", en: "2009 - 2012" }, role: { fr: "Ingénieur en télécommunications", en: "Telecommunications engineer" }, meta: { fr: "ESPRIT, Tunis", en: "ESPRIT, Tunis" }, desc: { fr: "Diplôme d'ingénieur, mention très bien. Projet de fin d'études déjà orienté vers le développement iOS.", en: "Engineering degree with highest honors. Final-year project already focused on iOS development." } },
 ];
 

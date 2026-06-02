@@ -22,11 +22,12 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
     };
   }, [onClose]);
 
-  const textIn = {
+  // apparition en cascade des sections de la fiche
+  const stepIn = (i: number) => ({
     initial: reduce ? false : { opacity: 0, y: 14 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, delay: 0.12, ease: [0.16, 1, 0.3, 1] as const },
-  };
+    transition: { duration: 0.5, delay: 0.12 + i * 0.07, ease: [0.16, 1, 0.3, 1] as const },
+  });
 
   return (
     <motion.div
@@ -80,13 +81,13 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
           </div>
 
           {/* Texte */}
-          <motion.div {...textIn} className="order-first sm:order-none">
-            <div className="flex items-baseline gap-3">
+          <div className="order-first sm:order-none">
+            <motion.div {...stepIn(0)} className="flex items-baseline gap-3">
               <h3 className="display text-[clamp(1.8rem,4vw,2.5rem)]">{project.name}</h3>
               <span className="text-sm text-muted">{client}</span>
-            </div>
+            </motion.div>
 
-            <div className="mt-6 flex gap-10">
+            <motion.div {...stepIn(1)} className="mt-6 flex gap-10">
               <div>
                 <span className="eyebrow block">{t(modalLabels.role)}</span>
                 <span className="mt-1 block text-[15px] font-semibold text-ink">{t(project.role)}</span>
@@ -95,18 +96,18 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
                 <span className="eyebrow block">{t(modalLabels.period)}</span>
                 <span className="mt-1 block text-[15px] font-semibold text-ink">{project.period}</span>
               </div>
-            </div>
+            </motion.div>
 
-            <p className="mt-6 border-l-2 border-sky pl-4 text-[1.2rem] leading-snug text-ink">
+            <motion.p {...stepIn(2)} className="mt-6 border-l-2 border-sky pl-4 text-[1.2rem] leading-snug text-ink">
               {t(project.highlight)}
-            </p>
+            </motion.p>
 
-            <div className="mt-6 border-t border-line pt-6">
+            <motion.div {...stepIn(3)} className="mt-6 border-t border-line pt-6">
               <span className="eyebrow block">{t(modalLabels.context)}</span>
               <p className="mt-3 text-body">{t(project.context)}</p>
-            </div>
+            </motion.div>
 
-            <div className="mt-6 border-t border-line pt-6">
+            <motion.div {...stepIn(4)} className="mt-6 border-t border-line pt-6">
               <span className="eyebrow block">{t(modalLabels.did)}</span>
               <ul className="mt-3 flex flex-col">
                 {project.contributions.map((c, i) => (
@@ -115,9 +116,9 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
 
-            <div className="mt-6 border-t border-line pt-6">
+            <motion.div {...stepIn(5)} className="mt-6 border-t border-line pt-6">
               <span className="eyebrow block">{t(modalLabels.stack)}</span>
               <div className="mt-3 flex flex-wrap gap-2.5">
                 {project.stack.map((s) => (
@@ -126,8 +127,8 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
                   </span>
                 ))}
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </motion.div>
     </motion.div>

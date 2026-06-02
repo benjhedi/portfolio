@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { useReduce } from "../app/useReduce";
 
 /* Capture avec parallaxe contenue (l'image translate dans l'ecran au scroll) */
@@ -13,13 +13,21 @@ function ParallaxShot({ src, parallax }: { src: string; parallax: boolean }) {
   const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
   return (
     <div ref={ref} className="absolute inset-0 overflow-hidden">
-      <motion.img
-        src={src}
-        alt=""
-        loading="lazy"
-        style={parallax && !reduce ? { y } : undefined}
-        className="absolute inset-x-0 -top-[6%] h-[112%] w-full object-cover"
-      />
+      {/* crossfade au changement de capture (galerie de la modale) */}
+      <AnimatePresence initial={false}>
+        <motion.img
+          key={src}
+          src={src}
+          alt=""
+          loading="lazy"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+          style={parallax && !reduce ? { y } : undefined}
+          className="absolute inset-x-0 -top-[6%] h-[112%] w-full object-cover"
+        />
+      </AnimatePresence>
     </div>
   );
 }

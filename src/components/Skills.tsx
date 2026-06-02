@@ -17,9 +17,9 @@ export function Skills() {
         <div className="grid gap-6 md:grid-cols-3">
           {skills.map((s, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <article className="flex h-full flex-col gap-5 rounded-card border border-line bg-cream p-6 sm:p-9">
+              <article className="group flex h-full flex-col gap-5 rounded-card border border-line bg-cream p-6 transition duration-300 hover:border-sky motion-safe:hover:-translate-y-1 sm:p-9">
                 <h3 className="flex items-center gap-3 text-[1.15rem] font-semibold text-ink">
-                  <Icon name={s.icon} size={20} /> {t(s.title)}
+                  <Icon name={s.icon} size={20} className="transition-colors group-hover:text-skyink" /> {t(s.title)}
                 </h3>
                 <div className="flex flex-wrap gap-2.5">
                   {s.items.map((it) => (

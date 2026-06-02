@@ -73,6 +73,10 @@ export const offersHead = {
   eyebrow: { fr: "Ce que je fais", en: "What I do" } as L,
   title: { fr: "Deux façons de travailler ensemble", en: "Two ways to work together" } as L,
   accent: { fr: "ensemble", en: "together" } as L,
+  lead: {
+    fr: "Un seul interlocuteur, senior, de l'idée à la production. Tu parles directement à la personne qui conçoit et développe ton app, sans relais ni perte de contexte.",
+    en: "A single senior contact, from idea to production. You talk straight to the person who designs and builds your app, with no handoffs and no lost context.",
+  } as L,
 };
 export const offers: { icon: IconName; title: L; body: L; meta: L }[] = [
   {

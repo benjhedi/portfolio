@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+/* Self-hosted variable font (charte Wara Studio : Hanken Grotesk) */
+@import "@fontsource-variable/hanken-grotesk";
+
+/*
+  DESIGN SYSTEM — Wara Studio (charte officielle V1.0)
+  Fond creme, jamais blanc pur. Charcoal jamais noir pur. Gris derives du
+  charcoal en opacite. Sky blue = accent, jamais en fond. Hanken Grotesk
+  400 / 600. Bords (1px #eceae4), pas d'ombres ; ombre interne = signature
+  des boutons sombres. Rayons 6 / 12 / 16. Sentence case, tutoiement FR.
+*/
+
+@theme {
+  --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Surfaces */
+  --color-cream: #f7f4ed;
+  --color-sink: #f2eee5;
+  --color-char: #1c1c1c;
+  --color-off: #fcfbf8;
+
+  /* Texte (charcoal en opacite : 100 / 83 / 40) */
+  --color-ink: #1c1c1c;
+  --color-body: rgba(28, 28, 28, 0.83);
+  --color-muted: rgba(28, 28, 28, 0.40);
+  --color-faint: rgba(28, 28, 28, 0.04);
+
+  /* Bords */
+  --color-line: #eceae4;
+  --color-line2: rgba(28, 28, 28, 0.12);
+
+  /* Accent sky blue */
+  --color-sky: #5fa8d9;
+  --color-skyink: #2e6fa8;
+  --color-skysoft: #c7e0f1;
+  --color-skyghost: rgba(95, 168, 217, 0.1);
+
+  /* Rayons (charte) */
+  --radius-btn: 6px;
+  --radius-card: 12px;
+  --radius-box: 16px;
+
+  /* Ombre interne signature des boutons sombres */
+  --shadow-inset: inset 0 1px 0 rgba(252, 251, 248, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-body);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-skysoft);
+  color: var(--color-ink);
+}
+
+/* Titres : crenage resserre a grande taille (charte) */
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+/* Overline / label de section */
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 42s linear infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}

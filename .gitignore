@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+*.tsbuildinfo
+
+# vite
+node_modules/.vite/
+
+# logs
+*.log
+npm-debug.log*
+
+# local tooling / os
+.claude/
+.DS_Store
+
+# CI workflow garde de cote (token sans scope workflow)
+.github/

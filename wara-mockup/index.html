@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hedi Benjahouach - Consultant iOS senior freelance</title>
+    <meta
+      name="description"
+      content="Consultant iOS senior freelance. Je conçois et développe vos applications iOS, de l'idée à la production, ou à partir de vos maquettes."
+    />
+    <link rel="stylesheet" href="colors_and_type.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ================= NAV ================= -->
+    <nav class="ws-nav" id="nav">
+      <div class="ws-wrap ws-nav-inner">
+        <a class="ws-brand" href="#top">
+          <span class="ws-monogram">HB</span>
+          Hedi Benjahouach
+        </a>
+        <div class="ws-nav-links">
+          <a href="#offres" data-i18n="nav.offres">Ce que je fais</a>
+          <a href="#processus" data-i18n="nav.processus">Processus</a>
+          <a href="#projets" data-i18n="nav.projets">Projets</a>
+          <a href="#parcours" data-i18n="nav.parcours">Parcours</a>
+          <a href="#competences" data-i18n="nav.competences">Compétences</a>
+        </div>
+        <div class="ws-nav-right">
+          <div class="ws-lang" role="group" aria-label="Langue">
+            <button data-lang="fr" type="button">FR</button>
+            <button data-lang="en" type="button">EN</button>
+          </div>
+          <a href="#contact" class="ws-btn-ghost" data-i18n="nav.contact">Me contacter</a>
+          <button class="ws-burger" id="burger" aria-label="Menu" type="button">
+            <i data-lucide="menu"></i>
+          </button>
+        </div>
+      </div>
+      <div class="ws-mobile-menu" id="mobileMenu">
+        <a href="#offres" data-i18n="nav.offres">Ce que je fais</a>
+        <a href="#processus" data-i18n="nav.processus">Processus</a>
+        <a href="#projets" data-i18n="nav.projets">Projets</a>
+        <a href="#parcours" data-i18n="nav.parcours">Parcours</a>
+        <a href="#competences" data-i18n="nav.competences">Compétences</a>
+        <a href="#contact" data-i18n="nav.contact">Me contacter</a>
+      </div>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <header class="ws-hero" id="top">
+      <div class="ws-wrap">
+        <div class="ws-hero-label reveal">
+          <span class="ws-dot"></span>
+          <span class="ws-eyebrow" data-i18n="hero.eyebrow">Consultant iOS senior - Freelance</span>
+        </div>
+        <h1 class="ws-display reveal" data-d="1" data-i18n-html="hero.title">
+          Je conçois et développe tes applications iOS, de l'idée à la
+          <span class="accent">production</span>.
+        </h1>
+        <p class="ws-hero-sub reveal" data-d="1" data-i18n="hero.sub">
+          14 ans d'expérience. Je prends en charge ton app du cadrage jusqu'à
+          la mise en production, ou je la développe à partir de tes maquettes.
+        </p>
+        <div class="ws-hero-actions reveal" data-d="1">
+          <a href="#contact" class="ws-btn">
+            <i data-lucide="mail" class="ws-icon"></i>
+            <span data-i18n="hero.cta1">Démarrer un projet</span>
+          </a>
+          <a href="#projets" class="ws-btn-ghost" data-i18n="hero.cta2">Voir les projets</a>
+        </div>
+        <div class="ws-hero-meta reveal" data-d="1">
+          <div><strong data-i18n="hero.m1t">iOS et macOS</strong><span data-i18n="hero.m1d">Swift, SwiftUI, UIKit</span></div>
+          <div><strong data-i18n="hero.m2t">De l'idée à l'App Store</strong><span data-i18n="hero.m2d">Cadrage, dev, mise en ligne</span></div>
+          <div><strong data-i18n="hero.m3t">Disponible</strong><span data-i18n="hero.m3d">Pour de nouvelles missions</span></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= OFFRES ================= -->
+    <section id="offres">
+      <div class="ws-wrap">
+        <div class="ws-section-head">
+          <span class="ws-eyebrow reveal" data-i18n="offres.eyebrow">Ce que je fais</span>
+          <h2 class="ws-h2 reveal" data-d="1" data-i18n="offres.title">Deux façons de travailler ensemble</h2>
+        </div>
+        <div class="ws-offers">
+          <article class="ws-card ws-offer reveal">
+            <span class="ws-offer-ic"><i data-lucide="layers" class="ws-icon"></i></span>
+            <h3 class="ws-h3" data-i18n="offre1.title">Construire votre app de A à Z</h3>
+            <p data-i18n="offre1.body">De l'idée à la production. Cadrage du besoin, conception de l'architecture, développement, tests, publication sur l'App Store et suivi après la mise en ligne.</p>
+            <span class="ws-meta" data-i18n="offre1.meta">Idéal pour lancer un nouveau produit</span>
+          </article>
+          <article class="ws-card ws-offer reveal" data-d="1">
+            <span class="ws-offer-ic"><i data-lucide="frame" class="ws-icon"></i></span>
+            <h3 class="ws-h3" data-i18n="offre2.title">Développer à partir de vos maquettes</h3>
+            <p data-i18n="offre2.body">Vous avez les écrans, je livre l'application. Intégration fidèle au design, code propre et maintenable, attention portée à la performance et aux détails.</p>
+            <span class="ws-meta" data-i18n="offre2.meta">Idéal quand le design est déjà prêt</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROCESSUS ================= -->
+    <section id="processus" style="background: var(--ws-cream-sink)">
+      <div class="ws-wrap">
+        <div class="ws-section-head">
+          <span class="ws-eyebrow reveal" data-i18n="processus.eyebrow">Mon processus</span>
+          <h2 class="ws-h2 reveal" data-d="1" data-i18n="processus.title">De l'idée à la mise en production</h2>
+          <p class="ws-lead reveal" data-d="1" data-i18n="processus.lead">Une méthode claire, éprouvée sur des applications à forte exigence. Chaque étape prépare la suivante.</p>
+        </div>
+        <div class="ws-timeline" id="timeline">
+          <div class="ws-rail"><span class="ws-rail-fill" id="railFill"></span></div>
+          <div id="steps"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROJETS ================= -->
+    <section id="projets">
+      <div class="ws-wrap">
+        <div class="ws-section-head">
+          <span class="ws-eyebrow reveal" data-i18n="projets.eyebrow">Projets sélectionnés</span>
+          <h2 class="ws-h2 reveal" data-d="1" data-i18n="projets.title">Quelques applications livrées</h2>
+          <p class="ws-lead reveal" data-d="1" data-i18n="projets.lead">Un aperçu parmi de nombreuses missions. Cliquez sur un projet pour voir le détail.</p>
+        </div>
+        <div class="ws-projects" id="projectsGrid"></div>
+        <div class="ws-more reveal">
+          <h4 data-i18n="projets.more">Et d'autres encore</h4>
+          <div class="ws-chips" id="moreChips"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PARCOURS ================= -->
+    <section id="parcours" style="background: var(--ws-cream-sink)">
+      <div class="ws-wrap">
+        <div class="ws-section-head">
+          <span class="ws-eyebrow reveal" data-i18n="parcours.eyebrow">Mon parcours</span>
+          <h2 class="ws-h2 reveal" data-d="1" data-i18n="parcours.title">14 ans auprès de grands acteurs</h2>
+        </div>
+        <div class="ws-journey" id="journey"></div>
+      </div>
+    </section>
+
+    <!-- ================= COMPETENCES ================= -->
+    <section id="competences">
+      <div class="ws-wrap">
+        <div class="ws-section-head">
+          <span class="ws-eyebrow reveal" data-i18n="competences.eyebrow">Compétences et stack</span>
+          <h2 class="ws-h2 reveal" data-d="1" data-i18n="competences.title">Une stack iOS moderne et maîtrisée</h2>
+        </div>
+        <div class="ws-skills">
+          <article class="ws-card ws-skill reveal">
+            <h3><i data-lucide="code" class="ws-icon"></i> <span data-i18n="skill1.title">Langages et frameworks</span></h3>
+            <div class="ws-chips">
+              <span class="ws-tag">Swift</span><span class="ws-tag">SwiftUI</span><span class="ws-tag">UIKit</span><span class="ws-tag">Combine</span><span class="ws-tag">async / await</span>
+            </div>
+          </article>
+          <article class="ws-card ws-skill reveal" data-d="1">
+            <h3><i data-lucide="layout-grid" class="ws-icon"></i> <span data-i18n="skill2.title">Architectures</span></h3>
+            <div class="ws-chips">
+              <span class="ws-tag">MVVM</span><span class="ws-tag">MVVM-C</span><span class="ws-tag">Clean Architecture</span><span class="ws-tag">Modularisation</span><span class="ws-tag">SPM</span>
+            </div>
+          </article>
+          <article class="ws-card ws-skill reveal" data-d="1">
+            <h3><i data-lucide="shield-check" class="ws-icon"></i> <span data-i18n="skill3.title">Qualité et delivery</span></h3>
+            <div class="ws-chips">
+              <span class="ws-tag" data-i18n="skill.tests">Tests automatisés</span><span class="ws-tag" data-i18n="skill.ci">Intégration continue</span><span class="ws-tag" data-i18n="skill.review">Revue de code</span><span class="ws-tag" data-i18n="skill.appstore">Publication App Store</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="ws-contact" style="background: var(--ws-cream-sink)">
+      <div class="ws-wrap">
+        <span class="ws-eyebrow reveal" data-i18n="contact.eyebrow">Contact</span>
+        <h2 class="ws-h2 reveal" data-d="1" data-i18n="contact.title">Parlons de votre projet</h2>
+        <p class="reveal" data-d="1" data-i18n="contact.body">Une idée à concrétiser ou des maquettes à développer ? Écrivez-moi, je reviens vers vous rapidement.</p>
+        <div class="ws-contact-actions reveal" data-d="1">
+          <a href="mailto:hedi.hbji@gmail.com" class="ws-btn">
+            <i data-lucide="mail" class="ws-icon"></i>
+            <span data-i18n="contact.cta">Écrire un message</span>
+          </a>
+          <a href="https://www.linkedin.com/in/hedibenj" class="ws-btn-ghost">
+            <svg class="ws-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H9z" />
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="ws-wrap ws-foot">
+        <span>Hedi Benjahouach - <span data-i18n="footer.role">Consultant iOS freelance</span></span>
+        <span>Vanves (92), France - Remote first</span>
+        <span>hedi.hbji@gmail.com</span>
+      </div>
+    </footer>
+
+    <!-- ================= MODAL DETAIL ================= -->
+    <div class="ws-modal" id="modal" role="dialog" aria-modal="true">
+      <div class="ws-modal-panel" id="modalPanel"></div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

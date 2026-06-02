@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useReducedMotion } from "motion/react";
+import { useReduce } from "../app/useReduce";
 import { ArrowUpRight } from "lucide-react";
 import { useApp } from "../app/AppContext";
 import { projectsHead, projects, more, type Project } from "../content/content";
-import { Reveal } from "./Primitives";
+import { Reveal, SectionEyebrow } from "./Primitives";
 import { Phone } from "./Phone";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 export function Work({ onOpen }: { onOpen: (id: string) => void }) {
   const { t } = useApp();
   const stackRef = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = useReduce();
 
   useEffect(() => {
     if (reduce || !stackRef.current) return;
@@ -49,7 +49,7 @@ export function Work({ onOpen }: { onOpen: (id: string) => void }) {
     <section id="projets" className="relative px-5 py-24 sm:px-8 md:py-32">
       <div className="mx-auto max-w-[1240px]">
         <Reveal className="mb-12 flex max-w-[640px] flex-col gap-4 md:mb-16">
-          <span className="eyebrow">{t(projectsHead.eyebrow)}</span>
+          <SectionEyebrow index="03">{t(projectsHead.eyebrow)}</SectionEyebrow>
           <h2 className="display text-[clamp(2rem,4.4vw,3rem)]">{t(projectsHead.title)}</h2>
           <p className="text-[clamp(1.05rem,2vw,1.2rem)] text-body">{t(projectsHead.lead)}</p>
         </Reveal>

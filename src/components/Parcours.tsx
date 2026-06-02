@@ -1,6 +1,6 @@
 import { useApp } from "../app/AppContext";
 import { journeyHead, journey } from "../content/content";
-import { Reveal, Parallax } from "./Primitives";
+import { Reveal, Parallax, SectionEyebrow } from "./Primitives";
 
 export function Parcours() {
   const { t } = useApp();
@@ -8,7 +8,7 @@ export function Parcours() {
     <section id="parcours" className="bg-sink px-5 py-24 sm:px-8 md:py-32">
       <div className="mx-auto max-w-[1240px]">
         <Reveal className="mb-12 flex flex-col gap-4 md:mb-16">
-          <span className="eyebrow">{t(journeyHead.eyebrow)}</span>
+          <SectionEyebrow index="04">{t(journeyHead.eyebrow)}</SectionEyebrow>
           <h2 className="display text-[clamp(2rem,4.4vw,3rem)]">{t(journeyHead.title)}</h2>
         </Reveal>
 

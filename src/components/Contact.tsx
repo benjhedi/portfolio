@@ -1,7 +1,7 @@
 import { Mail } from "lucide-react";
 import { useApp } from "../app/AppContext";
 import { contact, identity } from "../content/content";
-import { Reveal, Magnetic } from "./Primitives";
+import { Reveal, Magnetic, SectionEyebrow } from "./Primitives";
 
 export function Contact() {
   const { t } = useApp();
@@ -11,7 +11,7 @@ export function Contact() {
     <footer id="contact" className="bg-sink px-5 pt-24 pb-10 sm:px-8 md:pt-32">
       <div className="mx-auto flex max-w-[1240px] flex-col items-center gap-6 text-center">
         <Reveal>
-          <span className="eyebrow">{t(contact.eyebrow)}</span>
+          <SectionEyebrow index="06">{t(contact.eyebrow)}</SectionEyebrow>
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="display max-w-[18ch] text-[clamp(2.5rem,7vw,5rem)]">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { useReduce } from "../app/useReduce";
 import { X } from "lucide-react";
 import { useApp } from "../app/AppContext";
 import { modalLabels, type Project } from "../content/content";
@@ -7,7 +8,7 @@ import { Phone } from "./Phone";
 
 export function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
   const { t } = useApp();
-  const reduce = useReducedMotion();
+  const reduce = useReduce();
   const [idx, setIdx] = useState(0);
   const client = typeof project.client === "string" ? project.client : t(project.client);
 

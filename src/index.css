@@ -2,6 +2,8 @@
 
 /* Self-hosted variable font (charte Wara Studio : Hanken Grotesk) */
 @import "@fontsource-variable/hanken-grotesk";
+/* Monospace pour les index de section (fil conducteur) */
+@import "@fontsource-variable/jetbrains-mono";
 
 /*
   DESIGN SYSTEM — Wara Studio (charte officielle V1.0)
@@ -14,6 +16,7 @@
 @theme {
   --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Surfaces */
   --color-cream: #f7f4ed;

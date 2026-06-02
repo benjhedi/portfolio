@@ -1,10 +1,11 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useReduce } from "../app/useReduce";
 
 /* Capture avec parallaxe contenue (l'image translate dans l'ecran au scroll) */
 function ParallaxShot({ src, parallax }: { src: string; parallax: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = useReduce();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],

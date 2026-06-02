@@ -1,7 +1,7 @@
 import { Mail } from "lucide-react";
 import { useApp } from "../app/AppContext";
 import { contact, identity } from "../content/content";
-import { Reveal, Magnetic, SectionEyebrow } from "./Primitives";
+import { Reveal, Magnetic, SectionEyebrow, Accent } from "./Primitives";
 
 export function Contact() {
   const { t } = useApp();
@@ -15,7 +15,7 @@ export function Contact() {
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="display max-w-[18ch] text-[clamp(2.5rem,7vw,5rem)]">
-            {t(contact.heading)}
+            <Accent text={t(contact.heading)} accent={t(contact.accent)} />
           </h2>
         </Reveal>
         <Reveal delay={0.1}>

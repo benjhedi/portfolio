@@ -60,6 +60,7 @@ export const clients = ["TF1", "France Télévisions", "Décathlon", "Radio Fran
 export const offersHead = {
   eyebrow: { fr: "Ce que je fais", en: "What I do" } as L,
   title: { fr: "Deux façons de travailler ensemble", en: "Two ways to work together" } as L,
+  accent: { fr: "ensemble", en: "together" } as L,
 };
 export const offers: { icon: IconName; title: L; body: L; meta: L }[] = [
   {
@@ -85,6 +86,7 @@ export const offers: { icon: IconName; title: L; body: L; meta: L }[] = [
 export const processHead = {
   eyebrow: { fr: "Mon processus", en: "My process" } as L,
   title: { fr: "De l'idée à la mise en production", en: "From idea to production" } as L,
+  accent: { fr: "production", en: "production" } as L,
   lead: {
     fr: "Une méthode claire, éprouvée sur des applications à forte exigence. Chaque étape prépare la suivante.",
     en: "A clear method, proven on demanding applications. Each step sets up the next.",
@@ -116,6 +118,7 @@ export type Project = {
 export const projectsHead = {
   eyebrow: { fr: "Projets sélectionnés", en: "Selected work" } as L,
   title: { fr: "Quelques applications livrées", en: "A few apps I have shipped" } as L,
+  accent: { fr: "livrées", en: "shipped" } as L,
   lead: { fr: "Un aperçu parmi de nombreuses missions. Clique sur un projet pour voir le détail.", en: "A glimpse among many engagements. Click a project to see the details." } as L,
   detail: { fr: "Voir le détail", en: "View details" } as L,
   moreTitle: { fr: "Et d'autres encore", en: "And more" } as L,
@@ -221,6 +224,7 @@ export const more: L[] = [
 export const journeyHead = {
   eyebrow: { fr: "Mon parcours", en: "Career" } as L,
   title: { fr: "14 ans auprès de grands acteurs", en: "14 years with major players" } as L,
+  accent: { fr: "14 ans", en: "14 years" } as L,
 };
 export const journey: { year: L; role: L; meta: L; desc: L }[] = [
   { year: { fr: "2026, aujourd'hui", en: "2026, today" }, role: { fr: "Développeur iOS et macOS", en: "iOS and macOS developer" }, meta: { fr: "Projet personnel", en: "Personal project" }, desc: { fr: "Compagnon de réunion sur macOS, transcription et synthèse assistées par IA, en Swift 6.", en: "macOS meeting companion, AI-assisted transcription and summary, in Swift 6." } },
@@ -234,6 +238,7 @@ export const journey: { year: L; role: L; meta: L; desc: L }[] = [
 export const skillsHead = {
   eyebrow: { fr: "Compétences et stack", en: "Skills and stack" } as L,
   title: { fr: "Une stack iOS moderne et maîtrisée", en: "A modern, mastered iOS stack" } as L,
+  accent: { fr: "maîtrisée", en: "mastered" } as L,
 };
 export const skills: { icon: IconName; title: L; items: string[] }[] = [
   { icon: "Code", title: { fr: "Langages et frameworks", en: "Languages and frameworks" }, items: ["Swift", "SwiftUI", "UIKit", "Combine", "async / await"] },
@@ -258,6 +263,7 @@ export const stackMarquee: { name: string; slug: string }[] = [
 export const contact = {
   eyebrow: { fr: "Contact", en: "Contact" } as L,
   heading: { fr: "Parlons de ton projet", en: "Let's talk about your project" } as L,
+  accent: { fr: "ton projet", en: "your project" } as L,
   body: {
     fr: "Une idée à concrétiser ou des maquettes à développer ? Écris-moi, je reviens vers toi rapidement.",
     en: "An idea to bring to life or designs to build? Drop me a line, I will get back to you quickly.",

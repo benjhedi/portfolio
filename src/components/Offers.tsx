@@ -1,6 +1,6 @@
 import { useApp } from "../app/AppContext";
 import { offersHead, offers } from "../content/content";
-import { Reveal, Icon, SectionEyebrow } from "./Primitives";
+import { Reveal, Icon, SectionEyebrow, Accent } from "./Primitives";
 
 export function Offers() {
   const { t } = useApp();
@@ -10,7 +10,7 @@ export function Offers() {
         <Reveal className="mb-12 flex flex-col gap-4 md:mb-16">
           <SectionEyebrow index="01">{t(offersHead.eyebrow)}</SectionEyebrow>
           <h2 className="display max-w-[18ch] text-[clamp(2rem,4.4vw,3rem)]">
-            {t(offersHead.title)}
+            <Accent text={t(offersHead.title)} accent={t(offersHead.accent)} />
           </h2>
         </Reveal>
 

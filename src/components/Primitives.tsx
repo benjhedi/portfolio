@@ -4,9 +4,9 @@ import {
   useSpring,
   useScroll,
   useTransform,
-  useReducedMotion,
 } from "motion/react";
 import { useRef, type ReactNode } from "react";
+import { useReduce } from "../app/useReduce";
 import {
   Compass,
   PencilRuler,
@@ -52,7 +52,7 @@ export function Magnetic({
   strength?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = useReduce();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const sx = useSpring(x, { stiffness: 150, damping: 15, mass: 0.1 });
@@ -93,7 +93,7 @@ export function Reveal({
   delay?: number;
   y?: number;
 }) {
-  const reduce = useReducedMotion();
+  const reduce = useReduce();
   return (
     <motion.div
       className={className}
@@ -104,6 +104,94 @@ export function Reveal({
     >
       {children}
     </motion.div>
+  );
+}
+
+/* ---- Eyebrow de section avec index monospace (fil conducteur wibify) ---- */
+export function SectionEyebrow({
+  index,
+  children,
+}: {
+  index: string;
+  children: ReactNode;
+}) {
+  return (
+    <span className="eyebrow inline-flex items-center gap-2">
+      <span className="font-mono tracking-normal text-skyink">{index}</span>
+      <span className="text-muted" aria-hidden>
+        /
+      </span>
+      <span>{children}</span>
+    </span>
+  );
+}
+
+/* ---- Vertical cut reveal (titre : mots qui montent d'un masque, fondu) ---- */
+const normalizeWord = (w: string) =>
+  w.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+
+export function CutReveal({
+  text,
+  accent,
+  accentClassName = "",
+  className = "",
+  stagger = 0.05,
+  delay = 0,
+  duration = 0.9,
+}: {
+  text: string;
+  accent?: string;
+  accentClassName?: string;
+  className?: string;
+  stagger?: number;
+  delay?: number;
+  duration?: number;
+}) {
+  const reduce = useReduce();
+  const words = text.split(" ");
+  const accentSet = accent
+    ? new Set(accent.split(" ").map(normalizeWord).filter(Boolean))
+    : null;
+  const isAccent = (w: string) => !!accentSet?.has(normalizeWord(w));
+
+  if (reduce) {
+    return (
+      <span className={className}>
+        {words.map((w, i) => (
+          <span key={i} className={isAccent(w) ? accentClassName : undefined}>
+            {w}
+            {i < words.length - 1 ? " " : ""}
+          </span>
+        ))}
+      </span>
+    );
+  }
+
+  return (
+    <span className={`inline-flex flex-wrap ${className}`}>
+      <span className="sr-only">{text}</span>
+      {words.map((w, i) => (
+        <span
+          key={i}
+          aria-hidden
+          className="inline-flex overflow-hidden pb-[0.15em] -mb-[0.15em]"
+        >
+          <motion.span
+            className={`inline-block will-change-transform ${isAccent(w) ? accentClassName : ""}`}
+            initial={{ y: "130%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+              duration,
+              delay: delay + i * stagger,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+          >
+            {w}
+          </motion.span>
+          {i < words.length - 1 ? <span>&nbsp;</span> : null}
+        </span>
+      ))}
+    </span>
   );
 }
 
@@ -118,7 +206,7 @@ export function Parallax({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = useReduce();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],

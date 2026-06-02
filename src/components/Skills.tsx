@@ -1,6 +1,6 @@
 import { useApp } from "../app/AppContext";
 import { skillsHead, skills, stackMarquee } from "../content/content";
-import { Reveal, Icon, SectionEyebrow } from "./Primitives";
+import { Reveal, Icon, SectionEyebrow, Accent } from "./Primitives";
 
 export function Skills() {
   const { t } = useApp();
@@ -11,7 +11,7 @@ export function Skills() {
       <div className="mx-auto max-w-[1240px]">
         <Reveal className="mb-12 flex flex-col gap-4 md:mb-16">
           <SectionEyebrow index="05">{t(skillsHead.eyebrow)}</SectionEyebrow>
-          <h2 className="display text-[clamp(2rem,4.4vw,3rem)]">{t(skillsHead.title)}</h2>
+          <h2 className="display text-[clamp(2rem,4.4vw,3rem)]"><Accent text={t(skillsHead.title)} accent={t(skillsHead.accent)} /></h2>
         </Reveal>
 
         <div className="grid gap-6 md:grid-cols-3">

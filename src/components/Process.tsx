@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/rea
 import { useReduce } from "../app/useReduce";
 import { useApp } from "../app/AppContext";
 import { processHead, steps } from "../content/content";
-import { Reveal, Icon, SectionEyebrow } from "./Primitives";
+import { Reveal, Icon, SectionEyebrow, Accent } from "./Primitives";
 
 export function Process() {
   const { t } = useApp();
@@ -25,7 +25,7 @@ export function Process() {
       <div className="mx-auto max-w-[1240px]">
         <Reveal className="mb-14 flex max-w-[640px] flex-col gap-4">
           <SectionEyebrow index="02">{t(processHead.eyebrow)}</SectionEyebrow>
-          <h2 className="display text-[clamp(2rem,4.4vw,3rem)]">{t(processHead.title)}</h2>
+          <h2 className="display text-[clamp(2rem,4.4vw,3rem)]"><Accent text={t(processHead.title)} accent={t(processHead.accent)} /></h2>
           <p className="text-[clamp(1.05rem,2vw,1.2rem)] text-body">{t(processHead.lead)}</p>
         </Reveal>
 

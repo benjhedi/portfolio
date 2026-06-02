@@ -5,7 +5,7 @@ import { useReduce } from "../app/useReduce";
 import { ArrowUpRight } from "lucide-react";
 import { useApp } from "../app/AppContext";
 import { projectsHead, projects, more, type Project } from "../content/content";
-import { Reveal, SectionEyebrow } from "./Primitives";
+import { Reveal, SectionEyebrow, Accent } from "./Primitives";
 import { Phone } from "./Phone";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -50,7 +50,7 @@ export function Work({ onOpen }: { onOpen: (id: string) => void }) {
       <div className="mx-auto max-w-[1240px]">
         <Reveal className="mb-12 flex max-w-[640px] flex-col gap-4 md:mb-16">
           <SectionEyebrow index="03">{t(projectsHead.eyebrow)}</SectionEyebrow>
-          <h2 className="display text-[clamp(2rem,4.4vw,3rem)]">{t(projectsHead.title)}</h2>
+          <h2 className="display text-[clamp(2rem,4.4vw,3rem)]"><Accent text={t(projectsHead.title)} accent={t(projectsHead.accent)} /></h2>
           <p className="text-[clamp(1.05rem,2vw,1.2rem)] text-body">{t(projectsHead.lead)}</p>
         </Reveal>
       </div>

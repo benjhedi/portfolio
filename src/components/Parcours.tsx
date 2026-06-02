@@ -1,6 +1,6 @@
 import { useApp } from "../app/AppContext";
 import { journeyHead, journey } from "../content/content";
-import { Reveal, Parallax, SectionEyebrow } from "./Primitives";
+import { Reveal, Parallax, SectionEyebrow, Accent } from "./Primitives";
 
 export function Parcours() {
   const { t } = useApp();
@@ -9,7 +9,7 @@ export function Parcours() {
       <div className="mx-auto max-w-[1240px]">
         <Reveal className="mb-12 flex flex-col gap-4 md:mb-16">
           <SectionEyebrow index="04">{t(journeyHead.eyebrow)}</SectionEyebrow>
-          <h2 className="display text-[clamp(2rem,4.4vw,3rem)]">{t(journeyHead.title)}</h2>
+          <h2 className="display text-[clamp(2rem,4.4vw,3rem)]"><Accent text={t(journeyHead.title)} accent={t(journeyHead.accent)} /></h2>
         </Reveal>
 
         <div className="flex flex-col">

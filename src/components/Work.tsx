@@ -20,6 +20,24 @@ export function Work({ onOpen }: { onOpen: (id: string) => void }) {
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray<HTMLElement>(".case-card");
       cards.forEach((card, i) => {
+        // parallaxe d'arrivee : le visuel monte plus lentement que le cadre
+        const phone = card.querySelector<HTMLElement>(".case-phone");
+        if (phone) {
+          gsap.fromTo(
+            phone,
+            { y: 64 },
+            {
+              y: -24,
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                start: "top bottom",
+                end: "top top",
+                scrub: true,
+              },
+            }
+          );
+        }
         if (i === cards.length - 1) return;
         ScrollTrigger.create({
           trigger: card,
@@ -30,8 +48,8 @@ export function Work({ onOpen }: { onOpen: (id: string) => void }) {
           pinSpacing: false,
         });
         gsap.to(card, {
-          scale: 0.96,
-          opacity: 0.5,
+          scale: 0.94,
+          opacity: 0.6,
           ease: "none",
           scrollTrigger: {
             trigger: cards[i + 1],
@@ -115,13 +133,15 @@ function CaseCard({
           </div>
 
           <div className="flex justify-center lg:col-span-5 lg:col-start-8">
-            <Phone
-              layoutId={`phone-${p.id}`}
-              image={p.images[0]}
-              parallax
-              placeholder={p.name.slice(0, 2)}
-              className="w-[210px] sm:w-[240px]"
-            />
+            <div className="case-phone will-change-transform">
+              <Phone
+                layoutId={`phone-${p.id}`}
+                image={p.images[0]}
+                parallax
+                placeholder={p.name.slice(0, 2)}
+                className="w-[210px] sm:w-[240px]"
+              />
+            </div>
           </div>
         </div>
       </button>

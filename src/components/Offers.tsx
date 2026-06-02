@@ -17,8 +17,8 @@ export function Offers() {
         <div className="grid gap-6 md:grid-cols-2">
           {offers.map((o, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <article className="flex h-full min-h-[320px] flex-col gap-5 rounded-card border border-line bg-cream p-7 sm:p-11">
-                <span className="grid size-12 place-items-center rounded-card border border-line2 text-ink">
+              <article className="group flex h-full min-h-[320px] flex-col gap-5 rounded-card border border-line bg-cream p-7 transition duration-300 hover:border-sky motion-safe:hover:-translate-y-1 sm:p-11">
+                <span className="grid size-12 place-items-center rounded-card border border-line2 text-ink transition-colors group-hover:border-sky group-hover:text-skyink">
                   <Icon name={o.icon} />
                 </span>
                 <h3 className="display mt-1 text-[clamp(1.5rem,3vw,2.25rem)]">

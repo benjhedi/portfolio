@@ -12,6 +12,9 @@ export function Offers() {
           <h2 className="display max-w-[18ch] text-[clamp(2rem,4.4vw,3rem)]">
             <Accent text={t(offersHead.title)} accent={t(offersHead.accent)} />
           </h2>
+          <p className="max-w-[58ch] text-[clamp(1.05rem,2vw,1.2rem)] text-body">
+            {t(offersHead.lead)}
+          </p>
         </Reveal>
 
         <div className="grid gap-6 md:grid-cols-2">

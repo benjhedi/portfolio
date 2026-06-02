@@ -55,7 +55,18 @@ export const hero = {
 };
 
 export const clientsIntro = { fr: "Ils m'ont fait confiance", en: "Trusted by" } as L;
-export const clients = ["TF1", "France Télévisions", "Décathlon", "Radio France"];
+export const clients = [
+  "TF1",
+  "France Télévisions",
+  "Décathlon",
+  "Radio France",
+  "SNCF",
+  "IP-Label",
+  "Webnet",
+  "Groupe Ayed",
+  "PIC-SIDE",
+  "workoutLife",
+];
 
 export const offersHead = {
   eyebrow: { fr: "Ce que je fais", en: "What I do" } as L,

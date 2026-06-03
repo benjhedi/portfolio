@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Mail, ArrowDown } from "lucide-react";
 import { useApp } from "../app/AppContext";
 import { hero, clientsIntro, clients } from "../content/content";
-import { Magnetic, CutReveal } from "./Primitives";
+import { Magnetic, CutReveal, PreserveCase } from "./Primitives";
 import { useReduce } from "../app/useReduce";
 
 /* Fonds hero : une video tiree au sort a chaque chargement */
@@ -70,7 +70,7 @@ export function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(100deg, var(--color-cream) 0%, var(--color-cream) 42%, rgba(247,244,237,0.7) 60%, rgba(247,244,237,0.3) 100%)",
+              "linear-gradient(100deg, var(--color-cream) 0%, var(--color-cream) 42%, color-mix(in srgb, var(--color-cream) 70%, transparent) 60%, color-mix(in srgb, var(--color-cream) 30%, transparent) 100%)",
           }}
         />
         {/* Scrim renforce sur mobile + fondu bas vers la page */}
@@ -85,7 +85,7 @@ export function Hero() {
         <div className="max-w-[680px]">
             <motion.div {...up(0)} className="mb-7 inline-flex items-center gap-2.5">
               <span className="size-[7px] rounded-full bg-sky" />
-              <span className="eyebrow">{t(hero.eyebrow)}</span>
+              <span className="eyebrow"><PreserveCase text={t(hero.eyebrow)} /></span>
             </motion.div>
 
             <h1 className="display max-w-[15ch] text-[clamp(2.4rem,5vw,4rem)]">

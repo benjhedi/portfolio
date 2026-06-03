@@ -50,6 +50,40 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
 
+/*
+  MODE SOMBRE — meme charte, valeurs inversees. On redefinit les variables
+  de couleur sous html.dark : toutes les utilitaires (bg-cream, text-ink,
+  border-line...) suivent automatiquement, sans toucher au markup. Le creme
+  devient un charcoal profond (jamais noir pur), le charcoal une surface
+  elevee pour les boutons signature, le sky est legerement eclairci pour
+  rester lisible sur fond sombre.
+*/
+html.dark {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --color-cream: #151519;
+  --color-sink: #1d1d23;
+  --color-char: #26262f;
+  --color-off: #fcfbf8;
+
+  /* Texte (creme en opacite) */
+  --color-ink: #f4f1ea;
+  --color-body: rgba(244, 241, 234, 0.78);
+  --color-muted: rgba(244, 241, 234, 0.46);
+  --color-faint: rgba(244, 241, 234, 0.05);
+
+  /* Bords */
+  --color-line: rgba(244, 241, 234, 0.1);
+  --color-line2: rgba(244, 241, 234, 0.18);
+
+  /* Accent sky blue (eclairci pour le contraste sur fond sombre) */
+  --color-sky: #5fa8d9;
+  --color-skyink: #84c2ec;
+  --color-skysoft: #2c5572;
+  --color-skyghost: rgba(95, 168, 217, 0.14);
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -64,6 +98,7 @@ html {
 body {
   background: var(--color-cream);
   color: var(--color-body);
+  transition: background-color 0.4s ease, color 0.4s ease;
   font-family: var(--font-sans);
   font-weight: 400;
   font-synthesis-weight: none;

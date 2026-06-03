@@ -24,7 +24,7 @@ export function Process() {
     <section id="processus" className="bg-sink px-5 py-24 sm:px-8 md:py-32">
       <div className="mx-auto max-w-[1240px]">
         <Reveal className="mb-14 flex max-w-[640px] flex-col gap-4">
-          <SectionEyebrow index="02">{t(processHead.eyebrow)}</SectionEyebrow>
+          <SectionEyebrow index="03">{t(processHead.eyebrow)}</SectionEyebrow>
           <h2 className="display text-[clamp(2rem,4.4vw,3rem)]"><Accent text={t(processHead.title)} accent={t(processHead.accent)} /></h2>
           <p className="text-[clamp(1.05rem,2vw,1.2rem)] text-body">{t(processHead.lead)}</p>
         </Reveal>

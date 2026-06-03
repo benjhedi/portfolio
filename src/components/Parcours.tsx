@@ -22,7 +22,7 @@ export function Parcours() {
     <section id="parcours" className="bg-sink px-5 py-24 sm:px-8 md:py-32">
       <div className="mx-auto max-w-[1240px]">
         <Reveal className="mb-12 flex flex-col gap-4 md:mb-16">
-          <SectionEyebrow index="04">{t(journeyHead.eyebrow)}</SectionEyebrow>
+          <SectionEyebrow index="05">{t(journeyHead.eyebrow)}</SectionEyebrow>
           <h2 className="display text-[clamp(2rem,4.4vw,3rem)]"><Accent text={t(journeyHead.title)} accent={t(journeyHead.accent)} /></h2>
         </Reveal>
 

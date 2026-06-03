@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
-import { List, X } from "lucide-react";
+import { List, X, Sun, Moon } from "lucide-react";
 import { useApp } from "../app/AppContext";
 import { identity, nav } from "../content/content";
 
 export function Nav() {
-  const { t, locale, setLocale } = useApp();
+  const { t, locale, setLocale, theme, toggleTheme } = useApp();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
@@ -43,7 +43,16 @@ export function Nav() {
             ))}
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <button
+              onClick={toggleTheme}
+              className="grid size-9 place-items-center rounded-[8px] border border-line2 text-ink transition-colors hover:border-sky hover:text-skyink"
+              aria-label={t({ fr: "Changer de thème", en: "Toggle theme" })}
+              title={t({ fr: "Changer de thème", en: "Toggle theme" })}
+            >
+              {theme === "dark" ? <Sun size={16} strokeWidth={1.5} /> : <Moon size={16} strokeWidth={1.5} />}
+            </button>
+
             <div className="flex items-center overflow-hidden rounded-[8px] border border-line2 text-[13px] font-semibold">
               {(["fr", "en"] as const).map((l) => (
                 <button

@@ -16,9 +16,6 @@ npm-debug.log*
 .claude/
 .DS_Store
 
-# CI workflow garde de cote (token sans scope workflow)
-.github/
-
 # wrangler files
 .wrangler
 .dev.vars*

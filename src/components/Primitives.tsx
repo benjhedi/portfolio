@@ -1,6 +1,7 @@
 import {
   motion,
   useMotionValue,
+  useMotionTemplate,
   useSpring,
   useScroll,
   useTransform,
@@ -19,6 +20,10 @@ import {
   Code,
   LayoutGrid,
   ShieldCheck,
+  Gauge,
+  Users,
+  MessagesSquare,
+  Sparkles,
   type LucideProps,
 } from "lucide-react";
 import type { IconName } from "../content/content";
@@ -27,6 +32,7 @@ import type { IconName } from "../content/content";
 const ICONS: Record<IconName, React.ComponentType<LucideProps>> = {
   Compass, PencilRuler, CodeXml, FlaskConical, Rocket, LifeBuoy,
   Layers, Frame, Code, LayoutGrid, ShieldCheck,
+  Gauge, Users, MessagesSquare, Sparkles,
 };
 export function Icon({
   name,
@@ -121,6 +127,24 @@ export function Accent({ text, accent }: { text: string; accent?: string }) {
   );
 }
 
+/* ---- Préserve la casse des noms d'OS Apple dans un contexte uppercase (eyebrow) ---- */
+export function PreserveCase({ text }: { text: string }) {
+  const parts = text.split(/(iOS|iPadOS|macOS|watchOS|tvOS)/g);
+  return (
+    <>
+      {parts.map((p, i) =>
+        /^(iOS|iPadOS|macOS|watchOS|tvOS)$/.test(p) ? (
+          <span key={i} className="[text-transform:none]">
+            {p}
+          </span>
+        ) : (
+          p
+        )
+      )}
+    </>
+  );
+}
+
 /* ---- Eyebrow de section avec index monospace (fil conducteur wibify) ---- */
 export function SectionEyebrow({
   index,
@@ -206,6 +230,73 @@ export function CutReveal({
         </span>
       ))}
     </span>
+  );
+}
+
+/* ---- Parallaxe au survol (la carte s'incline vers le curseur, reflet doux) ---- */
+export function Tilt({
+  children,
+  className = "",
+  max = 5,
+  radius = "rounded-card",
+  glare = true,
+}: {
+  children: ReactNode;
+  className?: string;
+  max?: number;
+  radius?: string;
+  glare?: boolean;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReduce();
+  const rx = useMotionValue(0);
+  const ry = useMotionValue(0);
+  const gx = useMotionValue(50);
+  const gy = useMotionValue(50);
+  const spring = { stiffness: 150, damping: 18, mass: 0.2 };
+  const srx = useSpring(rx, spring);
+  const sry = useSpring(ry, spring);
+  const sgx = useSpring(gx, spring);
+  const sgy = useSpring(gy, spring);
+  const glareBg = useMotionTemplate`radial-gradient(180px circle at ${sgx}% ${sgy}%, var(--color-skyghost), transparent 65%)`;
+
+  function onMove(e: React.MouseEvent) {
+    if (reduce || !ref.current) return;
+    const r = ref.current.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    ry.set((px - 0.5) * max * 2);
+    rx.set(-(py - 0.5) * max * 2);
+    gx.set(px * 100);
+    gy.set(py * 100);
+  }
+
+  function reset() {
+    rx.set(0);
+    ry.set(0);
+    gx.set(50);
+    gy.set(50);
+  }
+
+  if (reduce) return <div className={className}>{children}</div>;
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={reset}
+      style={{ rotateX: srx, rotateY: sry, transformPerspective: 900 }}
+      className={`relative [transform-style:preserve-3d] ${className}`}
+    >
+      {children}
+      {glare && (
+        <motion.span
+          aria-hidden
+          style={{ background: glareBg }}
+          className={`pointer-events-none absolute inset-0 z-10 ${radius}`}
+        />
+      )}
+    </motion.div>
   );
 }
 

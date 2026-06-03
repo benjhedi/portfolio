@@ -1,34 +1,38 @@
 import { useApp } from "../app/AppContext";
 import { skillsHead, skills, stackMarquee } from "../content/content";
-import { Reveal, Icon, SectionEyebrow, Accent } from "./Primitives";
+import { Reveal, Tilt, Icon, SectionEyebrow, Accent } from "./Primitives";
 
 export function Skills() {
-  const { t } = useApp();
+  const { t, theme } = useApp();
   const row = [...stackMarquee, ...stackMarquee];
+  // teinte des logos simpleicons accordee au theme (charcoal clair / creme sombre)
+  const iconColor = theme === "dark" ? "f4f1ea" : "1c1c1c";
 
   return (
     <section id="competences" className="px-5 py-24 sm:px-8 md:py-32">
       <div className="mx-auto max-w-[1240px]">
         <Reveal className="mb-12 flex flex-col gap-4 md:mb-16">
-          <SectionEyebrow index="05">{t(skillsHead.eyebrow)}</SectionEyebrow>
+          <SectionEyebrow index="06">{t(skillsHead.eyebrow)}</SectionEyebrow>
           <h2 className="display text-[clamp(2rem,4.4vw,3rem)]"><Accent text={t(skillsHead.title)} accent={t(skillsHead.accent)} /></h2>
         </Reveal>
 
         <div className="grid gap-6 md:grid-cols-3">
           {skills.map((s, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <article className="group flex h-full flex-col gap-5 rounded-card border border-line bg-cream p-6 transition duration-300 hover:border-sky motion-safe:hover:-translate-y-1 sm:p-9">
-                <h3 className="flex items-center gap-3 text-[1.15rem] font-semibold text-ink">
-                  <Icon name={s.icon} size={20} className="transition-colors group-hover:text-skyink" /> {t(s.title)}
-                </h3>
-                <div className="flex flex-wrap gap-2.5">
-                  {s.items.map((it) => (
-                    <span key={it} className="rounded-btn border border-line bg-cream px-3.5 py-1.5 text-sm text-body">
-                      {it}
-                    </span>
-                  ))}
-                </div>
-              </article>
+              <Tilt className="h-full" max={4}>
+                <article className="group flex h-full flex-col gap-5 rounded-card border border-line bg-cream p-6 transition-colors duration-300 hover:border-sky sm:p-9">
+                  <h3 className="flex items-center gap-3 text-[1.15rem] font-semibold text-ink">
+                    <Icon name={s.icon} size={20} className="transition-colors group-hover:text-skyink" /> {t(s.title)}
+                  </h3>
+                  <div className="flex flex-wrap gap-2.5">
+                    {s.items.map((it) => (
+                      <span key={it} className="rounded-btn border border-line bg-cream px-3.5 py-1.5 text-sm text-body">
+                        {it}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              </Tilt>
             </Reveal>
           ))}
         </div>
@@ -40,7 +44,7 @@ export function Skills() {
           {row.map((tech, i) => (
             <div key={`${tech.slug}-${i}`} className="group flex shrink-0 items-center gap-3" title={tech.name}>
               <img
-                src={`https://cdn.simpleicons.org/${tech.slug}/1c1c1c`}
+                src={`https://cdn.simpleicons.org/${tech.slug}/${iconColor}`}
                 alt={tech.name}
                 width={26}
                 height={26}

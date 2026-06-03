@@ -5,7 +5,7 @@ import { useReduce } from "../app/useReduce";
 import { ArrowUpRight } from "lucide-react";
 import { useApp } from "../app/AppContext";
 import { projectsHead, projects, more, type Project } from "../content/content";
-import { Reveal, SectionEyebrow, Accent } from "./Primitives";
+import { Reveal, Tilt, SectionEyebrow, Accent } from "./Primitives";
 import { Phone } from "./Phone";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -67,7 +67,7 @@ export function Work({ onOpen }: { onOpen: (id: string) => void }) {
     <section id="projets" className="relative px-5 py-24 sm:px-8 md:py-32">
       <div className="mx-auto max-w-[1240px]">
         <Reveal className="mb-12 flex max-w-[640px] flex-col gap-4 md:mb-16">
-          <SectionEyebrow index="03">{t(projectsHead.eyebrow)}</SectionEyebrow>
+          <SectionEyebrow index="04">{t(projectsHead.eyebrow)}</SectionEyebrow>
           <h2 className="display text-[clamp(2rem,4.4vw,3rem)]"><Accent text={t(projectsHead.title)} accent={t(projectsHead.accent)} /></h2>
           <p className="text-[clamp(1.05rem,2vw,1.2rem)] text-body">{t(projectsHead.lead)}</p>
         </Reveal>
@@ -81,12 +81,20 @@ export function Work({ onOpen }: { onOpen: (id: string) => void }) {
 
       <div className="mx-auto mt-12 max-w-[1240px]">
         <Reveal className="rounded-box border border-line bg-sink p-7 sm:p-9">
-          <h4 className="mb-4 text-base font-semibold text-ink">{t(projectsHead.moreTitle)}</h4>
-          <div className="flex flex-wrap gap-2.5">
+          <h4 className="mb-6 text-base font-semibold text-ink">{t(projectsHead.moreTitle)}</h4>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {more.map((m, i) => (
-              <span key={i} className="rounded-btn border border-line bg-cream px-3.5 py-2 text-sm text-body">
-                {t(m)}
-              </span>
+              <Reveal key={i} delay={i * 0.04}>
+                <Tilt className="h-full" max={4}>
+                  <article className="group flex h-full flex-col gap-1.5 rounded-card border border-line bg-cream p-5 transition-colors duration-300 hover:border-sky">
+                    <span className="text-xs font-semibold uppercase tracking-[0.1em] text-skyink">
+                      {t(m.client)}
+                    </span>
+                    <h5 className="text-[1.05rem] font-semibold text-ink">{t(m.title)}</h5>
+                    <p className="text-sm leading-relaxed text-body">{t(m.desc)}</p>
+                  </article>
+                </Tilt>
+              </Reveal>
             ))}
           </div>
         </Reveal>

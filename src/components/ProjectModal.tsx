@@ -109,10 +109,13 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
 
             <motion.div {...stepIn(4)} className="mt-6 border-t border-line pt-6">
               <span className="eyebrow block">{t(modalLabels.did)}</span>
-              <ul className="mt-3 flex flex-col">
+              <ul className="mt-4 flex flex-col gap-3.5">
                 {project.contributions.map((c, i) => (
-                  <li key={i} className="border-t border-line py-3 text-body first:border-t-0 first:pt-0">
-                    {t(c)}
+                  <li key={i} className="flex gap-3.5 text-body">
+                    <span className="mt-0.5 font-mono text-[13px] font-semibold text-skyink">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span>{t(c)}</span>
                   </li>
                 ))}
               </ul>

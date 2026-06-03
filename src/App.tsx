@@ -3,6 +3,7 @@ import { AnimatePresence } from "motion/react";
 import { AppProvider } from "./app/AppContext";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
+import { About } from "./components/About";
 import { Offers } from "./components/Offers";
 import { Process } from "./components/Process";
 import { Work } from "./components/Work";
@@ -21,6 +22,7 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
+        <About />
         <Offers />
         <Process />
         <Work onOpen={setOpenId} />

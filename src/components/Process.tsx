@@ -50,7 +50,7 @@ export function Process() {
                   className={`absolute -left-[84px] -top-1.5 grid size-[58px] place-items-center rounded-full border transition-all duration-500 ${
                     on
                       ? "scale-105 border-sky bg-sky text-off"
-                      : "border-line2 bg-cream text-ink"
+                      : "border-line2 bg-raise text-ink"
                   }`}
                 >
                   <Icon name={s.icon} />

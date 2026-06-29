@@ -113,15 +113,23 @@ export function Reveal({
   );
 }
 
-/* ---- Mot accentue dans un titre (skyink), pilote par content.ts ---- */
-export function Accent({ text, accent }: { text: string; accent?: string }) {
+/* ---- Mot accentue dans un titre (skyink par defaut), pilote par content.ts ---- */
+export function Accent({
+  text,
+  accent,
+  accentClassName = "text-skyink",
+}: {
+  text: string;
+  accent?: string;
+  accentClassName?: string;
+}) {
   if (!accent) return <>{text}</>;
   const i = text.indexOf(accent);
   if (i === -1) return <>{text}</>;
   return (
     <>
       {text.slice(0, i)}
-      <span className="text-skyink">{accent}</span>
+      <span className={accentClassName}>{accent}</span>
       {text.slice(i + accent.length)}
     </>
   );

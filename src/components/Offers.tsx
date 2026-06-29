@@ -21,7 +21,7 @@ export function Offers() {
           {offers.map((o, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <Tilt className="h-full" max={4}>
-                <article className="group flex h-full min-h-[320px] flex-col gap-5 rounded-card border border-line bg-cream p-7 transition-colors duration-300 hover:border-sky sm:p-11">
+                <article className="group flex h-full min-h-[320px] flex-col gap-5 rounded-card border border-line bg-raise p-7 transition-colors duration-300 hover:border-sky sm:p-11">
                   <span className="grid size-12 place-items-center rounded-card border border-line2 text-ink transition-colors group-hover:border-sky group-hover:text-skyink">
                     <Icon name={o.icon} />
                   </span>

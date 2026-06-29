@@ -26,8 +26,8 @@ function initialLocale(): Locale {
 }
 
 function initialTheme(): Theme {
-  // l'etat suit la classe deja posee par le script anti-flash de index.html
-  if (typeof document !== "undefined" && document.documentElement.classList.contains("dark")) {
+  // l'etat suit l'attribut deja pose par le script anti-flash de index.html
+  if (typeof document !== "undefined" && document.documentElement.dataset.theme === "dark") {
     return "dark";
   }
   const stored = localStorage.getItem("theme");
@@ -46,12 +46,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.toggle("dark", theme === "dark");
+    if (theme === "dark") root.dataset.theme = "dark";
+    else delete root.dataset.theme;
     localStorage.setItem("theme", theme);
     // barre d'adresse mobile accordee a la surface de fond
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", theme === "dark" ? "#151519" : "#f7f4ed");
+      ?.setAttribute("content", theme === "dark" ? "#0a1120" : "#e6ebf4");
   }, [theme]);
 
   const value: Ctx = {

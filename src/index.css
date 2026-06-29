@@ -6,11 +6,13 @@
 @import "@fontsource-variable/jetbrains-mono";
 
 /*
-  DESIGN SYSTEM — Wara Studio (charte officielle V1.0)
-  Fond creme, jamais blanc pur. Charcoal jamais noir pur. Gris derives du
-  charcoal en opacite. Sky blue = accent, jamais en fond. Hanken Grotesk
-  400 / 600. Bords (1px #eceae4), pas d'ombres ; ombre interne = signature
-  des boutons sombres. Rayons 6 / 12 / 16. Sentence case, tutoiement FR.
+  DESIGN SYSTEM — Wara Studio (charte officielle V2.0)
+  Fond porcelaine bleutee, jamais blanc pur, jamais creme chaud. Charcoal
+  jamais noir pur. Gris derives du charcoal en opacite. Sky blue = accent,
+  jamais en fond. Les surfaces flottent plus clair que la page (raise) :
+  la profondeur vient du contraste de surface, pas de l'ombre. Hanken
+  Grotesk 400 / 600. Bords (1px #dbe2ec), ombre interne = signature des
+  boutons sombres. Rayons 6 / 12 / 16. Sentence case, tutoiement FR.
 */
 
 @theme {
@@ -18,27 +20,32 @@
   --font-display: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Surfaces */
-  --color-cream: #f7f4ed;
-  --color-sink: #f2eee5;
-  --color-char: #1c1c1c;
-  --color-off: #fcfbf8;
+  /* Surfaces (porcelaine bleutee) */
+  --color-cream: #e6ebf4;   /* fond de page */
+  --color-raise: #f5f8fc;   /* surface elevee : cartes, modales, nav, pills — flotte plus clair que la page */
+  --color-sink: #dce4f0;    /* sections en retrait, porcelaine plus profonde */
+  --color-char: #1c1c1c;    /* action primaire — swap charcoal<->off-white en Midnight (pill claire) */
+  --color-off: #fcfbf8;     /* texte sur charcoal — swap en Midnight (texte sombre) */
+  --color-scrim: #101626;   /* voile de modale — toujours sombre (non inverse) */
+  --color-bezel: #11161f;   /* chassis d'appareil — toujours sombre (non inverse) */
 
-  /* Texte (charcoal en opacite : 100 / 83 / 40) */
+  /* Texte (charcoal en opacite : 100 / 83 / 40 / 4) */
   --color-ink: #1c1c1c;
   --color-body: rgba(28, 28, 28, 0.83);
   --color-muted: rgba(28, 28, 28, 0.40);
   --color-faint: rgba(28, 28, 28, 0.04);
 
-  /* Bords */
-  --color-line: #eceae4;
+  /* Bords (contention par le bord, pas l'ombre) */
+  --color-line: #dbe2ec;
   --color-line2: rgba(28, 28, 28, 0.12);
 
-  /* Accent sky blue */
-  --color-sky: #5fa8d9;
-  --color-skyink: #2e6fa8;
-  --color-skysoft: #c7e0f1;
-  --color-skyghost: rgba(95, 168, 217, 0.1);
+  /* Accent sky blue + compagnons */
+  --color-sky: #41c0f2;
+  --color-skyink: #0d518c;
+  --color-skysoft: #cfe9fb;
+  --color-skyghost: rgba(65, 192, 242, 0.1);
+  --color-skydeep: #08428c;   /* le plus profond — gradients */
+  --color-slate: #5c6795;     /* ardoise — gradients, texte secondaire */
 
   /* Rayons (charte) */
   --radius-btn: 6px;
@@ -51,37 +58,40 @@
 }
 
 /*
-  MODE SOMBRE — meme charte, valeurs inversees. On redefinit les variables
-  de couleur sous html.dark : toutes les utilitaires (bg-cream, text-ink,
-  border-line...) suivent automatiquement, sans toucher au markup. Le creme
-  devient un charcoal profond (jamais noir pur), le charcoal une surface
-  elevee pour les boutons signature, le sky est legerement eclairci pour
-  rester lisible sur fond sombre.
+  MODE SOMBRE — Midnight. Meme charte, valeurs inversees. On redefinit les
+  variables de couleur sous [data-theme="dark"] : toutes les utilitaires
+  (bg-cream, text-ink, border-line...) suivent automatiquement, sans toucher
+  au markup. La porcelaine devient une encre profonde bleutee (jamais noir
+  pur), les surfaces s'eclaircissent pour flotter, et le sky est eclairci
+  pour rester lisible sur fond sombre.
 */
-html.dark {
+html[data-theme="dark"] {
   color-scheme: dark;
 
-  /* Surfaces */
-  --color-cream: #151519;
-  --color-sink: #1d1d23;
-  --color-char: #26262f;
-  --color-off: #fcfbf8;
+  /* Surfaces — Midnight */
+  --color-cream: #0a1120;   /* sol Midnight */
+  --color-raise: #141d31;   /* surface elevee bleutee */
+  --color-sink: #070c18;    /* retrait profond */
+  --color-char: #eef2f8;    /* swap : pill claire sur Midnight (ombre interne = signature) */
+  --color-off: #0c1424;     /* swap : texte sombre sur la pill claire */
 
-  /* Texte (creme en opacite) */
-  --color-ink: #f4f1ea;
-  --color-body: rgba(244, 241, 234, 0.78);
-  --color-muted: rgba(244, 241, 234, 0.46);
-  --color-faint: rgba(244, 241, 234, 0.05);
+  /* Texte (off-white en opacite) */
+  --color-ink: #eef2f8;
+  --color-body: rgba(238, 242, 248, 0.8);
+  --color-muted: rgba(238, 242, 248, 0.46);
+  --color-faint: rgba(238, 242, 248, 0.05);
 
   /* Bords */
-  --color-line: rgba(244, 241, 234, 0.1);
-  --color-line2: rgba(244, 241, 234, 0.18);
+  --color-line: rgba(238, 242, 248, 0.1);
+  --color-line2: rgba(238, 242, 248, 0.18);
 
-  /* Accent sky blue (eclairci pour le contraste sur fond sombre) */
-  --color-sky: #5fa8d9;
-  --color-skyink: #84c2ec;
-  --color-skysoft: #2c5572;
-  --color-skyghost: rgba(95, 168, 217, 0.14);
+  /* Accent sky blue (eclairci pour le contraste sur Midnight) */
+  --color-sky: #41c0f2;
+  --color-skyink: #7fd0f7;
+  --color-skysoft: #14304a;
+  --color-skyghost: rgba(65, 192, 242, 0.14);
+  --color-skydeep: #2b6fb8;
+  --color-slate: #8a93bf;
 }
 
 html {
@@ -128,6 +138,65 @@ body {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-muted);
+}
+
+/*
+  PRIMITIVES SIGNATURE (charte V2) — un seul moment "fort" par ecran.
+  Le degrade de marque (sky profond -> sky -> ardoise) suit les tokens,
+  donc il se reaccorde tout seul en Midnight.
+*/
+:root {
+  --grad-brand: linear-gradient(
+    115deg,
+    var(--color-skydeep) 0%,
+    var(--color-sky) 54%,
+    var(--color-slate) 100%
+  );
+}
+
+/* Surface en verre depoli — le SEUL flou autorise hors glass.
+   Pas de bord impose : le consommateur ajoute le sien (border-b nav, etc.) */
+.ws-glass {
+  background: color-mix(in srgb, var(--color-raise) 62%, transparent);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+}
+
+/* Degrade de marque (fond) + texte au degrade (accent) */
+.ws-grad-brand {
+  background-image: var(--grad-brand);
+}
+.ws-grad-text {
+  background-image: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Bouton glow — l'unique action forte. Degrade + glow + ombre interne signature */
+.ws-btn--glow {
+  background-image: var(--grad-brand);
+  color: #fcfbf8; /* blanc fixe : ne suit pas le swap off (degrade sombre dans les 2 themes) */
+  box-shadow: var(--shadow-inset), 0 8px 28px -10px var(--color-sky);
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
+}
+.ws-btn--glow:hover {
+  box-shadow: var(--shadow-inset), 0 14px 38px -10px var(--color-sky);
+  filter: brightness(1.05);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ws-btn--glow {
+    transition: none;
+  }
+}
+
+/* Titre editorial — geant, resserre, italique, accent au degrade */
+.ws-display-editorial {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
 }
 
 /* Marquee */

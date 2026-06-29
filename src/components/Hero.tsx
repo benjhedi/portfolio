@@ -12,6 +12,9 @@ const heroMedia = [
   { mp4: "/hero/hero-2.mp4", poster: "/hero/hero-2.jpg" },
 ];
 
+/* Desature le fond chaud (caramel) avant la reteinte duotone bleue */
+const coolFilter = "saturate(0.4) brightness(1.04) contrast(1.02)";
+
 export function Hero() {
   const { t } = useApp();
   const reduce = useReduce();
@@ -46,10 +49,11 @@ export function Hero() {
       id="top"
       className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden px-5 pt-28 pb-16 sm:px-8"
     >
-      {/* Fond video pleine largeur (repli poster sous reduced-motion) */}
-      <div className="absolute inset-0 z-0" aria-hidden>
+      {/* Fond video pleine largeur (repli poster sous reduced-motion).
+          isolate : le blend duotone ne mixe qu'avec la video, rien derriere. */}
+      <div className="absolute inset-0 z-0 isolate" aria-hidden>
         {reduce ? (
-          <img src={media.poster} alt="" className="h-full w-full object-cover" />
+          <img src={media.poster} alt="" className="h-full w-full object-cover" style={{ filter: coolFilter }} />
         ) : (
           <video
             ref={videoRef}
@@ -61,10 +65,18 @@ export function Hero() {
             poster={media.poster}
             preload="metadata"
             className="h-full w-full object-cover"
+            style={{ filter: coolFilter }}
           >
             <source src={media.mp4} type="video/mp4" />
           </video>
         )}
+        {/* Duotone froid : reteinte la video en bleu de charte (neutralise le
+            caramel). mix-blend color = teinte/saturation du calque, luminosite
+            de la video. Pilote par le token, donc clair + Midnight automatiques. */}
+        <div
+          className="absolute inset-0"
+          style={{ background: "var(--color-skyink)", mixBlendMode: "color", opacity: 0.62 }}
+        />
         {/* Voile creme : opaque a gauche (texte), transparent a droite (appareils) */}
         <div
           className="absolute inset-0"
@@ -106,7 +118,7 @@ export function Hero() {
               <Magnetic>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2.5 rounded-btn bg-char px-5 py-3.5 text-[15px] font-semibold text-off shadow-inset transition-transform duration-200 active:translate-y-px"
+                  className="ws-btn--glow inline-flex items-center gap-2.5 rounded-btn px-5 py-3.5 text-[15px] font-semibold transition-transform duration-200 active:translate-y-px"
                 >
                   <Mail size={17} strokeWidth={1.5} />
                   {t(hero.cta1)}

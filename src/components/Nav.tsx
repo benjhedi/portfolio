@@ -20,7 +20,7 @@ export function Nav() {
     >
       <div
         className={`transition-colors duration-300 ${
-          scrolled ? "border-b border-line bg-cream/85 backdrop-blur-md" : ""
+          scrolled ? "ws-glass border-b border-line" : ""
         }`}
       >
         <nav className="mx-auto flex h-[72px] max-w-[1240px] items-center justify-between gap-5 px-5 sm:px-8">
@@ -89,7 +89,7 @@ export function Nav() {
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="border-b border-line bg-cream/95 backdrop-blur-md md:hidden"
+          className="ws-glass border-b border-line md:hidden"
         >
           <div className="flex flex-col px-5 py-3">
             {nav.map((item) => (

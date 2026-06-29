@@ -56,7 +56,7 @@ export function Phone({
   return (
     <motion.div
       layoutId={layoutId}
-      className={`relative aspect-[9/19] rounded-[34px] border border-char bg-char p-2.5 shadow-inset ${className}`}
+      className={`relative aspect-[9/19] rounded-[34px] border border-bezel bg-bezel p-2.5 shadow-inset ${className}`}
     >
       <div className="relative h-full w-full overflow-hidden rounded-[26px] bg-cream">
         {image ? (
@@ -64,7 +64,7 @@ export function Phone({
         ) : (
           <Placeholder label={placeholder} />
         )}
-        <span className="absolute left-1/2 top-2 z-10 h-4 w-16 -translate-x-1/2 rounded-full bg-char" />
+        <span className="absolute left-1/2 top-2 z-10 h-4 w-16 -translate-x-1/2 rounded-full bg-bezel" />
       </div>
     </motion.div>
   );

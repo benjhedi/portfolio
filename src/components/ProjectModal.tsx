@@ -36,19 +36,19 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
-      className="fixed inset-0 z-[100] grid place-items-center bg-char/40 p-4 backdrop-blur-md sm:p-8"
+      className="fixed inset-0 z-[100] grid place-items-center bg-scrim/50 p-4 backdrop-blur-md sm:p-8"
     >
       <motion.div
         initial={reduce ? false : { y: 12 }}
         animate={{ y: 0 }}
         exit={reduce ? undefined : { opacity: 0, y: 12 }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className="relative max-h-[90vh] w-full max-w-[960px] overflow-y-auto rounded-box border border-line bg-cream p-6 sm:p-10"
+        className="relative max-h-[90vh] w-full max-w-[960px] overflow-y-auto rounded-box border border-line bg-raise p-6 sm:p-10"
       >
         <button
           onClick={onClose}
           aria-label={t(modalLabels.close)}
-          className="absolute right-4 top-4 z-10 grid size-10 place-items-center rounded-[8px] border border-line2 bg-cream text-ink transition-colors hover:border-sky hover:text-skyink"
+          className="absolute right-4 top-4 z-10 grid size-10 place-items-center rounded-[8px] border border-line2 bg-raise text-ink transition-colors hover:border-sky hover:text-skyink"
         >
           <X size={18} strokeWidth={1.5} />
         </button>
@@ -125,7 +125,7 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
               <span className="eyebrow block">{t(modalLabels.stack)}</span>
               <div className="mt-3 flex flex-wrap gap-2.5">
                 {project.stack.map((s) => (
-                  <span key={s} className="rounded-btn border border-line bg-cream px-3.5 py-1.5 text-sm text-body">
+                  <span key={s} className="rounded-btn border border-line bg-raise px-3.5 py-1.5 text-sm text-body">
                     {s}
                   </span>
                 ))}

@@ -86,7 +86,7 @@ export function Work({ onOpen }: { onOpen: (id: string) => void }) {
             {more.map((m, i) => (
               <Reveal key={i} delay={i * 0.04}>
                 <Tilt className="h-full" max={4}>
-                  <article className="group flex h-full flex-col gap-1.5 rounded-card border border-line bg-cream p-5 transition-colors duration-300 hover:border-sky">
+                  <article className="group flex h-full flex-col gap-1.5 rounded-card border border-line bg-raise p-5 transition-colors duration-300 hover:border-sky">
                     <span className="text-xs font-semibold uppercase tracking-[0.1em] text-skyink">
                       {t(m.client)}
                     </span>
@@ -120,7 +120,7 @@ function CaseCard({
     >
       <button
         onClick={() => onOpen(p.id)}
-        className={`flex w-full flex-col justify-center rounded-t-box border-t border-line bg-cream px-5 text-left sm:px-10 ${reduce ? "py-12" : "min-h-[100dvh] py-16"}`}
+        className={`flex w-full flex-col justify-center rounded-t-box border-t border-line bg-raise px-5 text-left sm:px-10 ${reduce ? "py-12" : "min-h-[100dvh] py-16"}`}
       >
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-6">

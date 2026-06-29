@@ -33,7 +33,7 @@ export function About() {
             {about.traits.map((tr, i) => (
               <Reveal key={i} delay={i * 0.08}>
                 <Tilt className="h-full">
-                  <article className="group flex h-full flex-col gap-3.5 rounded-card border border-line bg-cream p-6 transition-colors duration-300 hover:border-sky">
+                  <article className="group flex h-full flex-col gap-3.5 rounded-card border border-line bg-raise p-6 transition-colors duration-300 hover:border-sky">
                     <span className="grid size-11 place-items-center rounded-card border border-line2 text-ink transition-colors group-hover:border-sky group-hover:text-skyink">
                       <Icon name={tr.icon} size={18} />
                     </span>

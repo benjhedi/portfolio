@@ -14,8 +14,12 @@ export function Contact() {
           <SectionEyebrow index="07">{t(contact.eyebrow)}</SectionEyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="display max-w-[18ch] text-[clamp(2.5rem,7vw,5rem)]">
-            <Accent text={t(contact.heading)} accent={t(contact.accent)} />
+          <h2 className="ws-display-editorial max-w-[18ch] text-[clamp(2.5rem,7vw,5rem)]">
+            <Accent
+              text={t(contact.heading)}
+              accent={t(contact.accent)}
+              accentClassName="ws-grad-text"
+            />
           </h2>
         </Reveal>
         <Reveal delay={0.1}>

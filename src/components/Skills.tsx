@@ -5,8 +5,8 @@ import { Reveal, Tilt, Icon, SectionEyebrow, Accent } from "./Primitives";
 export function Skills() {
   const { t, theme } = useApp();
   const row = [...stackMarquee, ...stackMarquee];
-  // teinte des logos simpleicons accordee au theme (charcoal clair / creme sombre)
-  const iconColor = theme === "dark" ? "f4f1ea" : "1c1c1c";
+  // teinte des logos simpleicons accordee au theme (charcoal clair / off-white sombre)
+  const iconColor = theme === "dark" ? "eef2f8" : "1c1c1c";
 
   return (
     <section id="competences" className="px-5 py-24 sm:px-8 md:py-32">
@@ -20,13 +20,13 @@ export function Skills() {
           {skills.map((s, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <Tilt className="h-full" max={4}>
-                <article className="group flex h-full flex-col gap-5 rounded-card border border-line bg-cream p-6 transition-colors duration-300 hover:border-sky sm:p-9">
+                <article className="group flex h-full flex-col gap-5 rounded-card border border-line bg-raise p-6 transition-colors duration-300 hover:border-sky sm:p-9">
                   <h3 className="flex items-center gap-3 text-[1.15rem] font-semibold text-ink">
                     <Icon name={s.icon} size={20} className="transition-colors group-hover:text-skyink" /> {t(s.title)}
                   </h3>
                   <div className="flex flex-wrap gap-2.5">
                     {s.items.map((it) => (
-                      <span key={it} className="rounded-btn border border-line bg-cream px-3.5 py-1.5 text-sm text-body">
+                      <span key={it} className="rounded-btn border border-line bg-raise px-3.5 py-1.5 text-sm text-body">
                         {it}
                       </span>
                     ))}

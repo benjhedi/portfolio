@@ -202,7 +202,7 @@ export const projects: Project[] = [
       { fr: "Chaîne d'intégration continue complète : build, tests et distribution automatisés sur Bitrise.", en: "Full continuous integration pipeline: automated builds, tests and distribution on Bitrise." },
     ],
     stack: ["Swift", "SwiftUI", "Combine", "async/await", "BLE", "SPM", "Bitrise"],
-    images: [],
+    images: ["/projects/GearTrack.png"],
   },
   {
     id: "ride", name: "RIDE", client: "Décathlon", index: "02",
@@ -277,7 +277,7 @@ export const projects: Project[] = [
       { fr: "Mise en ligne sur l'App Store et suivi des premières versions.", en: "App Store release and support of the first versions." },
     ],
     stack: ["Swift", "UIKit", "MVI", "RxSwift", "YouTube API", "AWS S3", "OneSignal"],
-    images: [],
+    images: ["/projects/WorkoutLife.png"],
   },
 ];
 

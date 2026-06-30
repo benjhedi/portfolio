@@ -26,6 +26,13 @@ jobs:
           node-version: 22
           cache: npm
 
+      # Auth GitHub Packages pour les packages privés @warastudio.
+      # Le scope/registry vient du .npmrc committé ; seul le token reste hors repo.
+      - name: Auth GitHub Packages
+        run: echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.WARA_DS_TOKEN }}
+
       - run: npm ci
 
       - name: Build et deploie sur Cloudflare

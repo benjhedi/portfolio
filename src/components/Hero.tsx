@@ -6,10 +6,10 @@ import { hero, clientsIntro, clients } from "../content/content";
 import { Magnetic, CutReveal, PreserveCase } from "./Primitives";
 import { useReduce } from "../app/useReduce";
 
-/* Fonds hero : une video tiree au sort a chaque chargement */
+/* Fond hero : video unique (tableau conserve pour rajouter d'autres fonds au
+   tirage plus tard — depose hero-N.mp4 + hero-N.jpg dans public/hero/). */
 const heroMedia = [
   { mp4: "/hero/hero-1.mp4", poster: "/hero/hero-1.jpg" },
-  { mp4: "/hero/hero-2.mp4", poster: "/hero/hero-2.jpg" },
 ];
 
 /* Desature le fond chaud (caramel) avant la reteinte duotone bleue */
@@ -180,16 +180,26 @@ export function Hero() {
           </div>
         )}
 
-        {/* Voile porcelaine : opaque a gauche (texte), transparent a droite (appareils) */}
+        {/* Voile porcelaine : leger a gauche (la video reste visible derriere le
+            texte) puis transparent a droite. Un scrim cible derriere le texte
+            garde la lisibilite sans masquer entierement la gauche de la video. */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(100deg, var(--color-cream) 0%, var(--color-cream) 42%, color-mix(in srgb, var(--color-cream) 70%, transparent) 60%, color-mix(in srgb, var(--color-cream) 30%, transparent) 100%)",
+              "linear-gradient(100deg, color-mix(in srgb, var(--color-cream) 80%, transparent) 0%, color-mix(in srgb, var(--color-cream) 66%, transparent) 34%, color-mix(in srgb, var(--color-cream) 32%, transparent) 60%, transparent 90%)",
+          }}
+        />
+        {/* Scrim cible derriere le texte (gauche) pour la lisibilite */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(120% 95% at 0% 45%, color-mix(in srgb, var(--color-cream) 72%, transparent), transparent 60%)",
           }}
         />
         {/* Scrim renforce sur mobile + fondu bas vers la page */}
-        <div className="absolute inset-0 bg-cream/55 md:bg-transparent" />
+        <div className="absolute inset-0 bg-cream/40 md:bg-transparent" />
         <div
           className="absolute inset-x-0 bottom-0 h-32"
           style={{ background: "linear-gradient(to bottom, transparent, var(--color-cream))" }}

@@ -30,12 +30,22 @@ export function Process() {
         </Reveal>
 
         <div ref={railRef} className="relative flex flex-col gap-9 pl-[84px] md:gap-16">
-          {/* rail */}
-          <div className="absolute left-[28px] top-2 bottom-2 w-0.5 rounded bg-line">
+          {/* rail : trait de marque qui se remplit, avec tete lumineuse au scroll */}
+          <div className="absolute left-[28px] top-2 bottom-2 w-[3px] -translate-x-px rounded-full bg-line">
             <motion.div
               style={reduce ? { height: "100%" } : { height: fillHeight }}
-              className="w-full rounded bg-sky"
+              className="ws-grad-brand w-full rounded-full"
             />
+            {!reduce && (
+              <motion.span
+                style={{ top: fillHeight }}
+                className="absolute left-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
+                aria-hidden
+              >
+                <span className="block size-2.5 rounded-full bg-sky shadow-[0_0_16px_4px_color-mix(in_srgb,var(--color-sky)_70%,transparent)]" />
+                <span className="absolute inset-0 animate-ping rounded-full bg-sky/60" />
+              </motion.span>
+            )}
           </div>
 
           {steps.map((s, i) => {
@@ -49,7 +59,7 @@ export function Process() {
                 <span
                   className={`absolute -left-[84px] -top-1.5 grid size-[58px] place-items-center rounded-full border transition-all duration-500 ${
                     on
-                      ? "scale-105 border-sky bg-sky text-off"
+                      ? "ws-grad-brand scale-105 border-transparent text-off shadow-[0_6px_22px_-6px_color-mix(in_srgb,var(--color-sky)_80%,transparent)]"
                       : "border-line2 bg-raise text-ink"
                   }`}
                 >

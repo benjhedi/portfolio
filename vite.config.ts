@@ -11,6 +11,15 @@ export default defineConfig({
     dedupe: ["react", "react-dom"],
   },
   optimizeDeps: {
-    include: ["react", "react-dom", "three", "@react-three/fiber", "@react-three/drei"],
+    // @warastudio/react importe react/react-dom : on le pre-bundle avec eux
+    // pour qu'il partage la meme instance React (sinon "Invalid hook call").
+    include: [
+      "react",
+      "react-dom",
+      "three",
+      "@react-three/fiber",
+      "@react-three/drei",
+      "@warastudio/react",
+    ],
   },
 });

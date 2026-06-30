@@ -171,6 +171,9 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* l'italique de la derniere lettre deborde a droite : un poil de marge en fin
+     evite que background-clip:text la rogne */
+  padding-inline-end: 0.12em;
 }
 
 /* Bouton glow — l'unique action forte. Degrade + glow + ombre interne signature */

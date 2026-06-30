@@ -1,5 +1,4 @@
 import { Mail } from "lucide-react";
-import { Button } from "@warastudio/react";
 import { useApp } from "../app/AppContext";
 import { contact, identity } from "../content/content";
 import { Reveal, Magnetic, SectionEyebrow, Accent } from "./Primitives";
@@ -58,15 +57,6 @@ export function Contact() {
             {identity.email}
           </a>
         </Reveal>
-      </div>
-
-      {/* E1 — smoke test SDK Wara DS : valide le rendu des composants publies
-          (light + Midnight) a cote du Tailwind. A retirer/remplacer apres validation. */}
-      <div className="mx-auto mt-16 flex max-w-[1240px] flex-wrap items-center gap-3 border-t border-dashed border-line pt-6">
-        <span className="text-xs uppercase tracking-[0.14em] text-muted">Wara DS</span>
-        <Button variant="primary">Primary</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="glow">Glow</Button>
       </div>
 
       <div className="mx-auto mt-20 flex max-w-[1240px] flex-col gap-3 border-t border-line pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">

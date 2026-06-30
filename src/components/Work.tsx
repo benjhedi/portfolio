@@ -20,24 +20,10 @@ export function Work({ onOpen }: { onOpen: (id: string) => void }) {
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray<HTMLElement>(".case-card");
       cards.forEach((card, i) => {
-        // parallaxe d'arrivee : le visuel monte plus lentement que le cadre
-        const phone = card.querySelector<HTMLElement>(".case-phone");
-        if (phone) {
-          gsap.fromTo(
-            phone,
-            { y: 64 },
-            {
-              y: -24,
-              ease: "none",
-              scrollTrigger: {
-                trigger: card,
-                start: "top bottom",
-                end: "top top",
-                scrub: true,
-              },
-            }
-          );
-        }
+        // NB : plus de parallaxe verticale sur le telephone — c'est elle qui le
+        // poussait hors du cadre et laissait un grand vide en dessous pendant
+        // l'epinglage. Le visuel reste centre avec son texte ; la profondeur
+        // vient de l'empilement qui scale (ci-dessous).
         if (i === cards.length - 1) return;
         ScrollTrigger.create({
           trigger: card,

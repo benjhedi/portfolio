@@ -17,6 +17,8 @@
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
     "@types/three": "^0.169.0",
+    "@warastudio/react": "^0.1.0",
+    "@warastudio/theme": "^0.1.0",
     "gsap": "^3.12.7",
     "lucide-react": "^1.17.0",
     "motion": "^11.15.0",

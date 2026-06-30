@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { Mail, ArrowDown } from "lucide-react";
 import { useApp } from "../app/AppContext";
@@ -16,13 +16,39 @@ const heroMedia = [
 const coolFilter = "saturate(0.4) brightness(1.04) contrast(1.02)";
 
 export function Hero() {
-  const { t } = useApp();
+  const { t, theme } = useApp();
   const reduce = useReduce();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const spotRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef(0);
   // tirage stable pour le montage (ne change pas aux re-renders)
   const [media] = useState(() => heroMedia[Math.floor(Math.random() * heroMedia.length)]);
 
+  const dark = theme === "dark";
+  const animate = !reduce;
+
   const title = `${t(hero.pre)}${t(hero.accent)}${t(hero.post)}`;
+
+  // Projecteur Midnight : le halo suit le curseur (rAF pour ne pas saturer).
+  // Inactif en clair et sous mouvement reduit.
+  const onPointerMove = useCallback(
+    (e: React.PointerEvent<HTMLElement>) => {
+      if (!dark || reduce) return;
+      const el = spotRef.current;
+      if (!el) return;
+      const r = e.currentTarget.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      const y = ((e.clientY - r.top) / r.height) * 100;
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() => {
+        el.style.setProperty("--mx", `${x}%`);
+        el.style.setProperty("--my", `${y}%`);
+      });
+    },
+    [dark, reduce]
+  );
+
+  useEffect(() => () => cancelAnimationFrame(rafRef.current), []);
 
   // muted comme propriete DOM (React ne la pose pas toujours), puis lecture
   // robuste : relance sur canplay et nettoyage propre (StrictMode, autoplay)
@@ -47,37 +73,114 @@ export function Hero() {
   return (
     <section
       id="top"
+      onPointerMove={onPointerMove}
       className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden px-5 pt-28 pb-16 sm:px-8"
     >
       {/* Fond video pleine largeur (repli poster sous reduced-motion).
           isolate : le blend duotone ne mixe qu'avec la video, rien derriere. */}
       <div className="absolute inset-0 z-0 isolate" aria-hidden>
-        {reduce ? (
-          <img src={media.poster} alt="" className="h-full w-full object-cover" style={{ filter: coolFilter }} />
-        ) : (
-          <video
-            ref={videoRef}
-            key={media.mp4}
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={media.poster}
-            preload="metadata"
-            className="h-full w-full object-cover"
-            style={{ filter: coolFilter }}
-          >
-            <source src={media.mp4} type="video/mp4" />
-          </video>
-        )}
+        {/* Couche media : revelation diagonale a l'ouverture + Ken Burns continu */}
+        <div className={`absolute inset-0 overflow-hidden ${animate ? "ws-hero-reveal" : ""}`}>
+          {reduce ? (
+            <img src={media.poster} alt="" className="h-full w-full object-cover" style={{ filter: coolFilter }} />
+          ) : (
+            <video
+              ref={videoRef}
+              key={media.mp4}
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster={media.poster}
+              preload="metadata"
+              className={`h-full w-full object-cover ${animate ? "ws-kenburns" : ""}`}
+              style={{ filter: coolFilter }}
+            >
+              <source src={media.mp4} type="video/mp4" />
+            </video>
+          )}
+        </div>
+
         {/* Duotone froid : reteinte la video en bleu de charte (neutralise le
             caramel). mix-blend color = teinte/saturation du calque, luminosite
             de la video. Pilote par le token, donc clair + Midnight automatiques. */}
         <div
           className="absolute inset-0"
-          style={{ background: "var(--color-skyink)", mixBlendMode: "color", opacity: 0.62 }}
+          style={{ background: "var(--color-skyink)", mixBlendMode: "color", opacity: dark ? 0.5 : 0.62 }}
         />
-        {/* Voile creme : opaque a gauche (texte), transparent a droite (appareils) */}
+
+        {dark ? (
+          /* ===== MIDNIGHT — cinematique : glow, grain, projecteur, letterbox ===== */
+          <>
+            {/* Halo de marque (sky + ardoise) en haut-droite et bas-droite */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(120% 90% at 82% 14%, color-mix(in srgb, var(--color-sky) 32%, transparent), transparent 55%), radial-gradient(90% 80% at 96% 92%, color-mix(in srgb, var(--color-slate) 40%, transparent), transparent 60%)",
+              }}
+            />
+            {/* Projecteur : suit le curseur (centre par defaut a droite) */}
+            <div
+              ref={spotRef}
+              className="absolute inset-0"
+              style={{
+                ["--mx" as string]: "72%",
+                ["--my" as string]: "40%",
+                background:
+                  "radial-gradient(420px circle at var(--mx) var(--my), color-mix(in srgb, var(--color-sky) 22%, transparent), transparent 60%)",
+                mixBlendMode: "screen",
+              }}
+            />
+            {/* Grain argentique */}
+            <div
+              className={`absolute -inset-1/2 ${animate ? "ws-grain" : ""}`}
+              style={{
+                backgroundImage:
+                  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+                opacity: 0.12,
+                mixBlendMode: "overlay",
+              }}
+            />
+          </>
+        ) : (
+          /* ===== CLAIR — aurore porcelaine : nappes sky en surimpression ===== */
+          <div className="absolute inset-0 overflow-hidden" style={{ mixBlendMode: "screen" }}>
+            <div
+              className={`absolute ${animate ? "ws-aurora-a" : ""}`}
+              style={{
+                inset: "-20% 20% 0 35%",
+                borderRadius: "50%",
+                filter: "blur(60px)",
+                opacity: 0.5,
+                background: "radial-gradient(circle, var(--color-sky), transparent 62%)",
+              }}
+            />
+            <div
+              className={`absolute ${animate ? "ws-aurora-b" : ""}`}
+              style={{
+                inset: "0 -10% -20% 50%",
+                borderRadius: "50%",
+                filter: "blur(60px)",
+                opacity: 0.7,
+                background: "radial-gradient(circle, var(--color-skysoft), transparent 60%)",
+              }}
+            />
+            <div
+              className={`absolute ${animate ? "ws-aurora-a" : ""}`}
+              style={{
+                inset: "-10% 0 25% 55%",
+                borderRadius: "50%",
+                filter: "blur(70px)",
+                opacity: 0.4,
+                background: "radial-gradient(circle, var(--color-slate), transparent 60%)",
+                animationDirection: "reverse",
+              }}
+            />
+          </div>
+        )}
+
+        {/* Voile porcelaine : opaque a gauche (texte), transparent a droite (appareils) */}
         <div
           className="absolute inset-0"
           style={{
@@ -91,6 +194,18 @@ export function Hero() {
           className="absolute inset-x-0 bottom-0 h-32"
           style={{ background: "linear-gradient(to bottom, transparent, var(--color-cream))" }}
         />
+
+        {dark && (
+          /* Letterbox cinema : bandes fines qui glissent une fois a l'ouverture */
+          <>
+            <div
+              className={`absolute inset-x-0 top-0 h-[5vh] bg-[#05080f] ${animate ? "ws-bar-top" : ""}`}
+            />
+            <div
+              className={`absolute inset-x-0 bottom-0 h-[5vh] bg-[#05080f] ${animate ? "ws-bar-bot" : ""}`}
+            />
+          </>
+        )}
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1240px]">

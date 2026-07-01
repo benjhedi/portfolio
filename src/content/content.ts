@@ -380,6 +380,28 @@ export const contact = {
     en: "An idea to bring to life or designs to build? Drop me a line, I will get back to you quickly.",
   } as L,
   cta: { fr: "Écrire un message", en: "Write a message" } as L,
+  form: {
+    name: { fr: "Nom", en: "Name" } as L,
+    namePlaceholder: { fr: "Ton nom", en: "Your name" } as L,
+    email: { fr: "E-mail", en: "Email" } as L,
+    emailPlaceholder: { fr: "nom@entreprise.com", en: "name@company.com" } as L,
+    message: { fr: "Message", en: "Message" } as L,
+    messagePlaceholder: {
+      fr: "Décris ton projet, tes échéances, ton contexte…",
+      en: "Describe your project, timeline and context…",
+    } as L,
+    submit: { fr: "Envoyer le message", en: "Send message" } as L,
+    sending: { fr: "Envoi…", en: "Sending…" } as L,
+    success: {
+      fr: "Message envoyé. Je te réponds sous 24 h.",
+      en: "Message sent. I'll get back to you within 24 h.",
+    } as L,
+    error: {
+      fr: "L'envoi a échoué. Réessaie, ou écris-moi directement.",
+      en: "Sending failed. Try again, or email me directly.",
+    } as L,
+    or: { fr: "ou écris-moi à", en: "or email me at" } as L,
+  },
 };
 
 export const modalLabels = {

@@ -36,6 +36,9 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Cle Web3Forms du formulaire de contact : inlinee par Vite au build
+          # (import.meta.env.VITE_*). Doit donc etre presente ICI, pas cote runtime.
+          VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
 
       - name: Cree la GitHub Release avec notes auto
         if: github.ref_type == 'tag'

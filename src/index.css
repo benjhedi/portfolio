@@ -16,82 +16,66 @@
 */
 
 @theme {
+  /* Polices — RESTENT locales : familles self-hosted via @fontsource
+     ("…Variable"). Le SDK suppose "Hanken Grotesk" fournie autrement. */
   --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Surfaces (porcelaine bleutee) */
-  --color-cream: #e6ebf4;   /* fond de page */
-  --color-raise: #f5f8fc;   /* surface elevee : cartes, modales, nav, pills — flotte plus clair que la page */
-  --color-sink: #dce4f0;    /* sections en retrait, porcelaine plus profonde */
-  --color-char: #1c1c1c;    /* action primaire — swap charcoal<->off-white en Midnight (pill claire) */
-  --color-off: #fcfbf8;     /* texte sur charcoal — swap en Midnight (texte sombre) */
-  --color-scrim: #101626;   /* voile de modale — toujours sombre (non inverse) */
-  --color-bezel: #11161f;   /* chassis d'appareil — toujours sombre (non inverse) */
+  /*
+    TOKENS — alias sur le SDK Wara DS (@warastudio/theme, variables --wara-*) :
+    SOURCE UNIQUE. Le Midnight suit tout seul — le SDK redefinit les --wara-*
+    sous [data-theme="dark"], donc chaque --color-* herite du dark officiel
+    sans override local. Les rares tokens SANS equivalent SDK restent litteraux
+    (annotes ci-dessous, override dark plus bas si necessaire).
+  */
 
-  /* Texte (charcoal en opacite : 100 / 83 / 40 / 4) */
-  --color-ink: #1c1c1c;
-  --color-body: rgba(28, 28, 28, 0.83);
-  --color-muted: rgba(28, 28, 28, 0.40);
-  --color-faint: rgba(28, 28, 28, 0.04);
+  /* Surfaces */
+  --color-cream: var(--wara-color-bgPage);
+  --color-raise: var(--wara-color-surface);
+  --color-sink: #dce4f0;    /* pas d'equivalent SDK (surface en retrait pleine) — override dark plus bas */
+  --color-char: var(--wara-color-solid);
+  --color-off: var(--wara-color-onSolid);
+  --color-scrim: #101626;   /* voile opaque module en markup (bg-scrim/50) — modele different du scrim SDK deja translucide ; theme-independant */
+  --color-bezel: #11161f;   /* chassis d'appareil, toujours sombre — pas d'equivalent SDK ; theme-independant */
 
-  /* Bords (contention par le bord, pas l'ombre) */
-  --color-line: #dbe2ec;
-  --color-line2: rgba(28, 28, 28, 0.12);
+  /* Texte */
+  --color-ink: var(--wara-color-text);
+  --color-body: var(--wara-color-textBody);
+  --color-muted: var(--wara-color-textMuted);
+  --color-faint: var(--wara-color-overlaySubtle);
+
+  /* Bords */
+  --color-line: var(--wara-color-border);
+  --color-line2: rgba(28, 28, 28, 0.12);   /* trait un cran plus fort que line — pas de token SDK a cette intensite ; override dark plus bas */
 
   /* Accent sky blue + compagnons */
-  --color-sky: #41c0f2;
-  --color-skyink: #0d518c;
-  --color-skysoft: #cfe9fb;
-  --color-skyghost: rgba(65, 192, 242, 0.1);
-  --color-skydeep: #08428c;   /* le plus profond — gradients */
-  --color-slate: #5c6795;     /* ardoise — gradients, texte secondaire */
+  --color-sky: var(--wara-color-accentHover);
+  --color-skyink: var(--wara-color-accent);
+  --color-skysoft: var(--wara-color-accentSoft);
+  --color-skyghost: var(--wara-color-accentGhost);
+  --color-skydeep: var(--wara-color-accentStrong);
+  --color-slate: var(--wara-color-slate);
 
-  /* Rayons (charte) */
-  --radius-btn: 6px;
-  --radius-card: 12px;
-  --radius-box: 16px;
+  /* Rayons */
+  --radius-btn: var(--wara-radius-standard);
+  --radius-card: var(--wara-radius-card);
+  --radius-box: var(--wara-radius-container);
 
   /* Ombre interne signature des boutons sombres */
-  --shadow-inset: inset 0 1px 0 rgba(252, 251, 248, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  --shadow-inset: var(--wara-shadow-inset);
 }
 
 /*
-  MODE SOMBRE — Midnight. Meme charte, valeurs inversees. On redefinit les
-  variables de couleur sous [data-theme="dark"] : toutes les utilitaires
-  (bg-cream, text-ink, border-line...) suivent automatiquement, sans toucher
-  au markup. La porcelaine devient une encre profonde bleutee (jamais noir
-  pur), les surfaces s'eclaircissent pour flotter, et le sky est eclairci
-  pour rester lisible sur fond sombre.
+  MODE SOMBRE — Midnight. Desormais porte par le SDK : [data-theme="dark"]
+  redefinit les --wara-*, donc TOUS les --color-* alias suivent automatiquement
+  (surfaces, texte, accents, gradient) sans toucher au markup. On ne garde ici
+  QUE les tokens locaux sans equivalent SDK.
 */
 html[data-theme="dark"] {
   color-scheme: dark;
-
-  /* Surfaces — Midnight */
-  --color-cream: #0a1120;   /* sol Midnight */
-  --color-raise: #141d31;   /* surface elevee bleutee */
-  --color-sink: #070c18;    /* retrait profond */
-  --color-char: #eef2f8;    /* swap : pill claire sur Midnight (ombre interne = signature) */
-  --color-off: #0c1424;     /* swap : texte sombre sur la pill claire */
-
-  /* Texte (off-white en opacite) */
-  --color-ink: #eef2f8;
-  --color-body: rgba(238, 242, 248, 0.8);
-  --color-muted: rgba(238, 242, 248, 0.46);
-  --color-faint: rgba(238, 242, 248, 0.05);
-
-  /* Bords */
-  --color-line: rgba(238, 242, 248, 0.1);
-  --color-line2: rgba(238, 242, 248, 0.18);
-
-  /* Accent sky blue (eclairci pour le contraste sur Midnight) */
-  --color-sky: #41c0f2;
-  --color-skyink: #7fd0f7;
-  --color-skysoft: #14304a;
-  --color-skyghost: rgba(65, 192, 242, 0.14);
-  --color-skydeep: #2b6fb8;
-  --color-slate: #8a93bf;
+  --color-sink: #070c18;                    /* retrait profond (pas d'equivalent SDK) */
+  --color-line2: rgba(238, 242, 248, 0.18); /* trait intermediaire (pas d'equivalent SDK) */
 }
 
 html {
@@ -146,12 +130,8 @@ body {
   donc il se reaccorde tout seul en Midnight.
 */
 :root {
-  --grad-brand: linear-gradient(
-    115deg,
-    var(--color-skydeep) 0%,
-    var(--color-sky) 54%,
-    var(--color-slate) 100%
-  );
+  /* Degrade de marque officiel du SDK (identique light/Midnight) */
+  --grad-brand: var(--wara-gradient-brand);
 }
 
 /* Surface en verre depoli — le SEUL flou autorise hors glass.

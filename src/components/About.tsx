@@ -1,5 +1,5 @@
 import { useApp } from "../app/AppContext";
-import { aboutHead, about } from "../content/content";
+import { aboutHead, about, identity } from "../content/content";
 import { Reveal, Tilt, Icon, SectionEyebrow, Accent } from "./Primitives";
 
 export function About() {
@@ -11,7 +11,18 @@ export function About() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Profil */}
           <div className="lg:col-span-7">
-            <Reveal className="flex flex-col gap-4">
+            <Reveal>
+              <img
+                src="/hedi.jpg"
+                alt={identity.name}
+                width={512}
+                height={512}
+                loading="lazy"
+                decoding="async"
+                className="mb-7 size-28 rounded-full border border-line object-cover"
+              />
+            </Reveal>
+            <Reveal className="flex flex-col gap-4" delay={0.05}>
               <SectionEyebrow index="01">{t(aboutHead.eyebrow)}</SectionEyebrow>
               <h2 className="display max-w-[16ch] text-[clamp(2rem,4.4vw,3rem)]">
                 <Accent text={t(aboutHead.title)} accent={t(aboutHead.accent)} />

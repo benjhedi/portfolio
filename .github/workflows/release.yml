@@ -26,6 +26,9 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Auth GitHub Packages (Wara DS)
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.WARA_DS_TOKEN }}" >> ~/.npmrc
+
       - run: npm ci
 
       - name: Build et deploie sur Cloudflare

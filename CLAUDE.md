@@ -1,58 +1,58 @@
-# CLAUDE.md - Portfolio Hedi Benjahouach
+# CLAUDE.md - Hedi Benjahouach Portfolio
 
-Lu automatiquement par Claude Code a l'ouverture d'une session dans ce depot. Ajoute le 5 juillet 2026.
+Read automatically by Claude Code when a session opens in this repo. Added 5 July 2026.
 
-## Mode de travail - a lire d'abord
+## Working mode - read this first
 
-Pour tout changement non trivial: decrire ce qui va etre modifie et pourquoi, montrer le plan, puis attendre le feu vert. Lire, repondre et proposer des approches ne demande pas d'accord.
+For any non-trivial change: describe what will change and why, show the plan, then wait for the go-ahead. Reading, answering, and proposing approaches do not require approval.
 
-## Contexte
+## Context
 
-Portfolio d'un consultant iOS senior freelance. Moteur d'animation React couple a la charte Wara Studio et a du contenu d'app reel. Bilingue FR / EN. Deploye sur Cloudflare.
+Portfolio of a senior freelance iOS consultant. A React animation engine paired with the Wara Studio brand and real app content. Bilingual FR / EN. Deployed on Cloudflare.
 
-Lire avant de produire du contenu ou de toucher au design:
+Read before producing content or touching the design:
 
 1. `README.md` - stack, structure, animations
-2. `SEO-accueil.md` - intentions de contenu et SEO
-3. `src/content/content.ts` - tout le contenu bilingue, source unique
+2. `SEO-accueil.md` - content and SEO intentions
+3. `src/content/content.ts` - all bilingual content, single source
 
 ## Stack
 
 - Vite + React + TypeScript strict + Tailwind v4.
-- Motion et GSAP (ScrollTrigger) pour les animations. Three.js via React Three Fiber pour le hero 3D, charge en lazy (chunk separe), avec repli statique si pas de WebGL ou animations desactivees.
-- Design system consomme en SDK: `@warastudio/react` et `@warastudio/theme`.
-- Deploiement Cloudflare via `wrangler`.
+- Motion and GSAP (ScrollTrigger) for animation. Three.js via React Three Fiber for the 3D hero, lazy-loaded (separate chunk), with a static fallback when there is no WebGL or animations are disabled.
+- Design system consumed as an SDK: `@warastudio/react` and `@warastudio/theme`.
+- Cloudflare deployment via `wrangler`.
 
 ```bash
 npm run dev       # http://localhost:5173
-npm run build     # build statique dans dist/
-npm run deploy    # build puis wrangler deploy
+npm run build     # static build in dist/
+npm run deploy    # build then wrangler deploy
 ```
 
 ## Design system
 
-La source des tokens est `@warastudio/theme` et la skill `wara-studio-design`. Lever les variables, ne jamais coder une couleur ou un espacement en dur. Pour toute question de marque (palette, typo, composants), se referer a la skill `wara-studio-design`, qui fait foi. Ne pas reintroduire d'anciennes valeurs de charte trouvees dans du contenu ou des captures.
+The token source is `@warastudio/theme` and the `wara-studio-design` skill. Lift the variables, never hardcode a color or a spacing value. For any brand question (palette, type, components), refer to the `wara-studio-design` skill, which is authoritative. Do not reintroduce old brand values found in content or screenshots.
 
-Typo Hanken Grotesk (auto-hebergee). Icones Lucide.
+Type: Hanken Grotesk (self-hosted). Icons: Lucide.
 
-## Contenu et ton
+## Content and tone
 
-- Tout le contenu vit dans `src/content/content.ts`, en `{ fr, en }`. Ne pas coder de texte en dur dans les composants.
-- Ton sobre et direct, pas de survente. Le site parle d'un vrai parcours et de vraies apps.
-- Style humain partout, dans le contenu comme dans les commentaires. Appliquer la skill humanizer. Interdits: tirets longs, guillemets courbes, emoji, puces decoratives, formules creuses.
+- All content lives in `src/content/content.ts`, as `{ fr, en }`. Never hardcode text in components.
+- Sober, direct tone, no overselling. The site is about a real track record and real apps.
+- Human style everywhere, in content and in comments. Apply the humanizer skill. Banned: em dashes, curly quotes, emoji, decorative bullets, empty filler.
 
-## Conventions de code
+## Code conventions
 
-- TypeScript strict, pas de `any` implicite.
-- Composants a responsabilite unique, un fichier par composant.
-- Accessibilite serieuse: contraste, navigation clavier, focus visibles, aria correct, cibles tactiles suffisantes, `prefers-reduced-motion` respecte partout.
-- Performance: 3D et GSAP en chunks separes, images optimisees, pas de dependance lourde inutile.
-- Responsive mobile first.
+- TypeScript strict, no implicit `any`.
+- Single-responsibility components, one file per component.
+- Serious accessibility: contrast, keyboard navigation, visible focus, correct aria, sufficient touch targets, `prefers-reduced-motion` respected everywhere.
+- Performance: 3D and GSAP in separate chunks, optimized images, no needless heavy dependency.
+- Mobile first responsive.
 
 ## Git
 
-Commits atomiques, un changement logique par commit, message a l'imperatif. Ne pas commiter `dist/` ni les artefacts `wrangler`.
+Atomic commits, one logical change per commit, imperative message. Do not commit `dist/` or `wrangler` artifacts.
 
-## En cas de doute
+## When in doubt
 
-Poser une ou deux questions avant de coder une solution structurante, plutot que de produire directement.
+Ask one or two questions before coding a structural solution, rather than producing directly.

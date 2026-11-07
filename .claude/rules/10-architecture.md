@@ -1,49 +1,50 @@
-Inferred on 2026-11-07 from the code, to validate
-
 # Architecture - Portfolio
 
-Drafted by `/from-codebase` at a356458 (20 files, 2476 lines in `src/`). It
-records what the code does; `/architecture-study` decides keep, evolve or
-migrate. Situation: taken over, v1 live, v2 ahead. Level: simple, one layer.
+From `docs/architecture-study.md`, 2026-11-07; an ADR comes before any change.
+Level: simple, the page has no business rule and three shared values.
 
-## Axis 1 - Presentation pattern: section components, no state holder
+## Axis 1 - Presentation pattern: view-owned state
 
-- One page, no router. `App.tsx` renders `Nav`, 8 sections in `<main>` and
-  `ProjectModal`. Navigation is `#id` anchors: ids in `nav` (`content.ts:32`),
-  plus `top` (`Hero.tsx:75`) and `contact` (`Contact.tsx:11`).
-- 0 ViewModel, store or reducer. Components read content and call `useApp()`
-  themselves; local `useState` in 5 of 13 component files.
-- Cross-section state: `openId` in `App.tsx:16`, props to Work, ProjectModal.
-- App-wide state: `src/app/AppContext.tsx` (locale, `t()`, theme), used by 11
-  of 13 components. `src/app/useReduce.ts` wraps reduced motion.
+- Section (`sections/<name>/<Name>.tsx`): renders its `content.ts` entries,
+  owns local UI state, reads `useApp()`, reaches effects only through a
+  service hook. One component per file.
+- App state (`app/AppContext.tsx`): locale, `t()`, theme, active section.
+  A new shared value is a decision, not a convenience.
+- Navigation: one page, `#id` anchors with ids from `content.ts`; project
+  links leave the site (`target="_blank" rel="noopener"`). No router.
+- Build order: content, pure unit, service, section, reduced motion, mockup.
 
-## Axis 2 - Dependency rule: free
+## Axis 2 - Dependency rule: light
 
-- `src/content/content.ts`: 0 imports, 21 data and 4 type exports, imported
-  directly by `App.tsx` and 12 of 13 components. Types used as is, no mapping.
-- Side effects sit where they are used: Web3Forms POST in `ContactForm.tsx:40`
-  (key from `import.meta.env`, line 9); `localStorage`, `matchMedia`,
-  `document` in `AppContext.tsx:23-55`; key listener and scroll lock in
-  `ProjectModal.tsx:17-21`; `location.search` in `useReduce.ts:12`.
-- No interface at any boundary: 0 in `src/` outside `vite-env.d.ts`.
-- Libraries imported in place: `motion` 9 files, `lucide-react` 6, `gsap` in
-  `Work.tsx` only, `@warastudio/react` in `ContactForm.tsx` and `main.tsx`.
+- `content/content.ts` imports nothing; sections use its types as is.
+- Effects behind interfaces in `services/` (`contactSender`, `themeStore`,
+  `motionPreference`, `videoClock`), one interface and one adapter file
+  each. Only `services/` touches `fetch`, `localStorage`, `matchMedia`,
+  `location`. `app/` provides adapters by context; `main.tsx` picks them.
+- Timing logic in pure functions next to the section (`sections/hero/
+  vaporSchedule.ts`); values such as t = 2.05 s are named constants.
 
-## Axis 3 - Modularity: single package, folders by kind
+## Axis 3 - Modularity: one package, folders by feature
 
-One npm package, no workspaces, no path alias. Folders by kind, not feature:
 ```
-src/main.tsx, App.tsx   composition root: styles, provider, sections, modal
-src/app/                AppContext.tsx, useReduce.ts; imports content types
-src/components/         13 flat files: Nav, 8 sections, ProjectModal, Phone,
-                        ContactForm, Primitives (9 exports, used by 8 sections)
-src/content/content.ts  all bilingual copy and data; imports nothing
+src/main.tsx, App.tsx   composition root, providers, section order
+src/app/                AppContext, service context, useReduce
+src/sections/<name>/    component, pure units, tests of one section
+src/shared/ui/, lib/    used by two sections or more
+src/services/           interfaces and adapters
+src/content/            content.ts, bilingual, single source
 ```
-Direction: components -> app, content, Primitives; app -> content types;
-content -> nothing. 12 component files export one unit each.
+A section never imports another; code moves to `shared/` in its own commit;
+`components/` is legacy and empties spec by spec.
 
-## Agents, triggers, decisions
+## Agents and triggers
 
-Agents derive nothing until Hedi validates; triggers set by the study.
+developer follows the build order. test-coder: Vitest (node),
+`*.test.ts` next to pure units and adapters, doubles, no component tests.
+review-agent flags an effect API outside `services/`, a section importing a
+section, an import in `content.ts`, a literal timing. Study again when a
+project needs its own URL, a section is reused elsewhere, a business rule
+appears, `AppContext` needs a fourth value or re-renders too much, or
+component tests become necessary.
 
-| 2026-11-07 | Inferred | from-codebase | to validate |
+| 2026-11-07 | Inferred from code (c35d543), then B chosen | study |

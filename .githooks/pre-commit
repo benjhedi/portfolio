@@ -1,0 +1,21 @@
+#!/bin/sh
+# Fails early when the current branch does not follow  type-title
+# (main and dev are exempt; detached HEAD is ignored).
+
+branch=$(git symbolic-ref --short -q HEAD)
+[ -z "$branch" ] && exit 0
+
+case "$branch" in
+  main|dev) exit 0 ;;
+esac
+
+types='feat|fix|chore|docs|refactor|test|perf|ci'
+
+if ! printf '%s' "$branch" | grep -Eq "^($types)-[a-z0-9]+(-[a-z0-9]+)*$"; then
+  echo "Branch name rejected: '$branch'" >&2
+  echo "  expected format : type-title  (e.g. feat-paywall-trial, fix-reminder-tz)" >&2
+  echo "  accepted types  : feat, fix, chore, docs, refactor, test, perf, ci" >&2
+  exit 1
+fi
+
+exit 0

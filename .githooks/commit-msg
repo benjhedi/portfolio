@@ -1,0 +1,47 @@
+#!/bin/sh
+# Rejects any commit whose subject does not follow:  [type-title]: message
+# - "type-title" must equal the current branch name (work branches only;
+#   ignored on main/dev and in detached HEAD).
+# - message: two sentences maximum, counted in the subject only.
+# Merge, revert, fixup and squash commits are exempt.
+
+msg_file="$1"
+subject=$(grep -v '^#' "$msg_file" | sed '/^[[:space:]]*$/d' | head -n1)
+
+case "$subject" in
+  "Merge "*|"Revert "*|"fixup! "*|"squash! "*) exit 0 ;;
+esac
+
+types='feat|fix|chore|docs|refactor|test|perf|ci'
+
+if ! printf '%s' "$subject" | grep -Eq "^\[($types)-[a-z0-9]+(-[a-z0-9]+)*\]: .+"; then
+  echo "Commit rejected: subject must follow  [type-title]: message" >&2
+  echo "  accepted types : feat, fix, chore, docs, refactor, test, perf, ci" >&2
+  echo "  example        : [feat-streak-freeze]: add the monthly streak freeze" >&2
+  echo "  received       : $subject" >&2
+  exit 1
+fi
+
+# The bracketed tag must match the work branch name.
+branch=$(git symbolic-ref --short -q HEAD)
+case "$branch" in
+  ""|main|dev) ;;
+  *)
+    tag=$(printf '%s' "$subject" | sed -n 's/^\[\([^]]*\)\].*/\1/p')
+    if [ "$tag" != "$branch" ]; then
+      echo "Commit rejected: tag [$tag] must match branch [$branch]." >&2
+      exit 1
+    fi
+    ;;
+esac
+
+# Two sentences maximum in the subject. Only a . ! or ? followed by a space
+# or placed at the end closes a sentence: a version number (1.0.1), a file
+# name or a trailer email in the body do not count.
+sentences=$(printf '%s\n' "${subject#*]: }" | grep -oE '[.!?]+( |$)' | wc -l | tr -d ' ')
+if [ "$sentences" -gt 2 ]; then
+  echo "Commit rejected: two sentences maximum in the subject (found $sentences)." >&2
+  exit 1
+fi
+
+exit 0

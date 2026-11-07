@@ -1,0 +1,26 @@
+#!/bin/sh
+# Rejects the push of a branch outside the  type-title  convention
+# (main and dev are allowed; branch deletions and version tags are ignored).
+
+types='feat|fix|chore|docs|refactor|test|perf|ci'
+status=0
+zero=0000000000000000000000000000000000000000
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ -z "$remote_ref" ] && continue
+  [ "$local_sha" = "$zero" ] && continue   # branch deletion
+  case "$remote_ref" in
+    refs/tags/*) continue ;;
+  esac
+  branch=${remote_ref#refs/heads/}
+  case "$branch" in
+    main|dev) continue ;;
+  esac
+  if ! printf '%s' "$branch" | grep -Eq "^($types)-[a-z0-9]+(-[a-z0-9]+)*$"; then
+    echo "Push rejected: branch '$branch' does not follow  type-title." >&2
+    echo "  accepted types : feat, fix, chore, docs, refactor, test, perf, ci" >&2
+    status=1
+  fi
+done
+
+exit $status

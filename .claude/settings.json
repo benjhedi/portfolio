@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git branch*)",
+      "Bash(ls *)",
+      "Bash(swift build*)",
+      "Bash(swift test*)",
+      "Bash(xcodebuild *)",
+      "Bash(tuist *)",
+      "Bash(xcodegen *)",
+      "Bash(swiftlint *)",
+      "Bash(swiftformat --lint*)",
+      "Bash(npm run *)",
+      "Bash(pnpm *)",
+      "Bash(./gradlew *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(**/credentials/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=.claude/hooks/session-start.sh; [ -f \"$f\" ] || f=\"$CLAUDE_PROJECT_DIR/$f\"; sh \"$f\""
+          }
+        ]
+      }
+    ]
+  }
+}

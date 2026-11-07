@@ -1,0 +1,47 @@
+name: Conventions
+
+# Server-side safety net: local hooks can be bypassed (--no-verify), this
+# workflow revalidates every PR. Make the check required in the branch
+# protection of dev and main for a real barrier. Patch-version PRs target the
+# release branch, hence the chore-release-* pattern.
+
+on:
+  pull_request:
+    branches: [dev, main, 'chore-release-*']
+
+jobs:
+  conventions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Branch name
+        run: |
+          branch="${{ github.head_ref }}"
+          case "$branch" in dev|main) echo "permanent branch, skipped"; exit 0 ;; esac
+          if ! echo "$branch" | grep -Eq '^(feat|fix|chore|docs|refactor|test|perf|ci)-[a-z0-9]+(-[a-z0-9]+)*$'; then
+            echo "::error::Branch '$branch' outside the type-title convention"
+            exit 1
+          fi
+
+      - name: Commit messages
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          head="${{ github.event.pull_request.head.sha }}"
+          types='feat|fix|chore|docs|refactor|test|perf|ci'
+          fail=0
+          for sha in $(git rev-list "$base..$head"); do
+            subject=$(git log -1 --format=%s "$sha")
+            case "$subject" in Merge\ *|Revert\ *|fixup!\ *|squash!\ *) continue ;; esac
+            if ! echo "$subject" | grep -Eq "^\[($types)-[a-z0-9]+(-[a-z0-9]+)*\]: .+"; then
+              echo "::error::Commit $sha outside the convention: $subject"; fail=1
+            fi
+            # Same rule as the commit-msg hook: sentences counted in the subject.
+            n=$(printf '%s\n' "${subject#*]: }" | grep -oE '[.!?]+( |$)' | wc -l | tr -d ' ')
+            if [ "$n" -gt 2 ]; then
+              echo "::error::Commit $sha: more than two sentences in the subject ($n)"; fail=1
+            fi
+          done
+          exit $fail

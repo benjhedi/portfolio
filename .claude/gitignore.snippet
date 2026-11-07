@@ -1,0 +1,32 @@
+
+# --- wara-kit: append to the project .gitignore ---
+
+# Claude Code: personal permission allowlists accumulate noise and absolute
+# paths. Commit settings.json, never settings.local.json or worktrees.
+.claude/settings.local.json
+.claude/worktrees/
+CLAUDE.local.md
+
+# Generated Xcode projects (Tuist or XcodeGen are the source of truth)
+*.xcodeproj
+*.xcworkspace
+!*.xcworkspace/contents.xcworkspacedata
+DerivedData/
+Derived/
+.build/
+.swiftpm/
+
+# Secrets, never in the repo
+.env
+.env.*
+*.pem
+*.key
+credentials/
+
+# Platform noise
+.DS_Store
+node_modules/
+dist/
+build/
+.gradle/
+local.properties

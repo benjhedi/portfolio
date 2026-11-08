@@ -10,7 +10,7 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 
 - TypeScript 5.9.3, `strict`, `noUnusedLocals`, `noUnusedParameters` (`tsconfig`, inventory section 8) (fixed).
 - React 18.3.1 and react-dom 18.3.1; Tailwind 4.3.0 through `@tailwindcss/vite` 4.3.0 (`package.json`, `vite.config.ts`).
-- Vite + React + Tailwind kept over the kit's Astro default: ADR 002 records the choice and project rule `90-project-web-stack.md` applies it, both written at `/adopt` (inventory gap table, Hedi, 2026-11-07).
+- Vite + React + Tailwind kept over the kit's Astro default: ADR 002 records the choice and project rule `90-project-web-stack.md` applies it, written at `/adopt` (inventory gap table, Hedi, 2026-11-07).
 
 ## Architecture
 
@@ -31,8 +31,8 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 
 | Package | Version | Imported by | Decision |
 |---|---|---|---|
-| `@warastudio/theme` | 0.1.0 | `main.tsx`, `index.css` | none yet, ADR at `/adopt` |
-| `@warastudio/react` | 0.1.0 | `main.tsx`, `components/ContactForm.tsx` | none yet |
+| `@warastudio/theme` | 0.1.0 | `main.tsx`, `index.css` | ADR 003 |
+| `@warastudio/react` | 0.1.0 | `main.tsx`, `components/ContactForm.tsx` | ADR 003 |
 | `motion` | 11.18.2 | `App.tsx`, `app/useReduce.ts`, 7 files in `components/` | none yet |
 | `gsap` | 3.15.0 | `components/Work.tsx` (static import, not a lazy chunk) | none yet |
 | `lucide-react` | 1.17.0 | 6 files in `components/` | none yet |

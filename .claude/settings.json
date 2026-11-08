@@ -6,16 +6,8 @@
       "Bash(git log*)",
       "Bash(git branch*)",
       "Bash(ls *)",
-      "Bash(swift build*)",
-      "Bash(swift test*)",
-      "Bash(xcodebuild *)",
-      "Bash(tuist *)",
-      "Bash(xcodegen *)",
-      "Bash(swiftlint *)",
-      "Bash(swiftformat --lint*)",
       "Bash(npm run *)",
-      "Bash(pnpm *)",
-      "Bash(./gradlew *)"
+      "Bash(npm test*)"
     ],
     "deny": [
       "Read(./.env)",

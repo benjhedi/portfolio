@@ -23,7 +23,7 @@ worktrees.
 - [x] T05 setup step and toolchain line - files: `CONTRIBUTING.md`,
   `product/tech-stack.md` - check: grep `git lfs install --skip-repo` and
   the failure line - agent: setup-agent
-- [ ] T06 kit drift debt line with the wara-kit request - files:
+- [x] T06 kit drift debt line with the wara-kit request - files:
   `product/roadmap.md` - check: grep - agent: main session
 - [ ] T07 verify - all AC checks below green - files:
   `specs/002-git-lfs-reference-media/verification.md` - agent: qa

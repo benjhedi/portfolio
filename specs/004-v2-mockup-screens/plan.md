@@ -81,7 +81,8 @@ font or the video frame is missing (offline, LFS not pulled); add `in` to
 `.r` and `.big`, `finish()` transitions; pause the video, seek 3.56 s,
 await `seeked`, strip `go` from every `#vapor .out`, set it on the first
 (RIDE), pause its animation at 1512 ms (0.72 x 2100); pause every `mq`
-animation at 0 and the scroll hint `line` at 1100 ms (drawn, D1); outside the hero inject `#nav, body > .bar
+animation at 0 and the scroll hint `line` at 1100 ms (drawn, D1);
+outside the hero inject `#nav, body > .bar
 {visibility:hidden}` (`body >`: `.vapor .bar` exists too).
 Captures: `captureBeyondViewport: true`, clip on the section rect. Hero:
 viewport height set to the hero height (936 at 1440), since the probe's

@@ -9,7 +9,7 @@ pointers. No `[P]`: each task needs the previous one.
 
 ## Tasks
 
-- [ ] T01 LFS rule for docs PNGs, ADR 004 amendment, docs that said
+- [x] T01 LFS rule for docs PNGs, ADR 004 amendment, docs that said
   "videos" - files: `.gitattributes`, `docs/adr/004-git-lfs-reference-media.md`,
   `CONTRIBUTING.md`, `product/tech-stack.md` - check: `git check-attr
   filter` gives `lfs` on `docs/v2/ecrans/01-hero.png`, `unspecified` on

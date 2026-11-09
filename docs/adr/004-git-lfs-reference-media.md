@@ -64,3 +64,14 @@ Harder:
 Follow-up:
 - CONTRIBUTING setup step and `product/tech-stack.md` toolchain line (T05)
 - roadmap debt line for the kit drift and the wara-kit request (T06)
+
+## Amendments
+
+- 2026-11-09, spec 004: the scope extends to `docs/**/*.png`, for the 52
+  mockup PNGs in `docs/v2/ecrans/`, about 19 MB in total (an estimate
+  from a light-theme probe). They are re-exported whenever the mockup
+  changes, so plain git would keep every copy in every clone: the reason
+  behind B for the videos. `public/` PNGs stay plain git, so the build,
+  CI and release checkouts are unchanged. Hooks, the `lfs-pointers` job
+  and the setup step stay as decided; each full re-export adds about
+  19 MB to the LFS storage quota.

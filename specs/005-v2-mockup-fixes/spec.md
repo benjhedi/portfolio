@@ -31,8 +31,9 @@ bar covers the hero scroll hint label. A PNG of a bug is a bad contract
 - AC-4 WHEN the first viewport renders at 1440 x 900 THE scroll hint line
   and its label SHALL be fully visible above the bottom bar.
 - AC-5 WHEN the mockup is exported before and after the fix with the same
-  settings THE PNGs SHALL differ only in skills, the mobile nav and the
-  desktop hero; every other section SHALL keep its height and boxes.
+  settings THE element boxes SHALL differ only in skills, the mobile nav
+  and the desktop hero; every other section SHALL keep its height and
+  boxes.
 - AC-6 THE claude.ai artifact SHALL hold the fix as a new version, and
   `docs/v2/mockup/` SHALL hold that version's files, each matching its
   published sha256 listed in the README; the README, the decision log,

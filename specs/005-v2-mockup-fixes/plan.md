@@ -1,6 +1,6 @@
 # Plan 005 - v2 mockup fixes
 
-Spec: `spec.md` (status clarified) | Architecture rule: `.claude/rules/10-architecture.md`
+Spec: `spec.md` (status planned) | Architecture rule: `.claude/rules/10-architecture.md`
 
 ## Gates (constitution check) - all must be OPEN before implementation
 

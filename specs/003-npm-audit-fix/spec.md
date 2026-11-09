@@ -7,9 +7,10 @@ local install matches CI" (Hedi, 2026-11-09).
 ## Why
 
 `npm ci` on dev (f1861e3) reports 15 advisories (3 low, 1 moderate,
-11 high), all in the dev and build toolchain (Vite, Wrangler,
-`@cloudflare/vite-plugin`, Babel); none reaches the static site Cloudflare
-serves. Left as is, they hide the next advisory that matters. The local
+11 high): 13 in the dev and build toolchain (Vite, Wrangler,
+`@cloudflare/vite-plugin`, Babel), 2 low in `@vanilla-extract/css`, which
+`@warastudio/*` declare at runtime but use for types only. None reaches
+the static site Cloudflare serves (AC-3). Left as is, they hide the next advisory that matters. The local
 machine runs Node 26 (npm 11.19, which warns about unreviewed install
 scripts) while `.nvmrc` and CI use Node 22 (npm 10).
 

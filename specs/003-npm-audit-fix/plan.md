@@ -38,7 +38,8 @@ Verification
   background, then `curl` on `/` returns 200 and a body equal to
   `dist/index.html`.
 - AC-6: the `npm ci` output on Node 22 has no `install-scripts` line.
-- AC-7: grep CONTRIBUTING for `brew install fnm` and `fnm use`.
+- AC-7: the CONTRIBUTING Node lines run in a clean zsh (`env -i`, `zsh -f`)
+  give `node -v` v22.x and `npm -v` 10.9.x; no `nvm use` left.
 
 ## Technical approach
 

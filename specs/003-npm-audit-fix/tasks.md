@@ -18,8 +18,8 @@ sequential is cheaper than worktrees.
 - [x] T02 toolchain versions and the accepted miniflare beta - files:
   `product/tech-stack.md` - check: grep the versions T01 resolved for Vite,
   `@cloudflare/vite-plugin`, Wrangler, and the miniflare line - agent: setup-agent
-- [x] T03 fnm setup step - files: `CONTRIBUTING.md` - check: grep
-  `brew install fnm` and `fnm use`, no `nvm use` left - agent: setup-agent
+- [x] T03 fnm setup step - files: `CONTRIBUTING.md` - check: the Node
+  lines run in a clean zsh give Node 22, no `nvm use` left - agent: setup-agent
 - [x] T04 verify - all AC checks below green - files:
   `specs/003-npm-audit-fix/verification.md` - agent: qa
 - [ ] T05 review - diff against dev, gates reread; once APPROVED the main
@@ -42,7 +42,7 @@ TypeScript units, the spec asks none).
 | AC-5 | `wrangler deploy --dry-run` exits 0 | command | `rehearsesDeploy` |
 | AC-5 | `npm run preview` answers 200 on `/` with `dist/index.html` | curl and diff | `servesHomeInPreview` |
 | AC-6 | `npm ci` output on Node 22 has no install-scripts line | grep on output | `installsWithoutScriptsWarning` |
-| AC-7 | CONTRIBUTING names `brew install fnm` and `fnm use` | grep | `namesFnmSetup` |
+| AC-7 | CONTRIBUTING Node lines, run in a clean zsh, give Node 22 and npm 10 | clean-shell run | `setsUpNode22FromCleanShell` |
 
 ## Done when
 

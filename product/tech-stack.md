@@ -4,7 +4,7 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 
 ## Platform
 
-- Web, one static page, mobile first; deployed to Cloudflare by `wrangler` on a `v*` tag (`.github/workflows/release.yml`, `wrangler.jsonc`, former `CLAUDE.md` (a3d1bda)); Node 22 (`.nvmrc`), installed locally through fnm (spec 003).
+- Web, one static page, mobile first; deployed to Cloudflare by `wrangler` on a `v*` tag (`.github/workflows/release.yml`, `wrangler.jsonc`, former `CLAUDE.md` (a3d1bda)); Node 22 (`.nvmrc`), installed locally through fnm (https://github.com/Schniz/fnm), not pinned (a machine tool), tested with fnm 1.39.0, Node 22.23.4 and npm 10.9.9 (spec 003).
 
 ## Language and UI
 

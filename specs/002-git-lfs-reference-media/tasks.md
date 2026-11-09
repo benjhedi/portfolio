@@ -9,7 +9,7 @@ worktrees.
 
 ## Tasks
 
-- [ ] T01 LFS tracking rules for videos under docs/ - files: `.gitattributes`
+- [x] T01 LFS tracking rules for videos under docs/ - files: `.gitattributes`
   - check: `git check-attr filter` on the five paths of the plan - agent: setup-agent
 - [ ] T02 pre-push calls git lfs pre-push after the branch check, warns
   without git-lfs - files: `.githooks/pre-push` - check: `sh -n`, then the

@@ -18,7 +18,7 @@ sequential is cheaper than worktrees.
 - [x] T02 toolchain versions and the accepted miniflare beta - files:
   `product/tech-stack.md` - check: grep the versions T01 resolved for Vite,
   `@cloudflare/vite-plugin`, Wrangler, and the miniflare line - agent: setup-agent
-- [ ] T03 fnm setup step - files: `CONTRIBUTING.md` - check: grep
+- [x] T03 fnm setup step - files: `CONTRIBUTING.md` - check: grep
   `brew install fnm` and `fnm use`, no `nvm use` left - agent: setup-agent
 - [ ] T04 verify - all AC checks below green - files:
   `specs/003-npm-audit-fix/verification.md` - agent: qa

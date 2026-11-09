@@ -6,12 +6,17 @@ How work enters this repo. The hooks in `.githooks/` and the
 ## Setup
 
 ```bash
-nvm use                       # Node 22 (.nvmrc)
+brew install fnm              # once per machine
+fnm install && fnm use        # Node 22 from .nvmrc, with the npm 10 CI uses
 npm ci                        # @warastudio/* come from GitHub Packages, see .npmrc
 ./scripts/setup-hooks.sh      # once per clone: core.hooksPath = .githooks
 git lfs install --skip-repo   # once per machine: LFS filters, no hooks (ADR 004)
 npm run dev                   # http://localhost:5173
 ```
+
+fnm reads `.nvmrc`. Add `eval "$(fnm env --use-on-cd)"` to `~/.zshrc` and it
+switches to Node 22 when you enter the repo. Write the lockfile on that
+Node: another npm can resolve a different tree than the one CI installs.
 
 The Wara DS packages need a GitHub token with `read:packages` in your user
 `~/.npmrc`. Never commit it. The contact form key goes in a local `.env`

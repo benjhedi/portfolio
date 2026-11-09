@@ -8,6 +8,7 @@ Sources: [log] v2 decision log (Cowork, 2026-11-07); [mockup] v2 mockup, claude.
 - [x] Agents work under wara-kit 2.1.1 (PR benjhedi/portfolio#24, 1e085e5).
 - [x] Inventory, architecture rule, Vitest, ADR 001 and `product/` (PR benjhedi/portfolio#25, 40a3dd6).
 - [ ] Kit adopted: project rule 90, CONTRIBUTING, ADRs 002 and 003, AGENTS.md and CLAUDE.md (`chore-adopt-kit`).
+- [x] npm audit is clean on the dev toolchain and the local install matches CI (spec 003, `chore-npm-audit-fix`).
 
 ## Phase 1 - v2 redesign, in the [log] section order
 

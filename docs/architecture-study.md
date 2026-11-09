@@ -16,7 +16,7 @@ Existing: src/content/content.ts (single bilingual source), Wara DS SDK
           (claude.ai artifact), v2 decision log, hero video files
 Constraints: Cloudflare static deploy, Vite + React + Tailwind kept,
              no 3D dependencies, reduced motion everywhere,
-             deadline [NEEDS CLARIFICATION]
+             deadline none stated
 ```
 
 Deadline: none stated on 2026-11-07. Reuse of the hero or project blocks

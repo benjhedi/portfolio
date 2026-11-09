@@ -6,8 +6,8 @@ Sources: [log] v2 decision log (Cowork, 2026-11-07); [mockup] v2 mockup, claude.
 
 - [x] A visitor reads the bilingual v1 site, dark mode, projects, contact form: v1.0.0 to v1.6.0, 2026-06-03 to 2026-07-01 (`git tag`).
 - [x] Agents work under wara-kit 2.1.1 (PR benjhedi/portfolio#24, 1e085e5).
-- [ ] Inventory, architecture rule, Vitest and ADR 001 on `docs-analyze-product` (a356458 to 9c65bca), not merged into `dev`.
-- [ ] Product layer `product/` (this branch), then `/adopt` ([inv] gap table).
+- [x] Inventory, architecture rule, Vitest, ADR 001 and `product/` (PR benjhedi/portfolio#25, 40a3dd6).
+- [ ] Kit adopted: project rule 90, CONTRIBUTING, ADRs 002 and 003, AGENTS.md and CLAUDE.md (`chore-adopt-kit`).
 
 ## Phase 1 - v2 redesign, in the [log] section order
 
@@ -35,6 +35,12 @@ Sources: [log] v2 decision log (Cowork, 2026-11-07); [mockup] v2 mockup, claude.
 
 - Project pages with their own URL: would need a router, an architecture trigger (`10-architecture.md`).
 - Reuse of the hero by another site: decided no on 2026-11-07 ([log]).
+
+## Debt left by the kit adoption ([inv] gap table)
+
+- Absorbed by the v2 lines above, section by section: hex and arbitrary values in TSX, literal timings, `Primitives.tsx` split, GSAP lazy chunk, WebP images, SEO, French comments. Contact (review-agent on PR 19): privacy line, field validation and error states, focus after send, hardcoded mail subject and sender name, unused `contact.cta`.
+- Outside this repo: WaraDS token requests for `--color-sink`, `--color-scrim`, `--color-bezel`, `--color-line2` (ADR 003).
+- Hedi decides: the two unused fontsource packages, `inter-tight` and `space-grotesk` (`product/tech-stack.md`).
 
 ## Evolution triggers that touch the architecture
 

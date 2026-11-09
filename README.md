@@ -1,58 +1,44 @@
-# Portfolio, Hedi Benjahouach
+# Portfolio, Hedi Jahouach
 
-Portfolio d'un consultant iOS senior freelance. Version finale fusionnée :
-moteur d'animation React / Motion / GSAP + charte graphique Wara Studio +
-contenu et captures d'app réelles. Bilingue FR / EN.
+One-page bilingual (FR / EN) portfolio of a senior freelance iOS
+consultant: real track record, real app screenshots. v1.6.0 is live; the
+v2 redesign is planned in `product/roadmap.md`.
 
 ## Stack
 
-Vite + React + TypeScript + Tailwind v4 + Motion + GSAP + lucide-react.
-Police Hanken Grotesk (auto-hébergée). Charte Wara : crème, charcoal, sky blue.
+Vite 6, React 18, TypeScript strict, Tailwind v4, Motion, GSAP, Lucide.
+Tokens and form components from the Wara DS SDK (`@warastudio/theme`,
+`@warastudio/react`). Tests with Vitest. Deployed to Cloudflare on a `v*`
+tag. Choices and versions: `product/tech-stack.md` and `docs/adr/`.
 
-## Démarrer
+## Start
 
 ```bash
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # build statique dans dist/
-npm run preview
+npm ci             # needs a GitHub Packages token, see CONTRIBUTING.md
+npm run dev        # http://localhost:5173
+npm test           # Vitest
+npm run build      # static build in dist/
 ```
 
-## Structure
+## Layout
 
-- `src/content/content.ts` : tout le contenu, bilingue `{ fr, en }` (source unique).
-- `src/index.css` : tokens de la charte Wara (mappés en utilitaires Tailwind).
-- `src/app/AppContext.tsx` : langue FR/EN.
-- `src/components/` : Nav, Hero, Offers, Process (timeline), Work (sticky-stack),
-  ProjectModal (détail), Parcours, Skills, Contact, Phone, Primitives.
-- `public/projects/` : captures d'app réelles (RIDE, MYTF1, franceinfo, etc.).
+- `src/content/content.ts`: all copy and data, bilingual `{ fr, en }`, the
+  single source.
+- `src/index.css`: Tailwind names aliased to the SDK variables.
+- `src/app/`: locale, theme, reduced-motion preference.
+- `src/components/`: v1 sections. v2 moves them to `src/sections/<name>/`
+  one spec at a time (`.claude/rules/10-architecture.md`).
+- `public/`: hero video, app screenshots, client logos.
 
-## Animations
+## Motion
 
-- **Hero 3D (Three.js / React Three Fiber)** : un iPhone d'où une app se détache
-  et sort en volume, avec float, parallaxe au pointeur et ombre de contact.
-  Chargé en lazy (chunk séparé ~247 KB gzip), uniquement si WebGL + animations
-  actives. Repli statique sinon. Forcer la démo : `index.html?webgl`.
-- Sticky-stack des projets au scroll (GSAP ScrollTrigger), cartes qui s'empilent.
-- Parallaxe scroll sur les captures (Motion useScroll) et les années du parcours.
-- Détail projet en transition fluide (élément partagé Motion `layoutId`).
-- Timeline du processus qui se construit au scroll, marqueurs qui s'activent.
-- Boutons magnétiques, apparitions au scroll.
-- Tout respecte `prefers-reduced-motion` (repli statique propre).
+The hero plays a looping background video. Project blocks are pinned on
+scroll (GSAP ScrollTrigger); screenshots move with the scroll and sections
+reveal in view (Motion). Everything respects `prefers-reduced-motion`;
+`?motion` in the URL forces animations for a demo.
 
-Le marquee technos est en monochrome charcoal (pas de couleurs de marque), les
-couleurs vives des captures restent contenues dans le cadre du téléphone :
-palette harmonieuse crème / charcoal / sky, fidèle à la charte.
+## Working on it
 
-## Charte Wara Studio respectée
-
-Crème `#f7f4ed`, charcoal `#1c1c1c`, off-white `#fcfbf8`, sky `#5fa8d9` /
-`#2e6fa8` / `#c7e0f1`. Gris dérivés du charcoal. Rayons 6 / 12 / 16. Bord passif
-`#eceae4`, ombre interne sur les boutons sombres. Hanken Grotesk 400 / 600.
-Sentence case, tutoiement en français, icônes Lucide.
-
-## Note
-
-La maquette HTML/CSS d'origine reste dans `wara-mockup/` comme référence design.
-Les captures d'app sont des éléments fournis par Hedi ; n'utiliser que celles
-qu'il est autorisé à publier.
+Read `AGENTS.md` first, then `CONTRIBUTING.md` for branches, commits and
+releases. App screenshots are supplied by Hedi; publish only those he is
+allowed to show.

@@ -1,24 +1,52 @@
 # Verification 003 - npm audit fix
 
-Date: 2026-11-09 | Branch: `chore-npm-audit-fix` | HEAD: `be46a277f4bb396980aa0cdf8a71eb56cdddf04f`
+Date: 2026-11-09 | Branch: `chore-npm-audit-fix` | HEAD: `94d860f026024114c3bac54ab3b0914ac09bd3bd` plus the uncommitted review fixes below
 Base: `dev` at `f1861e3` | Agent: qa (task T04)
 
 ```
-Verdict: PASS (AC-3 red on the first run against the original wording; green on the rerun after Hedi rescoped it to the served files, 2026-11-09)
+Verdict: PASS (AC-3 red on the first run against its original wording, green after Hedi rescoped it; AC-7 green by grep first, then rerun as a clean-shell run after review T05 found the setup broken)
 Criteria: 6 green (AC-1, AC-2, AC-3, AC-5, AC-6, AC-7), 0 red; AC-4 green locally, its CI row pending
 Build and lint: build ok on Node 22 for f1861e3 and be46a27; no lint or format config exists in this repo (no ESLint, Prettier or Biome file, no lint script)
 Screens: none, toolchain change
-Scenarios walked: 9 test plan rows; same-path rebuild of both commits, twice; `/wrangler.json` probe on the preview
+Scenarios walked: 9 test plan rows; same-path rebuild of both commits, twice; `/wrangler.json` probe on the preview; CONTRIBUTING Node lines in a clean zsh, with a negative control
 Not verified and why: AC-4 CI row (no PR yet), no positive control for the AC-6 grep, `npm run dev` not started, no real deploy; see "Not verified"
+```
+
+Scope of this report: HEAD `94d860f` plus the review fixes, uncommitted
+when AC-7 was rerun:
+
+- `CONTRIBUTING.md`: `eval "$(fnm env --use-on-cd --shell zsh)"` in the
+  Setup block, and a paragraph saying it is required.
+- `product/tech-stack.md` line 7: fnm URL and tested versions.
+- `specs/003`: spec Why (13 toolchain advisories, 2 low in
+  `@vanilla-extract/css`), plan Verification AC-7, tasks T03 and the AC-7
+  row `setsUpNode22FromCleanShell`.
+
+AC-1 to AC-6 evidence stands without a rerun: those fixes touch no code,
+lockfile or build input, and HEAD differs from be46a27 (the commit the
+builds ran on) by `specs/003` files only.
+
+```
+$ git diff --stat be46a27 HEAD
+ specs/003-npm-audit-fix/plan.md         |  16 +-
+ specs/003-npm-audit-fix/spec.md         |   7 +-
+ specs/003-npm-audit-fix/tasks.md        |   4 +-
+ specs/003-npm-audit-fix/verification.md | 381 ++++++++++++++++++++++++++++++++
+$ git diff --stat HEAD
+ CONTRIBUTING.md                  | 9 ++++++---
+ product/tech-stack.md            | 2 +-
+ specs/003-npm-audit-fix/plan.md  | 3 ++-
+ specs/003-npm-audit-fix/spec.md  | 7 ++++---
+ specs/003-npm-audit-fix/tasks.md | 6 +++---
+ 5 files changed, 16 insertions(+), 11 deletions(-)
 ```
 
 History: the first run checked AC-3 as then written ("`dist/` output
 identical") and found it red on `dist/wrangler.json` only. Hedi rescoped
 AC-3 on 2026-11-09 to the files Cloudflare serves, `dist/` minus the paths
-in `dist/.assetsignore`, with the deploy config diff recorded (spec, plan
-Verification and tasks row `buildsIdenticalServedFiles`, uncommitted edits
-at the time of the rerun). AC-3 was rerun alone; the other rows are from
-the first run.
+in `dist/.assetsignore`, with the deploy config diff recorded; AC-3 was
+rerun alone. Review T05 then found the CONTRIBUTING setup broken while the
+AC-7 grep was green; AC-7 was rerun alone, as a clean-shell run.
 
 Environment: macOS, fnm, every command prefixed with
 `eval "$(fnm env --shell zsh)" && fnm use --silent-if-unchanged`.
@@ -134,6 +162,12 @@ Cause: `@cloudflare/vite-plugin` 1.39.1 to 1.68.0 writes a different deploy
 config. The AC-5 dry-run reads this file (`Configuration being used:
 "dist/wrangler.json"`) and exits 0. The preview serves the SPA fallback on
 `/wrangler.json`, byte-equal to `dist/index.html`.
+
+The same served-files diff is the evidence for the spec's Why: the 2 low
+advisories in `@vanilla-extract/css`, and the lockfile moves under it
+(`@vanilla-extract/css` 1.21.1 to 1.21.3, `deepmerge` 4.3.1 replaced by
+`deepmerge-ts` 8.0.2, `modern-ahocorasick` 1.1.0 to 3.3.0), change nothing
+in the bundle: the JS, the CSS and every served file are byte-identical.
 
 ### First run, against the original AC-3 wording - FAIL (superseded)
 
@@ -323,50 +357,117 @@ $ grep -ciE warn $S/npm-ci-branch.log
 0
 ```
 
-## AC-7 - `namesFnmSetup` - PASS
+## AC-7 - `setsUpNode22FromCleanShell` - PASS (rerun after review)
+
+Superseded: the first run checked AC-7 with a grep (`namesFnmSetup`:
+`brew install fnm` and `fnm use` present, `nvm use` absent), green while
+the setup was broken; review T05 caught it.
+
+The Node lines of the CONTRIBUTING Setup block, extracted from the file,
+not retyped:
 
 ```
-$ grep -n 'brew install fnm' CONTRIBUTING.md
-9:brew install fnm              # once per machine
-$ grep -n 'fnm use' CONTRIBUTING.md
-10:fnm install && fnm use        # Node 22 from .nvmrc, with the npm 10 CI uses
+$ sed -n '/^## Setup/,/^```$/p' CONTRIBUTING.md | sed -n '/^```bash/,/^```$/p' \
+    | grep -E '^(brew install fnm|eval "\$\(fnm env|fnm install)' > $S/ac7-setup.zsh
+     1	brew install fnm              # once per machine
+     2	eval "$(fnm env --use-on-cd --shell zsh)"   # also add it to ~/.zshrc
+     3	fnm install && fnm use        # Node 22 from .nvmrc, with the npm 10 CI uses
+```
+
+Run from the worktree root in a clean zsh, the checks on their own lines
+(the trailing `#` comment of line 3 would swallow them otherwise).
+`HOMEBREW_NO_AUTO_UPDATE=1` keeps `brew install` off the network; it does
+not change what the lines do.
+
+```
+$ env -i HOME=$HOME PATH=/opt/homebrew/bin:/usr/bin:/bin HOMEBREW_NO_AUTO_UPDATE=1 \
+    zsh -f -c "$(cat $S/ac7-setup.zsh)
+echo fnm line exit=\$?
+node -v
+npm -v
+whence node"
+Warning: fnm 1.39.0 is already installed and up-to-date.
+Installing Node v22.23.4 (arm64)
+warning: Version already installed at "~/.local/share/fnm/node-versions/v22.23.4"
+Using Node v22.23.4
+fnm line exit=0
+v22.23.4
+10.9.9
+~/.local/state/fnm_multishells/66738_1794260249953/bin/node
+shell exit=0
+```
+
+Negative control, the same lines without the `eval` line
+(`$S/ac7-noeval.zsh`), as the setup read before the fix:
+
+```
+Warning: fnm 1.39.0 is already installed and up-to-date.
+Installing Node v22.23.4 (arm64)
+warning: Version already installed at "~/.local/share/fnm/node-versions/v22.23.4"
+error: We can't find the necessary environment variables to replace the Node version.
+You should setup your shell profile to evaluate `fnm env`, see https://github.com/Schniz/fnm#shell-setup on how to do this
+fnm line exit=1
+v26.9.0
+11.19.1
+/opt/homebrew/bin/node
+```
+
+`fnm use` fails and the shell stays on the Homebrew Node 26 (npm 11.19.1),
+so the check catches the bug the review found. The shell itself exits 0
+there because `whence` is its last command; the failure is the
+`fnm line exit=1` line. In the clean PATH, before any fnm line:
+`whence -a node` gives `/opt/homebrew/bin/node`, v26.9.0.
+
+```
 $ grep -c 'nvm use' CONTRIBUTING.md
 0
 ```
 
 Outside `specs/003`, no tracked Markdown, YAML or shell file says `nvm use`.
+Logs: `$S/ac7-positive.log`, `$S/ac7-negative.log`.
 
 ## Style
 
 ```
 $ git diff --name-only dev..HEAD | grep -v package-lock.json | xargs perl -CSD -ne 'print if /[\x{2013}\x{2014}\x{2018}\x{2019}\x{201C}\x{201D}]/'
 (no match)
+$ git diff --name-only HEAD | xargs perl -CSD -ne 'print if /[\x{2013}\x{2014}\x{2018}\x{2019}\x{201C}\x{201D}]/'
+(no match, the 5 files of the uncommitted review fixes)
 positive control (printf 'a <U+2014> b'): hit
 ```
 
 ## Other findings
 
 - `plan.md` step 3 first named `@cloudflare/vite-plugin` 1.67.0 and
-  Wrangler 4.156.1. Rechecked after the coordinator's fix: line 50 now says
+  Wrangler 4.156.1. Rechecked after the coordinator's fix: line 51 now says
   1.68.0 and 4.157.0, equal to the lockfile (`node_modules/@cloudflare/vite-plugin`
   1.68.0, `node_modules/wrangler` 4.157.0) and to `product/tech-stack.md`
   line 26. Resolved.
 - Wrangler prints "Cloudflare collects anonymous telemetry about your usage
   of Wrangler" on the dry-run. This is tooling telemetry, not site
   analytics; recorded for Hedi, no rule decides it here.
+- Why the first qa run missed the AC-7 bug: every qa command was prefixed
+  with `eval "$(fnm env --shell zsh)"`, the very line CONTRIBUTING lacked,
+  and AC-7 was a grep. The clean-shell run with its negative control now
+  covers it.
 
 ## Status at the end
 
 ```
-$ git status --short    (after the AC-3 rerun)
+$ git status --short    (after the AC-7 rerun)
+ M CONTRIBUTING.md
+ M product/tech-stack.md
  M specs/003-npm-audit-fix/plan.md
  M specs/003-npm-audit-fix/spec.md
  M specs/003-npm-audit-fix/tasks.md
-?? specs/003-npm-audit-fix/verification.md
+ M specs/003-npm-audit-fix/verification.md
 $ git check-ignore -v .wrangler/ dist/
 .gitignore:19:.wrangler	.wrangler/
 .gitignore:5:dist/	dist/
 ```
+
+qa changed `verification.md` only; the five other files are the review
+fixes, left untouched.
 
 ## Not verified
 

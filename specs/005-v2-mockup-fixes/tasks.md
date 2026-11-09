@@ -25,7 +25,7 @@ have no commit. No `[P]`: each task needs the previous one.
   `docs/v2/README.md` - check: sums check from `docs/v2/` passes; `git
   diff --stat dev -- docs/v2/mockup` lists `index.html` only - agent:
   main session
-- [ ] T04 the new version named where the old one stood - files:
+- [x] T04 the new version named where the old one stood - files:
   `docs/v2/README.md` l.9-10 and l.62, `docs/v2/decision-log.md` l.5-7,
   `product/tech-stack.md` l.47, `product/mission.md` l.3 - check: `git
   grep -n 1794063463-7380` outside `specs/001-*` returns only intended

@@ -7,7 +7,8 @@ never the claude.ai artifact they came from (spec 001).
 
 - `mockup/`: the v2 mockup, the 16 files of claude.ai artifact
   https://claude.ai/artifact/BDrsQCHWzgfQRLqBGn9FJM, version
-  1794063463-7380, copied as published on 2026-11-09. A reference: the
+  1794266082-62e1 (spec 005, 2026-11-10), first copied at version
+  1794063463-7380 on 2026-11-09 (spec 001). A reference: the
   build never imports it and nobody edits it here. One French page, light
   and dark through `data-theme`, a 900 px breakpoint. It loads Hanken
   Grotesk and JetBrains Mono from Google Fonts. File names stay as
@@ -59,7 +60,8 @@ c6262406309aa65ae999dcbfc49184835fac470f4ed84425e4629a07adab22c8  mockup/img/her
 ```
 
 The 16 mockup sums are the ones the artifact reported for version
-1794063463-7380; the last one is the clip as Hedi supplied it.
+1794266082-62e1: spec 005 changed `index.html` only, the other 15 match
+version 1794063463-7380. The last sum is the clip as Hedi supplied it.
 
 ## Screens
 

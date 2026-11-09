@@ -3,8 +3,10 @@
 The first section is Hedi's log of 2026-11-07, verbatim in French as he
 pasted it (accents already stripped in his original). Its links point to
 the Cowork session of that day. The mockup lives in `mockup/`, frozen at
-artifact version 1794063463-7380 as published on 2026-11-09 (`README.md`);
-whether that is the "version 5" the log cites is not verified.
+artifact version 1794063463-7380 as published on 2026-11-09, then at
+1794266082-62e1 on 2026-11-10 (spec 005, `README.md`). The host numbered
+the spec 005 publish "Version 6", so 1794063463-7380 is probably the
+"version 5" the log cites (inferred, not verified).
 Entries after it are in English, dated, and never deleted; a replaced
 decision gets a line saying by which entry.
 

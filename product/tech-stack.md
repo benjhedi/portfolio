@@ -44,4 +44,4 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 
 - Tokens from `@warastudio/theme`, aliased to `--color-*` in `index.css`; dark = Midnight via `data-theme` (`main.tsx`, inventory section 6). The installed SDK 0.1.0 exposes `--wara-*`; the target is `--ws-*`, as in the v2 decision log and the mockup, from a newer SDK version, upgraded before the first v2 spec (Hedi, 2026-11-07).
 - Type: Hanken Grotesk 400 / 600, JetBrains Mono for indexes and tags; icons Lucide (former `CLAUDE.md` (a3d1bda), v2 decision log).
-- Mockup: `docs/v2/mockup/`, frozen from claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM at version 1794063463-7380 (spec 001).
+- Mockup: `docs/v2/mockup/`, frozen from claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM at version 1794266082-62e1 (spec 001, refrozen by spec 005).

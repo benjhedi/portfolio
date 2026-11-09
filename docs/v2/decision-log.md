@@ -68,8 +68,9 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
 - 2026-11-09: Mockup PNGs (spec 004): the preloader is its own screen,
   the fixed nav and bottom bar appear on the hero PNGs only; every screen
   at 1440 px 1x and 390 px 2x, light and dark; reduced motion for the hero
-  only; the hero frozen with the RIDE app at its peak, marquees at their
-  start; the PNGs go through Git LFS under `docs/`.
+  only; the hero frozen with the RIDE app at its peak and the scroll hint
+  line drawn, marquees at their start; the PNGs go through Git LFS under
+  `docs/`.
 - 2026-11-09: Three mockup defects are fixed at the source, in a new
   artifact version frozen again before the PNG export (spec 005): the
   skills overflow, the "HJ" mark hidden on the mobile nav, and the hero

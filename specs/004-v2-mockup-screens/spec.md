@@ -1,6 +1,6 @@
 # Spec 004 - v2 mockup screens
 
-Branch: `docs-v2-mockup-screens` | Status: clarified 2026-11-09
+Branch: `docs-v2-mockup-screens` | Status: planned 2026-11-09
 Roadmap line: Wave 0, open until the PNG follow-up exports one PNG per section, light and dark.
 
 ## Why
@@ -29,8 +29,8 @@ the moment this spec names, with the mockup files untouched.
 - AC-3 THE hero PNGs SHALL show the fixed nav and bottom bar, other PNGs
   their section alone; the preloader SHALL show "HJ" and "0%" ([log]).
 - AC-4 THE motion hero SHALL be frozen on the first loop with the RIDE app
-  at its emerge peak (72 %); every marquee SHALL be frozen at its start
-  position; no element SHALL be left unrevealed, cut or overlapping.
+  at its emerge peak (72 %), the scroll hint line drawn; every marquee at
+  its start; no element SHALL be left unrevealed, cut or overlapping.
 - AC-5 THE PNGs SHALL go through Git LFS under `docs/`, ADR 004 amended;
   `public/` stays plain git and `lfs-pointers` passes.
 - AC-6 THE README SHALL describe each screen (purpose, layout, states,

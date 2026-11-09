@@ -33,7 +33,7 @@ session because only it can read the artifact.
   in each, roadmap line still `[ ]` - agent: main session
 - [x] T07 verify - all AC checks below green, `npm ci` first - files:
   `specs/001-v2-references/verification.md` - agent: qa
-- [ ] T08 review - diff against dev, gates reread; once APPROVED the main
+- [x] T08 review - diff against dev, gates reread; once APPROVED the main
   session sets `spec.md` status to done - files: `spec.md` - agent:
   review-agent
 

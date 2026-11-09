@@ -1,6 +1,6 @@
 # Spec 001 - v2 references in the repo
 
-Branch: `docs-v2-references` | Status: planned 2026-11-09
+Branch: `docs-v2-references` | Status: done 2026-11-09
 Roadmap line: Wave 0, the v2 log, mockup, media and SEO input in `docs/`.
 
 ## Why

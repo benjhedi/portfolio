@@ -1,6 +1,6 @@
 # Roadmap - Portfolio Hedi Jahouach
 
-Sources: [log] v2 decision log (Cowork, 2026-11-07); [mockup] v2 mockup, claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM; [inv] `docs/audit/inventory.md`. The order is the priority. A line is a user outcome; a screen line needs its validated mockup (rule 60).
+Sources: [log] `docs/v2/decision-log.md`; [mockup] `docs/v2/mockup/`, frozen from claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM; [inv] `docs/audit/inventory.md`. The order is the priority. A line is a user outcome; a screen line needs its validated mockup (rule 60).
 
 ## Phase 0 - Foundations (done or in progress)
 
@@ -11,7 +11,7 @@ Sources: [log] v2 decision log (Cowork, 2026-11-07); [mockup] v2 mockup, claude.
 
 ## Phase 1 - v2 redesign, in the [log] section order
 
-- [ ] Wave 0: the v2 log, the mockup and its media, and `SEO-accueil.md` are versioned in `docs/`, so every screen has an in-repo mockup ([inv] refactor specs).
+- [ ] Wave 0: the v2 log, the mockup and its media, and `SEO-accueil.md` are versioned in `docs/`, so every screen has an in-repo mockup ([inv] refactor specs). Sources in `docs/v2/` since spec 001; open until the PNG follow-up exports one PNG per section, light and dark.
 - [ ] Wave 0: the Wara DS SDK is upgraded from `--wara-*` (0.1.0) to the `--ws-*` version the mockup uses, before the first v2 screen spec (`product/tech-stack.md`, Hedi 2026-11-07).
 - [ ] A visitor sees the hero: oval with the looping portrait video, an app, the site or a product leaving the vapor at each loop, name and role below; poster under reduced motion. Needs the mockup. Open: oval background, loop crossfade ([log]).
 - [ ] A visitor reads the statement: name and role in two columns, mono note, four-line statement, proof chips. Needs the mockup. Open: capitals or sentence case ([log]).

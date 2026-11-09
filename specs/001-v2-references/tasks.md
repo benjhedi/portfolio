@@ -27,7 +27,7 @@ session because only it can read the artifact.
 - [x] T05 SEO copy with Jahouach - files: `docs/v2/seo-accueil.md` -
   check: `diff` against the original shows the three planned lines only;
   `grep -c Benjahouach` is 0; original sha256 unchanged - agent: main session
-- [ ] T06 pointers to the in-repo references, roadmap line left open with
+- [x] T06 pointers to the in-repo references, roadmap line left open with
   its note - files: `AGENTS.md`, `CLAUDE.md`, `product/mission.md`,
   `product/roadmap.md`, `product/tech-stack.md` - check: grep `docs/v2/`
   in each, roadmap line still `[ ]` - agent: main session

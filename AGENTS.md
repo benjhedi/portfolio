@@ -18,8 +18,8 @@ only, never mentions Wara Studio, and every text comes from
 1. `product/` - mission, roadmap, tech-stack, constitution
 2. `README.md`, `CONTRIBUTING.md` - commands, branches, hooks, releases
 3. `.claude/rules/10-architecture.md` and `90-project-web-stack.md`, `docs/adr/`
-4. Before any screen: the v2 mockup and decision log, claude.ai artifact
-   BDrsQCHWzgfQRLqBGn9FJM, until roadmap wave 0 versions them in `docs/`
+4. Before any screen: `docs/v2/` (README, mockup, decision log); the
+   per-screen PNGs follow in wave 0
 5. `specs/NNN-*/` - the change in progress, when one exists: spec, plan, tasks
 
 Evidence behind 1 and 3: `docs/audit/inventory.md`, `docs/architecture-study.md`.

@@ -1,6 +1,6 @@
 # Mission - Portfolio Hedi Jahouach
 
-Sources: [log] v2 decision log (Cowork, 2026-11-07, not yet in the repo); [mockup] v2 mockup, claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM; [SEO] `SEO-accueil.md`, main checkout, untracked.
+Sources: [log] `docs/v2/decision-log.md` (2026-11-07, then dated entries); [mockup] `docs/v2/mockup/`, frozen from claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM, version 1794063463-7380; [SEO] `docs/v2/seo-accueil.md`.
 
 ## Pitch
 
@@ -25,7 +25,7 @@ A one-page bilingual FR / EN site where a prospect sees that Hedi Jahouach, seni
 
 ## Non-negotiable product rules
 
-1. Displayed name "Hedi Jahouach" only, "HJ" text monogram; SEO targets Jahouach only ([log], decided 2026-11-07). `content.ts` identity and [SEO] still say Benjahouach.
+1. Displayed name "Hedi Jahouach" only, "HJ" text monogram; SEO targets Jahouach only ([log], decided 2026-11-07). `content.ts` identity still says Benjahouach; the [SEO] copy says Jahouach since 2026-11-09.
 2. No Wara Studio mention or logo anywhere; Wara tokens are the technical design system only ([log]).
 3. Sober, direct tone, real track record, no overselling (former `CLAUDE.md` (a3d1bda)).
 4. All current content kept, read from `content.ts`, the single bilingual source ([log] scope, former `CLAUDE.md` (a3d1bda)).

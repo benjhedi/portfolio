@@ -15,7 +15,7 @@ sequential is cheaper than worktrees.
 - [x] T01 lockfile refreshed by `npm audit fix` on Node 22, no `--force`
   - files: `package-lock.json` - check: `npm -v` 10.9.x, `npm audit` 0
   vulnerabilities, `git diff dev -- package.json` empty - agent: setup-agent
-- [ ] T02 toolchain versions and the accepted miniflare beta - files:
+- [x] T02 toolchain versions and the accepted miniflare beta - files:
   `product/tech-stack.md` - check: grep the versions T01 resolved for Vite,
   `@cloudflare/vite-plugin`, Wrangler, and the miniflare line - agent: setup-agent
 - [ ] T03 fnm setup step - files: `CONTRIBUTING.md` - check: grep

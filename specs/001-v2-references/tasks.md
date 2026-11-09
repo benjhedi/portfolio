@@ -31,7 +31,7 @@ session because only it can read the artifact.
   its note - files: `AGENTS.md`, `CLAUDE.md`, `product/mission.md`,
   `product/roadmap.md`, `product/tech-stack.md` - check: grep `docs/v2/`
   in each, roadmap line still `[ ]` - agent: main session
-- [ ] T07 verify - all AC checks below green, `npm ci` first - files:
+- [x] T07 verify - all AC checks below green, `npm ci` first - files:
   `specs/001-v2-references/verification.md` - agent: qa
 - [ ] T08 review - diff against dev, gates reread; once APPROVED the main
   session sets `spec.md` status to done - files: `spec.md` - agent:

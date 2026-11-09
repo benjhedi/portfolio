@@ -1,14 +1,15 @@
 # Verification 001 - v2 references in the repo
 
-Step 1 of 2 (local checks), run by qa on 2026-11-09.
+Step 1 (local checks) run by qa on 2026-11-09; step 2 (push, CI, fresh
+clone) run by the main session the same day, PR benjhedi/portfolio#29.
 Branch `docs-v2-references`, HEAD b4b0ba3, 11 commits on top of
 `origin/dev` f1861e3 (merge base f1861e3), not pushed, working tree clean
-before and after. Step 2 (push, `lfs-pointers` CI job, fresh clone) is
-pending Hedi's go.
+before and after. Pushed with Hedi's go: `Uploading LFS objects: 100%
+(3/3), 1.5 MB`.
 
 ```
-Verdict: PASS pending step 2
-Criteria: 9 green on their local part, 0 red; AC-7 CI and fresh clone PENDING
+Verdict: PASS
+Criteria: 9 green, 0 red; the PR `build` job runs AC-9 again on GitHub
 Build and lint: npm ci, npm test, npm run build ok under Node 22.23.4 (.nvmrc 22); no lint script in package.json
 Screens: 2 captures (light, dark) of the mockup at 1440 x 900; no PNG exists to compare against yet (PNG follow-up)
 Scenarios walked: mockup served locally, light then dark, network list and server log read
@@ -27,7 +28,7 @@ Not verified and why: artifact sums (qa cannot read the artifact), CI job and fr
 | AC-5 | `changesOnlyTitleCountAndNameRule` | PASS | `diff` shows lines 8, 10, 64 only; `grep -c Benjahouach` 0 |
 | AC-5 | `leavesOriginalUntouched` | PASS | original sha256 5da289d5...6b74, equal to the value recorded before T05 |
 | AC-6 | `keepsSourceClipByteIdenticalOutsideMockup` | PASS | sha256 213146af...e2b9; 0 file under `mockup/` holds it; audio stream present |
-| AC-7 | `storesExactlyThreeVideosThroughLfs` | PASS local, PENDING CI | 3 LFS files, 3 pointers at HEAD, `Git LFS fsck OK`; CI job and fresh clone need step 2 |
+| AC-7 | `storesExactlyThreeVideosThroughLfs` | PASS | 3 LFS files, 3 pointers at HEAD, `Git LFS fsck OK`; `lfs-pointers` pass on PR 29; fresh clone gets the 3 videos with their sums |
 | AC-8 | `pointsReadOrderToDocsV2` | PASS | `docs/v2/` in all five files; roadmap wave 0 still `- [ ]` |
 | AC-9 | `shipsNoDocsFileInDist` | PASS | test and build exit 0; no `docs/` file or sum in `dist/` |
 | Extra | secrets, dashes, curly quotes (rule 03, 06) | PASS | no secret pattern; 0 banned characters in README, decision log, SEO copy, pointer diff |
@@ -250,8 +251,12 @@ Each pointer oid equals the README sum of its file. Push readiness (plan
 risk): `core.hooksPath` is the main checkout's `.githooks/`, whose
 `pre-push` runs `git lfs pre-push` (line 35).
 
-PENDING for step 2: the `lfs-pointers` job green on the PR, and a fresh
-clone with LFS getting the clip with sha256 213146af...e2b9.
+Step 2, 2026-11-09. `gh pr checks 29`: `lfs-pointers pass 5s`,
+`conventions pass 6s`. Fresh `git clone --branch docs-v2-references` from
+GitHub into the scratchpad: `git lfs ls-files` lists the 3 videos, and
+`shasum -a 256` gives 213146af...fdd4e2b9 (clip), c6262406...ab22c8
+(hero.mp4), 5c849f9c...64ef (hero.webm), the README sums; the clip starts
+with an MP4 `ftypisom` header, not a pointer.
 
 ## AC-8 - pointers
 

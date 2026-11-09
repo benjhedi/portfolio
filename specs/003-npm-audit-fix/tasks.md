@@ -20,7 +20,7 @@ sequential is cheaper than worktrees.
   `@cloudflare/vite-plugin`, Wrangler, and the miniflare line - agent: setup-agent
 - [x] T03 fnm setup step - files: `CONTRIBUTING.md` - check: grep
   `brew install fnm` and `fnm use`, no `nvm use` left - agent: setup-agent
-- [ ] T04 verify - all AC checks below green - files:
+- [x] T04 verify - all AC checks below green - files:
   `specs/003-npm-audit-fix/verification.md` - agent: qa
 - [ ] T05 review - diff against dev, gates reread; once APPROVED the main
   session sets `spec.md` status to done and checks the roadmap line -

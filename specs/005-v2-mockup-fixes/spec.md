@@ -1,6 +1,6 @@
 # Spec 005 - v2 mockup fixes
 
-Branch: `fix-v2-mockup-defects` | Status: clarified 2026-11-09
+Branch: `fix-v2-mockup-defects` | Status: planned 2026-11-10
 Roadmap line: Wave 0, the v2 log, mockup and media versioned in `docs/`,
 so every screen has an in-repo mockup.
 
@@ -32,11 +32,12 @@ bar covers the hero scroll hint label. A PNG of a bug is a bad contract
   and its label SHALL be fully visible above the bottom bar.
 - AC-5 WHEN the mockup is exported before and after the fix with the same
   settings THE PNGs SHALL differ only in skills, the mobile nav and the
-  hero bottom.
+  desktop hero; every other section SHALL keep its height and boxes.
 - AC-6 THE claude.ai artifact SHALL hold the fix as a new version, and
   `docs/v2/mockup/` SHALL hold that version's files, each matching its
-  published sha256 listed in the README; the README, the decision log and
-  `product/tech-stack.md` SHALL name it; `npm test` and the build pass.
+  published sha256 listed in the README; the README, the decision log,
+  `product/tech-stack.md` and `product/mission.md` SHALL name it; `npm
+  test` and the build pass.
 
 ## Out of scope
 

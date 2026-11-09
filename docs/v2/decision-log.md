@@ -67,4 +67,6 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
   artifact version frozen again before the PNG export (spec 005): the
   skills overflow, the "HJ" mark hidden on the mobile nav, and the hero
   scroll hint covered by the bottom bar at 1440 x 900, which supersedes
-  the overlap accepted as D2 in spec 004.
+  the overlap accepted as D2 in spec 004. The hero oval is capped by the
+  viewport height, so it shrinks on short desktop screens (720 px wide at
+  1440 x 900, 860 from about 1080 px high).

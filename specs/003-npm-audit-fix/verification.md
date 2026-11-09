@@ -1,6 +1,6 @@
 # Verification 003 - npm audit fix
 
-Date: 2026-11-09 | Branch: `chore-npm-audit-fix` | HEAD: `94d860f026024114c3bac54ab3b0914ac09bd3bd` plus the uncommitted review fixes below
+Date: 2026-11-09 | Branch: `chore-npm-audit-fix` | HEAD: `94d860f026024114c3bac54ab3b0914ac09bd3bd` plus the review fixes below, since committed in `424ae64` and `a682ad1`
 Base: `dev` at `f1861e3` | Agent: qa (task T04)
 
 ```

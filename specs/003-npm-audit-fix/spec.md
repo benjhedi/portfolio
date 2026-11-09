@@ -1,6 +1,6 @@
 # Spec 003 - npm audit fix
 
-Branch: `chore-npm-audit-fix` | Status: planned (clarified 2026-11-09)
+Branch: `chore-npm-audit-fix` | Status: done (clarified 2026-11-09)
 Roadmap line: Phase 0, "npm audit is clean on the dev toolchain and the
 local install matches CI" (Hedi, 2026-11-09).
 
@@ -10,9 +10,10 @@ local install matches CI" (Hedi, 2026-11-09).
 11 high): 13 in the dev and build toolchain (Vite, Wrangler,
 `@cloudflare/vite-plugin`, Babel), 2 low in `@vanilla-extract/css`, which
 `@warastudio/*` declare at runtime but use for types only. None reaches
-the static site Cloudflare serves (AC-3). Left as is, they hide the next advisory that matters. The local
-machine runs Node 26 (npm 11.19, which warns about unreviewed install
-scripts) while `.nvmrc` and CI use Node 22 (npm 10).
+the static site Cloudflare serves (AC-3). Left as is, they hide the next
+advisory that matters. The local machine runs Node 26 (npm 11.19, which
+warns about unreviewed install scripts) while `.nvmrc` and CI use Node 22
+(npm 10).
 
 ## User stories, by priority
 

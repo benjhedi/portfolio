@@ -22,7 +22,7 @@ sequential is cheaper than worktrees.
   lines run in a clean zsh give Node 22, no `nvm use` left - agent: setup-agent
 - [x] T04 verify - all AC checks below green - files:
   `specs/003-npm-audit-fix/verification.md` - agent: qa
-- [ ] T05 review - diff against dev, gates reread; once APPROVED the main
+- [x] T05 review - diff against dev, gates reread; once APPROVED the main
   session sets `spec.md` status to done and checks the roadmap line -
   files: `spec.md`, `product/roadmap.md` - agent: review-agent
 

@@ -25,7 +25,7 @@ worktrees.
   the failure line - agent: setup-agent
 - [x] T06 kit drift debt line with the wara-kit request - files:
   `product/roadmap.md` - check: grep - agent: main session
-- [ ] T07 verify - all AC checks below green - files:
+- [x] T07 verify - all AC checks below green - files:
   `specs/002-git-lfs-reference-media/verification.md` - agent: qa
 - [ ] T08 review - diff against dev, gates reread; once APPROVED the main
   session sets `spec.md` status to done - files: `spec.md` - agent: review-agent

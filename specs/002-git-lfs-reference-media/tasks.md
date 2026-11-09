@@ -17,7 +17,7 @@ worktrees.
 - [x] T03 CI job lfs-pointers - files: `.github/workflows/ci.yml` - check:
   YAML parses, the job's command run as is in a scratch repo (AC-7 rows)
   - agent: setup-agent
-- [ ] T04 ADR 004 - files: `docs/adr/004-git-lfs-reference-media.md` - check:
+- [x] T04 ADR 004 - files: `docs/adr/004-git-lfs-reference-media.md` - check:
   grep scope, reason, plain-git option, quota with its GitHub docs source
   - agent: main session with the `adr` skill
 - [ ] T05 setup step and toolchain line - files: `CONTRIBUTING.md`,

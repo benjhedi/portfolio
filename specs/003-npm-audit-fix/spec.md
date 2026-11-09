@@ -29,8 +29,11 @@ scripts) while `.nvmrc` and CI use Node 22 (npm 10).
   pins is accepted: it runs only in local dev and preview (Hedi, 2026-11-09).
 - AC-2 THE dependency manifest SHALL stay unchanged: same ranges, no
   `overrides`, no `engines`, no `allowScripts`.
-- AC-3 WHEN the site is built from the change THE `dist/` output SHALL be
-  identical to the build of dev before the change: same files, same hashes.
+- AC-3 WHEN the site is built from the change THE files Cloudflare serves,
+  `dist/` minus the paths in `dist/.assetsignore`, SHALL be identical to
+  the build of dev before the change: same files, same hashes. The deploy
+  config the Cloudflare plugin writes there may differ; its diff is recorded
+  and the AC-5 dry-run accepts it (Hedi, 2026-11-09).
 - AC-4 THE lockfile SHALL be written by the npm that ships with the
   `.nvmrc` Node, and on that Node `npm ci`, `npm test` and `npm run build`
   SHALL pass.

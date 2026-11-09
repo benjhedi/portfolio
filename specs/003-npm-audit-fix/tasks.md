@@ -36,7 +36,7 @@ TypeScript units, the spec asks none).
 |---|---|---|---|
 | AC-1 | `npm audit` on Node 22 prints 0 vulnerabilities | command | `reportsZeroVulnerabilities` |
 | AC-2 | `package.json` identical to dev, no overrides | `git diff` | `keepsManifestUnchanged` |
-| AC-3 | branch build equals the f1861e3 build | build and `diff -r dist` | `buildsIdenticalDist` |
+| AC-3 | served files of the branch build equal the f1861e3 build; `wrangler.json` diff recorded | build and `diff -r` without the `.assetsignore` paths | `buildsIdenticalServedFiles` |
 | AC-4 | lockfile written by npm 10.9.x; `npm ci`, `npm test`, `npm run build` exit 0 on Node 22 | commands | `installsTestsAndBuildsOnNode22` |
 | AC-4 | CI green on the PR | CI run | `passesCiOnPullRequest` |
 | AC-5 | `wrangler deploy --dry-run` exits 0 | command | `rehearsesDeploy` |

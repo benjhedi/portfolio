@@ -29,8 +29,9 @@ Architecture
 Verification
 - AC-1: `npm audit` on Node 22 prints "found 0 vulnerabilities".
 - AC-2: `git diff dev -- package.json` is empty.
-- AC-3: build of f1861e3 in a temporary worktree and build of the branch;
-  `diff -r` of both `dist/` is empty.
+- AC-3: build of f1861e3 in a temporary worktree and of the branch, from
+  the same path; `diff -r` excluding each path of `dist/.assetsignore` is
+  empty; the `dist/wrangler.json` diff is recorded in the report.
 - AC-4: `npm -v` shows 10.9.x when the lockfile is written; on Node 22,
   `npm ci`, `npm test`, `npm run build` exit 0; CI green on the PR.
 - AC-5: `wrangler deploy --dry-run` exits 0; `npm run preview` in the
@@ -46,8 +47,9 @@ Verification
 2. Lockfile: from dev's lockfile, on Node 22, `npm audit fix` with no
    `--force`. Only `package-lock.json` changes. One commit.
 3. Record: `product/tech-stack.md` toolchain line gets the new versions
-   (Vite 6.4.6, `@cloudflare/vite-plugin` 1.67.0, Wrangler 4.156.1) and
-   the accepted miniflare 5 beta, local only (Hedi, 2026-11-09).
+   (Vite 6.4.6, `@cloudflare/vite-plugin` 1.68.0, Wrangler 4.157.0, as npm
+   10 resolved them in T01) and the accepted miniflare 5 beta, local only
+   (Hedi, 2026-11-09).
 4. CONTRIBUTING Setup: `brew install fnm` once per machine, `fnm use`
    in place of `nvm use`; both read `.nvmrc` (Hedi, 2026-11-09).
 5. Verify (qa), review, then the roadmap checkbox closes with the spec.
@@ -66,8 +68,10 @@ None. No personal data.
 ## Risks and open decisions
 
 - npm 10 may resolve a different tree than the npm 11 dry run (verified on
-  a scratch copy: 0 vulnerabilities, same `dist/` hashes, dry-run OK). AC-1
-  and AC-3 recheck on npm 10; a difference goes back to Hedi.
+  a scratch copy: 0 vulnerabilities, same JS and CSS hashes, dry-run OK;
+  `dist/wrangler.json` was not compared then). AC-1 and AC-3 recheck on
+  npm 10; a difference goes back to Hedi. It did: the plugin rewrites
+  `dist/wrangler.json`, so AC-3 covers the served files (Hedi, 2026-11-09).
 - miniflare 5 beta in `wrangler dev`: AC-5 covers the preview path only.
 - No open decision.
 

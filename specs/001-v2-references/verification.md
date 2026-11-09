@@ -2,10 +2,10 @@
 
 Step 1 (local checks) run by qa on 2026-11-09; step 2 (push, CI, fresh
 clone) run by the main session the same day, PR benjhedi/portfolio#29.
-Branch `docs-v2-references`, HEAD b4b0ba3, 11 commits on top of
-`origin/dev` f1861e3 (merge base f1861e3), not pushed, working tree clean
-before and after. Pushed with Hedi's go: `Uploading LFS objects: 100%
-(3/3), 1.5 MB`.
+Branch `docs-v2-references`: step 1 ran on HEAD b4b0ba3, 11 commits on
+top of `origin/dev` f1861e3, working tree clean before and after. Step 2
+ran after the push with Hedi's go (`Uploading LFS objects: 100% (3/3),
+1.5 MB`), HEAD 8c87dbd on GitHub.
 
 ```
 Verdict: PASS
@@ -13,7 +13,7 @@ Criteria: 9 green, 0 red; the PR `build` job runs AC-9 again on GitHub
 Build and lint: npm ci, npm test, npm run build ok under Node 22.23.4 (.nvmrc 22); no lint script in package.json
 Screens: 2 captures (light, dark) of the mockup at 1440 x 900; no PNG exists to compare against yet (PNG follow-up)
 Scenarios walked: mockup served locally, light then dark, network list and server log read
-Not verified and why: artifact sums (qa cannot read the artifact), CI job and fresh clone (need the push)
+Not verified and why: artifact sums by qa (it cannot read the artifact; the main session checked them in T01)
 ```
 
 ## Results per criterion
@@ -348,9 +348,8 @@ The mockup also carries the LinkedIn URL, present in `content.ts` too
 ## Not verified and why
 
 - The 16 mockup sums against the artifact itself: qa cannot read the
-  artifact; the reference is the README from T03.
-- AC-7 `lfs-pointers` CI job and fresh-clone sha256: need the push and the
-  PR (step 2).
+  artifact; the main session compared each file with the sha256 the
+  artifact read reported in T01, and the README from T03 carries them.
 - Mockup PNG comparison: no PNG exists before the PNG follow-up.
 - Reduce Motion and Eco paths: no AC in this spec covers them.
 

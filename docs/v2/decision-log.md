@@ -2,8 +2,9 @@
 
 The first section is Hedi's log of 2026-11-07, verbatim in French as he
 pasted it (accents already stripped in his original). Its links point to
-the Cowork session of that day: the mockup it cites now lives in
-`mockup/`, frozen at artifact version 1794063463-7380 (`README.md`).
+the Cowork session of that day. The mockup lives in `mockup/`, frozen at
+artifact version 1794063463-7380 as published on 2026-11-09 (`README.md`);
+whether that is the "version 5" the log cites is not verified.
 Entries after it are in English, dated, and never deleted; a replaced
 decision gets a line saying by which entry.
 
@@ -39,7 +40,7 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
 - 2026-11-07: The site, its SEO and its metadata show "Jahouach" only,
   never "Benjahouach" (constitution principle 1).
 - 2026-11-07: The hero and the section blocks are not reused by another
-  site (roadmap, Parked).
+  site (Hedi, 2026-11-07; the roadmap Parked line names the hero).
 - 2026-11-07: "Voir le projet" probably links to the App Store page, but
   `content.ts` holds no store URL, GearTrack is B2B and project details
   must stay on the site. Open, settled by the projects spec.

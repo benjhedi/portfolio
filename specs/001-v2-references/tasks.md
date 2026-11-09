@@ -16,7 +16,7 @@ session because only it can read the artifact.
   the two mockup videos - agent: main session
 - [ ] T02 hero source clip, renamed, content unchanged - files:
   `docs/v2/source/hero-source-2026-11-07.mp4` - check: sha256
-  213146af...e4b9, listed by `git lfs ls-files` - agent: main session
+  213146af...e2b9, listed by `git lfs ls-files` - agent: main session
 - [ ] T03 handoff README: source URL, version, sums block, serve command
   - files: `docs/v2/README.md` - check: `shasum -a 256 -c` on the block
   from `docs/v2/`, grep URL and version - agent: main session

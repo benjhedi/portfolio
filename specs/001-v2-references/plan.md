@@ -26,8 +26,9 @@ Architecture
 - Units this change needs per the architecture rule: none; documents only
   | covered by the rule: yes, the rule governs `src/`, untouched
 - Modules touched: `docs/v2/` (new), `AGENTS.md`, `CLAUDE.md`,
-  `product/mission.md`, `product/roadmap.md`, `product/tech-stack.md` |
-  boundary crossed: none
+  `product/mission.md`, `product/roadmap.md`, `product/tech-stack.md`;
+  `specs/001-v2-references/verification.md` (qa) and `spec.md` status
+  (after review) | boundary crossed: none
 
 Verification
 - AC-1: from `docs/v2/`, `shasum -a 256 -c` on the sums block of the
@@ -42,11 +43,12 @@ Verification
   session notes folder first; 12 English dated entries.
 - AC-5: `diff` original vs copy: exactly the title, its count and the name
   rule; `grep -c Benjahouach` is 0; original sha256 equal before and after.
-- AC-6: sha256 of the clip equals 213146af...e4b9; it sits under
+- AC-6: sha256 of the clip equals 213146af...e2b9; it sits under
   `docs/v2/source/`, not under `docs/v2/mockup/`.
-- AC-7: `git lfs ls-files` lists exactly the three videos; the
-  `lfs-pointers` job is green on the PR; a fresh clone with LFS gets the
-  clip with its sha256.
+- AC-7: `git lfs ls-files` lists exactly the three videos (local); then,
+  after Hedi's go for the push and the PR, the `lfs-pointers` job is green
+  and a fresh clone with LFS gets the clip with its sha256. qa runs T07 in
+  these two steps.
 - AC-8: grep `AGENTS.md`, `CLAUDE.md`, `product/` for `docs/v2/`; the
   artifact id stays only as the source cited; roadmap line still `[ ]`.
 - AC-9: `npm ci`, `npm test`, `npm run build`; `find dist` holds nothing
@@ -91,8 +93,8 @@ None. No personal data beyond the mail and LinkedIn URL already in
 - Push: `core.hooksPath` points to the main checkout's `.githooks/`, now
   on `dev` f1861e3 with the LFS pre-push (checked 2026-11-09). Recheck
   before pushing, or the videos reach GitHub as pointers without objects.
-- This worktree has no `node_modules`: `npm ci` needs the `read:packages`
-  token in `~/.npmrc` for AC-9.
+- This worktree's `node_modules` predates Vitest (no `vitest` binary):
+  `npm ci` first, with the `read:packages` token in `~/.npmrc`, for AC-9.
 
 ## Research notes
 

@@ -34,7 +34,7 @@ per mockup section, light and dark, with a per-screen README.
 - AC-5 THE SEO copy SHALL say "Hedi Jahouach" in title, count and name
   rule, match the original elsewhere, the original's hash unchanged.
 - AC-6 THE hero source clip SHALL be byte-identical to Hedi's file (sha256
-  213146af...e4b9, audio kept), stored apart from the mockup files.
+  213146af...e2b9, audio kept), stored apart from the mockup files.
 - AC-7 THE reference videos SHALL go through Git LFS as set up by the Git
   LFS toolchain spec, which lands on `dev` first.
 - AC-8 `AGENTS.md`, `CLAUDE.md` and `product/` SHALL point to the in-repo

@@ -14,7 +14,7 @@ worktrees.
 - [x] T02 pre-push calls git lfs pre-push after the branch check, warns
   without git-lfs - files: `.githooks/pre-push` - check: `sh -n`, then the
   three AC-3 scenarios in a scratch clone with a `file://` remote - agent: setup-agent
-- [ ] T03 CI job lfs-pointers - files: `.github/workflows/ci.yml` - check:
+- [x] T03 CI job lfs-pointers - files: `.github/workflows/ci.yml` - check:
   YAML parses, the job's command run as is in a scratch repo (AC-7 rows)
   - agent: setup-agent
 - [ ] T04 ADR 004 - files: `docs/adr/004-git-lfs-reference-media.md` - check:

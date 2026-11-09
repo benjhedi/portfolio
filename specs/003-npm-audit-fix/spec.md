@@ -1,6 +1,6 @@
 # Spec 003 - npm audit fix
 
-Branch: `chore-npm-audit-fix` | Status: clarified (2026-11-09)
+Branch: `chore-npm-audit-fix` | Status: planned (clarified 2026-11-09)
 Roadmap line: Phase 0, "npm audit is clean on the dev toolchain and the
 local install matches CI" (Hedi, 2026-11-09).
 

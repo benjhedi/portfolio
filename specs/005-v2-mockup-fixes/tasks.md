@@ -31,7 +31,7 @@ have no commit. No `[P]`: each task needs the previous one.
   grep -n 1794063463-7380` outside `specs/001-*` returns only intended
   history lines; the new version found in the four files - agent:
   design-agent
-- [ ] T05 verify - all AC checks below green, `npm ci` first - files:
+- [x] T05 verify - all AC checks below green, `npm ci` first - files:
   `specs/005-v2-mockup-fixes/verification.md` - agent: qa
 - [ ] T06 review - diff against dev, gates reread; once APPROVED the main
   session sets `spec.md` status to done - agent: review-agent

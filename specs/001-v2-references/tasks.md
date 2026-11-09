@@ -20,7 +20,7 @@ session because only it can read the artifact.
 - [x] T03 handoff README: source URL, version, sums block, serve command
   - files: `docs/v2/README.md` - check: `shasum -a 256 -c` on the block
   from `docs/v2/`, grep URL and version - agent: main session
-- [ ] T04 decision log, French verbatim then 12 English dated entries -
+- [x] T04 decision log, French verbatim then 12 English dated entries -
   files: `docs/v2/decision-log.md` - check: French block diffed against
   the copy saved first to the session notes folder; entry count - agent:
   main session

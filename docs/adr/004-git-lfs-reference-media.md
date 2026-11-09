@@ -50,8 +50,11 @@ Easier:
 - reference videos can be re-exported without growing every clone
 
 Harder:
-- a fresh clone needs `git lfs install --skip-repo` once, or new videos
+- each machine needs `git lfs install --skip-repo` once, or new videos
   go up as plain blobs and the PR fails in CI
+- a pointer committed with git-lfs, then pushed from a shell or GUI whose
+  PATH lacks git-lfs, reaches GitHub without its object: the hook only
+  warns and the CI guard passes, so clones get a dangling pointer
 - `.githooks/pre-push` differs from the wara-kit copy: a kit hook update
   would drop the LFS upload
 - if the runner fetches LFS objects anyway, CI spends bandwidth quota

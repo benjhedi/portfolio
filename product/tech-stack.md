@@ -26,7 +26,7 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 - Vite 6.4.2 with `@vitejs/plugin-react` 4.7.0 and `@cloudflare/vite-plugin` 1.39.1; `npm run build` = `tsc -b && vite build`; Wrangler 4.96.0 for `preview` and `deploy` (`package.json`).
 - Hooks: `.githooks/`, `core.hooksPath` set since 475661d; CI `ci.yml`, `conventions.yml`, `release.yml`; no ESLint or Prettier config (inventory section 8).
 - Vitest 4.1.12, pinned, node environment, no DOM library, `*.test.ts` next to the unit; `npm test` runs in CI before the build (ADR 001).
-- git-lfs for the reference videos under `docs/` only, not pinned (a machine tool, like git); objects upload through `.githooks/pre-push`, and the `lfs-pointers` CI job fails a PR that adds a tracked video as a plain blob (ADR 004).
+- git-lfs (https://git-lfs.com) for the reference videos under `docs/` only, not pinned (a machine tool, like git), tested with 3.8.1; objects upload through `.githooks/pre-push`, and the `lfs-pointers` CI job fails a PR that adds a tracked video as a plain blob (ADR 004).
 
 ## Dependencies (each one justified and confined)
 

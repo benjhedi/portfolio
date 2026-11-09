@@ -9,10 +9,10 @@ sequential is cheaper than worktrees.
 
 ## Tasks
 
-- [ ] T00 Node 22 on the machine, outside the repo: `brew install fnm`,
+- [x] T00 Node 22 on the machine, outside the repo: `brew install fnm`,
   `fnm install`, `fnm use` - files: none, no commit - check: `node -v`
   v22.23.x, `npm -v` 10.9.x - agent: Hedi, or the main session on his go
-- [ ] T01 lockfile refreshed by `npm audit fix` on Node 22, no `--force`
+- [x] T01 lockfile refreshed by `npm audit fix` on Node 22, no `--force`
   - files: `package-lock.json` - check: `npm -v` 10.9.x, `npm audit` 0
   vulnerabilities, `git diff dev -- package.json` empty - agent: setup-agent
 - [ ] T02 toolchain versions and the accepted miniflare beta - files:

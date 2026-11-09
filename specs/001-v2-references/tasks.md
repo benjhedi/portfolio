@@ -10,7 +10,7 @@ session because only it can read the artifact.
 
 ## Tasks
 
-- [ ] T01 mockup files at their published paths, version 1794063463-7380
+- [x] T01 mockup files at their published paths, version 1794063463-7380
   checked on each read - files: `docs/v2/mockup/**` (16 files) - check:
   each sha256 equals the one the read reported; `git lfs ls-files` lists
   the two mockup videos - agent: main session

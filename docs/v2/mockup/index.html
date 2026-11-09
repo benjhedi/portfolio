@@ -1,0 +1,761 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hedi Jahouach, portfolio v2</title>
+<meta name="description" content="Maquette de refonte du portfolio de Hedi Jahouach, consultant iOS senior. Charte du site actuel, structure inspiree de Grilled Pixels, hero inspire de Vinesh Gayadin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;480;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* ------------------------------------------------------------------
+   Tokens locaux : tout passe par --ws-*. Les rares valeurs ajoutees ici
+   sont des compositions (tailles fluides, durees) derivees des tokens.
+   ------------------------------------------------------------------ */
+:root{
+  --font-mono:"JetBrains Mono", var(--ws-font-mono);
+  --gutter:clamp(var(--ws-space-20), 4vw, var(--ws-space-64));
+  --size-giant:clamp(44px, 8.4vw, 124px);
+  --size-statement:clamp(34px, 6.2vw, 88px);
+  --size-marquee:clamp(96px, 18vw, 260px);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --bottom-bar:56px;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ws-color-bg-page);
+  color:var(--ws-color-text);
+  font-family:var(--ws-font-sans);
+  font-size:var(--ws-size-body);
+  line-height:var(--ws-lh-body);
+  font-weight:var(--ws-w-regular);
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:var(--bottom-bar);
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+h1,h2,h3,p{margin:0}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:none;box-shadow:0 0 0 2px var(--ws-color-focus-ring);border-radius:var(--ws-r-standard)}
+::selection{background:var(--ws-color-accent-soft)}
+
+/* Typo utilitaire */
+.mono{font-family:var(--font-mono);font-size:var(--ws-size-micro);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.muted{color:var(--ws-color-text-muted)}
+.body{color:var(--ws-color-text-body)}
+.accent{color:var(--ws-color-accent)}
+
+/* Wrapper */
+.wrap{padding-inline:var(--gutter)}
+section{position:relative}
+
+/* ------------------------------------------------------------------
+   Preloader "0%" (clin d'oeil Grilled Pixels, 900 ms, respecte reduced motion)
+   ------------------------------------------------------------------ */
+.loader{position:fixed;inset:0;z-index:100;background:var(--ws-color-bg-page);display:grid;place-items:center;transition:opacity var(--ws-motion-slow) var(--ease-out),visibility 0s linear var(--ws-motion-slow)}
+.loader.done{opacity:0;visibility:hidden}
+.loader .n{font-family:var(--font-mono);font-size:var(--ws-size-small);letter-spacing:.1em;color:var(--ws-color-text-muted)}
+
+/* ------------------------------------------------------------------
+   Nav : fine, fixe, logo a gauche, liens mono, contact a droite
+   ------------------------------------------------------------------ */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:var(--ws-space-24);height:64px;padding-inline:var(--gutter);transition:transform var(--ws-motion-slow) var(--ease-out),background var(--ws-motion-slow)}
+.nav.scrolled{background:color-mix(in srgb, var(--ws-color-bg-page) 82%, transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--ws-color-border)}
+.nav.hide{transform:translateY(-100%)}
+.nav .brand{display:flex;align-items:center;gap:var(--ws-space-12)}
+.mark{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:var(--ws-r-comfy);background:var(--ws-color-solid);color:var(--ws-color-on-solid);box-shadow:var(--ws-shadow-inset);font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.04em}
+.mark--lg{width:44px;height:44px;font-size:14px;margin:0 auto var(--ws-space-16)}
+.nav .brand span{font-size:var(--ws-size-small);font-weight:var(--ws-w-semi);letter-spacing:-.01em}
+.nav .links{display:flex;justify-content:center;gap:var(--ws-space-28)}
+.nav .links a{font-family:var(--font-mono);font-size:var(--ws-size-micro);letter-spacing:.08em;text-transform:uppercase;color:var(--ws-color-text-muted);padding:var(--ws-space-8) 0;position:relative;transition:color var(--ws-motion-fast)}
+.nav .links a:hover,.nav .links a.active{color:var(--ws-color-text)}
+.nav .links a.active::before{content:"";position:absolute;left:-12px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--ws-color-accent);transform:translateY(-50%)}
+.nav .right{display:flex;align-items:center;gap:var(--ws-space-12)}
+.toggle{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--ws-color-border);border-radius:var(--ws-r-pill);padding:2px}
+.toggle button{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;padding:4px 9px;border-radius:var(--ws-r-pill);color:var(--ws-color-text-muted);transition:background var(--ws-motion-fast),color var(--ws-motion-fast)}
+.toggle button[aria-pressed="true"]{background:var(--ws-color-solid);color:var(--ws-color-on-solid);box-shadow:var(--ws-shadow-inset)}
+.iconbtn{width:34px;height:34px;display:inline-grid;place-items:center;border:1px solid var(--ws-color-border);border-radius:var(--ws-r-pill);color:var(--ws-color-text-muted);transition:color var(--ws-motion-fast),background var(--ws-motion-fast)}
+.iconbtn:hover{color:var(--ws-color-text);background:var(--ws-color-overlay-hover)}
+.iconbtn svg{width:16px;height:16px}
+.burger{display:none}
+/* Logo sur fond sombre : le R et la fin du trait partage passent en clair (artwork, valeurs charte) */
+
+/* Boutons (charte : sombre + ombre interne = signature) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--ws-space-8);font-size:var(--ws-size-small);font-weight:var(--ws-w-semi);line-height:1;padding:12px 18px;border-radius:var(--ws-r-pill);white-space:nowrap;transition:transform var(--ws-motion-base) var(--ease-out),background var(--ws-motion-fast),color var(--ws-motion-fast),border-color var(--ws-motion-fast)}
+.btn svg{width:16px;height:16px}
+.btn--dark{background:var(--ws-color-solid);color:var(--ws-color-on-solid);box-shadow:var(--ws-shadow-inset)}
+.btn--dark:hover{transform:translateY(-1px)}
+.btn--ghost{border:1px solid var(--ws-color-border-strong);color:var(--ws-color-text)}
+.btn--ghost:hover{background:var(--ws-color-overlay-hover)}
+.btn--sm{padding:9px 14px;font-size:var(--ws-size-micro)}
+
+/* ------------------------------------------------------------------
+   Hero (Vinesh) : ovale centre, media dedans, nom + role dessous
+   ------------------------------------------------------------------ */
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(64px + var(--ws-space-32)) var(--gutter) var(--ws-space-48);text-align:center}
+.oval{
+  --w:min(78vw, 860px);
+  width:var(--w);aspect-ratio:1.62/1;
+  border-radius:50%;overflow:hidden;position:relative;
+  background:var(--ws-color-solid);
+  box-shadow:0 0 0 1px var(--ws-color-border);
+  isolation:isolate;
+}
+/* Ovale : la video porte son propre fond (contre-jour bleu gris). */
+.oval{background:var(--ws-ref-ink);aspect-ratio:1.5/1}
+.oval .media{position:absolute;inset:0}
+.oval .head{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%;display:block}
+.oval .halo{position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 50%, transparent 55%, color-mix(in srgb, var(--ws-ref-ink) 35%, transparent) 100%);pointer-events:none}
+/* Point d'emission : la bouche quand la tete est de profil droit */
+/* Bouche au moment du souffle (profil droit) : x 67 %, y 51 % de l'ovale. La sortie suit le panache : vers la droite, legerement vers le haut. */
+.vapor{position:absolute;left:67%;top:51%;width:0;height:0}
+.vapor .out{position:absolute;left:0;top:0;opacity:0;transform-origin:0 50%;background:var(--ws-ref-ink);box-shadow:0 18px 40px color-mix(in srgb, var(--ws-ref-ink) 45%, transparent);will-change:transform,opacity}
+.vapor .out.go{animation:emerge 2.1s cubic-bezier(.2,.7,.2,1) forwards}
+.vapor .phone{width:92px;aspect-ratio:9/19.5;border-radius:14px;padding:3px}
+.vapor .phone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:11px;display:block}
+.vapor .site,.vapor .product{width:200px;border-radius:8px;padding:0;overflow:hidden;background:var(--ws-color-surface);border:1px solid var(--ws-color-border)}
+.vapor .bar{display:flex;gap:4px;padding:6px 8px;background:var(--ws-ref-porcelain);border-bottom:1px solid var(--ws-color-border)}
+.vapor .bar b{width:7px;height:7px;border-radius:50%;background:var(--ws-ref-blue-grey-200)}
+.vapor .site img{width:100%;display:block}
+.vapor .product .ui{display:grid;grid-template-columns:48px 1fr;height:132px;background:var(--ws-ref-surface)}
+.vapor .product .side{background:var(--ws-ref-porcelain);padding:8px 6px;display:grid;gap:6px;align-content:start}
+.vapor .product .side u{display:block;height:10px;border-radius:3px;background:var(--ws-ref-blue-grey-200)}
+.vapor .product .main{padding:10px 12px;display:grid;gap:6px;align-content:start}
+.vapor .product .main em{display:block;height:8px;border-radius:3px;background:var(--ws-ref-blue-grey-200)}
+.vapor .product .main strong{margin-top:6px;font-size:11px;font-weight:var(--ws-w-semi);color:var(--ws-ref-charcoal)}
+@keyframes emerge{0%{opacity:0;transform:translate(0,-50%) scale(.04);filter:blur(10px)}10%{opacity:.9;filter:blur(4px)}35%{filter:blur(0)}72%{opacity:1;transform:translate(96px,calc(-50% - 34px)) scale(1)}100%{opacity:0;transform:translate(130px,calc(-50% - 64px)) scale(1.03)}}
+
+.hero .name{margin-top:var(--ws-space-40);font-size:clamp(22px, 2.4vw, 30px);font-weight:var(--ws-w-regular);letter-spacing:-.01em;line-height:1.2}
+.hero .name strong{font-weight:var(--ws-w-semi)}
+.hero .role{color:var(--ws-color-text-muted);font-size:clamp(16px, 1.6vw, 20px);margin-top:var(--ws-space-4)}
+.hero .scroll{margin-top:var(--ws-space-48);font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ws-color-text-muted);display:inline-flex;flex-direction:column;align-items:center;gap:var(--ws-space-8)}
+.hero .scroll i{display:block;width:1px;height:36px;background:var(--ws-color-border-strong);animation:line 2.2s var(--ease-out) infinite;transform-origin:top}
+@keyframes line{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ------------------------------------------------------------------
+   Statement (Grilled Pixels) : nom/role en 2 colonnes, note mono,
+   puis la grande accroche sur 4 lignes alternant sans et mono
+   ------------------------------------------------------------------ */
+.statement{padding:var(--ws-space-96) var(--gutter) var(--ws-space-80);border-top:1px solid var(--ws-color-border)}
+.statement .head{display:grid;grid-template-columns:1fr 1fr;gap:var(--ws-space-32);align-items:start}
+.statement .head h2{font-size:var(--ws-size-body-lg);font-weight:var(--ws-w-semi);text-transform:uppercase;letter-spacing:.02em;line-height:1.15}
+.statement .head h2 .m{display:block;font-family:var(--font-mono);font-weight:500;color:var(--ws-color-text-muted)}
+.statement .note{grid-column:1;display:flex;gap:var(--ws-space-8);max-width:34ch;font-family:var(--font-mono);font-size:var(--ws-size-micro);line-height:1.5;color:var(--ws-color-text-muted);margin-top:var(--ws-space-4)}
+.statement .note svg{flex:none;width:14px;height:14px;margin-top:2px}
+.statement .what{grid-column:2}
+.statement .what .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ws-color-text-muted);margin-bottom:var(--ws-space-8)}
+.statement .what p{max-width:40ch;color:var(--ws-color-text-body);font-size:var(--ws-size-small)}
+.big{margin-top:clamp(var(--ws-space-96), 18vh, 220px);font-size:var(--size-statement);line-height:1.02;letter-spacing:-.025em;font-weight:var(--ws-w-semi);text-transform:uppercase;max-width:14ch}
+.big .m{font-family:var(--font-mono);font-weight:500;letter-spacing:-.01em;font-size:.86em;display:block;color:var(--ws-color-accent)}
+.big .line{display:block;overflow:hidden}
+.big .line > span{display:block;transform:translateY(110%);transition:transform .9s var(--ease-out)}
+.big.in .line > span{transform:none}
+.big .line:nth-child(2)>span{transition-delay:.08s}.big .line:nth-child(3)>span{transition-delay:.16s}.big .line:nth-child(4)>span{transition-delay:.24s}
+.proof{display:flex;flex-wrap:wrap;gap:var(--ws-space-8);margin-top:var(--ws-space-48)}
+.proof span{display:inline-flex;align-items:center;gap:var(--ws-space-8);border:1px solid var(--ws-color-border);background:var(--ws-color-surface);border-radius:var(--ws-r-standard);padding:8px 12px;font-family:var(--font-mono);font-size:var(--ws-size-micro)}
+.proof span b{font-weight:500;color:var(--ws-color-accent)}
+
+/* Clients */
+.clients{padding:var(--ws-space-40) 0;border-top:1px solid var(--ws-color-border);border-bottom:1px solid var(--ws-color-border);overflow:hidden}
+.clients .k{padding-inline:var(--gutter);margin-bottom:var(--ws-space-20)}
+.marquee{display:flex;overflow:hidden;gap:var(--ws-space-64);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee > div{display:flex;gap:var(--ws-space-64);flex:none;animation:mq 38s linear infinite;align-items:center}
+.marquee:hover > div{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(calc(-100% - var(--ws-space-64)))}}
+.clients .marquee span{font-size:var(--ws-size-h3);font-weight:var(--ws-w-semi);letter-spacing:-.02em;white-space:nowrap;color:var(--ws-color-text-strong)}
+.clients .marquee img{height:22px;width:auto;filter:brightness(0);opacity:.85}
+:root[data-theme="dark"] .clients .marquee img{filter:brightness(0) invert(1)}
+
+/* ------------------------------------------------------------------
+   Projets (Grilled Pixels) : blocs plein ecran empiles, titre marquee geant,
+   description, tags mono, bouton, capture dans un telephone
+   ------------------------------------------------------------------ */
+.work{padding-top:var(--ws-space-96)}
+.work .intro{padding-inline:var(--gutter);display:grid;grid-template-columns:auto 1fr;gap:var(--ws-space-24);align-items:end;margin-bottom:var(--ws-space-40)}
+.sec-k{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ws-color-text-muted);display:flex;gap:var(--ws-space-12);align-items:center}
+.sec-k b{font-weight:500;color:var(--ws-color-accent)}
+.sec-t{font-size:clamp(28px,3.4vw,var(--ws-size-h1));font-weight:var(--ws-w-semi);letter-spacing:var(--ws-track-h1);line-height:1.08;max-width:18ch;margin-top:var(--ws-space-8)}
+.sec-lead{max-width:48ch;color:var(--ws-color-text-body);font-size:var(--ws-size-body-lg);line-height:var(--ws-lh-body-lg)}
+
+.project{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;gap:var(--ws-space-48);padding:var(--ws-space-96) var(--gutter);border-top:1px solid var(--ws-color-border);overflow:hidden;background:var(--bg,var(--ws-color-bg-page))}
+.project:nth-child(even){background:var(--ws-color-surface)}
+.project .title-mq{position:absolute;left:0;right:0;top:var(--ws-space-56);overflow:hidden;pointer-events:none;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.project .title-mq > div{display:flex;gap:.35em;white-space:nowrap;font-family:var(--font-mono);font-weight:500;font-size:var(--size-marquee);line-height:1;letter-spacing:-.04em;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px var(--ws-color-border-strong);animation:mq 40s linear infinite}
+.project .title-mq > div span::after{content:"";display:inline-block;width:.14em;height:.14em;border-radius:50%;background:var(--ws-color-accent);margin:0 .22em;vertical-align:middle}
+.project .copy{position:relative;z-index:1;padding-top:calc(var(--size-marquee) * .55)}
+.project .idx{font-family:var(--font-mono);font-size:var(--ws-size-micro);letter-spacing:.1em;color:var(--ws-color-text-muted);display:flex;gap:var(--ws-space-16);margin-bottom:var(--ws-space-24)}
+.project .idx b{font-weight:500;color:var(--ws-color-accent)}
+.project h3{font-size:clamp(32px,4.6vw,64px);font-weight:var(--ws-w-semi);letter-spacing:-.03em;line-height:1}
+.project h3 small{display:block;font-size:.42em;font-weight:var(--ws-w-regular);letter-spacing:-.01em;color:var(--ws-color-text-muted);margin-top:var(--ws-space-8)}
+.project .desc{margin-top:var(--ws-space-28);max-width:46ch;font-size:var(--ws-size-body-lg);line-height:var(--ws-lh-body-lg);color:var(--ws-color-text-body)}
+.project .desc + .desc{margin-top:var(--ws-space-16);font-size:var(--ws-size-body);color:var(--ws-color-text-muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:var(--ws-space-28)}
+.tags span{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;padding:5px 9px;border:1px solid var(--ws-color-border-strong);border-radius:var(--ws-r-micro);color:var(--ws-color-text-strong);background:color-mix(in srgb, var(--ws-color-surface) 60%, transparent)}
+.project .actions{display:flex;gap:var(--ws-space-12);margin-top:var(--ws-space-32);flex-wrap:wrap}
+.project .visual{position:relative;z-index:1;display:grid;place-items:center}
+.phone{width:min(300px,70vw);aspect-ratio:9/19.5;border-radius:44px;background:var(--ws-ref-ink);padding:10px;box-shadow:0 30px 80px color-mix(in srgb, var(--ws-ref-ink) 28%, transparent), inset 0 0 0 1px rgba(255,255,255,.12);transform:rotate(var(--rot,0deg)) translateY(var(--ty,0));transition:transform 1.2s var(--ease-out)}
+.phone img{width:100%;height:100%;object-fit:cover;border-radius:36px;background:var(--ws-color-surface)}
+.phone::after{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:32%;height:22px;border-radius:14px;background:var(--ws-ref-ink)}
+.project .visual .ghost{position:absolute;inset:auto;width:min(300px,70vw);aspect-ratio:9/19.5;border-radius:44px;border:1px solid var(--ws-color-border-strong);opacity:.45;transform:rotate(-8deg) translate(-56px,24px);z-index:-1}
+.more{padding:var(--ws-space-80) var(--gutter);border-top:1px solid var(--ws-color-border)}
+.more .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ws-color-border);border:1px solid var(--ws-color-border);margin-top:var(--ws-space-32)}
+.more .grid article{background:var(--ws-color-bg-page);padding:var(--ws-space-24)}
+.more .grid article:hover{background:var(--ws-color-surface)}
+.more .grid .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ws-color-accent)}
+.more .grid h4{margin:var(--ws-space-8) 0 var(--ws-space-8);font-size:var(--ws-size-card);font-weight:var(--ws-w-semi);letter-spacing:-.01em}
+.more .grid p{font-size:var(--ws-size-small);color:var(--ws-color-text-body)}
+
+/* ------------------------------------------------------------------
+   Sections numerotees (page About de Grilled Pixels : 001 / 002 ...)
+   ------------------------------------------------------------------ */
+.num{padding:var(--ws-space-96) var(--gutter);border-top:1px solid var(--ws-color-border);display:grid;grid-template-columns:200px 1fr;gap:var(--ws-space-48)}
+.num .side{position:sticky;top:96px;align-self:start}
+.num .side .n{font-family:var(--font-mono);font-size:var(--ws-size-micro);letter-spacing:.14em;color:var(--ws-color-accent)}
+.num .side .l{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ws-color-text-muted);margin-top:var(--ws-space-4)}
+
+/* A propos */
+.about .lead{font-size:clamp(24px,2.8vw,40px);font-weight:var(--ws-w-display);letter-spacing:-.02em;line-height:1.15;max-width:24ch}
+.about .lead em{font-style:normal;color:var(--ws-color-accent)}
+.about .row{display:grid;grid-template-columns:112px 1fr;gap:var(--ws-space-32);margin-top:var(--ws-space-48);align-items:start}
+.about .row img{width:112px;height:112px;border-radius:50%;object-fit:cover;border:1px solid var(--ws-color-border)}
+.about .row p{color:var(--ws-color-text-body);max-width:62ch}
+.about .row p + p{margin-top:var(--ws-space-16)}
+.traits{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--ws-color-border);border:1px solid var(--ws-color-border);margin-top:var(--ws-space-48)}
+.traits article{background:var(--ws-color-surface);padding:var(--ws-space-24)}
+.traits .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;color:var(--ws-color-text-muted)}
+.traits h4{margin:var(--ws-space-12) 0 var(--ws-space-8);font-size:var(--ws-size-card);font-weight:var(--ws-w-semi);letter-spacing:-.01em}
+.traits p{font-size:var(--ws-size-small);color:var(--ws-color-text-body)}
+
+/* Offres */
+.offers .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--ws-space-16);margin-top:var(--ws-space-40)}
+.offers .card{border:1px solid var(--ws-color-border);background:var(--ws-color-surface);border-radius:var(--ws-r-container);padding:var(--ws-space-32);display:flex;flex-direction:column;gap:var(--ws-space-16);min-height:280px}
+.offers .card .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ws-color-accent)}
+.offers .card h4{font-size:var(--ws-size-h3);font-weight:var(--ws-w-semi);letter-spacing:var(--ws-track-h3);line-height:1.15}
+.offers .card p{color:var(--ws-color-text-body);flex:1}
+.offers .card .m{font-family:var(--font-mono);font-size:var(--ws-size-micro);color:var(--ws-color-text-muted);border-top:1px solid var(--ws-color-border);padding-top:var(--ws-space-16)}
+
+/* Processus : liste serree, type table */
+.steps{margin-top:var(--ws-space-40);border-top:1px solid var(--ws-color-border)}
+.steps li{list-style:none;display:grid;grid-template-columns:72px 220px 1fr;gap:var(--ws-space-24);padding:var(--ws-space-20) 0;border-bottom:1px solid var(--ws-color-border);align-items:baseline}
+.steps ul{padding:0;margin:0}
+.steps .n{font-family:var(--font-mono);font-size:var(--ws-size-micro);letter-spacing:.1em;color:var(--ws-color-accent)}
+.steps h4{font-size:var(--ws-size-card);font-weight:var(--ws-w-semi);letter-spacing:-.01em}
+.steps p{font-size:var(--ws-size-small);color:var(--ws-color-text-body);max-width:56ch}
+
+/* Parcours */
+.career ul{padding:0;margin:var(--ws-space-40) 0 0;border-top:1px solid var(--ws-color-border)}
+.career li{list-style:none;display:grid;grid-template-columns:140px 1fr 1fr;gap:var(--ws-space-24);padding:var(--ws-space-24) 0;border-bottom:1px solid var(--ws-color-border)}
+.career .y{font-family:var(--font-mono);font-size:var(--ws-size-micro);letter-spacing:.08em;color:var(--ws-color-text-muted)}
+.career h4{font-size:var(--ws-size-body-lg);font-weight:var(--ws-w-semi);letter-spacing:-.01em}
+.career h4 small{display:block;font-weight:var(--ws-w-regular);color:var(--ws-color-text-muted);font-size:var(--ws-size-small);margin-top:2px}
+.career p{font-size:var(--ws-size-small);color:var(--ws-color-text-body)}
+
+/* Competences : marquee mono + groupes */
+.skills .groups{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--ws-space-32);margin-top:var(--ws-space-40)}
+.skills .groups .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ws-color-text-muted);margin-bottom:var(--ws-space-12)}
+.skills .groups .tags{margin-top:0}
+.skills .mq{margin-top:var(--ws-space-48);border-block:1px solid var(--ws-color-border);padding:var(--ws-space-16) 0}
+.skills .mq span{font-family:var(--font-mono);font-size:var(--ws-size-small);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:var(--ws-color-text-strong)}
+.skills .mq span::after{content:"\2022";margin-left:var(--ws-space-64);color:var(--ws-color-accent)}
+
+/* Contact + footer */
+.contact{padding:var(--ws-space-96) var(--gutter);border-top:1px solid var(--ws-color-border);display:grid;grid-template-columns:1fr 1fr;gap:var(--ws-space-64)}
+.contact h2{font-size:clamp(36px,5vw,72px);font-weight:var(--ws-w-semi);letter-spacing:-.03em;line-height:1;text-transform:uppercase}
+.contact h2 .m{display:block;font-family:var(--font-mono);font-weight:500;font-size:.82em;color:var(--ws-color-accent)}
+.contact .lead{margin-top:var(--ws-space-24);max-width:40ch;color:var(--ws-color-text-body);font-size:var(--ws-size-body-lg)}
+.contact .alt{margin-top:var(--ws-space-32);display:flex;flex-direction:column;gap:var(--ws-space-8);font-family:var(--font-mono);font-size:var(--ws-size-small)}
+.contact .alt a{color:var(--ws-color-accent)}
+form{display:grid;gap:var(--ws-space-12)}
+.field{display:grid;gap:6px}
+.field label{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ws-color-text-muted)}
+.field input,.field textarea{font:inherit;color:var(--ws-color-text);background:var(--ws-color-surface);border:1px solid var(--ws-color-border);border-radius:var(--ws-r-comfy);padding:12px 14px;width:100%}
+.field textarea{min-height:140px;resize:vertical}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--ws-color-accent);box-shadow:0 0 0 2px var(--ws-color-focus-ring)}
+.choices{display:flex;flex-wrap:wrap;gap:6px}
+.choices label{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;padding:7px 11px;border:1px solid var(--ws-color-border-strong);border-radius:var(--ws-r-micro);cursor:pointer;user-select:none}
+.choices input{position:absolute;opacity:0;pointer-events:none}
+.choices input:checked + label{background:var(--ws-color-solid);color:var(--ws-color-on-solid);border-color:transparent;box-shadow:var(--ws-shadow-inset)}
+.choices > span{position:relative;display:inline-flex}
+.sent{display:none;font-family:var(--font-mono);font-size:var(--ws-size-small);color:var(--ws-color-success-text);background:var(--ws-color-success-bg);padding:12px 14px;border-radius:var(--ws-r-comfy)}
+form.ok .sent{display:block}
+
+.footer{border-top:1px solid var(--ws-color-border);padding:var(--ws-space-32) var(--gutter) var(--ws-space-32)}
+.footer .mq{margin:0 calc(-1 * var(--gutter)) var(--ws-space-32);border-bottom:1px solid var(--ws-color-border);padding-bottom:var(--ws-space-24)}
+.footer .mq span{font-size:clamp(28px,5vw,64px);font-weight:var(--ws-w-semi);letter-spacing:-.03em;text-transform:uppercase;white-space:nowrap;line-height:1}
+.footer .mq span::after{content:"\2022";margin:0 .35em;color:var(--ws-color-accent)}
+.footer .row{display:flex;justify-content:space-between;gap:var(--ws-space-24);flex-wrap:wrap;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ws-color-text-muted)}
+.footer .row a:hover{color:var(--ws-color-text)}
+.footer .row .links{display:flex;gap:var(--ws-space-24)}
+
+/* ------------------------------------------------------------------
+   Barre fixe en bas (Grilled Pixels) : CTA principal + compteur
+   ------------------------------------------------------------------ */
+.bar{position:fixed;left:0;right:0;bottom:0;height:var(--bottom-bar);z-index:49;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-inline:var(--gutter);background:color-mix(in srgb, var(--ws-color-bg-page) 86%, transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--ws-color-border);font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ws-color-text-muted)}
+.bar .mid{display:flex;align-items:center;gap:var(--ws-space-12);justify-self:center}
+.bar .mid a{color:var(--ws-color-accent);font-weight:500;padding:var(--ws-space-8) 0}
+.bar .mid a:hover{color:var(--ws-color-text)}
+.bar .left{display:flex;align-items:center;gap:var(--ws-space-8)}
+.bar .left i{width:7px;height:7px;border-radius:50%;background:var(--ws-color-success);box-shadow:0 0 0 3px var(--ws-color-success-bg)}
+.bar .right{justify-self:end}
+
+/* Reveal au scroll */
+.r{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.in.r,.in .r{opacity:1;transform:none}
+.r.d1{transition-delay:.1s}.r.d2{transition-delay:.2s}.r.d3{transition-delay:.3s}
+
+/* Mobile */
+@media (max-width:900px){
+  .nav{grid-template-columns:auto 1fr auto;height:56px}
+  .nav .links{display:none}
+  .nav .brand span,.nav .right .btn{display:none}
+  .burger{display:inline-grid}
+  .oval{aspect-ratio:1.25/1}
+  .vapor{top:47%}
+  .vapor .phone{width:56px}
+  .vapor .site,.vapor .product{width:120px}
+  .vapor .product .ui{height:88px}
+  @keyframes emerge{0%{opacity:0;transform:translate(0,-50%) scale(.04)}10%{opacity:.9}72%{opacity:1;transform:translate(34px,calc(-50% - 18px)) scale(1)}100%{opacity:0;transform:translate(50px,calc(-50% - 34px)) scale(1.03)}}
+  .hero{padding-top:calc(56px + var(--ws-space-24))}
+  .oval{--w:92vw}
+  .statement .head{grid-template-columns:1fr}
+  .statement .note,.statement .what{grid-column:1}
+  .big{max-width:none}
+  .work .intro{grid-template-columns:1fr}
+  .project{grid-template-columns:1fr;min-height:auto;padding-block:var(--ws-space-80) var(--ws-space-64);gap:var(--ws-space-40)}
+  .project .copy{padding-top:calc(var(--size-marquee) * .5)}
+  .project .visual .ghost{display:none}
+  .more .grid,.traits,.offers .cards,.skills .groups{grid-template-columns:1fr}
+  .num{grid-template-columns:1fr;gap:var(--ws-space-24)}
+  .num .side{position:static;display:flex;gap:var(--ws-space-12);align-items:baseline}
+  .num .side .l{margin:0}
+  .about .row{grid-template-columns:1fr}
+  .steps li{grid-template-columns:56px 1fr}
+  .steps li p{grid-column:2}
+  .career li{grid-template-columns:1fr}
+  .contact{grid-template-columns:1fr;gap:var(--ws-space-40)}
+  .bar{grid-template-columns:1fr;font-size:11px}
+  .bar .right,.bar .left{display:none}
+  .bar .mid{justify-self:center}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+  .r,.big .line > span{opacity:1;transform:none}
+  .loader{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div>
+    <div class="mark mark--lg">HJ</div>
+    <div class="n" id="pct">0%</div>
+  </div>
+</div>
+
+<!-- Nav -->
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Hedi Jahouach, accueil"><span class="mark">HJ</span><span>Hedi Jahouach</span></a>
+  <nav class="links" aria-label="Sections">
+    <a href="#projets" data-s="projets">Projets</a>
+    <a href="#apropos" data-s="apropos">À propos</a>
+    <a href="#offres" data-s="offres">Offres</a>
+    <a href="#processus" data-s="processus">Processus</a>
+    <a href="#parcours" data-s="parcours">Parcours</a>
+  </nav>
+  <div class="right">
+    <div class="toggle" role="group" aria-label="Langue">
+      <button aria-pressed="true">FR</button><button aria-pressed="false">EN</button>
+    </div>
+    <button class="iconbtn" id="theme" aria-label="Basculer le theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+    </button>
+    <a class="btn btn--dark btn--sm" href="#contact">Me contacter</a>
+    <button class="iconbtn burger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO (Vinesh Gayadin) -->
+<section class="hero" aria-label="Introduction">
+  <div class="oval r" id="oval">
+    <div class="media">
+      <!-- Portrait anime (boucle muette, repli poster sous reduced motion). -->
+      <video id="heroVideo" class="head" muted loop playsinline autoplay preload="auto" poster="img/hero-poster.jpg" aria-label="Portrait anime de Hedi Jahouach, silhouette qui tourne et souffle une vapeur">
+        <source src="img/hero.webm" type="video/webm">
+        <source src="img/hero.mp4" type="video/mp4">
+      </video>
+      <!-- Ce qui sort de la vapeur : apps, site, produit. Declenche par le JS a chaque boucle, au moment du souffle. -->
+      <div class="vapor" id="vapor" aria-hidden="true">
+        <span class="out phone"><img src="img/RIDE.webp" alt=""></span>
+        <span class="out site"><i class="bar"><b></b><b></b><b></b></i><img src="img/site.jpg" alt=""></span>
+        <span class="out phone"><img src="img/FranceInfos.webp" alt=""></span>
+        <span class="out product"><i class="bar"><b></b><b></b><b></b></i><div class="ui"><div class="side"><u></u><u></u><u></u><u></u></div><div class="main"><em></em><em style="width:72%"></em><em style="width:84%"></em><em style="width:40%"></em><strong>Compagnon de reunion</strong></div></div></span>
+        <span class="out phone"><img src="img/GearTrack.webp" alt=""></span>
+      </div>
+    </div>
+    <div class="halo"></div>
+  </div>
+  <h1 class="name r d1"><strong>Hedi Jahouach</strong></h1>
+  <p class="role r d2">Conception et développement iOS, de l'idée à la production</p>
+  <a class="scroll r d3" href="#intro"><i></i><span>Défiler</span></a>
+</section>
+
+<!-- STATEMENT (Grilled Pixels) -->
+<section class="statement" id="intro">
+  <div class="head r">
+    <h2>Hedi<br>Jahouach<span class="m">Consultant iOS senior</span></h2>
+    <h2>Design &amp;<br>engineering<span class="m">De l'idée à la production</span></h2>
+    <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>Indépendant depuis 2018, basé à Paris. Un seul interlocuteur senior, du cadrage à l'App Store.</p>
+    <div class="what">
+      <div class="k">Ce que je fais</div>
+      <p>Je conçois et développe des applications iOS à forte exigence pour des grands groupes et des clients directs : streaming vidéo, information en continu, sport connecté, outils métiers.</p>
+    </div>
+  </div>
+  <h2 class="big" aria-label="Je conçois et développe tes applications iOS, de l'idée à la production.">
+    <span class="line"><span>Je conçois et</span></span>
+    <span class="line"><span class="m">développe</span></span>
+    <span class="line"><span>tes apps iOS,</span></span>
+    <span class="line"><span>de l'idée à la <span class="m" style="display:inline">production.</span></span></span>
+  </h2>
+  <div class="proof r">
+    <span><b>14</b> ans d'iOS</span>
+    <span><b>6</b> cas détaillés</span>
+    <span><b>iOS</b> iPadOS, macOS, watchOS</span>
+    <span><b>Dispo</b> mission, forfait, régie</span>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients" aria-label="Ils m'ont fait confiance">
+  <div class="k sec-k"><b>&#8212;</b> Ils m'ont fait confiance</div>
+  <div class="marquee">
+    <div>
+      <span>TF1</span><img src="img/francetv.svg" alt="France Télévisions"><span>Décathlon</span><img src="img/radiofrance.svg" alt="Radio France"><img src="img/sncf.svg" alt="SNCF"><span>franceinfo</span><span>IP-Label</span><span>Webnet</span><span>EAG</span><span>Pic Side</span><span>Secours Populaire</span><span>workoutLife</span>
+    </div>
+    <div aria-hidden="true">
+      <span>TF1</span><img src="img/francetv.svg" alt=""><span>Décathlon</span><img src="img/radiofrance.svg" alt=""><img src="img/sncf.svg" alt=""><span>franceinfo</span><span>IP-Label</span><span>Webnet</span><span>EAG</span><span>Pic Side</span><span>Secours Populaire</span><span>workoutLife</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section class="work" id="projets">
+  <div class="intro r">
+    <div>
+      <div class="sec-k"><b>01</b> Projets sélectionnés</div>
+      <h2 class="sec-t">Quelques applications livrées</h2>
+    </div>
+    <p class="sec-lead">Un aperçu parmi de nombreuses missions. Chaque bloc ouvre le détail du projet.</p>
+  </div>
+
+  <article class="project" id="p-geartrack">
+    <div class="title-mq" aria-hidden="true"><div><span>GearTrack</span><span>GearTrack</span><span>GearTrack</span><span>GearTrack</span></div></div>
+    <div class="copy r">
+      <div class="idx"><b>01</b><span>2024 - 2026</span><span>Décathlon</span></div>
+      <h3>GearTrack<small>Consultant iOS senior, seul développeur iOS</small></h3>
+      <p class="desc">Une plateforme générique de gestion de flotte d'équipements, livrée de zéro et pensée pour être réutilisée sur d'autres métiers. Premier déploiement sur le matériel de plongée.</p>
+      <p class="desc">Architecture modulaire SPM et MVVM, communication Bluetooth avec le matériel connecté, synchronisation hors ligne, intégration continue complète sur Bitrise.</p>
+      <div class="tags"><span>App B2B</span><span>De zéro</span><span>SwiftUI</span><span>Combine</span><span>async/await</span><span>BLE</span><span>SPM</span><span>Bitrise</span></div>
+      <div class="actions"><a class="btn btn--dark" href="#p-geartrack">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+    </div>
+    <div class="visual r d1"><div class="phone" style="--rot:-4deg"><img src="img/GearTrack.webp" alt="Capture de GearTrack"></div><div class="ghost"></div></div>
+  </article>
+
+  <article class="project" id="p-ride">
+    <div class="title-mq" aria-hidden="true"><div><span>RIDE</span><span>RIDE</span><span>RIDE</span><span>RIDE</span><span>RIDE</span><span>RIDE</span></div></div>
+    <div class="copy r">
+      <div class="idx"><b>02</b><span>2023 - 2024</span><span>Décathlon</span></div>
+      <h3>RIDE<small>Consultant iOS senior</small></h3>
+      <p class="desc">Navigation temps réel et suivi d'activité dans une app de cyclisme grand public exigeante, avec de fortes contraintes de performance et d'autonomie sur le terrain.</p>
+      <p class="desc">Itinéraire tourne-à-tourne d'un point A à un point B, intégration de l'algorithme de notation, cartographie et optimisation des performances via Mapbox.</p>
+      <div class="tags"><span>Grand public</span><span>Navigation</span><span>Swift</span><span>UIKit</span><span>RxSwift</span><span>MVVM-C</span><span>Mapbox</span></div>
+      <div class="actions"><a class="btn btn--dark" href="#p-ride">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+    </div>
+    <div class="visual r d1"><div class="phone" style="--rot:3deg"><img src="img/RIDE.webp" alt="Capture de RIDE"></div><div class="ghost"></div></div>
+  </article>
+
+  <article class="project" id="p-mytf1">
+    <div class="title-mq" aria-hidden="true"><div><span>MYTF1</span><span>MYTF1</span><span>MYTF1</span><span>MYTF1</span><span>MYTF1</span></div></div>
+    <div class="copy r">
+      <div class="idx"><b>03</b><span>2016 - 2020</span><span>TF1</span></div>
+      <h3>MYTF1<small>Consultant iOS senior</small></h3>
+      <p class="desc">La plateforme de streaming et de replay du groupe TF1, à fort trafic. Une base Objective-C reprise et modernisée, puis une refonte complète en Swift.</p>
+      <p class="desc">Migrations ciblées MVC vers MVVM, architecture MVI et navigation modulaire, programmation réactive, migration progressive de REST vers GraphQL.</p>
+      <div class="tags"><span>Streaming</span><span>Refonte</span><span>Swift</span><span>Objective-C</span><span>RxSwift</span><span>MVI</span><span>GraphQL</span></div>
+      <div class="actions"><a class="btn btn--dark" href="#p-mytf1">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+    </div>
+    <div class="visual r d1"><div class="phone" style="--rot:-3deg"><img src="img/MYTF1.webp" alt="Capture de MYTF1"></div><div class="ghost"></div></div>
+  </article>
+
+  <article class="project" id="p-franceinfo">
+    <div class="title-mq" aria-hidden="true"><div><span>franceinfo</span><span>franceinfo</span><span>franceinfo</span><span>franceinfo</span></div></div>
+    <div class="copy r">
+      <div class="idx"><b>04</b><span>2022 - 2023</span><span>France Télévisions</span></div>
+      <h3>franceinfo<small>Consultant iOS senior</small></h3>
+      <p class="desc">L'app d'information de référence du service public, modernisée en SwiftUI pour des millions de lecteurs, sans jamais figer la production.</p>
+      <p class="desc">Migration écran par écran de UIKit vers SwiftUI, module design system partagé, accessibilité complète exigée par le service public.</p>
+      <div class="tags"><span>Information</span><span>Migration SwiftUI</span><span>Design system</span><span>Accessibilité</span><span>Combine</span><span>SPM</span><span>Fastlane</span></div>
+      <div class="actions"><a class="btn btn--dark" href="#p-franceinfo">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+    </div>
+    <div class="visual r d1"><div class="phone" style="--rot:4deg"><img src="img/FranceInfos.webp" alt="Capture de franceinfo"></div><div class="ghost"></div></div>
+  </article>
+
+  <article class="project" id="p-la1ere">
+    <div class="title-mq" aria-hidden="true"><div><span>La1ere</span><span>La1ere</span><span>La1ere</span><span>La1ere</span><span>La1ere</span></div></div>
+    <div class="copy r">
+      <div class="idx"><b>05</b><span>2020 - 2022</span><span>France Télévisions</span></div>
+      <h3>Outre-mer La1ere<small>Seul développeur iOS au départ, puis référent technique</small></h3>
+      <p class="desc">Démarrée seul développeur, puis référent technique d'une équipe mobile montée pour porter l'app du réseau outre-mer du prototype au natif, iOS et Android en cohérence.</p>
+      <p class="desc">Choix d'architecture, revue de code, montée en compétence de l'équipe, passage d'une approche PWA au natif.</p>
+      <div class="tags"><span>Référent technique</span><span>Équipe mobile</span><span>Swift</span><span>MVVM-C</span><span>Jenkins</span><span>Fastlane</span></div>
+      <div class="actions"><a class="btn btn--dark" href="#p-la1ere">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+    </div>
+    <div class="visual r d1"><div class="phone" style="--rot:-2deg"><img src="img/La1ere.webp" alt="Capture de La1ere"></div><div class="ghost"></div></div>
+  </article>
+
+  <article class="project" id="p-workoutlife">
+    <div class="title-mq" aria-hidden="true"><div><span>workoutLife</span><span>workoutLife</span><span>workoutLife</span><span>workoutLife</span></div></div>
+    <div class="copy r">
+      <div class="idx"><b>06</b><span>2019 - 2020</span><span>Client direct</span></div>
+      <h3>workoutLife<small>Développeur iOS, seul sur le projet</small></h3>
+      <p class="desc">Une app de fitness grand public livrée de bout en bout, du concept au lancement sur l'App Store, en solo pour un client direct.</p>
+      <p class="desc">Architecture MVI et programmation réactive, intégrations vidéo, stockage cloud et notifications push, suivi des premières versions.</p>
+      <div class="tags"><span>De zéro</span><span>Client direct</span><span>MVI</span><span>RxSwift</span><span>YouTube API</span><span>AWS S3</span><span>OneSignal</span></div>
+      <div class="actions"><a class="btn btn--dark" href="#p-workoutlife">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+    </div>
+    <div class="visual r d1"><div class="phone" style="--rot:3deg"><img src="img/WorkoutLife.webp" alt="Capture de workoutLife"></div><div class="ghost"></div></div>
+  </article>
+
+  <div class="more">
+    <div class="sec-k r"><b>&#8212;</b> Et d'autres encore</div>
+    <div class="grid r">
+      <article><div class="k">TF1</div><h4>SDK lecteur vidéo</h4><p>Lead du SDK lecteur interne (AVFoundation, HLS, FairPlay, AirPlay), déployé sur tout l'écosystème du groupe.</p></article>
+      <article><div class="k">TF1</div><h4>TFOU MAX</h4><p>Application de streaming jeunesse du groupe TF1.</p></article>
+      <article><div class="k">Projet personnel</div><h4>Compagnon de réunion macOS</h4><p>Transcription et synthèse de réunion assistées par IA, en Swift 6.</p></article>
+      <article><div class="k">SNCF</div><h4>TGV Pro</h4><p>Application mobile à destination des agents et voyageurs professionnels.</p></article>
+      <article><div class="k">Association</div><h4>Secours Populaire</h4><p>Application mobile pour un acteur associatif de premier plan.</p></article>
+      <article><div class="k">Pic Side</div><h4>Pic Side</h4><p>Réseau social autour de l'image, du concept à l'application.</p></article>
+      <article><div class="k">Client direct</div><h4>Moods</h4><p>Application grand public iOS, conçue et développée de zéro.</p></article>
+      <article><div class="k">IP-Label</div><h4>Audit de réseaux mobiles</h4><p>Outils de mesure et d'audit de la qualité des réseaux mobiles.</p></article>
+      <article><div class="k">Webnet, EAG</div><h4>Sécurité et contrôle parental</h4><p>Chiffrement, contrôle parental et applications métiers sécurisées.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- A PROPOS -->
+<section class="num about" id="apropos">
+  <div class="side r"><div class="n">002</div><div class="l">À propos</div></div>
+  <div>
+    <p class="lead r">Un seul <em>interlocuteur</em>, du cadrage à la production.</p>
+    <div class="row r d1">
+      <img src="img/portrait-sm.jpg" alt="Hedi Jahouach" width="112" height="112">
+      <div>
+        <p>Développeur iOS depuis 14 ans, j'accompagne aussi bien de grands groupes que des clients directs sur des applications à forte exigence : streaming vidéo, information en continu, sport connecté, outils métiers B2B.</p>
+        <p>J'interviens en freelance, comme unique interlocuteur senior, de l'idée à la mise en production. Tu parles directement à la personne qui conçoit, développe et livre ton app, sans relais ni perte de contexte, en mission, au forfait ou en régie.</p>
+      </div>
+    </div>
+    <div class="traits r d2">
+      <article><div class="k">01</div><h4>Senior et autonome</h4><p>Je prends en charge ton app de bout en bout : cadrage, architecture, développement, tests et publication, sans avoir besoin d'être encadré.</p></article>
+      <article><div class="k">02</div><h4>Exigence produit</h4><p>Code propre et maintenable, performance, accessibilité et soin du détail. La qualité se voit à l'usage, pas seulement dans le dépôt.</p></article>
+      <article><div class="k">03</div><h4>Sens du collectif</h4><p>Habitué à faire grandir une équipe mobile et à poser des standards techniques repris par d'autres applications du groupe.</p></article>
+      <article><div class="k">04</div><h4>Communication directe</h4><p>Un seul interlocuteur, des points clairs et réguliers, des décisions tracées. Tu sais toujours où en est ton projet.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- OFFRES -->
+<section class="num offers" id="offres">
+  <div class="side r"><div class="n">003</div><div class="l">Ce que je fais</div></div>
+  <div>
+    <h2 class="sec-t r">Deux façons de travailler ensemble</h2>
+    <p class="sec-lead r d1" style="margin-top:var(--ws-space-16)">Un seul interlocuteur, senior, de l'idée à la production. Tu parles directement à la personne qui conçoit et développe ton app.</p>
+    <div class="cards r d2">
+      <article class="card"><div class="k">Offre A</div><h4>Construire ton app de A à Z</h4><p>De l'idée à la production. Cadrage du besoin, conception de l'architecture, développement, tests, publication sur l'App Store et suivi après la mise en ligne.</p><div class="m">Idéal pour lancer un nouveau produit</div></article>
+      <article class="card"><div class="k">Offre B</div><h4>Développer à partir de tes maquettes</h4><p>Tu as les écrans, je livre l'application. Intégration fidèle au design, code propre et maintenable, attention portée à la performance et aux détails.</p><div class="m">Idéal quand le design est déjà prêt</div></article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSUS -->
+<section class="num process" id="processus">
+  <div class="side r"><div class="n">004</div><div class="l">Mon processus</div></div>
+  <div>
+    <h2 class="sec-t r">De l'idée à la mise en production</h2>
+    <p class="sec-lead r d1" style="margin-top:var(--ws-space-16)">Une méthode claire, éprouvée sur des applications à forte exigence. Chaque étape prépare la suivante.</p>
+    <div class="steps r d2"><ul>
+      <li><span class="n">01</span><h4>Cadrage</h4><p>On clarifie le besoin, le périmètre et les contraintes avant d'écrire la moindre ligne de code.</p></li>
+      <li><span class="n">02</span><h4>Conception</h4><p>Architecture, choix techniques et découpage en modules. Des fondations pensées pour durer.</p></li>
+      <li><span class="n">03</span><h4>Développement</h4><p>Implémentation en Swift et SwiftUI, par itérations courtes et lisibles, au plus près du produit.</p></li>
+      <li><span class="n">04</span><h4>Tests</h4><p>Tests automatisés et relecture du code. On sécurise la qualité avant de livrer.</p></li>
+      <li><span class="n">05</span><h4>Mise en production</h4><p>Publication sur l'App Store, configuration et déploiement maîtrisés de bout en bout.</p></li>
+      <li><span class="n">06</span><h4>Suivi</h4><p>Corrections, évolutions et accompagnement une fois l'application entre les mains des utilisateurs.</p></li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section class="num career" id="parcours">
+  <div class="side r"><div class="n">005</div><div class="l">Mon parcours</div></div>
+  <div>
+    <h2 class="sec-t r">14 ans auprès de grands acteurs</h2>
+    <ul class="r d1">
+      <li><span class="y">2026, aujourd'hui</span><h4>Développeur iOS et macOS<small>Projet personnel</small></h4><p>Compagnon de réunion sur macOS, transcription et synthèse assistées par IA, en Swift 6.</p></li>
+      <li><span class="y">2023 - 2026</span><h4>Consultant iOS senior<small>Décathlon, Lille</small></h4><p>Applications RIDE et GearTrack. Conception de zéro, architecture modulaire et delivery autonome, seul développeur iOS sur GearTrack.</p></li>
+      <li><span class="y">2020 - 2023</span><h4>Consultant iOS senior<small>France Télévisions et Radio France, Paris</small></h4><p>Applications franceinfo, Outre-mer La1ere et Régions. Migration vers SwiftUI ; seul développeur puis référent technique de l'équipe mobile sur l'outre-mer.</p></li>
+      <li><span class="y">2016 - 2020</span><h4>Consultant iOS senior<small>TF1, Paris</small></h4><p>Refonte de MYTF1 comme consultant développeur, et conception en tant que lead du SDK lecteur vidéo interne, déployé sur tout l'écosystème du groupe.</p></li>
+      <li><span class="y">2012 - 2016</span><h4>Développeur iOS et macOS<small>Webnet, Pic Side, IP-Label, EAG</small></h4><p>Applications métiers et grand public, réseau social image, audit réseaux, sécurité et chiffrement.</p></li>
+      <li><span class="y">2009 - 2012</span><h4>Ingénieur en télécommunications<small>ESPRIT, Tunis</small></h4><p>Diplôme d'ingénieur, mention très bien. Projet de fin d'études déjà orienté vers le développement iOS.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- COMPETENCES -->
+<section class="num skills" id="competences">
+  <div class="side r"><div class="n">006</div><div class="l">Compétences et stack</div></div>
+  <div>
+    <h2 class="sec-t r">Une stack iOS moderne et maîtrisée</h2>
+    <div class="groups r d1">
+      <div><div class="k">Langages et frameworks</div><div class="tags"><span>Swift</span><span>SwiftUI</span><span>UIKit</span><span>Combine</span><span>async / await</span></div></div>
+      <div><div class="k">Architectures</div><div class="tags"><span>MVVM</span><span>MVVM-C</span><span>Clean Architecture</span><span>Modularisation</span><span>SPM</span></div></div>
+      <div><div class="k">Qualité et delivery</div><div class="tags"><span>Tests automatisés</span><span>Intégration continue</span><span>Revue de code</span><span>Publication App Store</span></div></div>
+    </div>
+    <div class="marquee mq r d2"><div><span>Swift</span><span>Xcode</span><span>Claude API</span><span>Mapbox</span><span>RevenueCat</span><span>Firebase</span><span>GraphQL</span><span>Fastlane</span><span>Jenkins</span><span>Bitrise</span><span>Git</span><span>GitHub</span><span>GitLab</span></div><div aria-hidden="true"><span>Swift</span><span>Xcode</span><span>Claude API</span><span>Mapbox</span><span>RevenueCat</span><span>Firebase</span><span>GraphQL</span><span>Fastlane</span><span>Jenkins</span><span>Bitrise</span><span>Git</span><span>GitHub</span><span>GitLab</span></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="r">
+    <div class="sec-k"><b>007</b> Contact</div>
+    <h2 style="margin-top:var(--ws-space-16)">Parlons de<span class="m">ton projet</span></h2>
+    <p class="lead">Une idée à concrétiser ou des maquettes à développer ? Écris-moi, je reviens vers toi rapidement.</p>
+    <div class="alt">
+      <span>ou écris-moi à <a href="mailto:hedi.hbji@gmail.com">hedi.hbji@gmail.com</a></span>
+      <span><a href="https://www.linkedin.com/in/hedibenj">LinkedIn</a></span>
+      <span class="muted">Vanves (92), France, remote first</span>
+    </div>
+  </div>
+  <form class="r d1" id="form" novalidate>
+    <div class="field"><label>Type de demande</label>
+      <div class="choices">
+        <span><input type="radio" name="t" id="t1" checked><label for="t1">Mission</label></span>
+        <span><input type="radio" name="t" id="t2"><label for="t2">Forfait</label></span>
+        <span><input type="radio" name="t" id="t3"><label for="t3">Régie</label></span>
+        <span><input type="radio" name="t" id="t4"><label for="t4">Autre</label></span>
+      </div>
+    </div>
+    <div class="field"><label for="n">Nom</label><input id="n" type="text" autocomplete="name"></div>
+    <div class="field"><label for="e">E-mail</label><input id="e" type="email" autocomplete="email"></div>
+    <div class="field"><label for="m">Message</label><textarea id="m"></textarea></div>
+    <div><button class="btn btn--dark" type="submit">Envoyer le message</button></div>
+    <div class="sent">Merci, message bien reçu (maquette : rien n'est envoyé).</div>
+  </form>
+</section>
+
+<footer class="footer">
+  <div class="marquee mq"><div><span>Parlons de ton projet</span><span>Parlons de ton projet</span><span>Parlons de ton projet</span></div><div aria-hidden="true"><span>Parlons de ton projet</span><span>Parlons de ton projet</span><span>Parlons de ton projet</span></div></div>
+  <div class="row">
+    <span>© 2026 Hedi Jahouach</span>
+    <div class="links"><a href="#projets">Cas (6)</a><a href="#projets">Archive (9)</a><a href="https://www.linkedin.com/in/hedibenj">LinkedIn</a></div>
+    <span>Disponible, missions, forfait ou régie</span>
+  </div>
+</footer>
+
+</main>
+
+<!-- Barre fixe en bas -->
+<div class="bar" aria-label="Actions rapides">
+  <div class="left"><i></i><span>Disponible pour de nouveaux projets</span></div>
+  <div class="mid"><a href="#contact">Démarrer un projet</a><span>ou</span><a href="#projets">Voir les projets</a></div>
+  <div class="right">6 cas détaillés • 9 autres projets</div>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  // Theme : suit le systeme, bascule manuelle
+  try{ var saved = localStorage.getItem('theme'); }catch(e){}
+  var dark = saved ? saved==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  function apply(d){ if(d) root.setAttribute('data-theme','dark'); else root.removeAttribute('data-theme'); }
+  apply(dark);
+  document.getElementById('theme').addEventListener('click', function(){
+    dark = !dark; apply(dark); try{ localStorage.setItem('theme', dark?'dark':'light'); }catch(e){}
+  });
+
+  // Preloader 0 -> 100 %
+  var loader = document.getElementById('loader'), pct = document.getElementById('pct');
+  if(reduce){ loader.classList.add('done'); }
+  else {
+    var t0 = performance.now(), dur = 900;
+    (function tick(now){
+      var p = Math.min(1, (now - t0)/dur);
+      pct.textContent = Math.round(p*100) + '%';
+      if(p < 1) requestAnimationFrame(tick); else setTimeout(function(){ loader.classList.add('done'); reveal(); }, 120);
+    })(t0);
+  }
+
+  // Reveals
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+  function reveal(){
+    document.querySelectorAll('.r, .big').forEach(function(el){ io.observe(el); });
+  }
+  if(reduce) reveal();
+
+  // Nav : fond au scroll, se cache en descendant, revient en remontant
+  var nav = document.getElementById('nav'), last = 0;
+  addEventListener('scroll', function(){
+    var y = scrollY;
+    nav.classList.toggle('scrolled', y > 40);
+    nav.classList.toggle('hide', y > last && y > 300);
+    last = y;
+  }, { passive: true });
+
+  // Lien actif
+  var links = document.querySelectorAll('.nav .links a');
+  var so = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(a){ a.classList.toggle('active', a.dataset.s === e.target.id); }); } });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  ['projets','apropos','offres','processus','parcours'].forEach(function(id){ var s = document.getElementById(id); if(s) so.observe(s); });
+
+
+
+  // Hero : la video tourne en boucle ; a chaque souffle (t ~ 2 s) un element sort de la vapeur
+  var vid = document.getElementById('heroVideo'), outs = document.querySelectorAll('#vapor .out'), k = 0, armed = true;
+  if(reduce){ vid.removeAttribute('autoplay'); vid.pause(); }
+  else {
+    vid.muted = true; vid.play().catch(function(){});
+    vid.addEventListener('timeupdate', function(){
+      var t = vid.currentTime;
+      if(t < 1) armed = true;
+      if(armed && t >= 2.05){
+        armed = false;
+        var el = outs[k % outs.length]; k++;
+        el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
+      }
+    });
+  }
+
+  // Formulaire : maquette, rien n'est envoye
+  document.getElementById('form').addEventListener('submit', function(e){ e.preventDefault(); this.classList.add('ok'); });
+})();
+</script>
+</body>
+</html>
+
+</body></html>

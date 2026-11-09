@@ -1,6 +1,6 @@
 # Spec 002 - Git LFS for reference media
 
-Branch: `chore-git-lfs` | Status: planned (clarified 2026-11-09)
+Branch: `chore-git-lfs` | Status: done (clarified 2026-11-09)
 Roadmap line: Wave 0, prerequisite of spec 001 AC-7 (videos through LFS).
 
 ## Why

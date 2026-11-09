@@ -9,18 +9,18 @@ have no commit. No `[P]`: each task needs the previous one.
 
 ## Tasks
 
-- [ ] T01 the four CSS lines (with the English comment on `364px`) in a
+- [x] T01 the four CSS lines (with the English comment on `364px`) in a
   scratch copy of `docs/v2/mockup/index.html`, wrapper kept - files:
   scratchpad only - check: probe outputs for AC-1 to AC-4 at 1440x900,
   390x844 `mobile: true` and 900x800; before and after export with the
   spec 004 script, box diff empty outside skills, mobile nav and desktop
   hero - agent: design-agent
-- [ ] T02 publish the fixed `index.html` to artifact BDrsQCHWzgfQRLqBGn9FJM
+- [x] T02 publish the fixed `index.html` to artifact BDrsQCHWzgfQRLqBGn9FJM
   without the host wrapper, after Hedi's go, then read it back - files:
   none in the repo - check: new version id; read-back sha256 of
   `index.html` equals the T01 file; the 15 other sums unchanged - agent:
   main session
-- [ ] T03 refreeze: the read-back `index.html` into `docs/v2/mockup/`, the
+- [x] T03 refreeze: the read-back `index.html` into `docs/v2/mockup/`, the
   README sums block updated - files: `docs/v2/mockup/index.html`,
   `docs/v2/README.md` - check: sums check from `docs/v2/` passes; `git
   diff --stat dev -- docs/v2/mockup` lists `index.html` only - agent:

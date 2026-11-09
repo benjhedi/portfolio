@@ -39,7 +39,7 @@ sed -n '/^```sha256$/,/^```$/p' README.md | sed '1d;$d' | shasum -a 256 -c
 ```
 
 ```sha256
-450bff19822371bd40480a73cb3e8bd5fec0178a144443840c774d24e1e709fb  mockup/index.html
+069ccf26e2ed3910e61d9973de3584d53b4159d17de18f54040181047dd1bd4f  mockup/index.html
 e9a00bd2b5d53a41727d9541bd82049e971405906a4b2779ee33f2b4cef787ef  mockup/tokens.css
 50416a49d973a2493cd1ed5a8e5727ab387f02439cfe139bbdc1ffe5a67c7004  mockup/img/FranceInfos.webp
 541aa3a12454876c9d432926dfbdb9e9b40990e52f2cb14298717aec07cce2ec  mockup/img/GearTrack.webp

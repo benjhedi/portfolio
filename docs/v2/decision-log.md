@@ -63,3 +63,8 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
   and is not versioned; the source clip is enough.
 - 2026-11-09: The reference videos go through Git LFS, scoped to `docs/`
   (spec 002, ADR 004), chosen over the plain-git recommendation.
+- 2026-11-09: Three mockup defects are fixed at the source, in a new
+  artifact version frozen again before the PNG export (spec 005): the
+  skills overflow, the "HJ" mark hidden on the mobile nav, and the hero
+  scroll hint covered by the bottom bar at 1440 x 900, which supersedes
+  the overlap accepted as D2 in spec 004.

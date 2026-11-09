@@ -33,7 +33,7 @@ have no commit. No `[P]`: each task needs the previous one.
   design-agent
 - [x] T05 verify - all AC checks below green, `npm ci` first - files:
   `specs/005-v2-mockup-fixes/verification.md` - agent: qa
-- [ ] T06 review - diff against dev, gates reread; once APPROVED the main
+- [x] T06 review - diff against dev, gates reread; once APPROVED the main
   session sets `spec.md` status to done - agent: review-agent
 
 ## Test plan (derived from the EARS criteria)

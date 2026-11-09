@@ -1,6 +1,6 @@
 # Spec 005 - v2 mockup fixes
 
-Branch: `fix-v2-mockup-defects` | Status: planned 2026-11-10
+Branch: `fix-v2-mockup-defects` | Status: done 2026-11-10
 Roadmap line: Wave 0, the v2 log, mockup and media versioned in `docs/`,
 so every screen has an in-repo mockup.
 

@@ -63,6 +63,113 @@ The 16 mockup sums are the ones the artifact reported for version
 1794266082-62e1: spec 005 changed `index.html` only, the other 15 match
 version 1794063463-7380. The last sum is the clip as Hedi supplied it.
 
+## Export the screens
+
+From the repo root:
+
+```bash
+git lfs pull --include "docs/v2/**"
+fnm use
+node docs/v2/export-screens.mjs
+```
+
+The optional argument is the output folder, `docs/v2/ecrans` by default;
+a scratch folder is fine for a dry run.
+
+Prerequisites: the LFS pull (without it the hero video is a pointer file
+and the script stops), Node 22 from `.nvmrc` through fnm, Google Chrome
+(the `CHROME` environment variable overrides its path), `python3`, and the
+network for Google Fonts (the script stops when a font is missing). Port
+8765 must be free.
+
+The script serves `mockup/` with `python3 -m http.server` on 127.0.0.1,
+drives a headless Chrome over the DevTools protocol, and stops both when
+it ends. Chrome renders in sRGB (`--force-color-profile=srgb`), so the
+colors do not depend on the display of the exporting Mac. It reads the file names from the png block below, the only list;
+a name it cannot map stops it. One fresh load per context, empty
+localStorage: 1440 x 900 at 1x and 390 x 844 at 2x, light and dark, plus
+the same four under reduced motion for the hero. Before any capture it
+waits in real time for the preloader to finish, for the fonts and for
+every image, then freezes the page:
+
+- every reveal forced (`in` on `.r` and `.big`, transitions finished);
+- the hero video paused at 3.56 s, in its first loop, with the RIDE app
+  alone out of the vapor, its `emerge` animation paused at 1512 ms, the
+  72 % keyframe where it peaks; `http.server` ignores Range requests, so
+  the script reloads the same video bytes from a blob URL to seek;
+- the scroll hint `line` animation paused at 1100 ms, line drawn;
+- every marquee (`mq`) paused at 0;
+- the fixed nav and bottom bar hidden outside the hero; the hero PNGs are
+  shot with the viewport as tall as the hero, so both sit where a visitor
+  sees them (at 1440 the bar covers the last pixels of the scroll hint);
+- the preloader reconstructed at "0%" after the run, one viewport tall;
+  there is no reduced preloader, CSS hides it under reduced motion.
+
+Each PNG is the full height of its section. Clips taller than 16384
+device pixels repeat content in Chrome, so the script shoots them in
+tiles and stitches them (`04-projects-mobile` and its dark twin). It logs
+one line per PNG with its size and the frozen values, and exits 1 when
+one of them drifts.
+
+The `ecrans/` folder must match this list exactly:
+
+```png
+00-preloader.png
+00-preloader-dark.png
+00-preloader-mobile.png
+00-preloader-mobile-dark.png
+01-hero.png
+01-hero-dark.png
+01-hero-mobile.png
+01-hero-mobile-dark.png
+01-hero-reduced.png
+01-hero-reduced-dark.png
+01-hero-reduced-mobile.png
+01-hero-reduced-mobile-dark.png
+02-statement.png
+02-statement-dark.png
+02-statement-mobile.png
+02-statement-mobile-dark.png
+03-clients.png
+03-clients-dark.png
+03-clients-mobile.png
+03-clients-mobile-dark.png
+04-projects.png
+04-projects-dark.png
+04-projects-mobile.png
+04-projects-mobile-dark.png
+05-about.png
+05-about-dark.png
+05-about-mobile.png
+05-about-mobile-dark.png
+06-offers.png
+06-offers-dark.png
+06-offers-mobile.png
+06-offers-mobile-dark.png
+07-process.png
+07-process-dark.png
+07-process-mobile.png
+07-process-mobile-dark.png
+08-career.png
+08-career-dark.png
+08-career-mobile.png
+08-career-mobile-dark.png
+09-skills.png
+09-skills-dark.png
+09-skills-mobile.png
+09-skills-mobile-dark.png
+10-contact.png
+10-contact-dark.png
+10-contact-mobile.png
+10-contact-mobile-dark.png
+11-footer.png
+11-footer-dark.png
+11-footer-mobile.png
+11-footer-mobile-dark.png
+```
+
+52 PNGs.
+
 ## Screens
 
 Not exported yet. The PNG follow-up adds one PNG per mockup section,

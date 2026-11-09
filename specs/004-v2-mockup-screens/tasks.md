@@ -14,7 +14,7 @@ pointers. No `[P]`: each task needs the previous one.
   `CONTRIBUTING.md`, `product/tech-stack.md` - check: `git check-attr
   filter` gives `lfs` on `docs/v2/ecrans/01-hero.png`, `unspecified` on
   `public/projects/FranceInfos.png` - agent: setup-agent
-- [ ] T02 README png block (52 names, page then variant order, count) and
+- [x] T02 README png block (52 names, page then variant order, count) and
   the export procedure - files: `docs/v2/README.md` - check: block
   extracted with the `sed` idiom gives 52 unique lines, prefixes 00 to 11
   in order - agent: design-agent

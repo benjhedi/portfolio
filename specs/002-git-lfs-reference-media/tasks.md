@@ -11,7 +11,7 @@ worktrees.
 
 - [x] T01 LFS tracking rules for videos under docs/ - files: `.gitattributes`
   - check: `git check-attr filter` on the five paths of the plan - agent: setup-agent
-- [ ] T02 pre-push calls git lfs pre-push after the branch check, warns
+- [x] T02 pre-push calls git lfs pre-push after the branch check, warns
   without git-lfs - files: `.githooks/pre-push` - check: `sh -n`, then the
   three AC-3 scenarios in a scratch clone with a `file://` remote - agent: setup-agent
 - [ ] T03 CI job lfs-pointers - files: `.github/workflows/ci.yml` - check:

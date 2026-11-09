@@ -18,7 +18,7 @@ pointers. No `[P]`: each task needs the previous one.
   the export procedure - files: `docs/v2/README.md` - check: block
   extracted with the `sed` idiom gives 52 unique lines, prefixes 00 to 11
   in order - agent: design-agent
-- [ ] T03 export script, CDP over global `WebSocket`, no dependency -
+- [x] T03 export script, CDP over global `WebSocket`, no dependency -
   files: `docs/v2/export-screens.mjs` - check: run into a scratch folder,
   stdout logs the frozen flags per context, exit 0; tile stitch run on
   `04-projects-mobile` - agent: design-agent

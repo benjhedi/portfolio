@@ -14,7 +14,7 @@ session because only it can read the artifact.
   checked on each read - files: `docs/v2/mockup/**` (16 files) - check:
   each sha256 equals the one the read reported; `git lfs ls-files` lists
   the two mockup videos - agent: main session
-- [ ] T02 hero source clip, renamed, content unchanged - files:
+- [x] T02 hero source clip, renamed, content unchanged - files:
   `docs/v2/source/hero-source-2026-11-07.mp4` - check: sha256
   213146af...e2b9, listed by `git lfs ls-files` - agent: main session
 - [ ] T03 handoff README: source URL, version, sums block, serve command

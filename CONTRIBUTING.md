@@ -6,15 +6,23 @@ How work enters this repo. The hooks in `.githooks/` and the
 ## Setup
 
 ```bash
-nvm use                    # Node 22 (.nvmrc)
-npm ci                     # @warastudio/* come from GitHub Packages, see .npmrc
-./scripts/setup-hooks.sh   # once per clone: core.hooksPath = .githooks
-npm run dev                # http://localhost:5173
+nvm use                       # Node 22 (.nvmrc)
+npm ci                        # @warastudio/* come from GitHub Packages, see .npmrc
+./scripts/setup-hooks.sh      # once per clone: core.hooksPath = .githooks
+git lfs install --skip-repo   # once per machine: LFS filters, no hooks (ADR 004)
+npm run dev                   # http://localhost:5173
 ```
 
 The Wara DS packages need a GitHub token with `read:packages` in your user
 `~/.npmrc`. Never commit it. The contact form key goes in a local `.env`
 (see `.env.example`).
+
+git-lfs is needed to read, add or change the videos under `docs/`
+(`brew install git-lfs`); without it they check out as pointer files. Skip
+the step and a new video goes up as a plain blob, and the `lfs-pointers` CI
+job fails the PR. A plain `git lfs install`
+stops on the existing pre-push hook, hence `--skip-repo`:
+`.githooks/pre-push` does the upload.
 
 ## Branches
 

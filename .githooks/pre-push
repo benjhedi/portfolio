@@ -1,10 +1,13 @@
 #!/bin/sh
 # Rejects the push of a branch outside the  type-title  convention
 # (main and dev are allowed; branch deletions and version tags are ignored).
+# Then uploads LFS objects through git lfs pre-push, or warns when git-lfs is
+# missing. Local edit of the kit hook (spec 002, roadmap debt).
 
 types='feat|fix|chore|docs|refactor|test|perf|ci'
 status=0
 zero=0000000000000000000000000000000000000000
+input=$(cat)
 
 while read -r local_ref local_sha remote_ref remote_sha; do
   [ -z "$remote_ref" ] && continue
@@ -21,6 +24,16 @@ while read -r local_ref local_sha remote_ref remote_sha; do
     echo "  accepted types : feat, fix, chore, docs, refactor, test, perf, ci" >&2
     status=1
   fi
-done
+done <<EOF
+$input
+EOF
 
-exit $status
+# A rejected branch uploads nothing.
+[ "$status" -ne 0 ] && exit $status
+
+if command -v git-lfs >/dev/null 2>&1; then
+  printf '%s\n' "$input" | git lfs pre-push "$@"
+  exit $?
+fi
+echo "Warning: git-lfs not found, LFS objects not uploaded (see CONTRIBUTING.md)." >&2
+exit 0

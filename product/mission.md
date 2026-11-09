@@ -27,9 +27,9 @@ A one-page bilingual FR / EN site where a prospect sees that Hedi Jahouach, seni
 
 1. Displayed name "Hedi Jahouach" only, "HJ" text monogram; SEO targets Jahouach only ([log], decided 2026-11-07). `content.ts` identity and [SEO] still say Benjahouach.
 2. No Wara Studio mention or logo anywhere; Wara tokens are the technical design system only ([log]).
-3. Sober, direct tone, real track record, no overselling (`CLAUDE.md` content and tone).
-4. All current content kept, read from `content.ts`, the single bilingual source ([log] scope, `CLAUDE.md`).
-5. Reduced motion respected everywhere; the hero video falls back to its static poster ([log] hero, `CLAUDE.md`).
+3. Sober, direct tone, real track record, no overselling (former `CLAUDE.md` (a3d1bda)).
+4. All current content kept, read from `content.ts`, the single bilingual source ([log] scope, former `CLAUDE.md` (a3d1bda)).
+5. Reduced motion respected everywhere; the hero video falls back to its static poster ([log] hero, former `CLAUDE.md` (a3d1bda)).
 
 ## Out of scope for v2
 

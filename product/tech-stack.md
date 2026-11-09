@@ -4,7 +4,7 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 
 ## Platform
 
-- Web, one static page, mobile first; deployed to Cloudflare by `wrangler` on a `v*` tag (`.github/workflows/release.yml`, `wrangler.jsonc`, `CLAUDE.md`); Node 22 (`.nvmrc`).
+- Web, one static page, mobile first; deployed to Cloudflare by `wrangler` on a `v*` tag (`.github/workflows/release.yml`, `wrangler.jsonc`, former `CLAUDE.md` (a3d1bda)); Node 22 (`.nvmrc`).
 
 ## Language and UI
 
@@ -18,7 +18,7 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 
 ## Persistence and data
 
-- No backend, no database: content is `src/content/content.ts`, bilingual `{ fr, en }` (`CLAUDE.md`).
+- No backend, no database: content is `src/content/content.ts`, bilingual `{ fr, en }` (former `CLAUDE.md` (a3d1bda)).
 - Theme and locale held in `app/AppContext.tsx`; the contact form posts to Web3Forms with a client-side key from `VITE_WEB3FORMS_ACCESS_KEY` (`.env.example`, `release.yml`, 887cad5).
 
 ## Toolchain and testing
@@ -42,5 +42,5 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 ## Design
 
 - Tokens from `@warastudio/theme`, aliased to `--color-*` in `index.css`; dark = Midnight via `data-theme` (`main.tsx`, inventory section 6). The installed SDK 0.1.0 exposes `--wara-*`; the target is `--ws-*`, as in the v2 decision log and the mockup, from a newer SDK version, upgraded before the first v2 spec (Hedi, 2026-11-07).
-- Type: Hanken Grotesk 400 / 600, JetBrains Mono for indexes and tags; icons Lucide (`CLAUDE.md`, v2 decision log).
+- Type: Hanken Grotesk 400 / 600, JetBrains Mono for indexes and tags; icons Lucide (former `CLAUDE.md` (a3d1bda), v2 decision log).
 - Mockup: claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM, to version in `docs/` in wave 0 (`product/roadmap.md`).

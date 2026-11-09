@@ -38,7 +38,7 @@ Sources: [log] v2 decision log (Cowork, 2026-11-07); [mockup] v2 mockup, claude.
 
 ## Debt left by the kit adoption ([inv] gap table)
 
-- Absorbed by the v2 lines above, section by section: hex and arbitrary values in TSX, literal timings, `Primitives.tsx` split, GSAP lazy chunk, WebP images, SEO, contact privacy line, French comments.
+- Absorbed by the v2 lines above, section by section: hex and arbitrary values in TSX, literal timings, `Primitives.tsx` split, GSAP lazy chunk, WebP images, SEO, French comments. Contact (review-agent on PR 19): privacy line, field validation and error states, focus after send, hardcoded mail subject and sender name, unused `contact.cta`.
 - Outside this repo: WaraDS token requests for `--color-sink`, `--color-scrim`, `--color-bezel`, `--color-line2` (ADR 003).
 - Hedi decides: the two unused fontsource packages, `inter-tight` and `space-grotesk` (`product/tech-stack.md`).
 

@@ -20,7 +20,7 @@ worktrees.
 - [x] T04 ADR 004 - files: `docs/adr/004-git-lfs-reference-media.md` - check:
   grep scope, reason, plain-git option, quota with its GitHub docs source
   - agent: main session with the `adr` skill
-- [ ] T05 setup step and toolchain line - files: `CONTRIBUTING.md`,
+- [x] T05 setup step and toolchain line - files: `CONTRIBUTING.md`,
   `product/tech-stack.md` - check: grep `git lfs install --skip-repo` and
   the failure line - agent: setup-agent
 - [ ] T06 kit drift debt line with the wara-kit request - files:

@@ -45,5 +45,5 @@ Product: `/plan-product`, `/analyze-product`, `/architecture-study`,
   the `WARA_DS_TOKEN` secret.
 - Desktop sessions start on `WR/<name>`: `git branch -m <type-title>`
   before the first commit, or the hooks refuse it.
-- `SEO-accueil.md` sits untracked in the main checkout until wave 0.
+- v2 references (mockup, decision log, SEO input) live in `docs/v2/`.
 - `?motion` in the URL forces animations under reduced motion, demo only.

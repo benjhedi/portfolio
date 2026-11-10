@@ -46,5 +46,5 @@ the moment this spec names, with the mockup files untouched.
 No entity, business rule or personal data (the contact PNGs show the
 empty form). Any change to the mockup files (French only, Google Fonts, open hero
 points); EN captures; tablet widths; reduced motion beyond the hero; the
-three other vapor objects, hover, focus and form states as PNGs (README
+four other vapor objects, hover, focus and form states as PNGs (README
 text only); code in `src/` or `public/`; the SDK `--ws-*` upgrade.

@@ -101,7 +101,7 @@ every image, then freezes the page:
 - every marquee (`mq`) paused at 0;
 - the fixed nav and bottom bar hidden outside the hero; the hero PNGs are
   shot with the viewport as tall as the hero, so both sit where a visitor
-  sees them (at 1440 the bar covers the last pixels of the scroll hint);
+  sees them;
 - the preloader reconstructed at "0%" after the run, one viewport tall;
   there is no reduced preloader, CSS hides it under reduced motion.
 

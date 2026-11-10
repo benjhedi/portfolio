@@ -377,10 +377,8 @@ async function runContext(cdp, ctx, items, done) {
   try {
     await tab.send('Page.enable');
     await tab.send('Storage.clearDataForOrigin', { origin: ORIGIN, storageTypes: 'local_storage' });
-    // mobile: false on purpose. The skills block overflows to 5151 px, and
-    // mobile emulation then widens the layout viewport to 1560 px (Android
-    // zoom-out limit), so the fixed nav, bar and preloader leave the 390 px frame.
-    const metrics = (height) => tab.send('Emulation.setDeviceMetricsOverride', { width: ctx.w, height, deviceScaleFactor: ctx.dpr, mobile: false });
+    // mobile: true under 900 px so the meta viewport applies, as on a phone.
+    const metrics = (height) => tab.send('Emulation.setDeviceMetricsOverride', { width: ctx.w, height, deviceScaleFactor: ctx.dpr, mobile: ctx.w < 900 });
     await metrics(ctx.h);
     await tab.send('Emulation.setEmulatedMedia', { features: [
       { name: 'prefers-color-scheme', value: ctx.dark ? 'dark' : 'light' },

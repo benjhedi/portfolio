@@ -85,8 +85,8 @@ animation at 0 and the scroll hint `line` at 1100 ms (drawn, D1);
 outside the hero inject `#nav, body > .bar
 {visibility:hidden}` (`body >`: `.vapor .bar` exists too).
 Captures: `captureBeyondViewport: true`, clip on the section rect. Hero:
-viewport height set to the hero height (936 at 1440), since the probe's
-900 px viewport put the bar over the scroll hint with 36 px of hero below.
+viewport height set to the hero height, so the fixed nav and bar sit as
+a visitor sees them (936 at 1440 before spec 005, 900 since).
 Preloader last, viewport only: remove `.done`, set `#pct` to "0%", finish
 the transition; a reconstructed first frame, the README says so.
 Past 16384 device px Chrome repeats content (probe `390-2x-work.png`,
@@ -124,9 +124,9 @@ PNGs, about 19 MB, re-exported with the mockup; `public/` stays plain git.
 
 - D1 settled (Hedi, 2026-11-09): the scroll hint `line` animation is
   paused at 1100 ms, line drawn (at 0 it is invisible); in AC-4 and the log.
-- D2 accepted: the hint ends 48 px above the hero bottom, the bar is 56 px,
-  so about 8 px may stay covered (estimate from CSS), as a visitor sees it.
-  Mockup frozen, so the README reports it.
+- D2 superseded (2026-11-10): spec 005 fixed the hero at the source, the
+  hint now ends above the bar at 1440 x 900; the script emulates mobile
+  for real (`mobile: true`) since the skills overflow is gone.
 - The CONTRIBUTING, tech-stack and AGENTS.md lines exceed the spec text;
   Hedi kept them in this change (2026-11-09), they turn false after T3.
 - Repeatable means same names and states; byte-identical PNGs across

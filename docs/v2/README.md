@@ -7,7 +7,8 @@ never the claude.ai artifact they came from (spec 001).
 
 - `mockup/`: the v2 mockup, the 16 files of claude.ai artifact
   https://claude.ai/artifact/BDrsQCHWzgfQRLqBGn9FJM, version
-  1794063463-7380, copied as published on 2026-11-09. A reference: the
+  1794266082-62e1 (spec 005, 2026-11-10), first copied at version
+  1794063463-7380 on 2026-11-09 (spec 001). A reference: the
   build never imports it and nobody edits it here. One French page, light
   and dark through `data-theme`, a 900 px breakpoint. It loads Hanken
   Grotesk and JetBrains Mono from Google Fonts. File names stay as
@@ -39,7 +40,7 @@ sed -n '/^```sha256$/,/^```$/p' README.md | sed '1d;$d' | shasum -a 256 -c
 ```
 
 ```sha256
-450bff19822371bd40480a73cb3e8bd5fec0178a144443840c774d24e1e709fb  mockup/index.html
+069ccf26e2ed3910e61d9973de3584d53b4159d17de18f54040181047dd1bd4f  mockup/index.html
 e9a00bd2b5d53a41727d9541bd82049e971405906a4b2779ee33f2b4cef787ef  mockup/tokens.css
 50416a49d973a2493cd1ed5a8e5727ab387f02439cfe139bbdc1ffe5a67c7004  mockup/img/FranceInfos.webp
 541aa3a12454876c9d432926dfbdb9e9b40990e52f2cb14298717aec07cce2ec  mockup/img/GearTrack.webp
@@ -59,7 +60,8 @@ c6262406309aa65ae999dcbfc49184835fac470f4ed84425e4629a07adab22c8  mockup/img/her
 ```
 
 The 16 mockup sums are the ones the artifact reported for version
-1794063463-7380; the last one is the clip as Hedi supplied it.
+1794266082-62e1: spec 005 changed `index.html` only, the other 15 match
+version 1794063463-7380. The last sum is the clip as Hedi supplied it.
 
 ## Screens
 

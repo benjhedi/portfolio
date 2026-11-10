@@ -3,8 +3,10 @@
 The first section is Hedi's log of 2026-11-07, verbatim in French as he
 pasted it (accents already stripped in his original). Its links point to
 the Cowork session of that day. The mockup lives in `mockup/`, frozen at
-artifact version 1794063463-7380 as published on 2026-11-09 (`README.md`);
-whether that is the "version 5" the log cites is not verified.
+artifact version 1794063463-7380 as published on 2026-11-09, then at
+1794266082-62e1 on 2026-11-10 (spec 005, `README.md`). The host numbered
+the spec 005 publish "Version 6", so 1794063463-7380 is probably the
+"version 5" the log cites (inferred, not verified).
 Entries after it are in English, dated, and never deleted; a replaced
 decision gets a line saying by which entry.
 
@@ -63,3 +65,14 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
   and is not versioned; the source clip is enough.
 - 2026-11-09: The reference videos go through Git LFS, scoped to `docs/`
   (spec 002, ADR 004), chosen over the plain-git recommendation.
+- 2026-11-09: Three mockup defects are fixed at the source, in a new
+  artifact version frozen again before the PNG export (spec 005): the
+  skills overflow, the "HJ" mark hidden on the mobile nav, and the hero
+  scroll hint covered by the bottom bar at 1440 x 900, which supersedes
+  the overlap accepted as D2 in spec 004.
+- 2026-11-10: The hero oval is capped by the viewport height, so it
+  shrinks on short desktop screens: 720 px wide at 1440 x 900, back to
+  860 from about 995 px high (spec 005, D1).
+- 2026-11-10: The mockup's mobile "HJ" link stays 30 x 30 px; the nav
+  implementation gives it a 44 x 44 px hit area with the visual size
+  unchanged (rule 31, constitution 11; spec 005 review).

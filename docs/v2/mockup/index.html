@@ -103,7 +103,8 @@ section{position:relative}
    ------------------------------------------------------------------ */
 .hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(64px + var(--ws-space-32)) var(--gutter) var(--ws-space-48);text-align:center}
 .oval{
-  --w:min(78vw, 860px);
+  /* 364px is the hero stack under the oval, so it ends above the bar */
+  --w:min(78vw, 860px, calc((100svh - var(--bottom-bar) - 364px) * 1.5));
   width:var(--w);aspect-ratio:1.62/1;
   border-radius:50%;overflow:hidden;position:relative;
   background:var(--ws-color-solid);
@@ -260,6 +261,7 @@ section{position:relative}
 .career p{font-size:var(--ws-size-small);color:var(--ws-color-text-body)}
 
 /* Competences : marquee mono + groupes */
+.skills > div{min-width:0}
 .skills .groups{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--ws-space-32);margin-top:var(--ws-space-40)}
 .skills .groups .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ws-color-text-muted);margin-bottom:var(--ws-space-12)}
 .skills .groups .tags{margin-top:0}
@@ -316,7 +318,8 @@ form.ok .sent{display:block}
 @media (max-width:900px){
   .nav{grid-template-columns:auto 1fr auto;height:56px}
   .nav .links{display:none}
-  .nav .brand span,.nav .right .btn{display:none}
+  .nav .brand span:not(.mark),.nav .right .btn{display:none}
+  .nav .right{grid-column:3}
   .burger{display:inline-grid}
   .oval{aspect-ratio:1.25/1}
   .vapor{top:47%}

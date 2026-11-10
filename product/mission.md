@@ -1,6 +1,6 @@
 # Mission - Portfolio Hedi Jahouach
 
-Sources: [log] `docs/v2/decision-log.md` (2026-11-07, then dated entries); [mockup] `docs/v2/mockup/`, frozen from claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM, version 1794063463-7380; [SEO] `docs/v2/seo-accueil.md`.
+Sources: [log] `docs/v2/decision-log.md` (2026-11-07, then dated entries); [mockup] `docs/v2/mockup/`, frozen from claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM, version 1794266082-62e1; [SEO] `docs/v2/seo-accueil.md`.
 
 ## Pitch
 

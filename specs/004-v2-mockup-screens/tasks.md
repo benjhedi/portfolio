@@ -32,7 +32,7 @@ pointers. No `[P]`: each task needs the previous one.
 - [x] T06 pointers: wave 0 line checked, AGENTS.md line on the PNGs -
   files: `product/roadmap.md`, `AGENTS.md` - check: grep `[x] Wave 0: the
   v2 log`, AGENTS.md under 60 lines - agent: main session
-- [ ] T07 verify - all AC checks below green, `npm ci` first - files:
+- [x] T07 verify - all AC checks below green, `npm ci` first - files:
   `specs/004-v2-mockup-screens/verification.md` - agent: qa
 - [ ] T08 review - diff against dev, gates reread; once APPROVED the main
   session sets `spec.md` status to done - agent: review-agent

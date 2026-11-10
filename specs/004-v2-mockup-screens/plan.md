@@ -49,17 +49,17 @@ Verification
 - AC-5: `git check-attr filter`: `lfs` on `docs/v2/ecrans/01-hero.png`,
   `unspecified` on `public/projects/FranceInfos.png`; `git lfs ls-files`:
   3 videos plus 52 PNGs, nothing in `public/`; `git lfs fsck --pointers
-  dev..HEAD`, then `lfs-pointers` green on the PR; ADR 004 names the glob.
+  origin/dev..HEAD`, then `lfs-pointers` green on the PR; ADR 004 names the glob.
 - AC-6: 12 screen sections with Purpose, Layout, States, Interaction,
   Reduced motion; `diff` of the png block against `ls docs/v2/ecrans`
   empty; count line 52; a rerun into a scratch folder gives the same
   names, sums compared and reported.
 - AC-7: README sums check passes; `git status --porcelain docs/v2/mockup`
-  and `git diff --stat dev -- docs/v2/mockup` empty; `npm ci`, `npm
+  and `git diff --stat origin/dev -- docs/v2/mockup` empty; `npm ci`, `npm
   test`, `npm run build`; `find dist -path '*ecrans*'` and `grep -rl
   export-screens dist` empty.
-- AC-8: the spec 004 entry is last in `docs/v2/decision-log.md` (9223e0f),
-  extended with D1 (scroll hint); roadmap l.15 reads `[x]`.
+- AC-8: the 2026-11-09 spec 004 entry of `docs/v2/decision-log.md`
+  (b1a626f) holds the capture choices and D1; roadmap l.15 reads `[x]`.
 - Side by side: not applicable, the PNGs are the reference; qa
   spot-checks `01-hero` and `01-hero-dark` against the served mockup.
 

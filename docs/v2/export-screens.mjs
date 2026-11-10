@@ -504,13 +504,15 @@ async function main() {
   await cdp.send('Browser.close').catch(() => {});
   cdp.close();
   await exited(chrome, 5000);
-  process.kill(-server.pid, 'SIGTERM');
+  try { process.kill(-server.pid, 'SIGTERM'); } catch {}
   await exited(server, 5000);
 
   const listed = new Set(items.map((i) => i.name));
   const extra = readdirSync(OUT).filter((f) => f.endsWith('.png') && !listed.has(f));
   if (extra.length) console.error(`export-screens: not in the README list, left in ${OUT}: ${extra.join(' ')}`);
   console.log(`${lines.size} PNGs in ${OUT}`);
+  // The server log is only worth keeping when a run fails.
+  rmSync(workDir, { recursive: true, force: true });
 }
 
 main().catch((e) => {

@@ -18,8 +18,11 @@ never the claude.ai artifact they came from (spec 001).
 - `seo-accueil.md`: the home page SEO input, name set to Jahouach.
 - `source/hero-source-2026-11-07.mp4`: the Kling output the hero loop was
   cut from, 896 x 720, 24 fps, 5.04 s, audio track kept.
+- `ecrans/`: the 52 PNGs of the mockup screens, see Screens.
+- `export-screens.mjs`: the script that exports them, see Export the
+  screens.
 
-The three videos go through Git LFS (ADR 004).
+The three videos and the PNGs in `ecrans/` go through Git LFS (ADR 004).
 
 ## Serve the mockup
 
@@ -85,8 +88,9 @@ network for Google Fonts (the script stops when a font is missing). Port
 The script serves `mockup/` with `python3 -m http.server` on 127.0.0.1,
 drives a headless Chrome over the DevTools protocol, and stops both when
 it ends. Chrome renders in sRGB (`--force-color-profile=srgb`), so the
-colors do not depend on the display of the exporting Mac. It reads the file names from the png block below, the only list;
-a name it cannot map stops it. One fresh load per context, empty
+colors do not depend on the display of the exporting Mac. It reads the
+file names from the png block below, the only list; a name it cannot
+map stops it. One fresh load per context, empty
 localStorage: 1440 x 900 at 1x and 390 x 844 at 2x, light and dark, plus
 the same four under reduced motion for the hero. Before any capture it
 waits in real time for the preloader to finish, for the fonts and for

@@ -15,7 +15,7 @@ export runs `mobile: true` under 900 px.
 Verdict: PASS
 Criteria: 8 green, 0 red (10 test plan rows green)
 Build and lint: npm ci, npm test, npm run build exit 0 under Node 22.23.4; no lint or format script in package.json
-Screens: 52 PNGs opened (65 crops plus 6 zooms), light and dark, desktop and mobile; no capture defect; 1 mockup detail not yet listed (statement cedilla clipped)
+Screens: 52 PNGs opened (65 crops plus 6 zooms), light and dark, desktop and mobile; no capture defect; 1 mockup detail found (statement cedilla clipped), listed after the run in 3949946
 Scenarios walked: two fresh exports into scratch (exit 0, frozen flags per PNG, 52 names), two negative controls (unknown name, sections out of order: exit 1), a served-mockup probe of the cedilla
 Not verified and why: the lfs-pointers CI job (no PR open yet); byte identity across Chrome versions (not promised, plan); Eco mode (the mockup has none)
 ```
@@ -439,7 +439,7 @@ $ grep -c -i benjahouach docs/v2/README.md docs/v2/export-screens.mjs docs/v2/mo
 
 ## Scratch evidence
 
-Under `/private/tmp/claude-501/-Users-wara-Documents-Developpement-Personnel-IA-Projects-Portfolio--claude-worktrees-angry-raman-1a57de/b8ab265d-82d3-468d-8466-42b5ae728c1e/scratchpad/qa004/`:
+In the qa scratchpad `qa004/` (local, not committed):
 `list.txt`, `ls.txt`, `sizes-committed.txt`, `logged-device.txt`,
 `export-run1.log`, `export-run2.log`, `run1/`, `run2/` (52 PNGs each),
 `pxdiff-committed-run1.txt`, `pxdiff-committed-run2.txt`,

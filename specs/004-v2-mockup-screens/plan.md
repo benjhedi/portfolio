@@ -1,6 +1,6 @@
 # Plan 004 - v2 mockup screens
 
-Spec: `spec.md` (status clarified) | Architecture rule: `.claude/rules/10-architecture.md`
+Spec: `spec.md` (status done) | Architecture rule: `.claude/rules/10-architecture.md`
 
 ## Gates (constitution check) - all must be OPEN before implementation
 

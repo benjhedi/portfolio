@@ -34,7 +34,7 @@ pointers. No `[P]`: each task needs the previous one.
   v2 log`, AGENTS.md under 60 lines - agent: main session
 - [x] T07 verify - all AC checks below green, `npm ci` first - files:
   `specs/004-v2-mockup-screens/verification.md` - agent: qa
-- [ ] T08 review - diff against dev, gates reread; once APPROVED the main
+- [x] T08 review - diff against dev, gates reread; once APPROVED the main
   session sets `spec.md` status to done - agent: review-agent
 
 ## Test plan (derived from the EARS criteria)

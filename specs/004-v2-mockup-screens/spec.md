@@ -1,6 +1,6 @@
 # Spec 004 - v2 mockup screens
 
-Branch: `docs-v2-mockup-screens` | Status: planned 2026-11-09
+Branch: `docs-v2-mockup-screens` | Status: done 2026-11-10
 Roadmap line: Wave 0, open until the PNG follow-up exports one PNG per section, light and dark.
 
 ## Why

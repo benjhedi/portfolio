@@ -1,3 +1,4 @@
 # Scope stops at docs/: CI and release checkouts fetch no LFS object, so anything shipped stays plain git.
 docs/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
 docs/**/*.webm filter=lfs diff=lfs merge=lfs -text
+docs/**/*.png filter=lfs diff=lfs merge=lfs -text

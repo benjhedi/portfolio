@@ -65,6 +65,12 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
   and is not versioned; the source clip is enough.
 - 2026-11-09: The reference videos go through Git LFS, scoped to `docs/`
   (spec 002, ADR 004), chosen over the plain-git recommendation.
+- 2026-11-09: Mockup PNGs (spec 004): the preloader is its own screen,
+  the fixed nav and bottom bar appear on the hero PNGs only; every screen
+  at 1440 px 1x and 390 px 2x, light and dark; reduced motion for the hero
+  only; the hero frozen with the RIDE app at its peak and the scroll hint
+  line drawn, marquees at their start; the PNGs go through Git LFS under
+  `docs/`.
 - 2026-11-09: Three mockup defects are fixed at the source, in a new
   artifact version frozen again before the PNG export (spec 005): the
   skills overflow, the "HJ" mark hidden on the mobile nav, and the hero
@@ -76,3 +82,8 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
 - 2026-11-10: The mockup's mobile "HJ" link stays 30 x 30 px; the nav
   implementation gives it a 44 x 44 px hit area with the visual size
   unchanged (rule 31, constitution 11; spec 005 review).
+- 2026-11-10: Four small mockup details stay in the validated PNGs and
+  are settled by their section specs, not by a new artifact version: the
+  notch on the small vapor phones, the unreset `h4` margin in offers,
+  process and career, the preloader count aligned left, and the
+  statement mask clipping the cedilla of "CONÇOIS" (spec 004).

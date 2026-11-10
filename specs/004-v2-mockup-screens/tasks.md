@@ -25,9 +25,9 @@ pointers. No `[P]`: each task needs the previous one.
 - [x] T04 the 52 PNGs - files: `docs/v2/ecrans/*.png` - check: `ls | wc
   -l` is 52, `diff` against the README block empty, `git lfs ls-files`
   lists them, design-agent opens every PNG - agent: design-agent
-- [ ] T05 one README section per screen (purpose, layout, states,
-  interaction, reduced motion), the 8 px hint overlap and the
-  reconstructed preloader noted - files: `docs/v2/README.md` - check: 12
+- [x] T05 one README section per screen (purpose, layout, states,
+  interaction, reduced motion), the reconstructed preloader and the
+  known mockup details noted - files: `docs/v2/README.md` - check: 12
   `### NN` sections, each with the five labels - agent: design-agent
 - [ ] T06 pointers: wave 0 line checked, AGENTS.md line on the PNGs -
   files: `product/roadmap.md`, `AGENTS.md` - check: grep `[x] Wave 0: the

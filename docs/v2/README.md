@@ -172,6 +172,192 @@ The `ecrans/` folder must match this list exactly:
 
 ## Screens
 
-Not exported yet. The PNG follow-up adds one PNG per mockup section,
-light and dark, under `ecrans/`, and one description per screen here
-(purpose, layout, states), as rule 60 asks.
+Twelve screens in page order. Each maps to a PNG base name in `ecrans/`
+with four variants: the base (1440 px, light), `-dark`, `-mobile` (390
+px at 2x) and `-mobile-dark`. Desktop means wider than 900 px, mobile
+900 px and narrower, the mockup's only breakpoint. Light and dark come
+from `data-theme`; the tokens flip, the layout does not change.
+
+Common to every screen: elements fade in and rise 22 px (0.8 s) once,
+when they enter the viewport; every link and button gets a 2 px focus
+ring on keyboard focus. The PNGs freeze the page as the export
+procedure above says. Hover, focus and form states are described here
+in text, never exported.
+
+### 00 Preloader
+
+- PNG: `00-preloader`.
+- Purpose: a short "HJ" and percent count while the page starts.
+- Layout: the full viewport on the page background, the 44 px "HJ"
+  mark centered with the muted mono count under it; same at both
+  widths.
+- States: counts from 0% to 100% in 900 ms, fades out, then the
+  reveals start. The PNG is a reconstructed first frame at "0%", one
+  viewport tall.
+- Interaction: none; fixed above the page, hidden from assistive tech.
+- Reduced motion: CSS hides the loader, so there is no reduced PNG.
+
+### 01 Hero
+
+- PNG: `01-hero`, and `01-hero-reduced` for the poster, four each.
+- Purpose: the animated portrait in an oval, the name and the role.
+- Layout: a centered column at least one viewport tall: oval (1.5/1,
+  `min(78vw, 860px)`, capped by the viewport height, so 720 px wide at
+  1440 x 900), name, role, "Défiler" hint. Mobile: oval 92vw at 1.25/1.
+  The fixed nav and bottom bar appear on the hero PNGs only. Mobile nav:
+  the 30 x 30 "HJ" mark, FR/EN, theme, burger; bar: its two links only.
+- States: the video loops; at each exhale (2.05 s) one of five objects
+  (RIDE app, site, franceinfo app, product, GearTrack app) leaves the
+  mouth and grows along the vapor. The PNG shows RIDE at its peak, in
+  the first loop, hint line drawn.
+- Interaction: anchors from "Défiler", the nav and the bar; nav blurred
+  past 40 px, hidden scrolling down past 300 px; accent dot on the
+  active link; theme toggle saved in localStorage (default: system);
+  FR/EN and burger inert. The mobile "HJ" link gets a 44 x 44 hit area
+  in the implementation, visual size unchanged.
+- Reduced motion: the video stays on its poster, no vapor object, hint
+  line static: `01-hero-reduced`.
+
+### 02 Statement
+
+- PNG: `02-statement`.
+- Purpose: name, role and what Hedi does, then the claim and proof.
+- Layout: two columns of uppercase titles with a mono subline, a note
+  under the first, "Ce que je fais" under the second; the four-line
+  claim (up to 88 px, "développe" and "production." in accent mono);
+  four proof chips. Mobile: one column, claim full width.
+- States: the claim lines slide up from a mask (0.9 s, 80 ms stagger);
+  the PNG shows them in place.
+- Interaction: none.
+- Reduced motion: the lines and chips show at once.
+
+### 03 Clients
+
+- PNG: `03-clients`.
+- Purpose: client names as proof.
+- Layout: a full-bleed band between two borders, the kicker "Ils m'ont
+  fait confiance", one marquee row of twelve names, three as monochrome
+  logos (black in light, inverted in dark), faded edges. Same at both
+  widths.
+- States: scrolls left in a 38 s loop; the PNG shows its start.
+- Interaction: hover pauses the marquee.
+- Reduced motion: static at its start.
+
+### 04 Projects
+
+- PNG: `04-projects`.
+- Purpose: six detailed cases, then nine more projects.
+- Layout: intro (kicker "01", title, lead), six blocks at least one
+  viewport tall, page and surface backgrounds in turn: a giant outlined
+  title marquee behind the copy (index, years, client, title, role, two
+  paragraphs, tags, "Voir le projet") and a tilted 300 px phone with a
+  ghost outline; then a 3-column grid of nine cards. Mobile: one column,
+  phone under the copy, no ghost, the grid in one column.
+- States: title marquees loop in 40 s, at their start in the PNG. The
+  mobile PNG is stitched from tiles (see the export procedure).
+- Interaction: "Voir le projet" points to its own block in the mockup;
+  its real target is still open (decision log, 2026-11-07). Hover: the
+  button lifts 1 px, a grid card takes the surface background.
+- Reduced motion: marquees static at their start, blocks shown at once.
+
+### 05 About
+
+- PNG: `05-about`.
+- Purpose: who Hedi is and how he works.
+- Layout: the numbered layout of 05 to 09: a 200 px side column ("002",
+  "À propos"), sticky 96 px from the top, then a lead with an accent
+  word, a 112 px round portrait beside two paragraphs, four traits in a
+  2 x 2 grid. Mobile: number and label inline on top, portrait above
+  the text, traits in one column.
+- States: the PNG shows the side column at the top of the section.
+- Interaction: none.
+- Reduced motion: shown at once.
+
+### 06 Offers
+
+- PNG: `06-offers`.
+- Purpose: the two ways to work together.
+- Layout: side column "003"; title, lead, two cards side by side (at
+  least 280 px high): accent kicker, title, text, mono footnote over a
+  border. Mobile: the cards stack.
+- States: one state.
+- Interaction: none.
+- Reduced motion: shown at once.
+
+### 07 Process
+
+- PNG: `07-process`.
+- Purpose: the six steps from idea to production.
+- Layout: side column "004"; title, lead, six rows between borders:
+  accent number (72 px), step title (220 px), description, on one
+  baseline. Mobile: a 56 px number column, the description under the
+  title.
+- States: one state.
+- Interaction: none.
+- Reduced motion: shown at once.
+
+### 08 Career
+
+- PNG: `08-career`.
+- Purpose: fourteen years of roles and clients.
+- Layout: side column "005"; title, six rows between borders: mono
+  period (140 px), role with the company under it, description. Mobile:
+  the three stack in each row.
+- States: one state.
+- Interaction: none.
+- Reduced motion: shown at once.
+
+### 09 Skills
+
+- PNG: `09-skills`.
+- Purpose: the stack, by group, then the tools.
+- Layout: side column "006"; title, three groups of mono tags in three
+  columns, then a tool marquee of thirteen names in mono uppercase with
+  accent bullets, between borders, edges faded. Mobile: one group per
+  row.
+- States: the marquee loops in 38 s; the PNG shows its start.
+- Interaction: hover pauses the marquee.
+- Reduced motion: the marquee is static at its start.
+
+### 10 Contact
+
+- PNG: `10-contact`.
+- Purpose: start a project, through the form or directly.
+- Layout: two columns: kicker "007", uppercase title with an accent mono
+  line, lead, mail and LinkedIn links, location; the form: request type
+  chips (Mission, Forfait, Régie, Autre), name, e-mail, message (140 px,
+  resizable), send button. Mobile: the form under the text.
+- States: the PNGs show the empty form, Mission selected. Selected chip:
+  solid; focused field: accent border and focus ring; after a submit, a
+  success line under the button. No validation and no error state.
+- Interaction: the form is a mockup, the submit is cancelled and
+  nothing is sent; the mail and LinkedIn links leave the page.
+- Reduced motion: shown at once.
+
+### 11 Footer
+
+- PNG: `11-footer`.
+- Purpose: a last call to start a project, and the footer links.
+- Layout: a full-bleed marquee of "Parlons de ton projet" with accent
+  separators and faded edges, a border, then a mono uppercase row:
+  copyright, "Cas (6)" and "Archive (9)" (both to the projects),
+  LinkedIn, availability. Mobile: the row wraps to three lines.
+- States: the marquee loops in 38 s; the PNG shows its start.
+- Interaction: hover pauses the marquee; a hovered link takes the text
+  color.
+- Reduced motion: the marquee is static at its start.
+
+### Known mockup details
+
+Seen in the PNGs on 2026-11-10 and kept as validated; each section spec
+decides the intended result (decision log, 2026-11-10).
+
+- 01 hero: the small vapor phones get the dark notch of the global
+  `.phone::after` rule, which hides the top of their screenshot.
+- 06 offers, 07 process, 08 career: the `h4` titles keep the browser's
+  default margin, so they sit lower than the rest of their row.
+- 00 preloader: "0%" aligns with the left edge of the "HJ" mark instead
+  of being centered under it.
+- 01 hero: FR/EN and the burger do nothing in the mockup; the mobile
+  menu and the language switch need their own mockup before they are
+  built (rule 60).

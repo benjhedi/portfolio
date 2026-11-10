@@ -82,3 +82,7 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
 - 2026-11-10: The mockup's mobile "HJ" link stays 30 x 30 px; the nav
   implementation gives it a 44 x 44 px hit area with the visual size
   unchanged (rule 31, constitution 11; spec 005 review).
+- 2026-11-10: Three small mockup details stay in the validated PNGs and
+  are settled by their section specs, not by a new artifact version: the
+  notch on the small vapor phones, the unreset `h4` margin in offers,
+  process and career, and the preloader count aligned left (spec 004).

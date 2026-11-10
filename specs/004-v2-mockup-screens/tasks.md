@@ -22,7 +22,7 @@ pointers. No `[P]`: each task needs the previous one.
   files: `docs/v2/export-screens.mjs` - check: run into a scratch folder,
   stdout logs the frozen flags per context, exit 0; tile stitch run on
   `04-projects-mobile` - agent: design-agent
-- [ ] T04 the 52 PNGs - files: `docs/v2/ecrans/*.png` - check: `ls | wc
+- [x] T04 the 52 PNGs - files: `docs/v2/ecrans/*.png` - check: `ls | wc
   -l` is 52, `diff` against the README block empty, `git lfs ls-files`
   lists them, design-agent opens every PNG - agent: design-agent
 - [ ] T05 one README section per screen (purpose, layout, states,

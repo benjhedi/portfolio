@@ -356,6 +356,8 @@ decides the intended result (decision log, 2026-11-10).
   `.phone::after` rule, which hides the top of their screenshot.
 - 06 offers, 07 process, 08 career: the `h4` titles keep the browser's
   default margin, so they sit lower than the rest of their row.
+- 02 statement: the `.big .line` mask (`overflow:hidden`) clips the
+  cedilla tail of "CONÇOIS"; the mask needs room for descenders.
 - 00 preloader: "0%" aligns with the left edge of the "HJ" mark instead
   of being centered under it.
 - 01 hero: FR/EN and the burger do nothing in the mockup; the mobile

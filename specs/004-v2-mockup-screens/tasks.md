@@ -29,7 +29,7 @@ pointers. No `[P]`: each task needs the previous one.
   interaction, reduced motion), the reconstructed preloader and the
   known mockup details noted - files: `docs/v2/README.md` - check: 12
   `### NN` sections, each with the five labels - agent: design-agent
-- [ ] T06 pointers: wave 0 line checked, AGENTS.md line on the PNGs -
+- [x] T06 pointers: wave 0 line checked, AGENTS.md line on the PNGs -
   files: `product/roadmap.md`, `AGENTS.md` - check: grep `[x] Wave 0: the
   v2 log`, AGENTS.md under 60 lines - agent: main session
 - [ ] T07 verify - all AC checks below green, `npm ci` first - files:

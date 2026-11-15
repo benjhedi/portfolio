@@ -11,7 +11,7 @@ spec 005. T01 and T02 change no repo file, so they have no commit. No
 
 ## Tasks
 
-- [ ] T01 the tint, toggle, notch and role edits of the plan's technical
+- [x] T01 the tint, toggle, notch and role edits of the plan's technical
   approach in a scratch copy of `docs/v2/mockup/index.html`, wrapper kept,
   plus the export check in a scratch copy of `docs/v2/export-screens.mjs`;
   rewrite the box and pixel diff tools spec 005 lost - files: scratchpad
@@ -20,29 +20,29 @@ spec 005. T01 and T02 change no repo file, so they have no commit. No
   script, frozen copy, twice for the floor) and after (scratch script,
   edited copy) exports, box diff empty outside the hero; scratch shots of
   the paused and autoplay-refused states - agent: design-agent
-- [ ] T02 publish the edited `index.html` to artifact BDrsQCHWzgfQRLqBGn9FJM
+- [x] T02 publish the edited `index.html` to artifact BDrsQCHWzgfQRLqBGn9FJM
   without the host wrapper, after Hedi's explicit go, then read it back -
   files: none in the repo - check: new version id; read-back sha256 of
   `index.html` equals the T01 file; the 15 other sums unchanged; a
   mismatch stops and diffs before any second publish - agent: main session
-- [ ] T03 refreeze: the read-back `index.html` into `docs/v2/mockup/`, the
+- [x] T03 refreeze: the read-back `index.html` into `docs/v2/mockup/`, the
   README sums block updated - files: `docs/v2/mockup/index.html`,
   `docs/v2/README.md` (sums block) - check: sums check from `docs/v2/`
   passes; `git diff --stat feat-hero-spec -- docs/v2/mockup` lists
   `index.html` only - agent: main session
-- [ ] T04 the toggle drift check in the export script (`pageState`,
+- [x] T04 the toggle drift check in the export script (`pageState`,
   `drift`, `flags`) - files: `docs/v2/export-screens.mjs` - check: export
   to a scratch folder exits 0 with the toggle logged on "Pause"; a scratch
   copy of the mockup whose toggle starts on play makes it exit 1 - agent:
   design-agent
-- [ ] T05 export to a scratch folder, copy the 8 hero PNGs only - files:
+- [x] T05 export to a scratch folder, copy the 8 hero PNGs only - files:
   `docs/v2/ecrans/01-hero*.png` (8) - check: the run's non-hero PNGs
   equal their committed copies (0 px on `00-preloader*` and
   `02-statement*`), as T01 saw text render in two states run by run;
   else export again; `git diff --stat feat-hero-spec -- docs/v2/ecrans`
   lists the 8 hero PNGs only, as LFS pointers; png block still 52 names
   - agent: main session
-- [ ] T06 the new version named where the old one stood, and the hero
+- [x] T06 the new version named where the old one stood, and the hero
   section updated (tint, toggle, role, no notch, the paused and
   autoplay-refused sentence; the notch known detail closed) - files:
   `docs/v2/README.md`, `docs/v2/decision-log.md`, `product/tech-stack.md`,

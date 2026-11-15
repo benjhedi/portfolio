@@ -45,14 +45,14 @@ before T08.
 
 ### Checkpoint - publish, Hedi's call
 
-- [ ] T07 Hedi reviews T06, merges wara-ds-web PR #3; `release.yml` is
+- [x] T07 Hedi reviews T06, merges wara-ds-web PR #3; `release.yml` is
   dispatched on his go - files: none in this repo - check: `npm view
   @warastudio/theme versions` lists 0.2.0 - agent: Hedi, or the main
   session on his go
 
 ### Phase 2 - registry 0.2.0
 
-- [ ] T08 pin 0.2.0 exactly: `npm install --save-exact
+- [x] T08 pin 0.2.0 exactly: `npm install --save-exact
   @warastudio/theme@0.2.0 @warastudio/react@0.2.0` - files:
   `package.json`, `package-lock.json` - check: AC-1 and AC-9 commands -
   agent: setup-agent

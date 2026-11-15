@@ -49,7 +49,7 @@ spec 005. T01 and T02 change no repo file, so they have no commit. No
   `product/mission.md` - check: `git grep -n 1794266082-62e1` returns only
   intended history lines; the new version found in the four files - agent:
   design-agent
-- [ ] T07 verify - all AC checks below green, `npm ci` first - files:
+- [x] T07 verify - all AC checks below green, `npm ci` first - files:
   `specs/008-v2-hero-mockup-sky/verification.md` - agent: qa
 - [ ] T08 review - diff against `feat-hero-spec`, gates reread; once
   APPROVED the main session sets `spec.md` status to done - agent:

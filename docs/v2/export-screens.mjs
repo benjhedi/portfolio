@@ -257,6 +257,7 @@ function pageState() {
   const revealable = [...document.querySelectorAll('.r, .big')];
   const hiddenReveals = revealable.filter((e) => !e.classList.contains('in') || (e.classList.contains('r') && getComputedStyle(e).opacity !== '1'));
   const hiddenLines = [...document.querySelectorAll('.big .line > span')].filter((s) => getComputedStyle(s).transform !== 'none');
+  const toggle = document.getElementById('heroToggle');
   return {
     video: vid.currentTime, videoPaused: vid.paused, played: vid.played.length,
     rideSrc: outs[0].querySelector('img')?.getAttribute('src'),
@@ -267,6 +268,7 @@ function pageState() {
     line: time(line),
     running: anims.filter((a) => a.playState === 'running').map((a) => a.animationName ?? a.transitionProperty),
     unrevealed: hiddenReveals.length + hiddenLines.length,
+    toggle: { shown: Boolean(toggle) && getComputedStyle(toggle).display !== 'none', label: toggle?.getAttribute('aria-label') ?? null },
   };
 }
 
@@ -322,12 +324,15 @@ function drift(ctx, s) {
   if (ctx.reduced) {
     if (s.played || s.video !== 0) errors.push(`reduced: video moved to ${s.video}, poster lost`);
     if (s.ride || s.mq.length || s.line) errors.push('reduced: an animation exists');
+    if (s.toggle.shown) errors.push('reduced: play toggle displayed');
   } else {
     if (!near(s.video, VIDEO_T, 0.01)) errors.push(`video at ${s.video}`);
     if (s.rideSrc !== 'img/RIDE.webp') errors.push(`first vapor object is ${s.rideSrc}`);
     if (!s.ride || s.ride.state !== 'paused' || !near(s.ride.t, RIDE_T, 0.5)) errors.push(`RIDE at ${JSON.stringify(s.ride)}`);
     if (s.mq.length !== s.mqTracks || s.mq.some((a) => a.state !== 'paused' || !near(a.t, MQ_T, 0.5))) errors.push(`marquees ${JSON.stringify(s.mq)} for ${s.mqTracks} tracks`);
     if (!s.line || s.line.state !== 'paused' || !near(s.line.t, LINE_T, 0.5)) errors.push(`scroll hint at ${JSON.stringify(s.line)}`);
+    // The PNGs freeze the toggle at rest on pause (spec 008 AC-3).
+    if (!s.toggle.shown || s.toggle.label !== 'Pause') errors.push(`play toggle ${JSON.stringify(s.toggle)}`);
   }
   return errors;
 }
@@ -342,6 +347,7 @@ function flags(ctx, s) {
     `mq=${s.mq.length ? `${mqTimes}x${s.mq.length}` : '-'}`,
     `line=${ms(s.line)}`,
     `unrevealed=${s.unrevealed}`,
+    `toggle=${s.toggle.shown ? s.toggle.label : 'hidden'}`,
   ].join(' ');
 }
 

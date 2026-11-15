@@ -106,3 +106,11 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
 - 2026-11-15: The hero carries a play/pause toggle (WCAG 2.2.2), which also
   shows play when autoplay is refused, and the small vapor phones lose the
   notch; this settles the 2026-11-10 notch detail (spec 007).
+- 2026-11-15: The hero sky retint is a duotone: a `--ws-color-accent`
+  layer in `mix-blend-mode: color` over the video, opacity 0.62 light and
+  0.5 dark as in v1, chosen from three variants captured by design-agent;
+  the halo-only and frank sky multiplies were dropped (spec 008).
+- 2026-11-15: The hero play/pause toggle is round, Lucide icons, 32 px in
+  a 44 x 44 hit area; it follows the cursor over the oval, where a click
+  anywhere toggles, and rests at the bottom center of the oval otherwise.
+  Its paused state is described in the README, not exported (spec 008).

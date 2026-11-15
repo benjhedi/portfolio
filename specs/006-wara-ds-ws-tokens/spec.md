@@ -1,6 +1,6 @@
 # Spec 006 - Wara DS SDK on --ws-* tokens
 
-Branch: `chore-wara-ds-ws-tokens` | Status: clarified (2026-11-15)
+Branch: `chore-wara-ds-ws-tokens` | Status: planned (2026-11-15)
 Roadmap line: Phase 1, "Wave 0: the Wara DS SDK is upgraded from `--wara-*`
 (0.1.0) to the `--ws-*` version the mockup uses, before the first v2 screen
 spec" (Hedi, 2026-11-07).

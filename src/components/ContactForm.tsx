@@ -66,7 +66,7 @@ export function ContactForm() {
       <p
         role="status"
         className="inline-flex items-center gap-2.5 rounded-card border border-line bg-raise px-6 py-5 text-[1.05rem] font-medium"
-        style={{ color: "var(--wara-color-successText)" }}
+        style={{ color: "var(--ws-color-success-text)" }}
       >
         <CheckCircle2 size={20} strokeWidth={1.75} />
         {t(contact.form.success)}
@@ -137,7 +137,7 @@ export function ContactForm() {
       </div>
 
       {status === "error" && (
-        <p role="alert" className="text-sm" style={{ color: "var(--wara-color-dangerText)" }}>
+        <p role="alert" className="text-sm" style={{ color: "var(--ws-color-danger-text)" }}>
           {t(contact.form.error)}
         </p>
       )}

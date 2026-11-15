@@ -23,11 +23,11 @@ before T08.
   `specs/006-sdk-ws-upgrade/computed-before.json`,
   `specs/006-sdk-ws-upgrade/keyboard-before.json` - check: two captures
   of dev diff to 0 values and 0 pixels - agent: qa
-- [ ] T03 install 0.2.0 locally: pack tokens, theme, react from wara-ds-web
+- [x] T03 install 0.2.0 locally: pack tokens, theme, react from wara-ds-web
   `origin/changeset-release/main` into the scratchpad, `npm install
   --no-save` the three tarballs - files: none, no commit - check: `npm ls`
   shows 0.2.0, `git status` clean - agent: setup-agent
-- [ ] T04 rename the 22 references: Tailwind aliases (`--color-slate` to
+- [x] T04 rename the 22 references: Tailwind aliases (`--color-slate` to
   `--ws-color-slate`) and the comments citing `--wara-*` in `index.css`
   (rewritten in English), two inline colors in `ContactForm.tsx`, the
   comment in `main.tsx` - files: `src/index.css`,

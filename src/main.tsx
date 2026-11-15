@@ -1,11 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-// Wara DS (SDK publie). theme/style.css = SOURCE UNIQUE des tokens : expose les
-// variables --wara-* (:root = light, [data-theme="dark"] = Midnight) que le bloc
-// @theme de index.css aliase (--color-* -> var(--wara-*)). react/style.css =
-// styles des composants SDK, desormais consommes (Input + Button du formulaire
-// de contact). Aucun des deux ne stylise body/html/*, pas de fuite Tailwind.
+// @warastudio/theme/style.css is the single source of tokens: it defines the
+// --ws-* variables (:root for light, [data-theme="dark"] for Midnight) that the
+// @theme block of index.css aliases (--color-* reads var(--ws-*)).
+// @warastudio/react/style.css styles the SDK components the contact form uses
+// (Input, Button). Neither styles body, html or *, so nothing leaks into Tailwind.
 import "@warastudio/theme/style.css";
 import "@warastudio/react/style.css";
 import App from "./App";

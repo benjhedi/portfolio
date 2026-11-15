@@ -87,3 +87,22 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
   notch on the small vapor phones, the unreset `h4` margin in offers,
   process and career, the preloader count aligned left, and the
   statement mask clipping the cedilla of "CONÇOIS" (spec 004).
+- 2026-11-15: The hero oval retints the video to sky in CSS, through a
+  token, in light and dark; this settles the 2026-11-07 open point on the
+  oval background. A new mockup version shows it before the hero is built
+  (spec 007, rule 60).
+- 2026-11-15: The hero loop keeps the mockup's 4.21 s clip with its
+  built-in crossfade; this settles the 2026-11-07 open point on the loop.
+- 2026-11-15: The hero role line is "Consultant iOS senior, freelance"
+  (`identity.role`), not "Conception et développement iOS, de l'idée à
+  la production", judged too generic and too narrow for missions on
+  existing apps, coaching and audits. One `h1` wraps the name and the role
+  line; the SEO spec may change the role text, not this structure.
+- 2026-11-15: `identity.name` becomes "Hedi Jahouach" with the hero, so
+  the page never shows two names (spec 007).
+- 2026-11-15: Between the hero and the statement and bottom bar specs,
+  dev lacks the v1 hero copy, which stays in `content.ts`; no `v*` tag is
+  cut until those two land (spec 007).
+- 2026-11-15: The hero carries a play/pause toggle (WCAG 2.2.2), which also
+  shows play when autoplay is refused, and the small vapor phones lose the
+  notch; this settles the 2026-11-10 notch detail (spec 007).

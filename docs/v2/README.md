@@ -204,7 +204,8 @@ in text, never exported.
 
 ### 01 Hero
 
-- PNG: `01-hero`, and `01-hero-reduced` for the poster, four each.
+- PNG: `01-hero`, and `01-hero-reduced` for the poster, four each,
+  exported from version 1794759302-6b38 (spec 008).
 - Purpose: the animated portrait in an oval, the name and the role.
 - Layout: a centered column at least one viewport tall: oval (1.5/1,
   `min(78vw, 860px)`, capped by the viewport height, so 720 px wide at

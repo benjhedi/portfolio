@@ -25,7 +25,7 @@ Today's v1 hero, a full-width duotone video behind a long claim, looks generic a
 - AC-5 THE vapor objects SHALL be an HTML layer above the video, never pixels of the video, hidden from assistive technologies; the small phones show their screenshot whole, without the notch the mockup's global phone rule adds (Hedi, 2026-11-15).
 - AC-6 WHILE reduced motion is on THE hero SHALL show the poster without playing the video, release no vapor object, draw the hint line static and show every hero element at once, matching the four `01-hero-reduced*.png`.
 - AC-7 WHERE the URL carries `?motion` THE hero SHALL behave as AC-3 and AC-4 even under reduced motion (existing demo escape, CLAUDE.md).
-- AC-8 WHEN a hero element first enters the viewport THE system SHALL fade it in and raise it by 22 px over 0.8 s, once (README, common to every screen).
+- AC-8 WHEN a hero element first enters the viewport THE system SHALL fade it in and raise it by `--ws-space-24` (24 px, the mockup's 22 px rounded to the existing spacing token) over 0.8 s, once (README, common to every screen; Hedi, 2026-11-15).
 - AC-9 THE hero SHALL read every visible and accessible text (name, role, hint, video label, product window label, toggle labels) from `src/content/content.ts` in FR and EN; a grep of the hero's source finds no literal copy.
 - AC-10 THE hero SHALL show the name "Hedi Jahouach" and contain no "Benjahouach", "Wara" or Wara Studio logo (constitution 1 and 2).
 - AC-11 WHEN the visitor activates the "Défiler" hint by pointer or keyboard THE page SHALL move to the section placed right after the hero, by its id from `content.ts`: `#apropos` today, `#intro` once the statement spec moves it; the hint never points to a missing anchor (Hedi, 2026-11-15).

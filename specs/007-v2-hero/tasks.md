@@ -1,6 +1,6 @@
 # Tasks 007 - v2 hero
 
-Plan: `plan.md` (deca53d; one gate BLOCKED: the five SDK tokens of D1) |
+Plan: `plan.md` (deca53d; one gate BLOCKED: the four SDK tokens of D1) |
 Branch: `feat-v2-hero` off `dev`
 
 Each task: one logical change, one commit `[feat-v2-hero]: ...`, one
@@ -10,9 +10,9 @@ Test-coder tasks sit right after the unit they test (ADR 001: Vitest,
 node environment, doubles, no component tests).
 
 Status tags:
-- `now`: reads none of the five requested tokens; can run today.
+- `now`: reads none of the four requested tokens; can run today.
 - `BLOCKED (tokens)`: writes or depends on `hero.css`, which reads
-  `--ws-motion-reveal`, `--ws-motion-reveal-rise`, `--ws-ease-emphasized`,
+  `--ws-motion-reveal`, `--ws-ease-emphasized`,
   `--ws-motion-stagger`, `--ws-track-label`. Prerequisite, a separate
   change and not a task here: WaraDS-Web publishes the tokens (ds-agent
   request, plan table), then an SDK upgrade change on `dev`, like spec
@@ -222,7 +222,7 @@ others in T25.
 | AC-6 | the reduced hero beside the four reduced PNGs | PNG, qa | `matchesReducedPngsSideBySide` |
 | AC-7 | `?motion` in the URL reports motion allowed under reduced | unit, `mediaQueryMotionPreference` | `allowsMotionWhenUrlCarriesMotion` |
 | AC-7 | reduced emulated plus `?motion`: loop, vapor and toggle | probe, qa | `playsLoopUnderReducedWithMotionParam` |
-| AC-8 | first entry fades in and rises 22 px over 0.8 s, never replays | probe, qa | `revealsOnceOnFirstEntry` |
+| AC-8 | first entry fades in and rises 24 px (`--ws-space-24`) over 0.8 s, never replays | probe, qa | `revealsOnceOnFirstEntry` |
 | AC-9 | hero source holds no literal copy in JSX text, `aria-label` or `alt` | grep, qa | `findsNoLiteralCopyInHeroSource` |
 | AC-9 | switching to EN changes every hero text and label | probe, qa | `switchesEveryHeroLabelWithLocale` |
 | AC-10 | no "Benjahouach" or "Wara" in the hero code or DOM, name reads "Hedi Jahouach" | grep and probe, qa | `showsJahouachWithoutWaraInHero` |

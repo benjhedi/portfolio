@@ -5,7 +5,7 @@ d1a645a) | Architecture rule: `.claude/rules/10-architecture.md` | Branch:
 `feat-v2-hero`, off `origin/dev` 01eb184
 
 Decisions D1 to D7 taken by Hedi on 2026-11-15 (Risks and decisions). One
-gate stays BLOCKED: the five SDK tokens of D1, requested from WaraDS-Web
+gate stays BLOCKED: the four SDK tokens of D1, requested from WaraDS-Web
 through ds-agent. The tasks that do not read them can start first
 (Sequencing).
 
@@ -60,7 +60,7 @@ Design
   | Proposed name | Value | Mockup source | Reused by |
   |---|---|---|---|
   | `--ws-motion-reveal` | `.8s` | l.328 `.r` transition | 01 hero, 02 statement, 04 projects, 05 about, 06 offers, 07 process, 08 career, 09 skills, 10 contact (every `.r`; README: common to every screen) |
-  | `--ws-motion-reveal-rise` | `22px` | l.328 `.r` `translateY(22px)` | same screens as the reveal |
+  | (no token) | `22px` rise | l.328 `.r` `translateY(22px)` | reuses `--ws-space-24`, 2 px more than the mockup (Hedi, 2026-11-15, in the WaraDS request session) |
   | `--ws-ease-emphasized` | `cubic-bezier(.16,1,.3,1)` | l.24 local `--ease-out`, 8 uses: loader l.64, nav l.71, `.btn` l.93, hero toggle l.125, hint line l.157, statement lines l.176, project phones l.221, reveal l.328 | 00 preloader, nav, 01 hero, 02 statement, 04 projects, buttons on every screen, every reveal |
   | `--ws-motion-stagger` | `.1s` (delays are 1, 2, 3 steps) | l.330 `.d1` .1 s, `.d2` .2 s, `.d3` .3 s | `d1`: 01, 04, 05, 06, 07, 08, 09, 10; `d2`: 01, 05, 06, 07, 09; `d3`: 01 |
   | `--ws-track-label` | `.14em` | l.156 hint, l.171 statement `.what .k`, l.200 `.sec-k`, l.238-239 numbered section labels | 01 hero, 02 statement, 04 projects, 05 to 09 numbered sections |
@@ -101,7 +101,7 @@ Rules and skills
     statement, bottom bar and clients specs (spec Out of scope, d1a645a)
   - 5: under reduced motion an `<img>` poster, no vapor, no toggle, static
     line, everything shown
-  - 7: mockup gate OPEN; tokens gate BLOCKED on the five SDK tokens only
+  - 7: mockup gate OPEN; tokens gate BLOCKED on the four SDK tokens only
   - 8: one runnable check per AC (Verification)
   - 9: no dependency added
   - 10: units placed as the rule names them (Architecture)
@@ -341,7 +341,7 @@ resets it. The section root carries `data-held` and `data-reduced`;
 `hero.css` pauses `.out.go` and the hint line under `data-held` and drops
 animations and transitions under `data-reduced` (no `@media` query, so
 `?motion` works). A vapor release re-keys the active object to restart
-`emerge`. `hero.css` reads the five requested tokens by their shipped
+`emerge`. `hero.css` reads the four requested tokens by their shipped
 names; until the SDK ships them, no task writes them (rule 50).
 
 Media, plain git (ADR 004 keeps `public/` out of LFS), about 0.85 MB
@@ -357,7 +357,7 @@ Settled by Hedi on 2026-11-15:
 - C1 to C3 (spec d1a645a): the 56 px bar is reserved before the bar
   ships; reduced motion off restarts the loop unless the visitor paused;
   the clients marquee leaves with the v1 hero, back with the clients spec.
-- D1 = C: five SDK tokens through ds-agent (table above), composition
+- D1 = C: four SDK tokens through ds-agent, the rise reusing `--ws-space-24` (table above), composition
   values for the hero-only values. D2: hint at `--ws-size-micro`. D3:
   clamp 26 px inside the ellipse, tested. D4: toggle hidden while loading
   and after a failure. D5: WebP with `cwebp`, each under its JPEG. D6: v1

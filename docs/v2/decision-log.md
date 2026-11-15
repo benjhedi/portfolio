@@ -4,7 +4,8 @@ The first section is Hedi's log of 2026-11-07, verbatim in French as he
 pasted it (accents already stripped in his original). Its links point to
 the Cowork session of that day. The mockup lives in `mockup/`, frozen at
 artifact version 1794063463-7380 as published on 2026-11-09, then at
-1794266082-62e1 on 2026-11-10 (spec 005, `README.md`). The host numbered
+1794266082-62e1 on 2026-11-10 (spec 005, `README.md`), then at
+1794759302-6b38 on 2026-11-15 (spec 008, the host's "Version 7"). The host numbered
 the spec 005 publish "Version 6", so 1794063463-7380 is probably the
 "version 5" the log cites (inferred, not verified).
 Entries after it are in English, dated, and never deleted; a replaced
@@ -114,3 +115,8 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
   a 44 x 44 hit area; it follows the cursor over the oval, where a click
   anywhere toggles, and rests at the bottom center of the oval otherwise.
   Its paused state is described in the README, not exported (spec 008).
+- 2026-11-15: The sky hero mockup is artifact version 1794759302-6b38,
+  frozen in `mockup/` with its eight hero PNGs re-exported; the toggle
+  disc is porcelain with a charcoal glyph in both themes and a 2 px
+  porcelain gap under the focus ring, after the solid disc measured
+  1.21:1 on the shirt in light (spec 008, T01).

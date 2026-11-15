@@ -32,7 +32,7 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 
 | Package | Version | Imported by | Decision |
 |---|---|---|---|
-| `@warastudio/theme` | 0.2.0, exact | `main.tsx`, `index.css` | ADR 003 |
+| `@warastudio/theme` | 0.2.0, exact | `main.tsx`, `index.css`, `sdkTokens.test.ts` (`style.css?raw`) | ADR 003 |
 | `@warastudio/react` | 0.2.0, exact | `main.tsx`, `components/ContactForm.tsx` | ADR 003 |
 | `motion` | 11.18.2 | `App.tsx`, `app/useReduce.ts`, 7 files in `components/` | none yet |
 | `gsap` | 3.15.0 | `components/Work.tsx` (static import, not a lazy chunk) | none yet |

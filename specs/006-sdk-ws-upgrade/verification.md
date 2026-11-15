@@ -106,9 +106,14 @@ Pass: focus the name field, Tab to email, message, button, Enter on the
 empty form (no Web3Forms key locally, so the error state on both sides,
 no network call). Each step records the focused element, `:focus-visible`,
 outline, box-shadow, border, background and the alert text and color.
+The plan also names a filled submit. It was not played: without a key,
+`onSubmit` reaches the `!ACCESS_KEY` branch (`ContactForm.tsx:30-35`)
+before it reads name, email or message, so a filled form ends in the same error
+state as the empty one. The pass is driven by hand through the browser
+pane, so it is not replayable from the repo (see Not verified).
 
-- T06 (local 0.2.0): identical to `keyboard-before.json`, same SHA-256
-  `78e1086b...`, stored as `keyboard-after-local.json`.
+- T06 (local 0.2.0): identical to `keyboard-before.json`, byte for byte
+  (`cmp`), stored as `keyboard-after-local.json`.
 - T10 (registry 0.2.0): dark identical. Light reruns, driven through the
   app's browser pane, differed each time on states the harness disturbed,
   not on tokens: a hover overlay where the pointer sat over the button

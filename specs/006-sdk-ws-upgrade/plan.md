@@ -6,9 +6,9 @@ Spec: `spec.md` (clarified, amended 2026-11-15) | Architecture rule: `.claude/ru
 
 Design
 - Design system: `@warastudio/theme` and `@warastudio/react` 0.2.0, packed
-  locally from wara-ds-web `origin/changeset-release/main` (a3ef361, PR #3,
-  open, not published on 2026-11-15) | OPEN for phase 1; phase 2 waits for
-  the publish, Hedi's call
+  locally from wara-ds-web `origin/changeset-release/main` (a3ef361) for
+  phase 1, then published on 2026-11-15 (PR #3 merged, byte-identical CSS)
+  for phase 2 | OPEN
 - Tokens: the 22 `--wara-*` of `src/` all exist as `--ws-*` in 0.2.0, same
   values in both themes; `--color-slate` reads `--ws-color-slate` (AC-8);
   the 128 names of `docs/v2/mockup/tokens.css` all exist in 0.2.0, plus

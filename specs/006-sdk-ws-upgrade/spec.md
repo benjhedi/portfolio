@@ -1,8 +1,8 @@
 # Spec 006 - SDK upgrade to --ws-*
 
-Branch: `chore-wara-ds-ws-tokens` | Status: planned (clarified 2026-11-10, amended 2026-11-15)
+Branch: `chore-wara-ds-ws-tokens` | Status: done (clarified 2026-11-10, amended and done 2026-11-15)
 Roadmap line: Phase 1, wave 0, SDK upgraded from `--wara-*` (0.1.0) to the `--ws-*` version the mockup uses (Hedi, 2026-11-07; ADR 003).
-Depends on: a WaraDS-Web release emitting `--ws-*` in kebab-case. None exists on 2026-11-10 (registry and WaraDS-Web `main` 72f5854 at 0.1.0). On 2026-11-15 that release is 0.2.0 of tokens, theme and react (WaraStudio/wara-ds-web#2 merged, version PR #3 at a3ef361 open), not published: Hedi validates the portfolio against it locally first.
+Depends on: a WaraDS-Web release emitting `--ws-*` in kebab-case. None exists on 2026-11-10 (registry and WaraDS-Web `main` 72f5854 at 0.1.0). On 2026-11-15 that release is 0.2.0 of tokens, theme and react (WaraStudio/wara-ds-web#2 and #3 merged), validated locally from a3ef361, then published to GitHub Packages and pinned exactly.
 
 ## Why
 

@@ -64,7 +64,7 @@ before T08.
 - [x] T10 verify - every AC on the registry install, AC-5 rerun against
   T02 - files: `specs/006-sdk-ws-upgrade/verification.md`,
   `specs/006-sdk-ws-upgrade/computed-after.json` - agent: qa
-- [ ] T11 review - diff against dev, gates reread; once APPROVED the main
+- [x] T11 review - diff against dev, gates reread; once APPROVED the main
   session sets `spec.md` to done, checks the roadmap line and opens the PR
   to `dev` - files: `spec.md`, `product/roadmap.md` - agent: review-agent
 

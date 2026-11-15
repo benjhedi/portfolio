@@ -36,7 +36,8 @@ Architecture
   `src/sdkTokens.test.ts` (new); `package.json`, `package-lock.json`;
   `docs/adr/003-wara-ds-sdk.md`, `product/tech-stack.md`,
   `product/roadmap.md`, `CLAUDE.md` (SDK line); `.claude/launch.json`
-  (preview entry) | boundary crossed: none
+  (preview entry); `vite.config.ts` (Vitest keeps `?raw` CSS, test only)
+  | boundary crossed: none
 
 Verification
 - AC-1: `package.json` holds `"0.2.0"` with no range for both; the lockfile
@@ -68,8 +69,11 @@ Two phases, split by the publish.
    test-coder adds the AC-4 guard: it collects every `var(--ws-...)` in
    `src/**/*.css` and `src/**/*.tsx` and every `--ws-*` defined by
    `node_modules/@warastudio/theme/dist/style.css`, and fails naming each
-   reference with no definition. qa reruns AC-2 to AC-8. Hedi decides the
-   publish.
+   reference with no definition. It reads them through Vite `?raw` imports
+   (no `@types/node`, `tsc -b` checks `src/`); Vitest empties every CSS
+   module unless `test.css.include` lists it, so `vite.config.ts` lists
+   `?raw` ids, and the test also fails if a collected CSS file is empty
+   (Hedi, 2026-11-15). qa reruns AC-2 to AC-8. Hedi decides the publish.
 2. Registry (after the publish): setup-agent pins 0.2.0 exactly
    (`npm install --save-exact`), commits manifest and lockfile; ADR 003,
    tech-stack and `CLAUDE.md` are updated; qa reruns every AC on the

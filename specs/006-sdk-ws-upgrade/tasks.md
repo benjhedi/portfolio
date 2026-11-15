@@ -34,9 +34,10 @@ before T08.
   `src/components/ContactForm.tsx`, `src/main.tsx` - check: `grep -rn --
   "--wara-" src` empty, `npm run build` exits 0 - agent: developer
 - [ ] T05 guard test for AC-4: every `var(--ws-...)` in `src/` is defined by
-  the installed theme CSS, failures name the variable - files:
-  `src/sdkTokens.test.ts` - check: red with a planted `var(--ws-nope)`
-  (reverted), green after - agent: test-coder
+  the installed theme CSS, failures name the variable; an empty CSS file
+  fails too - files: `src/sdkTokens.test.ts`, `vite.config.ts` (`test`
+  block keeping `?raw` CSS) - check: red with a planted `var(--ws-nope)`
+  (reverted), green after, `npm run build` exits 0 - agent: test-coder
 - [ ] T06 local verify: AC-2 to AC-8 against T02 (computed JSON equal,
   screenshot pixel diff, keyboard pass) - files:
   `specs/006-sdk-ws-upgrade/computed-after-local.json` - check: diff output

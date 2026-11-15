@@ -19,7 +19,7 @@ Today's v1 hero, a full-width duotone video behind a long claim, looks generic a
 ## Acceptance criteria (EARS)
 
 - AC-1 THE hero SHALL render a centered column at least one viewport tall with the oval, the name, the role line and the "Défiler" hint, matching `01-hero.png`, `01-hero-dark.png`, `01-hero-mobile.png` and `01-hero-mobile-dark.png` of the retinted mockup side by side, the vapor object aside.
-- AC-2 THE oval SHALL keep the mockup proportions: 1.5/1 wider than 900 px, `min(78vw, 860px)` wide and capped by the viewport height so the hero ends above the bottom bar (720 px wide at 1440 x 900, back to 860 px from about 995 px high), counting a bar height of 0 until the bottom bar ships (Hedi, 2026-11-15); 92vw at 1.25/1 at 900 px and narrower; video cropped with `object-fit: cover` at 50 % 28 %.
+- AC-2 THE oval SHALL keep the mockup proportions: 1.5/1 wider than 900 px, `min(78vw, 860px)` wide and capped by the viewport height so the hero ends above the bottom bar (720 px wide at 1440 x 900, back to 860 px from about 995 px high), reserving the mockup's 56 px bar height even before the bottom bar ships, so the oval matches the PNGs (Hedi, 2026-11-15, at /plan); 92vw at 1.25/1 at 900 px and narrower; video cropped with `object-fit: cover` at 50 % 28 %.
 - AC-3 WHILE motion is allowed THE hero SHALL play the mockup's 4.21 s portrait clip muted, inline, from page load and in a loop, with no audio track played and no native control shown; its built-in crossfade, two heads overlaid from about 3.5 s to 4 s, is accepted as is (Hedi, 2026-11-15).
 - AC-4 WHEN the video reaches 2.05 s in a loop THE hero SHALL release exactly one vapor object for that loop, in the order RIDE app, site, franceinfo app, product window, GearTrack app, then again from RIDE; the object starts at the mouth (x 67 %, y 51 % of the oval, 47 % at 900 px and narrower), grows along the vapor to the right and slightly up, peaks, then fades out.
 - AC-5 THE vapor objects SHALL be an HTML layer above the video, never pixels of the video, hidden from assistive technologies; the small phones show their screenshot whole, without the notch the mockup's global phone rule adds (Hedi, 2026-11-15).
@@ -35,7 +35,7 @@ Today's v1 hero, a full-width duotone video behind a long claim, looks generic a
 - AC-15 WHILE the video loads, and IF it fails to load, THE hero SHALL show the poster with no vapor object, no message and no indicator, as the reduced PNGs show; a video that starts later loops normally.
 - AC-16 THE oval SHALL tint the video to sky through an SDK token, in light and dark, as the retinted mockup shows; the tint is the hero's one color moment (rule 50, Hedi, 2026-11-15).
 - AC-17 WHILE motion is allowed THE oval SHALL carry a discreet play/pause toggle, named from `content.ts` and reachable by keyboard (WCAG 2.2.2); WHILE a mouse hovers the oval the toggle follows the cursor, otherwise it rests at the bottom center of the oval (touch, keyboard focus, autoplay refused); a click or a tap anywhere in the oval toggles: pause stops the loop, the vapor objects and the "Défiler" hint line on the current frame, play resumes them (Hedi, 2026-11-15, after the spec 008 review); IF the browser refuses autoplay THEN the toggle shows play over the poster. A pause chosen by the visitor holds until they press play. Under reduced motion no toggle shows, as the reduced PNGs (Hedi, 2026-11-15).
-- AC-18 WHEN the hero leaves the viewport or the tab is hidden THE video SHALL pause, and resume on return unless the visitor paused it; WHEN reduced motion turns on while the page is open THE hero SHALL fall back to the AC-6 poster, and WHEN it turns off THE loop SHALL start (Hedi, 2026-11-15).
+- AC-18 WHEN the hero leaves the viewport or the tab is hidden THE video SHALL pause, and resume on return unless the visitor paused it; WHEN reduced motion turns on while the page is open THE hero SHALL fall back to the AC-6 poster, and WHEN it turns off THE loop SHALL start unless the visitor paused it (Hedi, 2026-11-15, at /plan) (Hedi, 2026-11-15).
 
 ## Screens and states
 
@@ -60,7 +60,7 @@ Sources: `docs/v2/README.md` section 01 Hero, `docs/v2/decision-log.md` (2026-11
 
 - The fixed nav (HJ mark, links, FR/EN, theme toggle, "Me contacter"), the bottom bar and the preloader, even though the hero PNGs show them: they belong to the roadmap line "A visitor always reaches ...".
 - The mobile menu and the language switch, which need their own mockup (README, known details).
-- The statement section and where the v1 hero copy goes (claim, sub, CTAs, meta): the statement and bottom bar specs. That copy stays in `content.ts` (constitution 4); the page lacks it on dev between this spec and those two, and no `v*` tag is cut in between (Hedi, 2026-11-15).
+- The statement section and where the v1 hero copy goes (claim, sub, CTAs, meta, and the clients marquee the v1 hero renders): the statement, bottom bar and clients specs. That copy stays in `content.ts` (constitution 4); the page lacks it on dev between this spec and those, and no `v*` tag is cut in between (Hedi, 2026-11-15).
 - Title, meta description, hreflang and JSON-LD: the SEO spec.
 - Any 3D, and any reuse of the hero by another site (mission, out of scope).
 

@@ -47,3 +47,17 @@ Harder:
 Follow-up:
 - `product/tech-stack.md` decision column points here
 - open the WaraDS token requests for the four local tokens
+
+## Amendments
+
+- 2026-11-15, spec 006: the `--ws-*` version is `@warastudio/theme` and
+  `@warastudio/react` 0.2.0 (tokens 0.2.0), published that day from
+  wara-ds-web (ticket F2, WaraStudio/wara-ds-web#2 and #3). It takes the
+  variable names of `WaraDS/build/web/tokens.css` and adds the
+  mode-independent `--ws-ref-*` palette; values are unchanged. The site
+  pins it exactly, with no range, so a token rename never arrives
+  silently, and `src/sdkTokens.test.ts` fails on any `var(--ws-...)` the
+  installed SDK does not define. Decision A is unchanged. The WaraDS token
+  requests for the four local tokens are not opened: the v2 mockup uses
+  none of them, so each v2 spec that needs one reopens the request (Hedi,
+  2026-11-10 and 2026-11-15).

@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
@@ -14,5 +15,10 @@ export default defineConfig({
     // @warastudio/react importe react/react-dom : on le pre-bundle avec eux
     // pour qu'il partage la meme instance React (sinon "Invalid hook call").
     include: ["react", "react-dom", "@warastudio/react"],
+  },
+  test: {
+    // Vitest empties every CSS module it does not list here, ?raw included;
+    // src/sdkTokens.test.ts reads stylesheets as text (spec 006 AC-4).
+    css: { include: [/\?raw$/] },
   },
 });

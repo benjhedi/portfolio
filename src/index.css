@@ -23,54 +23,54 @@
   --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /*
-    TOKENS — alias sur le SDK Wara DS (@warastudio/theme, variables --wara-*) :
-    SOURCE UNIQUE. Le Midnight suit tout seul — le SDK redefinit les --wara-*
-    sous [data-theme="dark"], donc chaque --color-* herite du dark officiel
-    sans override local. Les rares tokens SANS equivalent SDK restent litteraux
-    (annotes ci-dessous, override dark plus bas si necessaire).
+    TOKENS: aliases on @warastudio/theme (--ws-* variables), the single source.
+    Midnight needs no local override: the SDK redefines the --ws-* under
+    [data-theme="dark"], so every --color-* inherits the official dark values.
+    The few tokens with no SDK equivalent stay literal, annotated below, with
+    a dark override further down when needed.
   */
 
   /* Surfaces */
-  --color-cream: var(--wara-color-bgPage);
-  --color-raise: var(--wara-color-surface);
+  --color-cream: var(--ws-color-bg-page);
+  --color-raise: var(--ws-color-surface);
   --color-sink: #dce4f0;    /* pas d'equivalent SDK (surface en retrait pleine) — override dark plus bas */
-  --color-char: var(--wara-color-solid);
-  --color-off: var(--wara-color-onSolid);
+  --color-char: var(--ws-color-solid);
+  --color-off: var(--ws-color-on-solid);
   --color-scrim: #101626;   /* voile opaque module en markup (bg-scrim/50) — modele different du scrim SDK deja translucide ; theme-independant */
   --color-bezel: #11161f;   /* chassis d'appareil, toujours sombre — pas d'equivalent SDK ; theme-independant */
 
   /* Texte */
-  --color-ink: var(--wara-color-text);
-  --color-body: var(--wara-color-textBody);
-  --color-muted: var(--wara-color-textMuted);
-  --color-faint: var(--wara-color-overlaySubtle);
+  --color-ink: var(--ws-color-text);
+  --color-body: var(--ws-color-text-body);
+  --color-muted: var(--ws-color-text-muted);
+  --color-faint: var(--ws-color-overlay-subtle);
 
   /* Bords */
-  --color-line: var(--wara-color-border);
+  --color-line: var(--ws-color-border);
   --color-line2: rgba(28, 28, 28, 0.12);   /* trait un cran plus fort que line — pas de token SDK a cette intensite ; override dark plus bas */
 
   /* Accent sky blue + compagnons */
-  --color-sky: var(--wara-color-accentHover);
-  --color-skyink: var(--wara-color-accent);
-  --color-skysoft: var(--wara-color-accentSoft);
-  --color-skyghost: var(--wara-color-accentGhost);
-  --color-skydeep: var(--wara-color-accentStrong);
-  --color-slate: var(--wara-color-slate);
+  --color-sky: var(--ws-color-accent-hover);
+  --color-skyink: var(--ws-color-accent);
+  --color-skysoft: var(--ws-color-accent-soft);
+  --color-skyghost: var(--ws-color-accent-ghost);
+  --color-skydeep: var(--ws-color-accent-strong);
+  --color-slate: var(--ws-color-slate);
 
   /* Rayons */
-  --radius-btn: var(--wara-radius-standard);
-  --radius-card: var(--wara-radius-card);
-  --radius-box: var(--wara-radius-container);
+  --radius-btn: var(--ws-r-standard);
+  --radius-card: var(--ws-r-card);
+  --radius-box: var(--ws-r-container);
 
   /* Ombre interne signature des boutons sombres */
-  --shadow-inset: var(--wara-shadow-inset);
+  --shadow-inset: var(--ws-shadow-inset);
 }
 
 /*
-  MODE SOMBRE — Midnight. Desormais porte par le SDK : [data-theme="dark"]
-  redefinit les --wara-*, donc TOUS les --color-* alias suivent automatiquement
-  (surfaces, texte, accents, gradient) sans toucher au markup. On ne garde ici
-  QUE les tokens locaux sans equivalent SDK.
+  DARK MODE: Midnight comes from @warastudio/theme. [data-theme="dark"]
+  redefines the --ws-*, so every aliased --color-* follows (surfaces, text,
+  accents, gradient) without touching the markup. Only the local tokens with
+  no SDK equivalent are overridden here.
 */
 html[data-theme="dark"] {
   color-scheme: dark;
@@ -130,8 +130,8 @@ body {
   donc il se reaccorde tout seul en Midnight.
 */
 :root {
-  /* Degrade de marque officiel du SDK (identique light/Midnight) */
-  --grad-brand: var(--wara-gradient-brand);
+  /* Official brand gradient from --ws-grad-brand, same in light and Midnight */
+  --grad-brand: var(--ws-grad-brand);
 }
 
 /* Surface en verre depoli — le SEUL flou autorise hors glass.

@@ -32,8 +32,8 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 
 | Package | Version | Imported by | Decision |
 |---|---|---|---|
-| `@warastudio/theme` | 0.1.0 | `main.tsx`, `index.css` | ADR 003 |
-| `@warastudio/react` | 0.1.0 | `main.tsx`, `components/ContactForm.tsx` | ADR 003 |
+| `@warastudio/theme` | 0.2.0, exact | `main.tsx`, `index.css`, `sdkTokens.test.ts` (`style.css?raw`) | ADR 003 |
+| `@warastudio/react` | 0.2.0, exact | `main.tsx`, `components/ContactForm.tsx` | ADR 003 |
 | `motion` | 11.18.2 | `App.tsx`, `app/useReduce.ts`, 7 files in `components/` | none yet |
 | `gsap` | 3.15.0 | `components/Work.tsx` (static import, not a lazy chunk) | none yet |
 | `lucide-react` | 1.17.0 | 6 files in `components/` | none yet |
@@ -42,6 +42,6 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 
 ## Design
 
-- Tokens from `@warastudio/theme`, aliased to `--color-*` in `index.css`; dark = Midnight via `data-theme` (`main.tsx`, inventory section 6). The installed SDK 0.1.0 exposes `--wara-*`; the target is `--ws-*`, as in the v2 decision log and the mockup, from a newer SDK version, upgraded before the first v2 spec (Hedi, 2026-11-07).
+- Tokens from `@warastudio/theme`, aliased to `--color-*` in `index.css`; dark = Midnight via `data-theme` (`main.tsx`, inventory section 6). SDK 0.2.0 exposes `--ws-*` with the brand names the v2 mockup uses, pinned exactly; `src/sdkTokens.test.ts` fails on an undefined one (spec 006, ADR 003).
 - Type: Hanken Grotesk 400 / 600, JetBrains Mono for indexes and tags; icons Lucide (former `CLAUDE.md` (a3d1bda), v2 decision log).
 - Mockup: `docs/v2/mockup/`, frozen from claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM at version 1794266082-62e1 (spec 001, refrozen by spec 005).

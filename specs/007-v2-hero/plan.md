@@ -367,7 +367,9 @@ Settled by Hedi on 2026-11-15:
 Sequencing for `/tasks`:
 - Can start now, no requested token read: content and media (T1), pure
   units and their tests (T2), services, service context and `main.tsx`
-  with their tests (T3), the `hero-1.*` removal commit.
+  with their tests (T3). The `hero-1.*` removal waits for the wiring:
+  `components/Hero.tsx` reads `/hero/hero-1.mp4` until then (fixed at
+  /tasks, tasks.md T24).
 - Waits for the tokens: the section and `hero.css` (T4), the reduced path
   (T5), qa and review (T6). Under ADR 003 an SDK upgrade is its own change
   with a build and a visual check in both themes, like spec 006: WaraDS-Web

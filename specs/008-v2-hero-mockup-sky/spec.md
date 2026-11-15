@@ -1,6 +1,6 @@
 # Spec 008 - v2 hero mockup, sky
 
-Branch: `feat-hero-mockup-sky` (stacked on `feat-hero-spec`, merged after it) | Status: clarified (2026-11-15)
+Branch: `feat-hero-mockup-sky` (stacked on `feat-hero-spec`, merged after it) | Status: planned (2026-11-15)
 Roadmap line: Phase 1, "A visitor sees the hero ... Needs the mockup." This spec clears the `Depends on` line of spec 007.
 
 ## Why

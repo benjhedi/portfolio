@@ -116,6 +116,20 @@ section{position:relative}
 .oval .media{position:absolute;inset:0}
 .oval .head{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%;display:block}
 .oval .halo{position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 50%, transparent 55%, color-mix(in srgb, var(--ws-ref-ink) 35%, transparent) 100%);pointer-events:none}
+/* 0.62 and 0.5: the v1 hero duotone; the SDK has no opacity token */
+.oval .tint{position:absolute;inset:0;pointer-events:none;background:var(--ws-color-accent);mix-blend-mode:color;opacity:.62}
+:root[data-theme="dark"] .oval .tint{opacity:.5}
+.oval.paused .vapor .out{animation-play-state:paused}
+/* Play / pause (WCAG 2.2.2): a 32 px disc in a 44 x 44 target, resting at the bottom center, following the mouse over the oval.
+   Light disc and charcoal glyph in both themes: the dark shirt sits under it either way. */
+.oval .play{position:absolute;left:50%;top:calc(100% - var(--ws-space-16) - 22px);width:44px;height:44px;margin:-22px 0 0 -22px;color:var(--ws-ref-charcoal);transition:left var(--ws-motion-base) var(--ease-out),top var(--ws-motion-base) var(--ease-out)}
+.oval .play::before{content:"";position:absolute;inset:6px;border-radius:var(--ws-r-pill);background:var(--ws-ref-porcelain);box-shadow:var(--ws-shadow-inset)}
+.oval .play svg{position:relative;display:block;width:16px;height:16px;margin:auto}
+.oval .play:focus-visible{box-shadow:none}
+/* A 2 px light gap under the ring: the ring alone measures under 3:1 against the dark shirt (WCAG 1.4.11) */
+.oval .play:focus-visible::before{box-shadow:var(--ws-shadow-inset),0 0 0 2px var(--ws-ref-porcelain),0 0 0 4px var(--ws-color-focus-ring)}
+.oval .play .i-play,.oval.paused .play .i-pause{display:none}
+.oval.paused .play .i-play{display:block}
 /* Point d'emission : la bouche quand la tete est de profil droit */
 /* Bouche au moment du souffle (profil droit) : x 67 %, y 51 % de l'ovale. La sortie suit le panache : vers la droite, legerement vers le haut. */
 .vapor{position:absolute;left:67%;top:51%;width:0;height:0}
@@ -123,6 +137,7 @@ section{position:relative}
 .vapor .out.go{animation:emerge 2.1s cubic-bezier(.2,.7,.2,1) forwards}
 .vapor .phone{width:92px;aspect-ratio:9/19.5;border-radius:14px;padding:3px}
 .vapor .phone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:11px;display:block}
+.vapor .phone::after{content:none}
 .vapor .site,.vapor .product{width:200px;border-radius:8px;padding:0;overflow:hidden;background:var(--ws-color-surface);border:1px solid var(--ws-color-border)}
 .vapor .bar{display:flex;gap:4px;padding:6px 8px;background:var(--ws-ref-porcelain);border-bottom:1px solid var(--ws-color-border)}
 .vapor .bar b{width:7px;height:7px;border-radius:50%;background:var(--ws-ref-blue-grey-200)}
@@ -399,6 +414,7 @@ form.ok .sent{display:block}
         <source src="img/hero.webm" type="video/webm">
         <source src="img/hero.mp4" type="video/mp4">
       </video>
+      <i class="tint" aria-hidden="true"></i>
       <!-- Ce qui sort de la vapeur : apps, site, produit. Declenche par le JS a chaque boucle, au moment du souffle. -->
       <div class="vapor" id="vapor" aria-hidden="true">
         <span class="out phone"><img src="img/RIDE.webp" alt=""></span>
@@ -409,9 +425,13 @@ form.ok .sent{display:block}
       </div>
     </div>
     <div class="halo"></div>
+    <button class="play" id="heroToggle" type="button" aria-label="Pause" hidden>
+      <svg class="i-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="3" width="5" height="18" rx="1"/><rect x="5" y="3" width="5" height="18" rx="1"/></svg>
+      <svg class="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
+    </button>
   </div>
   <h1 class="name r d1"><strong>Hedi Jahouach</strong></h1>
-  <p class="role r d2">Conception et développement iOS, de l'idée à la production</p>
+  <p class="role r d2">Consultant iOS senior, freelance</p>
   <a class="scroll r d3" href="#intro"><i></i><span>Défiler</span></a>
 </section>
 
@@ -742,7 +762,20 @@ form.ok .sent{display:block}
   var vid = document.getElementById('heroVideo'), outs = document.querySelectorAll('#vapor .out'), k = 0, armed = true;
   if(reduce){ vid.removeAttribute('autoplay'); vid.pause(); }
   else {
-    vid.muted = true; vid.play().catch(function(){});
+    // The visitor's choice and a refused autoplay set the state, never the media events.
+    var oval = document.getElementById('oval'), toggle = document.getElementById('heroToggle'), paused = false;
+    function show(p){ paused = p; oval.classList.toggle('paused', p); toggle.setAttribute('aria-label', p ? 'Lecture' : 'Pause'); }
+    function play(){ show(false); vid.play().catch(function(e){ if(e.name === 'NotAllowedError') show(true); }); }
+    toggle.hidden = false;
+    // The toggle's own click bubbles here, Enter and Space included.
+    oval.addEventListener('click', function(){ if(paused) play(); else { vid.pause(); show(true); } });
+    oval.addEventListener('pointermove', function(e){
+      if(e.pointerType !== 'mouse') return;
+      var r = oval.getBoundingClientRect();
+      toggle.style.left = (e.clientX - r.left) + 'px'; toggle.style.top = (e.clientY - r.top) + 'px';
+    });
+    oval.addEventListener('pointerleave', function(){ toggle.style.left = ''; toggle.style.top = ''; });
+    vid.muted = true; play();
     vid.addEventListener('timeupdate', function(){
       var t = vid.currentTime;
       if(t < 1) armed = true;

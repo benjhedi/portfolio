@@ -61,7 +61,7 @@ before T08.
   on the SDK - files: `docs/adr/003-wara-ds-sdk.md`,
   `product/tech-stack.md`, `CLAUDE.md` - check: AC-10 greps - agent:
   setup-agent
-- [ ] T10 verify - every AC on the registry install, AC-5 rerun against
+- [x] T10 verify - every AC on the registry install, AC-5 rerun against
   T02 - files: `specs/006-sdk-ws-upgrade/verification.md`,
   `specs/006-sdk-ws-upgrade/computed-after.json` - agent: qa
 - [ ] T11 review - diff against dev, gates reread; once APPROVED the main

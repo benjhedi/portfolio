@@ -44,4 +44,4 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 
 - Tokens from `@warastudio/theme`, aliased to `--color-*` in `index.css`; dark = Midnight via `data-theme` (`main.tsx`, inventory section 6). SDK 0.2.0 exposes `--ws-*` with the brand names the v2 mockup uses, pinned exactly; `src/sdkTokens.test.ts` fails on an undefined one (spec 006, ADR 003).
 - Type: Hanken Grotesk 400 / 600, JetBrains Mono for indexes and tags; icons Lucide (former `CLAUDE.md` (a3d1bda), v2 decision log).
-- Mockup: `docs/v2/mockup/`, frozen from claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM at version 1794266082-62e1 (spec 001, refrozen by spec 005).
+- Mockup: `docs/v2/mockup/`, frozen from claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM at version 1794759302-6b38 (spec 001, refrozen by specs 005 and 008).

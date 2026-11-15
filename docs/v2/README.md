@@ -7,8 +7,9 @@ never the claude.ai artifact they came from (spec 001).
 
 - `mockup/`: the v2 mockup, the 16 files of claude.ai artifact
   https://claude.ai/artifact/BDrsQCHWzgfQRLqBGn9FJM, version
-  1794266082-62e1 (spec 005, 2026-11-10), first copied at version
-  1794063463-7380 on 2026-11-09 (spec 001). A reference: the
+  1794759302-6b38 (spec 008, 2026-11-15), before it 1794266082-62e1
+  (spec 005, 2026-11-10), first copied at version 1794063463-7380 on
+  2026-11-09 (spec 001). A reference: the
   build never imports it and nobody edits it here. One French page, light
   and dark through `data-theme`, a 900 px breakpoint. It loads Hanken
   Grotesk and JetBrains Mono from Google Fonts. File names stay as
@@ -43,7 +44,7 @@ sed -n '/^```sha256$/,/^```$/p' README.md | sed '1d;$d' | shasum -a 256 -c
 ```
 
 ```sha256
-069ccf26e2ed3910e61d9973de3584d53b4159d17de18f54040181047dd1bd4f  mockup/index.html
+d85edfa242603f4465a38b2d528ffeffa7c313ad5406a089b6a8e189168c612c  mockup/index.html
 e9a00bd2b5d53a41727d9541bd82049e971405906a4b2779ee33f2b4cef787ef  mockup/tokens.css
 50416a49d973a2493cd1ed5a8e5727ab387f02439cfe139bbdc1ffe5a67c7004  mockup/img/FranceInfos.webp
 541aa3a12454876c9d432926dfbdb9e9b40990e52f2cb14298717aec07cce2ec  mockup/img/GearTrack.webp
@@ -63,8 +64,8 @@ c6262406309aa65ae999dcbfc49184835fac470f4ed84425e4629a07adab22c8  mockup/img/her
 ```
 
 The 16 mockup sums are the ones the artifact reported for version
-1794266082-62e1: spec 005 changed `index.html` only, the other 15 match
-version 1794063463-7380. The last sum is the clip as Hedi supplied it.
+1794759302-6b38: specs 005 and 008 changed `index.html` only, the other
+15 match version 1794063463-7380. The last sum is the clip as Hedi supplied it.
 
 ## Export the screens
 
@@ -203,23 +204,35 @@ in text, never exported.
 
 ### 01 Hero
 
-- PNG: `01-hero`, and `01-hero-reduced` for the poster, four each.
+- PNG: `01-hero`, and `01-hero-reduced` for the poster, four each,
+  exported from version 1794759302-6b38 (spec 008).
 - Purpose: the animated portrait in an oval, the name and the role.
 - Layout: a centered column at least one viewport tall: oval (1.5/1,
   `min(78vw, 860px)`, capped by the viewport height, so 720 px wide at
-  1440 x 900), name, role, "Défiler" hint. Mobile: oval 92vw at 1.25/1.
+  1440 x 900), the video tinted by a `--ws-color-accent` layer in
+  `mix-blend-mode: color` (opacity 0.62 light, 0.5 dark), a round
+  play/pause toggle resting at the bottom center of the oval, name,
+  role "Consultant iOS senior, freelance", "Défiler" hint. Mobile: oval
+  92vw at 1.25/1.
   The fixed nav and bottom bar appear on the hero PNGs only. Mobile nav:
   the 30 x 30 "HJ" mark, FR/EN, theme, burger; bar: its two links only.
 - States: the video loops; at each exhale (2.05 s) one of five objects
   (RIDE app, site, franceinfo app, product, GearTrack app) leaves the
-  mouth and grows along the vapor. The PNG shows RIDE at its peak, in
-  the first loop, hint line drawn.
+  mouth and grows along the vapor; the small phones show their
+  screenshot whole, without notch. The PNG shows RIDE at its peak, in
+  the first loop, hint line drawn, toggle at rest on pause. Paused:
+  video and vapor object held on the current frame, toggle on play.
+  Autoplay refused: the poster, toggle on play. Neither is exported.
 - Interaction: anchors from "Défiler", the nav and the bar; nav blurred
   past 40 px, hidden scrolling down past 300 px; accent dot on the
   active link; theme toggle saved in localStorage (default: system);
   FR/EN and burger inert. The mobile "HJ" link gets a 44 x 44 hit area
-  in the implementation, visual size unchanged.
-- Reduced motion: the video stays on its poster, no vapor object, hint
+  in the implementation, visual size unchanged. Toggle: a porcelain
+  32 px disc with a charcoal Lucide glyph in a 44 x 44 hit area; with a
+  mouse over the oval it follows the cursor (160 ms) and a click
+  anywhere in the oval toggles; keyboard focus adds a 2 px porcelain
+  gap and the focus ring.
+- Reduced motion: the tinted poster, no vapor object, no toggle, hint
   line static: `01-hero-reduced`.
 
 ### 02 Statement
@@ -356,8 +369,9 @@ in text, never exported.
 Seen in the PNGs on 2026-11-10 and kept as validated; each section spec
 decides the intended result (decision log, 2026-11-10).
 
-- 01 hero: the small vapor phones get the dark notch of the global
-  `.phone::after` rule, which hides the top of their screenshot.
+- 01 hero: the small vapor phones got the dark notch of the global
+  `.phone::after` rule, which hid the top of their screenshot; removed
+  by spec 008 (2026-11-15).
 - 06 offers, 07 process, 08 career: the `h4` titles keep the browser's
   default margin, so they sit lower than the rest of their row.
 - 02 statement: the `.big .line` mask (`overflow:hidden`) clips the

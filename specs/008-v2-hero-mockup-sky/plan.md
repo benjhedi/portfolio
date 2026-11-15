@@ -18,7 +18,7 @@ Design
   (Hedi, 2026-11-15). `tokens.css` untouched. Literal sizes 32 px
   and 44 px come from AC-3, like `.iconbtn` 34 px (`index.html` l.86) | OPEN
 - Tint opacities 0.62 light, 0.5 dark: no opacity token in `tokens.css`,
-  none in `@warastudio/theme` 0.1.0 in `node_modules`; kept as literal
+  none in `@warastudio/theme` 0.2.0, the pinned version (checked at review, 0.1.0 at plan time); kept as literal
   composition values with a one-line English comment, like `364px` in
   spec 005 (D1) | OPEN
 - Mockups: the change edits the mockup at its source; rule 60 routes it
@@ -171,7 +171,7 @@ visitor and the autoplay refusal, pause held on the current frame;
 - spec 005's `qa005/scripts` are gone: T1 rewrites `geo.mjs`,
   `geodiff.py`, `pngdiff.py` or derives them from `work/capture.mjs`.
 - Diffs run against `feat-hero-spec` until it merges, then `origin/dev`.
-- `node_modules` holds theme 0.1.0: `npm ci` (token in `~/.npmrc`) before T7.
+- `node_modules` held theme 0.1.0 at plan time: `npm ci` (token in `~/.npmrc`) before T7; done in T07.
 
 ## Research notes
 

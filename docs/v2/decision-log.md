@@ -120,3 +120,7 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
   disc is porcelain with a charcoal glyph in both themes and a 2 px
   porcelain gap under the focus ring, after the solid disc measured
   1.21:1 on the shirt in light (spec 008, T01).
+- 2026-11-15: After the spec 008 review, a tap anywhere in the hero oval
+  toggles like a mouse click, and the play/pause toggle also holds the
+  "Défiler" hint line, so one control stops every motion of the hero
+  (WCAG 2.2.2; spec 007 AC-17).

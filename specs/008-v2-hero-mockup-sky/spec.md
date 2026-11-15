@@ -1,6 +1,6 @@
 # Spec 008 - v2 hero mockup, sky
 
-Branch: `feat-hero-mockup-sky` (stacked on `feat-hero-spec`, merged after it) | Status: planned (2026-11-15)
+Branch: `feat-hero-mockup-sky` (stacked on `feat-hero-spec`, merged after it) | Status: done (2026-11-15)
 Roadmap line: Phase 1, "A visitor sees the hero ... Needs the mockup." This spec clears the `Depends on` line of spec 007.
 
 ## Why
@@ -16,7 +16,7 @@ Spec 007 settled four hero changes the frozen mockup does not show: the oval ret
 
 - AC-1 THE hero oval SHALL retint the video to sky with variant A, a duotone: a layer of `--ws-color-accent` in `mix-blend-mode: color` between the video and the vapor objects, opacity 0.62 in light and 0.5 in dark as in v1, so the video keeps its luminance and the tint flips with the theme; on the loop and on the reduced motion poster (Hedi, 2026-11-15, from three variants captured by design-agent). Whether the two opacities need an SDK token is a gate of the plan (rule 50).
 - AC-2 THE hero role line SHALL read "Consultant iOS senior, freelance".
-- AC-3 WHILE motion is allowed THE oval SHALL show a round play/pause toggle, Lucide Play and Pause icons, 32 px visible in a 44 x 44 hit area (rule 31), resting at the bottom center of the oval and following the cursor while a mouse hovers the oval, where a click anywhere toggles (Hedi, 2026-11-15): pause while the loop plays; play once paused, the video and the vapor object held on the current frame, and play over the poster when autoplay is refused (Hedi, 2026-11-15); the PNGs freezing it at rest, with the 2 px focus ring on keyboard focus; WHILE reduced motion is on no toggle SHALL show.
+- AC-3 WHILE motion is allowed THE oval SHALL show a round play/pause toggle, Lucide Play and Pause icons, 32 px visible in a 44 x 44 hit area (rule 31), resting at the bottom center of the oval and following the cursor while a mouse hovers the oval; a click or a tap anywhere in the oval toggles (Hedi, 2026-11-15, the tap confirmed at review): pause while the loop plays; play once paused, the video and the vapor object held on the current frame, and play over the poster when autoplay is refused (Hedi, 2026-11-15); the PNGs freezing it at rest, with the 2 px focus ring on keyboard focus; WHILE reduced motion is on no toggle SHALL show.
 - AC-4 THE small vapor phones SHALL show their screenshot whole, without the notch.
 - AC-5 WHEN the mockup is exported before and after the change with the same settings THE element boxes SHALL differ only inside the hero; every other section SHALL keep its height and boxes.
 - AC-6 THE claude.ai artifact SHALL hold the change as a new version, and `docs/v2/mockup/` SHALL hold that version's files, each matching its published sha256 listed in the README; the README hero section, the decision log, `product/tech-stack.md` and `product/mission.md` SHALL name it; the export script SHALL re-export the hero PNGs and exit 0; `npm test` and the build pass.

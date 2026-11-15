@@ -1,8 +1,8 @@
 # Spec 006 - SDK upgrade to --ws-*
 
-Branch: `chore-sdk-ws-upgrade` | Status: clarified (2026-11-10)
+Branch: `chore-wara-ds-ws-tokens` | Status: planned (clarified 2026-11-10, amended 2026-11-15)
 Roadmap line: Phase 1, wave 0, SDK upgraded from `--wara-*` (0.1.0) to the `--ws-*` version the mockup uses (Hedi, 2026-11-07; ADR 003).
-Depends on: a WaraDS-Web release emitting `--ws-*` in kebab-case. None exists on 2026-11-10 (registry and WaraDS-Web `main` 72f5854 at 0.1.0).
+Depends on: a WaraDS-Web release emitting `--ws-*` in kebab-case. None exists on 2026-11-10 (registry and WaraDS-Web `main` 72f5854 at 0.1.0). On 2026-11-15 that release is 0.2.0 of tokens, theme and react (WaraStudio/wara-ds-web#2 merged, version PR #3 at a3ef361 open), not published: Hedi validates the portfolio against it locally first.
 
 ## Why
 
@@ -16,15 +16,16 @@ The v2 mockup reads `--ws-*`; the site reads `--wara-*` through 20 aliases in `s
 
 ## Acceptance criteria (EARS)
 
-- AC-1 THE manifest SHALL depend on the first `@warastudio/theme` and `@warastudio/react` release that emits `--ws-*` with names identical to `docs/v2/mockup/tokens.css`, and `npm ci` SHALL install it on Node 22 locally and in CI with `WARA_DS_TOKEN`.
+- AC-1 THE manifest SHALL depend on the first `@warastudio/theme` and `@warastudio/react` release that emits `--ws-*` with names identical to `docs/v2/mockup/tokens.css`, and `npm ci` SHALL install it on Node 22 locally and in CI with `WARA_DS_TOKEN`. That release is 0.2.0, pinned with no range; until it is published, the other criteria are checked against tarballs packed from a3ef361 and installed with `npm install --no-save` (Hedi, 2026-11-15).
 - AC-2 THE source tree SHALL contain 0 occurrences of `--wara-` (grep over `src/`).
-- AC-3 THE diff against dev SHALL touch only `src/index.css`, `package.json`, `package-lock.json` and the AC-4 test; `src/main.tsx` and `ContactForm.tsx` only if the release changes an import path or the `Button`/`Input` API, each such change noted in the verification report. Tailwind names (`--color-*`, `--radius-*`, `--shadow-inset`) stay unchanged.
+- AC-3 THE diff against dev SHALL touch only `src/index.css`, `package.json`, `package-lock.json` and the AC-4 test; `src/main.tsx` and `ContactForm.tsx` only if the release changes an import path or the `Button`/`Input` API, each such change noted in the verification report. Tailwind names (`--color-*`, `--radius-*`, `--shadow-inset`) stay unchanged. Also allowed (Hedi, 2026-11-15): the two inline `--wara-*` colors of `ContactForm.tsx`, which AC-2 requires; the `main.tsx` comments citing `--wara-*`; the documents of AC-10; a preview entry in `.claude/launch.json` for AC-5; this spec folder.
 - AC-4 IF a stylesheet of the site references an SDK variable the installed SDK does not define THEN `npm test` SHALL fail and name the variable.
-- AC-5 WHEN each section is rendered in light and dark, desktop and mobile, THE page SHALL show no visible difference from the captures qa takes of dev at the branch point, before any change. Aliased values are equal in 0.1.0 and the mockup (alpha rounding aside), so a difference is a bug to fix, never accepted.
+- AC-5 WHEN each section is rendered in light and dark, desktop and mobile, THE page SHALL show no visible difference from the captures qa takes of dev at the branch point, before any change. Aliased values are equal in 0.1.0 and the mockup (alpha rounding aside), so a difference is a bug to fix, never accepted. Proof (Hedi, 2026-11-15): on the built site, a script reads every alias on `html` and the computed styles of the contact `Button` and `Input`, light then dark, and finds them equal to dev's; full-page screenshots at 1440 and 390 in both themes, before and after, show no pixel difference.
 - AC-6 THE contact form SHALL keep its behavior: `Button` and `Input` render, take keyboard focus, show their states and submit as on dev.
 - AC-7 THE count of color literals in `src/index.css` SHALL not exceed its dev value (10); the four local tokens stay.
 - AC-8 THE alias `--color-slate` SHALL read a semantic `--ws-color-slate` the release keeps from 0.1.0, never a `--ws-ref-*` primitive (rule 50).
 - AC-9 `npm test` and `npm run build` SHALL pass.
+- AC-10 ADR 003 SHALL record version 0.2.0 and its date, decision unchanged, and that the token requests for the four local tokens wait for a v2 spec that needs them; `product/tech-stack.md` SHALL show 0.2.0; the roadmap line SHALL be checked (Hedi, 2026-11-15).
 
 ## Screens and states
 
@@ -36,11 +37,17 @@ No personal data. Rules 05 (upgrade recorded) and 50 (tokens), ADR 003.
 
 ## Out of scope
 
-- The SDK release: its own spec in WaraDS-Web (theme prefix to `--ws-*`, kebab-case, `--ws-color-slate` kept). The portfolio is its only consumer, so the rename breaks no other repo.
+- The SDK release: its own work in WaraDS-Web (theme prefix to `--ws-*`, kebab-case, `--ws-color-slate` kept), done as roadmap ticket F2 there. The portfolio is its only consumer, so the rename breaks no other repo.
 - Token requests for sink, scrim, bezel, line2: no `--ws-*` equivalent in the mockup; roadmap debt until a v2 spec needs them.
 - Motion tokens and `@warastudio/motion`: no current code reads them; they come with the first v2 spec that does.
 - Any v2 screen, renaming Tailwind aliases, the French comments of `index.css` beyond rewritten lines, the two unused fontsource packages.
 
 ## Open points
 
-None. All decisions by Hedi on 2026-11-10 during `/clarify`.
+None. All decisions by Hedi on 2026-11-10 during `/clarify`, amended on 2026-11-15.
+
+## Amendments
+
+| Date | Change | Decision |
+|---|---|---|
+| 2026-11-15 | Header branch and dependency; AC-1 exact pin and local check before publish; AC-3 widened (`ContactForm.tsx` inline colors, `main.tsx` comments, AC-10 documents, `launch.json`, spec folder); AC-5 proof method; AC-10 added. Folds in a parallel spec drafted the same day as `specs/006-wara-ds-ws-tokens/`, removed in the same commit | Hedi |

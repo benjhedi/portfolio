@@ -7,11 +7,15 @@ Spec: `spec.md` (status clarified, AC-3 fixed in 66d47a6) | Architecture rule: `
 Design
 - Design system and tokens: the tint reads `--ws-color-accent`
   (`docs/v2/mockup/tokens.css` l.42 light `#0d518c`, l.141 dark
-  `#6ec7f2`); the toggle reuses the dark button set of the mockup:
-  `--ws-color-solid` and `--ws-color-on-solid` (l.40-41, l.139-140),
+  `#6ec7f2`); the toggle disc is `--ws-ref-porcelain` with a `--ws-ref-charcoal`
+  glyph in both themes, as T01 measured the solid disc at 1.21:1 on the
+  shirt and its ring at 2.61:1 in light (Hedi, 2026-11-15); a 2 px
+  porcelain gap sits between disc and ring, 17:1 against the shirt, the
+  ring 5.6 to 6.5:1 against it (WCAG 1.4.11);
   `--ws-shadow-inset` (l.118), `--ws-r-pill` (l.87),
   `--ws-color-focus-ring` (l.52, l.151), `--ws-space-16` (l.67),
-  `--ws-motion-base` (l.113). `tokens.css` untouched. Literal sizes 32 px
+  `--ws-motion-base` (l.113) for the 160 ms glide to the cursor and back
+  (Hedi, 2026-11-15). `tokens.css` untouched. Literal sizes 32 px
   and 44 px come from AC-3, like `.iconbtn` 34 px (`index.html` l.86) | OPEN
 - Tint opacities 0.62 light, 0.5 dark: no opacity token in `tokens.css`,
   none in `@warastudio/theme` 0.1.0 in `node_modules`; kept as literal

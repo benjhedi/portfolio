@@ -36,9 +36,12 @@ spec 005. T01 and T02 change no repo file, so they have no commit. No
   copy of the mockup whose toggle starts on play makes it exit 1 - agent:
   design-agent
 - [ ] T05 export to a scratch folder, copy the 8 hero PNGs only - files:
-  `docs/v2/ecrans/01-hero*.png` (8) - check: `git diff --stat
-  feat-hero-spec -- docs/v2/ecrans` lists the 8 hero PNGs only, as LFS
-  pointers; png block still 52 names - agent: main session
+  `docs/v2/ecrans/01-hero*.png` (8) - check: the run's non-hero PNGs
+  equal their committed copies (0 px on `00-preloader*` and
+  `02-statement*`), as T01 saw text render in two states run by run;
+  else export again; `git diff --stat feat-hero-spec -- docs/v2/ecrans`
+  lists the 8 hero PNGs only, as LFS pointers; png block still 52 names
+  - agent: main session
 - [ ] T06 the new version named where the old one stood, and the hero
   section updated (tint, toggle, role, no notch, the paused and
   autoplay-refused sentence; the notch known detail closed) - files:

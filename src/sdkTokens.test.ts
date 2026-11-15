@@ -30,6 +30,10 @@ function collectDefinitions(css: string): Set<string> {
 
 describe("SDK tokens", () => {
   it("failsOnUndefinedSdkVariable", () => {
+    // index.css holds most references; without it the two inline colors of
+    // ContactForm.tsx would keep the test green on a fraction of the site.
+    expect(Object.keys(sources), "index.css not collected, check the glob").toContain("./index.css");
+
     // An emptied stylesheet would hide its references; Vitest does that to
     // CSS modules unless vite.config.ts keeps them.
     const emptyCss = Object.entries(sources)

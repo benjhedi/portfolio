@@ -33,7 +33,7 @@ before T08.
   comment in `main.tsx` - files: `src/index.css`,
   `src/components/ContactForm.tsx`, `src/main.tsx` - check: `grep -rn --
   "--wara-" src` empty, `npm run build` exits 0 - agent: developer
-- [ ] T05 guard test for AC-4: every `var(--ws-...)` in `src/` is defined by
+- [x] T05 guard test for AC-4: every `var(--ws-...)` in `src/` is defined by
   the installed theme CSS, failures name the variable; an empty CSS file
   fails too - files: `src/sdkTokens.test.ts`, `vite.config.ts` (`test`
   block keeping `?raw` CSS) - check: red with a planted `var(--ws-nope)`

@@ -12,15 +12,17 @@ before T08.
 
 ### Phase 1 - local 0.2.0, no publish
 
-- [ ] T01 preview entry for the built site - files: `.claude/launch.json`
+- [x] T01 preview entry for the built site - files: `.claude/launch.json`
   (`portfolio-preview`, `npm run preview`, port 8787) - check:
   `preview_start` answers 200 on `/` - agent: setup-agent
-- [ ] T02 baseline on dev's 0.1.0: capture script, computed JSON (every
-  alias on `html`, contact Button and Input styles, light then dark), 8
+- [x] T02 baseline on dev's 0.1.0: capture script (Node and system Chrome
+  over CDP, reduced motion), computed JSON (every custom property the site
+  declares on `html`, contact controls' styles, light then dark), 8
   screenshots (1440 and 390, both themes) kept out of git, contact form
-  keyboard pass - files: `specs/006-sdk-ws-upgrade/capture-computed.js`,
-  `specs/006-sdk-ws-upgrade/computed-before.json` - check: JSON holds both
-  themes and both controls - agent: qa
+  keyboard pass - files: `specs/006-sdk-ws-upgrade/capture.mjs`,
+  `specs/006-sdk-ws-upgrade/computed-before.json`,
+  `specs/006-sdk-ws-upgrade/keyboard-before.json` - check: two captures
+  of dev diff to 0 values and 0 pixels - agent: qa
 - [ ] T03 install 0.2.0 locally: pack tokens, theme, react from wara-ds-web
   `origin/changeset-release/main` into the scratchpad, `npm install
   --no-save` the three tarballs - files: none, no commit - check: `npm ls`

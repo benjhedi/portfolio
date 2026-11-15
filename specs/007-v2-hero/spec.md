@@ -1,7 +1,7 @@
 # Spec 007 - v2 hero
 
 Branch: `feat-v2-hero` | Status: clarified (2026-11-15)
-Depends on: a new mockup version with the oval retinted to sky, light and dark, the role line of AC-13, the toggle of AC-17 and the notchless small phones of AC-5, with its hero PNGs re-exported (design-agent, rule 60); until then the mockups gate of `/plan` is BLOCKED (Hedi, 2026-11-15).
+Depends on: met by spec 008 on 2026-11-15, mockup version 1794759302-6b38 with the oval retinted to sky, the role line of AC-13, the toggle of AC-17 and the notchless small phones of AC-5, hero PNGs re-exported (benjhedi/portfolio#35).
 Roadmap line: Phase 1, "A visitor sees the hero: oval with the looping portrait video, an app, the site or a product leaving the vapor at each loop, name and role below; poster under reduced motion. Needs the mockup. Open: oval background, loop crossfade ([log])."
 
 ## Why

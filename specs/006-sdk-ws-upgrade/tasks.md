@@ -38,7 +38,7 @@ before T08.
   fails too - files: `src/sdkTokens.test.ts`, `vite.config.ts` (`test`
   block keeping `?raw` CSS) - check: red with a planted `var(--ws-nope)`
   (reverted), green after, `npm run build` exits 0 - agent: test-coder
-- [ ] T06 local verify: AC-2 to AC-8 against T02 (computed JSON equal,
+- [x] T06 local verify: AC-2 to AC-8 against T02 (computed JSON equal,
   screenshot pixel diff, keyboard pass) - files:
   `specs/006-sdk-ws-upgrade/computed-after-local.json` - check: diff output
   shown - agent: qa

@@ -56,7 +56,7 @@ before T08.
   @warastudio/theme@0.2.0 @warastudio/react@0.2.0` - files:
   `package.json`, `package-lock.json` - check: AC-1 and AC-9 commands -
   agent: setup-agent
-- [ ] T09 record the upgrade: ADR 003 amended (0.2.0, date, token requests
+- [x] T09 record the upgrade: ADR 003 amended (0.2.0, date, token requests
   waiting for a v2 spec), tech-stack table and Design line, `CLAUDE.md` line
   on the SDK - files: `docs/adr/003-wara-ds-sdk.md`,
   `product/tech-stack.md`, `CLAUDE.md` - check: AC-10 greps - agent:

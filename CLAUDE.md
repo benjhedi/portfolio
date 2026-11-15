@@ -39,8 +39,8 @@ Product: `/plan-product`, `/analyze-product`, `/architecture-study`,
 
 - Brand questions: the `wara-studio-design` skill is authoritative. Never
   reintroduce v1 brand values (cream `#f7f4ed`, sky `#5fa8d9`).
-- SDK 0.1.0 exposes `--wara-*`, the mockup uses `--ws-*`: upgrade first
-  (roadmap wave 0, ADR 003).
+- SDK 0.2.0 exposes `--ws-*`, the names the mockup uses, pinned exactly;
+  `src/sdkTokens.test.ts` fails on an undefined one (spec 006, ADR 003).
 - `npm ci` needs a `read:packages` token in the user `~/.npmrc`; CI uses
   the `WARA_DS_TOKEN` secret.
 - Desktop sessions start on `WR/<name>`: `git branch -m <type-title>`

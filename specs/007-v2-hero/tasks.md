@@ -30,13 +30,13 @@ Line counts are estimates of added or changed lines, deletions apart.
 ## Tasks
 
 Content
-- [ ] T01 `identity.name` to "Hedi Jahouach"; `VaporObject` type and the
+- [x] T01 `identity.name` to "Hedi Jahouach"; `VaporObject` type and the
   `heroV2` entries of the plan (next, hint, videoLabel, productLabel,
   toggle, media, vapor in the AC-4 order) - files:
   `src/content/content.ts` - check: `npm run build`; `grep -n
   "Benjahouach" src/content/content.ts` empty; `grep -c "heroV2"
   src/content/content.ts` is 1 - about 30 lines - agent: developer - now
-- [ ] T02 [P] media: copy `hero.webm`, `hero.mp4`, `RIDE.webp`,
+- [x] T02 [P] media: copy `hero.webm`, `hero.mp4`, `RIDE.webp`,
   `FranceInfos.webp`, `GearTrack.webp` from `docs/v2/mockup/img/` under
   kebab-case names; `cwebp` the poster and the site capture, quality
   noted in the commit body, each under its JPEG bytes (D5) - files:
@@ -50,44 +50,44 @@ Content
   developer - now
 
 Pure units
-- [ ] T03 [P] `vaporSchedule`: `VAPOR_RELEASE_AT_S`, `VAPOR_REARM_BELOW_S`,
+- [x] T03 [P] `vaporSchedule`: `VAPOR_RELEASE_AT_S`, `VAPOR_REARM_BELOW_S`,
   `VaporClock`, `tickVapor` - files: `src/sections/hero/vaporSchedule.ts`
   - check: `npm run build` - about 20 lines - agent: developer - now
-- [ ] T04 tests of T03, test plan rows AC-4 (unit) - files:
+- [x] T04 tests of T03, test plan rows AC-4 (unit) - files:
   `src/sections/hero/vaporSchedule.test.ts` - check: `npx vitest run
   src/sections/hero/vaporSchedule.test.ts` - agent: test-coder - now
-- [ ] T05 [P] `heroPlayback`: types, reducer, `heroView` (shouldPlay,
+- [x] T05 [P] `heroPlayback`: types, reducer, `heroView` (shouldPlay,
   toggle hidden while loading and failed per D4, held, visitor pause kept
   when reduced turns off) - files: `src/sections/hero/heroPlayback.ts` -
   check: `npm run build` - about 45 lines, one reducer kept whole -
   agent: developer - now
-- [ ] T06 tests of T05, rows AC-6, AC-15, AC-17, AC-18 (unit on
+- [x] T06 tests of T05, rows AC-6, AC-15, AC-17, AC-18 (unit on
   heroPlayback) - files: `src/sections/hero/heroPlayback.test.ts` - check:
   `npx vitest run src/sections/hero/heroPlayback.test.ts` - agent:
   test-coder - now
-- [ ] T07 [P] `ovalGeometry`: `TOGGLE_INSET_PX`, `clampToOval` (D3) -
+- [x] T07 [P] `ovalGeometry`: `TOGGLE_INSET_PX`, `clampToOval` (D3) -
   files: `src/sections/hero/ovalGeometry.ts` - check: `npm run build` -
   about 15 lines - agent: developer - now
-- [ ] T08 tests of T07, rows AC-17 (unit on ovalGeometry) - files:
+- [x] T08 tests of T07, rows AC-17 (unit on ovalGeometry) - files:
   `src/sections/hero/ovalGeometry.test.ts` - check: `npx vitest run
   src/sections/hero/ovalGeometry.test.ts` - agent: test-coder - now
 
 Services
-- [ ] T09 [P] `MotionPreference` interface and its matchMedia adapter
+- [x] T09 [P] `MotionPreference` interface and its matchMedia adapter
   (`change` listener, `?motion` override read from `location.search`) -
   files: `src/services/motionPreference.ts`,
   `src/services/mediaQueryMotionPreference.ts` - check: `npm run build`;
   `grep -rln "matchMedia\|location" src/services src/sections` lists
   only the adapter - about 30 lines - agent: developer - now
-- [ ] T10 tests of T09 with `matchMedia` and `location` doubles, rows
+- [x] T10 tests of T09 with `matchMedia` and `location` doubles, rows
   AC-7, AC-18 (unit on the adapter) - files:
   `src/services/mediaQueryMotionPreference.test.ts` - check: `npx vitest
   run src/services/mediaQueryMotionPreference.test.ts` - agent:
   test-coder - now
-- [ ] T11 [P] `VideoClock` interface, `PlayOutcome`, `CreateVideoClock` -
+- [x] T11 [P] `VideoClock` interface, `PlayOutcome`, `CreateVideoClock` -
   files: `src/services/videoClock.ts` - check: `npm run build` - about 15
   lines - agent: developer - now
-- [ ] T12 `htmlVideoClock` adapter: `muted` set before `play()`,
+- [x] T12 `htmlVideoClock` adapter: `muted` set before `play()`,
   rejection mapping, `timeupdate`, capture-phase source `error` with
   `NETWORK_NO_SOURCE`, watchable from an `IntersectionObserver` and
   `visibilitychange`, injectable `env` - files:
@@ -95,35 +95,35 @@ Services
   "IntersectionObserver\|visibilityState" src/services src/sections`
   lists only this file - about 50 lines, split only if it passes 60 -
   agent: developer - now
-- [ ] T13 tests of T12 with a video, document and observer double, rows
+- [x] T13 tests of T12 with a video, document and observer double, rows
   AC-15, AC-18 (unit on the adapter) - files:
   `src/services/htmlVideoClock.test.ts` - check: `npx vitest run
   src/services/htmlVideoClock.test.ts` - agent: test-coder - now
-- [ ] T14 service context: `Services`, `ServiceProvider`, `useServices`;
+- [x] T14 service context: `Services`, `ServiceProvider`, `useServices`;
   the `// shortcut:` line on `useReduce` (D7: read once, legacy only,
   upgrade when `components/` empties) - files:
   `src/app/ServiceContext.tsx`, `src/app/useReduce.ts` - check: `npm run
   build`; `npm test` - about 25 lines - agent: developer - now
 
 Section (built unmounted: `App.tsx` keeps the v1 hero until T23)
-- [ ] T15 `Hero.tsx` shell: `section id="top"` labelled by the `h1`; oval
+- [x] T15 `Hero.tsx` shell: `section id="top"` labelled by the `h1`; oval
   with the video (sources, poster, `aria-label`), tint and halo; `h1` with
   name and role spans; hint link to `#${heroV2.next}`; per-element
   `useInView` (once) setting `data-in` - files:
   `src/sections/hero/Hero.tsx` - check: `npm run build`; AC-9 grep (test
   plan) empty - about 40 lines - agent: developer - now
-- [ ] T16 playback in the section: `useServices`, `createVideoClock` on
+- [x] T16 playback in the section: `useServices`, `createVideoClock` on
   the video ref, `useReducer(heroPlayback)`, live `reduced` through
   `useSyncExternalStore`, play and pause from `heroView`, failed and
   watchable subscriptions, `data-held` on the root - files:
   `src/sections/hero/Hero.tsx` - check: `npm run build`; `npm test` -
   about 40 lines - agent: developer - now
-- [ ] T17 vapor layer: markup from `heroV2.vapor` (`aria-hidden`, images
+- [x] T17 vapor layer: markup from `heroV2.vapor` (`aria-hidden`, images
   `alt=""`, product label from content), `tickVapor` on `onTime`, the
   released object re-keyed to restart `emerge` - files:
   `src/sections/hero/Hero.tsx` - check: `npm run build`; AC-9 grep empty -
   about 35 lines - agent: developer - now
-- [ ] T18 toggle: native `button` rendered from `heroView().toggle`,
+- [x] T18 toggle: native `button` rendered from `heroView().toggle`,
   Lucide `Play` / `Pause` at stroke 1.5, labels from content, one
   `onClick` on the oval (`play()` in the click stack after a refusal),
   mouse-only `pointermove` through `clampToOval`, `pointerleave` reset -
@@ -156,7 +156,7 @@ Reduced motion
   about 25 lines - agent: developer - BLOCKED (tokens, edits `hero.css`)
 
 Mockup
-- [ ] T22 [P] README known details for the two deviations Hedi decided:
+- [x] T22 [P] README known details for the two deviations Hedi decided:
   the hint label at 12 px against 11 px in the PNGs (D2), the toggle
   clamped 26 px inside the ellipse (D3); one dated decision-log entry for
   both - files: `docs/v2/README.md` (Known mockup details),

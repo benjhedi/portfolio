@@ -381,3 +381,13 @@ decides the intended result (decision log, 2026-11-10).
 - 01 hero: FR/EN and the burger do nothing in the mockup; the mobile
   menu and the language switch need their own mockup before they are
   built (rule 60).
+- 01 hero: the "Défiler" hint label renders at 12 px (`--ws-size-micro`,
+  the rule 50 minimum) against 11 px in the PNGs (spec 007, D2).
+- 01 hero: the play/pause toggle that follows the cursor is clamped so
+  its center stays 26 px inside the ellipse, where the mockup lets the
+  oval clip it (spec 007, D3).
+- 01 hero: the vapor "site" object in the implementation shows the top
+  of the v2 Projects section (light theme, 1440 px window) instead of
+  `mockup/img/site.jpg`, a v1 capture whose nav carries the old name
+  (constitution principle 1; spec 007). The hero PNGs freeze RIDE, so
+  they do not show this object.

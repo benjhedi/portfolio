@@ -1,0 +1,432 @@
+/* v2 hero, ported from docs/v2/mockup/index.html (spec 007). Colors, spacing,
+   type roles and motion come from the SDK; the values below have no token and
+   are fixed by the plan (Gates: values fixed by a decision, composition values). */
+.hero {
+  /* At least one viewport tall, in svh so mobile browser chrome never crops it (AC-1) */
+  --hero-height: 100svh;
+  /* Bottom bar height, reserved before the bar ships (AC-2, d1a645a) */
+  --hero-bar: 56px;
+  /* Name, role and hint stacked under the oval, so the hero ends above the bar (spec 005) */
+  --hero-stack: 364px;
+  /* Oval width as a share of the viewport, wider than 900 px (AC-2) */
+  --hero-oval-vw: 78vw;
+  /* Oval width cap (AC-2) */
+  --hero-oval-max: 860px;
+  /* Oval width over height, wider than 900 px (AC-2) */
+  --hero-oval-ratio: 1.5;
+  /* Oval width at 900 px and narrower (AC-2) */
+  --hero-oval-vw-narrow: 92vw;
+  /* Oval width over height at 900 px and narrower (AC-2) */
+  --hero-oval-ratio-narrow: 1.25;
+  /* Video crop that keeps the head in frame (AC-2) */
+  --hero-crop: 50% 28%;
+  /* Sky tint strength in light, the v1 duotone; the SDK has no opacity token (spec 008 D1) */
+  --hero-tint: 0.62;
+  /* Sky tint strength in dark (spec 008 D1) */
+  --hero-tint-dark: 0.5;
+  /* Ink vignette darkening the oval rim (D1 = C) */
+  --hero-halo: radial-gradient(60% 60% at 50% 50%, transparent 55%, color-mix(in srgb, var(--ws-ref-ink) 35%, transparent) 100%);
+  /* Name size, fluid with the viewport; no SDK type role spans 22 to 30 px (D1 = C) */
+  --hero-name-size: clamp(22px, 2.4vw, 30px);
+  /* Name tracking (D1 = C) */
+  --hero-name-track: -0.01em;
+  /* Name line height (D1 = C) */
+  --hero-name-leading: 1.2;
+  /* Role size from the body role to the card role, fluid with the viewport */
+  --hero-role-size: clamp(var(--ws-size-body), 1.6vw, var(--ws-size-card));
+  /* Hairline width: oval rim and hint line (D1 = C) */
+  --hero-hairline: 1px;
+  /* Hint line length (D1 = C) */
+  --hero-line-length: 36px;
+  /* One draw-and-retract cycle of the hint line (D1 = C) */
+  --hero-line-cycle: 2.2s;
+  /* Focus ring width (AC-12); the SDK has no ring-width token */
+  --hero-ring: 2px;
+  /* Porcelain gap under the toggle's ring: the ring alone is under 3:1 on the dark shirt (spec 008) */
+  --hero-toggle-gap: 2px;
+  /* Toggle hit area, rested 16 px above the oval bottom (spec 008, AC-17) */
+  --hero-toggle-target: 44px;
+  /* Toggle disc, centered in the hit area (spec 008) */
+  --hero-toggle-disc: 32px;
+  /* Toggle glyph (spec 008) */
+  --hero-toggle-glyph: 16px;
+
+  /* Vapor origin, the mouth on the right profile, as a share of the oval (AC-4) */
+  --hero-mouth-x: 67%;
+  /* Mouth height wider than 900 px (AC-4) */
+  --hero-mouth-y: 51%;
+  /* Mouth height at 900 px and narrower (AC-4) */
+  --hero-mouth-y-narrow: 47%;
+  /* One object from the mouth to its fade (D1 = C) */
+  --hero-emerge-time: 2.1s;
+  /* Fast start, long settle (D1 = C) */
+  --hero-emerge-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* Scale at the mouth (D1 = C) */
+  --hero-emerge-from: 0.04;
+  /* Scale as it fades (D1 = C) */
+  --hero-emerge-to: 1.03;
+  /* Opacity right after leaving the mouth (D1 = C) */
+  --hero-emerge-opacity: 0.9;
+  /* Blur at the mouth, then while it clears; desktop only, as the mockup (D1 = C) */
+  --hero-emerge-blur: 10px;
+  --hero-emerge-haze: 4px;
+  /* Offset at the peak, right and up (D1 = C) */
+  --hero-emerge-peak-x: 96px;
+  --hero-emerge-peak-y: -34px;
+  /* Offset as it fades (D1 = C) */
+  --hero-emerge-end-x: 130px;
+  --hero-emerge-end-y: -64px;
+  /* Peak offset at 900 px and narrower (D1 = C) */
+  --hero-emerge-peak-x-narrow: 34px;
+  --hero-emerge-peak-y-narrow: -18px;
+  /* Fade offset at 900 px and narrower (D1 = C) */
+  --hero-emerge-end-x-narrow: 50px;
+  --hero-emerge-end-y-narrow: -34px;
+  /* Drop shadow of a vapor object, ink at 45 % (D1 = C) */
+  --hero-vapor-shadow: 0 18px 40px color-mix(in srgb, var(--ws-ref-ink) 45%, transparent);
+  /* Small phone width, then at 900 px and narrower (D1 = C) */
+  --hero-vapor-phone: 92px;
+  --hero-vapor-phone-narrow: 56px;
+  /* Phone screen ratio (D1 = C) */
+  --hero-vapor-phone-ratio: 9 / 19.5;
+  /* Phone body radius, then its screen radius (D1 = C) */
+  --hero-vapor-phone-radius: 14px;
+  --hero-vapor-screen-radius: 11px;
+  /* Window width (site, product), then at 900 px and narrower (D1 = C) */
+  --hero-vapor-window: 200px;
+  --hero-vapor-window-narrow: 120px;
+  /* Product window body height, then at 900 px and narrower (D1 = C) */
+  --hero-vapor-product: 132px;
+  --hero-vapor-product-narrow: 88px;
+  /* Product window side rail (D1 = C) */
+  --hero-vapor-rail: 48px;
+  /* Window title bar dots (D1 = C) */
+  --hero-vapor-dot: 7px;
+  /* Phone bezel (D1 = C) */
+  --hero-vapor-pad-xs: 3px;
+  /* Bar and rail padding, and the gaps of the product sketch (D1 = C) */
+  --hero-vapor-pad-s: 6px;
+  /* Product main pane top padding (D1 = C) */
+  --hero-vapor-pad-m: 10px;
+  /* Rail item height, then text line height, in the product sketch (D1 = C) */
+  --hero-vapor-item: 10px;
+  --hero-vapor-line: 8px;
+  /* Sketch line radius (D1 = C) */
+  --hero-vapor-line-radius: 3px;
+  /* Widths of the second to fourth text lines (D1 = C) */
+  --hero-vapor-line-2: 72%;
+  --hero-vapor-line-3: 84%;
+  --hero-vapor-line-4: 40%;
+  /* Product label inside the hidden illustration, under rule 50's 12 px floor on purpose: aria-hidden decor (D1 = C) */
+  --hero-vapor-label: 11px;
+
+  min-height: var(--hero-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Top: the mockup's 64 px nav plus a gap, kept until the nav spec */
+  padding: calc(var(--ws-space-64) + var(--ws-space-32)) var(--ws-space-20) var(--ws-space-48);
+  text-align: center;
+}
+
+.hero .oval {
+  position: relative;
+  width: min(var(--hero-oval-vw), var(--hero-oval-max), calc((var(--hero-height) - var(--hero-bar) - var(--hero-stack)) * var(--hero-oval-ratio)));
+  aspect-ratio: var(--hero-oval-ratio);
+  border-radius: 50%;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--ws-ref-ink);
+  box-shadow: 0 0 0 var(--hero-hairline) var(--ws-color-border);
+}
+.hero .media,
+.hero .tint,
+.hero .halo {
+  position: absolute;
+  inset: 0;
+}
+/* Child only: the vapor images inside .media keep their own sizing */
+.hero .media > :is(video, img) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--hero-crop);
+}
+.hero .tint {
+  pointer-events: none;
+  background: var(--ws-color-accent);
+  mix-blend-mode: color;
+  opacity: var(--hero-tint);
+}
+[data-theme="dark"] .hero .tint {
+  opacity: var(--hero-tint-dark);
+}
+.hero .halo {
+  pointer-events: none;
+  background: var(--hero-halo);
+}
+
+/* Vapor: HTML objects above the video, released one per loop at the mouth (AC-4, AC-5) */
+.hero .vapor {
+  position: absolute;
+  left: var(--hero-mouth-x);
+  top: var(--hero-mouth-y);
+  width: 0;
+  height: 0;
+}
+.hero .vapor .out {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transform-origin: 0 50%;
+  background: var(--ws-ref-ink);
+  box-shadow: var(--hero-vapor-shadow);
+  will-change: transform, opacity;
+}
+.hero .vapor .out.go {
+  animation: hero-emerge var(--hero-emerge-time) var(--hero-emerge-ease) forwards;
+}
+/* No notch: the screenshot shows whole (AC-5) */
+.hero .vapor .phone {
+  width: var(--hero-vapor-phone);
+  aspect-ratio: var(--hero-vapor-phone-ratio);
+  border-radius: var(--hero-vapor-phone-radius);
+  padding: var(--hero-vapor-pad-xs);
+}
+.hero .vapor .phone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: var(--hero-vapor-screen-radius);
+}
+.hero .vapor :is(.site, .product) {
+  width: var(--hero-vapor-window);
+  overflow: hidden;
+  border: var(--hero-hairline) solid var(--ws-color-border);
+  border-radius: var(--ws-r-comfy);
+  background: var(--ws-color-surface);
+}
+.hero .vapor .bar {
+  display: flex;
+  gap: var(--ws-space-4);
+  padding: var(--hero-vapor-pad-s) var(--ws-space-8);
+  border-bottom: var(--hero-hairline) solid var(--ws-color-border);
+  background: var(--ws-ref-porcelain);
+}
+.hero .vapor .bar b {
+  width: var(--hero-vapor-dot);
+  height: var(--hero-vapor-dot);
+  border-radius: 50%;
+  background: var(--ws-ref-blue-grey-200);
+}
+.hero .vapor .site img {
+  display: block;
+  width: 100%;
+}
+.hero .vapor .ui {
+  display: grid;
+  grid-template-columns: var(--hero-vapor-rail) 1fr;
+  height: var(--hero-vapor-product);
+  background: var(--ws-ref-surface);
+}
+.hero .vapor :is(.side, .main) {
+  display: grid;
+  align-content: start;
+  gap: var(--hero-vapor-pad-s);
+}
+.hero .vapor .side {
+  padding: var(--ws-space-8) var(--hero-vapor-pad-s);
+  background: var(--ws-ref-porcelain);
+}
+.hero .vapor .main {
+  padding: var(--hero-vapor-pad-m) var(--ws-space-12);
+}
+.hero .vapor :is(.side u, .main em) {
+  display: block;
+  border-radius: var(--hero-vapor-line-radius);
+  background: var(--ws-ref-blue-grey-200);
+}
+.hero .vapor .side u { height: var(--hero-vapor-item); }
+.hero .vapor .main em { height: var(--hero-vapor-line); }
+.hero .vapor .main em:nth-of-type(2) { width: var(--hero-vapor-line-2); }
+.hero .vapor .main em:nth-of-type(3) { width: var(--hero-vapor-line-3); }
+.hero .vapor .main em:nth-of-type(4) { width: var(--hero-vapor-line-4); }
+.hero .vapor .main strong {
+  margin-top: var(--hero-vapor-pad-s);
+  color: var(--ws-ref-charcoal);
+  font-size: var(--hero-vapor-label);
+  font-weight: var(--ws-w-semi);
+}
+@keyframes hero-emerge {
+  0% { opacity: 0; transform: translate(0, -50%) scale(var(--hero-emerge-from)); filter: blur(var(--hero-emerge-blur)); }
+  10% { opacity: var(--hero-emerge-opacity); filter: blur(var(--hero-emerge-haze)); }
+  35% { filter: blur(0); }
+  72% { opacity: 1; transform: translate(var(--hero-emerge-peak-x), calc(-50% + var(--hero-emerge-peak-y))) scale(1); }
+  100% { opacity: 0; transform: translate(var(--hero-emerge-end-x), calc(-50% + var(--hero-emerge-end-y))) scale(var(--hero-emerge-to)); }
+}
+/* The mockup's mobile path: shorter travel, no blur */
+@keyframes hero-emerge-narrow {
+  0% { opacity: 0; transform: translate(0, -50%) scale(var(--hero-emerge-from)); }
+  10% { opacity: var(--hero-emerge-opacity); }
+  72% { opacity: 1; transform: translate(var(--hero-emerge-peak-x-narrow), calc(-50% + var(--hero-emerge-peak-y-narrow))) scale(1); }
+  100% { opacity: 0; transform: translate(var(--hero-emerge-end-x-narrow), calc(-50% + var(--hero-emerge-end-y-narrow))) scale(var(--hero-emerge-to)); }
+}
+
+/* Play / pause (WCAG 2.2.2): rests at the bottom center; Hero.tsx sets left and
+   top inline from clampToOval while a mouse hovers, the transition glides it.
+   Porcelain disc and charcoal glyph in both themes: the dark shirt sits under it either way. */
+.hero .play {
+  position: absolute;
+  left: 50%;
+  top: calc(100% - var(--ws-space-16) - var(--hero-toggle-target) / 2);
+  display: grid;
+  place-items: center;
+  width: var(--hero-toggle-target);
+  height: var(--hero-toggle-target);
+  margin: calc(var(--hero-toggle-target) / -2) 0 0 calc(var(--hero-toggle-target) / -2);
+  color: var(--ws-ref-charcoal);
+  cursor: pointer;
+  transition:
+    left var(--ws-motion-base) var(--ws-ease-emphasized),
+    top var(--ws-motion-base) var(--ws-ease-emphasized);
+}
+.hero .play::before {
+  content: "";
+  position: absolute;
+  inset: calc((var(--hero-toggle-target) - var(--hero-toggle-disc)) / 2);
+  border-radius: var(--ws-r-pill);
+  background: var(--ws-ref-porcelain);
+  box-shadow: var(--ws-shadow-inset);
+}
+.hero .play svg {
+  position: relative;
+  width: var(--hero-toggle-glyph);
+  height: var(--hero-toggle-glyph);
+}
+.hero .play:focus-visible {
+  outline: none;
+}
+.hero .play:focus-visible::before {
+  box-shadow:
+    var(--ws-shadow-inset),
+    0 0 0 var(--hero-toggle-gap) var(--ws-ref-porcelain),
+    0 0 0 calc(var(--hero-toggle-gap) + var(--hero-ring)) var(--ws-color-focus-ring);
+}
+
+/* Paused by the visitor or refused autoplay: vapor and hint line hold their frame (AC-17) */
+.hero[data-held] :is(.vapor .out.go, .scroll i) {
+  animation-play-state: paused;
+}
+
+.hero .name {
+  display: block;
+  margin-top: var(--ws-space-40);
+  color: var(--ws-color-text);
+  font-size: var(--hero-name-size);
+  font-weight: var(--ws-w-regular);
+  letter-spacing: var(--hero-name-track);
+  line-height: var(--hero-name-leading);
+}
+.hero .name strong {
+  font-weight: var(--ws-w-semi);
+}
+.hero .role {
+  display: block;
+  margin-top: var(--ws-space-4);
+  color: var(--ws-color-text-muted);
+  font-size: var(--hero-role-size);
+  font-weight: var(--ws-w-regular);
+  line-height: var(--ws-lh-body);
+}
+
+/* D2: the hint sits on --ws-size-micro, one pixel above the mockup's 11 px */
+.hero .scroll {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ws-space-8);
+  margin-top: var(--ws-space-48);
+  color: var(--ws-color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--ws-size-micro);
+  letter-spacing: var(--ws-track-label);
+  text-transform: uppercase;
+}
+.hero .scroll:focus-visible {
+  outline: none;
+  border-radius: var(--ws-r-standard);
+  box-shadow: 0 0 0 var(--hero-ring) var(--ws-color-focus-ring);
+}
+.hero .scroll i {
+  display: block;
+  width: var(--hero-hairline);
+  height: var(--hero-line-length);
+  background: var(--ws-color-border-strong);
+  transform-origin: top;
+  animation: hero-line var(--hero-line-cycle) var(--ws-ease-emphasized) infinite;
+}
+@keyframes hero-line {
+  0% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* Reveal, once per element on its first entry into the viewport (AC-8) */
+.hero :is(.oval, .name, .role, .scroll) {
+  opacity: 0;
+  transform: translateY(var(--ws-space-24));
+  transition:
+    opacity var(--ws-motion-reveal) var(--ws-ease-emphasized),
+    transform var(--ws-motion-reveal) var(--ws-ease-emphasized);
+}
+.hero .name { transition-delay: var(--ws-motion-stagger); }
+.hero .role { transition-delay: calc(var(--ws-motion-stagger) * 2); }
+.hero .scroll { transition-delay: calc(var(--ws-motion-stagger) * 3); }
+.hero [data-in] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Reduced motion (AC-6): Hero.tsx sets data-reduced from the motion preference
+   service rather than a media query, so ?motion still plays the loop (AC-7).
+   Everything shows at once; the hint line stays drawn, at its unscaled length. */
+.hero[data-reduced] :is(.oval, .name, .role, .scroll) {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.hero[data-reduced] .scroll i {
+  animation: none;
+}
+
+/* The mockup's mobile breakpoint, 900 px included (AC-2) */
+@media (max-width: 900px) {
+  .hero {
+    /* The mockup's 56 px mobile nav plus a gap */
+    padding-top: calc(var(--ws-space-56) + var(--ws-space-24));
+  }
+  .hero .oval {
+    width: var(--hero-oval-vw-narrow);
+    aspect-ratio: var(--hero-oval-ratio-narrow);
+  }
+  .hero .vapor {
+    top: var(--hero-mouth-y-narrow);
+  }
+  .hero .vapor .out.go {
+    animation-name: hero-emerge-narrow;
+  }
+  .hero .vapor .phone {
+    width: var(--hero-vapor-phone-narrow);
+  }
+  .hero .vapor :is(.site, .product) {
+    width: var(--hero-vapor-window-narrow);
+  }
+  .hero .vapor .ui {
+    height: var(--hero-vapor-product-narrow);
+  }
+}

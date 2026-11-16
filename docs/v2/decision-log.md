@@ -124,3 +124,23 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
   toggles like a mouse click, and the play/pause toggle also holds the
   "Défiler" hint line, so one control stops every motion of the hero
   (WCAG 2.2.2; spec 007 AC-17).
+- 2026-11-16: Two hero details differ from the validated PNGs on purpose,
+  without a new artifact version: the "Défiler" hint label renders at
+  12 px (`--ws-size-micro`, the rule 50 minimum) instead of 11 px, and the
+  play/pause toggle that follows the cursor is clamped so its center stays
+  26 px inside the ellipse instead of being clipped by the oval. Both are
+  listed in the README known mockup details (spec 007, D2 and D3).
+- 2026-11-16: The hero vapor "site" object shows the top of the v2
+  Projects section, intro and first project, light theme, captured from
+  the mockup at 1440 px, instead of the v1 capture `img/site.jpg`, whose
+  nav shows the old name (constitution principle 1). It enters as a
+  documented deviation without a new artifact version: `mockup/` and its
+  sums stay as they are, and no PNG is re-exported since the hero PNGs
+  freeze RIDE (spec 007).
+- 2026-11-16: The SDK focus ring `--ws-color-focus-ring` (45 % alpha)
+  measures 1.3:1 against the light page, under the 3:1 of WCAG 1.4.11
+  (3.11:1 in dark; spec 007 verification, finding 1). It also draws the
+  contact form rings already live. Spec 007 merges into `dev` with it; a
+  ring at 3:1 in both themes is requested from WaraDS-Web, then pinned
+  like spec 009, and that pin gates the next `v*` tag. No local override
+  in `hero.css` (rule 50).

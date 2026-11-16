@@ -185,7 +185,7 @@ Wiring, approved separately
   dist/hero` lists no `hero-1` - agent: developer - BLOCKED (after T23)
 
 Close
-- [ ] T25 verify - every row of the test plan green, side by side of the
+- [x] T25 verify - every row of the test plan green, side by side of the
   eight PNGs, axe both themes, keyboard pass, Safari and Firefox rows
   with Hedi - files: `specs/007-v2-hero/verification.md` - agent: qa -
   BLOCKED (after T24)

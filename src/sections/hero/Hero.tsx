@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useId, useMemo, useReducer, useRef, useState, useSyncExternalStore } from "react";
 import { useInView } from "motion/react";
+import { Pause, Play } from "lucide-react";
 import { useApp } from "../../app/AppContext";
 import { useServices } from "../../app/ServiceContext";
 import { heroV2, identity } from "../../content/content";
 import { heroPlayback, heroView } from "./heroPlayback";
+import { clampToOval, TOGGLE_INSET_PX } from "./ovalGeometry";
 import { tickVapor, type VaporClock } from "./vaporSchedule";
 
 // Each element reveals once, on its own first entry into the viewport (AC-8).
@@ -95,9 +97,37 @@ export function Hero() {
     clock.pause();
   }, [clock, view.shouldPlay, startPlay]);
 
+  // One handler for the whole oval: the toggle's own click bubbles here,
+  // Enter and Space included.
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const onOvalClick = () => {
+    if (view.toggle === "hidden") return;
+    // A play after a refusal must start inside the click to carry the user activation.
+    if (view.toggle === "play") startPlay();
+    dispatch({ type: "toggled" });
+  };
+  const onOvalPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    const toggle = toggleRef.current;
+    if (event.pointerType !== "mouse" || !toggle) return;
+    const box = event.currentTarget.getBoundingClientRect();
+    const at = clampToOval({ x: event.clientX - box.left, y: event.clientY - box.top }, box, TOGGLE_INSET_PX);
+    toggle.style.left = `${at.x}px`;
+    toggle.style.top = `${at.y}px`;
+  };
+  const onOvalPointerLeave = () => {
+    toggleRef.current?.style.removeProperty("left");
+    toggleRef.current?.style.removeProperty("top");
+  };
+
   return (
     <section id="top" className="hero" aria-labelledby={titleId} data-held={view.held || undefined}>
-      <div {...oval} className="oval">
+      <div
+        {...oval}
+        className="oval"
+        onClick={onOvalClick}
+        onPointerMove={onOvalPointerMove}
+        onPointerLeave={onOvalPointerLeave}
+      >
         <div className="media">
           <video
             ref={setVideo}
@@ -146,6 +176,20 @@ export function Hero() {
           </div>
         </div>
         <div className="halo" aria-hidden="true" />
+        {view.toggle !== "hidden" && (
+          <button
+            ref={toggleRef}
+            type="button"
+            className="play"
+            aria-label={t(view.toggle === "play" ? heroV2.toggle.play : heroV2.toggle.pause)}
+          >
+            {view.toggle === "play" ? (
+              <Play strokeWidth={1.5} aria-hidden="true" />
+            ) : (
+              <Pause strokeWidth={1.5} aria-hidden="true" />
+            )}
+          </button>
+        )}
       </div>
       <h1 id={titleId}>
         <span {...name} className="name">

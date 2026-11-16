@@ -28,7 +28,9 @@ attribute and needs no `@source`.
 
 - AC-1 WHEN a valid utility that `src/` does not use appears only in a Markdown file outside `src/` THE production build SHALL NOT emit it: an uncommitted probe file quoting `ring-sky/40`, `skew-x-13` and `max-w-[123px]` adds `.ring-sky\/40`, `.skew-x-13` and `.max-w-\[123px\]` to `dist/assets/*.css` with dev's line 1 and none of them with this branch's, while `.focus\:ring-sky\/40`, which `src/components/ContactForm.tsx` uses, stays in both.
 - AC-2 THE production CSS SHALL keep every selector the dev build emits for a class `src/` uses: the selectors removed against dev all come from files outside `src/`, and no selector is added.
-- AC-3 WHEN each section is rendered in light and dark at 1440 and 390 THE page SHALL show no visible difference from dev: full-page screenshots and the computed styles of the contact controls equal dev within the noise floor of two captures of dev (spec 006 capture script). The custom properties on `html` equal dev's except Tailwind theme variables that no utility in `src/` reads, which Tailwind stops emitting (added after the first capture: `--color-slate` and `--ease-out`).
+- AC-3 WHEN each section is rendered in light and dark at 1440 and 390 THE page SHALL show no visible difference from dev: full-page screenshots and computed values equal dev within the noise floor of two captures of dev (spec 006 capture script), except Tailwind theme variables that no utility in `src/` reads, which Tailwind stops emitting (`--color-slate`, `--ease-out`).
+
+AC-1 and AC-3 were reworded after the first capture, once Hedi had approved the spec: AC-1 because the dev tree has no Markdown that quotes a bare `ring-sky/40`, so a probe is needed to tell the two lines apart; AC-3 because two unread theme variables disappear with zero pixel change. Both changes wait for Hedi's acknowledgement on the PR.
 - AC-4 THE diff against dev SHALL touch only `src/index.css` line 1 and its comment, and this spec folder; `npm test` and `npm run build` pass.
 
 ## Screens and states

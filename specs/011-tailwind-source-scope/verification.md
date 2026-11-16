@@ -5,7 +5,7 @@ Base: `origin/dev` at `e668fa3` | Node 26.13.1, npm 11.20.0 (the shell's Node, n
 
 ```
 Verdict: PASS locally; CI pending until the PR runs
-Criteria: AC-1 to AC-4 green, 0 red; AC-3 reworded after the first capture (see AC-3)
+Criteria: AC-1 to AC-4 green, 0 red; AC-1 and AC-3 reworded after the first capture
 Build and tests: npm ci, npm test (39 passed), npm run build exit 0
 Screens: none, toolchain change; 4 full pages and 404 computed values compared to dev
 Not verified and why: CI on the PR (no PR yet); Node 22 run (CI covers it)
@@ -32,16 +32,22 @@ dev line:     .ring-sky,.ring-sky\/40{...}  .skew-x-13{...}  .max-w-\[123px\]{..
 branch line:  none of the three                                                       .focus\:ring-sky\/40: 2
 ```
 
-The probe was deleted after the run (`git status` clean). On dev's own
-tree the bare `.ring-sky\/40` does not appear: spec 010 quotes the
-`focus:` form, which `ContactForm.tsx` still uses here, so the probe is
-what tells the two lines apart on this base.
+The probe was deleted after the run (`git status` clean). On `e668fa3`
+nothing outside `src/` quotes a bare `ring-sky/40` (spec 010 is not on dev
+yet and quotes the `focus:` form anyway), so the probe is what tells the
+two lines apart on this base. AC-1 was reworded after the first capture
+for that reason; its first wording relied on this spec's own quote.
 
 ## AC-2 - every src utility kept - `keepsEverySrcUtility`
 
+Baseline: the branch tree at `1a9671e` with dev's line 1, so spec 011's
+own `ring-sky` quote counts. The review rebuilt `e668fa3` as is and found
+61 555 B and the same list minus `.ring-sky` (16 removed, 0 added, same
+two variables).
+
 ```
-selectors   dev 314, branch 297, added 0
-removed     .\[wrangler\  .blur  .collapse  .contents  .filter  .grow  .isolate  .lowercase
+selectors   baseline 314, branch 297, added 0
+removed     .\[wrangler\:info\]  .blur  .collapse  .contents  .filter  .grow  .isolate  .lowercase
             .max-w-\[\.\.\]  .outline  .ring  .ring-sky  .rounded  .shadow  .table
             .text-\[\.\.\]  .transform
 size        61 598 B (gzip 16 461) -> 58 656 B (gzip 15 987)

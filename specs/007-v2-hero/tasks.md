@@ -223,7 +223,7 @@ others in T25.
 | AC-7 | `?motion` in the URL reports motion allowed under reduced | unit, `mediaQueryMotionPreference` | `allowsMotionWhenUrlCarriesMotion` |
 | AC-7 | reduced emulated plus `?motion`: loop, vapor and toggle | probe, qa | `playsLoopUnderReducedWithMotionParam` |
 | AC-8 | first entry fades in and rises 24 px (`--ws-space-24`) over 0.8 s, never replays | probe, qa | `revealsOnceOnFirstEntry` |
-| AC-9 | hero source holds no literal copy in JSX text, `aria-label` or `alt` | grep, qa | `findsNoLiteralCopyInHeroSource` |
+| AC-9 | hero source holds no literal copy in JSX text, `aria-label` or `alt`: `grep -nE '(aria-label\|alt)="[^"]+"\|>[^<>{}=]*[A-Za-z][^<>{}=]*</' src/sections/hero/*.tsx` empty | grep, qa | `findsNoLiteralCopyInHeroSource` |
 | AC-9 | switching to EN changes every hero text and label | probe, qa | `switchesEveryHeroLabelWithLocale` |
 | AC-10 | no "Benjahouach" or "Wara" in the hero code or DOM, name reads "Hedi Jahouach" | grep and probe, qa | `showsJahouachWithoutWaraInHero` |
 | AC-11 | click and Enter on the hint land on `#apropos`, an id present in the DOM | probe, qa | `landsOnNextSectionWhenHintActivated` |
@@ -242,7 +242,7 @@ others in T25.
 | AC-17 | rest, follow, click and tap anywhere hold video, vapor and line; Enter; refused stub; no toggle when reduced | probe, qa | `holdsVideoVaporAndLineOnPause` |
 | AC-17 | Safari on iPhone in low power mode refuses autoplay and shows play over the poster | manual Safari, Hedi | `showsPlayOverPosterWhenSafariRefuses` |
 | AC-18 | off screen or hidden tab pauses, return resumes unless the visitor paused | unit, `heroPlayback` | `resumesOnReturnUnlessVisitorPaused` |
-| AC-18 | reduced on then off restarts the loop, and keeps a visitor pause | unit, `heroPlayback` | `keepsVisitorPauseWhenReducedTurnsOff` |
+| AC-18 | reduced on then off restarts the loop, and keeps a visitor pause with the toggle on play | unit, `heroPlayback` | `keepsVisitorPauseWhenReducedTurnsOff` |
 | AC-18 | observer out of view or document hidden reports unwatchable | unit, `htmlVideoClock` | `reportsUnwatchableWhenHiddenOrOffscreen` |
 | AC-18 | a media query change notifies subscribers | unit, `mediaQueryMotionPreference` | `notifiesWhenReducedPreferenceChanges` |
 | AC-18 | scroll out and back, stubbed `visibilitychange`, live reduced on and off | probe, qa | `pausesOffscreenAndFollowsLiveReducedMotion` |

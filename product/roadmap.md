@@ -26,6 +26,7 @@ Sources: [log] `docs/v2/decision-log.md`; [mockup] `docs/v2/mockup/`, frozen fro
 - [ ] A visitor sends a request from 007 contact and is told where the data goes. Needs the mockup ([log], [inv] rule 06 gap).
 - [ ] A visitor sees the footer marquee. Needs the mockup ([log], [mockup]).
 - [ ] A visitor always reaches "Demarrer un projet / Voir les projets" from the fixed bottom bar, with the thin nav and the 0% "HJ" preloader. Needs the mockup ([log], [mockup]).
+- [ ] A keyboard visitor sees every focus ring at 3:1 in both themes: SDK focus ring token fixed in WaraDS-Web and pinned; gates the next `v*` tag ([log] 2026-11-16, spec 007 verification).
 - [ ] A search for "Hedi Jahouach" finds the site in FR and EN: title, hreflang, canonical, sitemap, JSON-LD ([log], [inv] SEO gap).
 
 ## Phase 2 - After v2

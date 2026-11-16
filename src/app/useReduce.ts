@@ -6,6 +6,7 @@ import { useReducedMotion } from "motion/react";
   reduced-motion. Pour les vrais visiteurs, la preference systeme est
   respectee a la lettre (charte a11y).
 */
+// shortcut: reads the preference once, for legacy components/ only, upgrade to MotionPreference when components/ empties
 export function useReduce(): boolean {
   const systemReduce = useReducedMotion();
   const force =

@@ -4,6 +4,7 @@ import { useApp } from "../../app/AppContext";
 import { useServices } from "../../app/ServiceContext";
 import { heroV2, identity } from "../../content/content";
 import { heroPlayback, heroView } from "./heroPlayback";
+import { tickVapor, type VaporClock } from "./vaporSchedule";
 
 // Each element reveals once, on its own first entry into the viewport (AC-8).
 function useReveal<T extends Element>() {
@@ -51,6 +52,25 @@ export function Hero() {
     });
   }, [clock]);
 
+  // The released object is re-keyed so its emerge animation starts over.
+  const vaporClock = useRef<VaporClock>({ armed: true, released: 0 });
+  const [vapor, setVapor] = useState<{ index: number; run: number } | null>(null);
+  useEffect(() => {
+    if (!clock) return;
+    return clock.onTime((seconds) => {
+      const { clock: next, release } = tickVapor(vaporClock.current, seconds, heroV2.vapor.length);
+      vaporClock.current = next;
+      if (release !== null) setVapor({ index: release, run: next.released });
+    });
+  }, [clock]);
+  const bar = (
+    <i className="bar">
+      <b />
+      <b />
+      <b />
+    </i>
+  );
+
   useEffect(() => {
     if (reduced !== state.reduced) dispatch({ type: "reducedChanged", reduced });
   }, [reduced, state.reduced]);
@@ -92,6 +112,38 @@ export function Hero() {
             <source src={heroV2.media.mp4} type="video/mp4" />
           </video>
           <i className="tint" aria-hidden="true" />
+          <div className="vapor" aria-hidden="true">
+            {heroV2.vapor.map((object, index) => {
+              const go = vapor?.index === index;
+              return (
+                <span key={go ? `${index}-${vapor.run}` : index} className={`out ${object.kind}${go ? " go" : ""}`}>
+                  {object.kind === "site" && bar}
+                  {object.kind !== "product" ? (
+                    <img src={object.src} alt="" />
+                  ) : (
+                    <>
+                      {bar}
+                      <div className="ui">
+                        <div className="side">
+                          <u />
+                          <u />
+                          <u />
+                          <u />
+                        </div>
+                        <div className="main">
+                          <em />
+                          <em />
+                          <em />
+                          <em />
+                          <strong>{t(heroV2.productLabel)}</strong>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </span>
+              );
+            })}
+          </div>
         </div>
         <div className="halo" aria-hidden="true" />
       </div>

@@ -386,3 +386,8 @@ decides the intended result (decision log, 2026-11-10).
 - 01 hero: the play/pause toggle that follows the cursor is clamped so
   its center stays 26 px inside the ellipse, where the mockup lets the
   oval clip it (spec 007, D3).
+- 01 hero: the vapor "site" object in the implementation shows the top
+  of the v2 Projects section (light theme, 1440 px window) instead of
+  `mockup/img/site.jpg`, a v1 capture whose nav carries the old name
+  (constitution principle 1; spec 007). The hero PNGs freeze RIDE, so
+  they do not show this object.

@@ -130,3 +130,10 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
   play/pause toggle that follows the cursor is clamped so its center stays
   26 px inside the ellipse instead of being clipped by the oval. Both are
   listed in the README known mockup details (spec 007, D2 and D3).
+- 2026-11-16: The hero vapor "site" object shows the top of the v2
+  Projects section, intro and first project, light theme, captured from
+  the mockup at 1440 px, instead of the v1 capture `img/site.jpg`, whose
+  nav shows the old name (constitution principle 1). It enters as a
+  documented deviation without a new artifact version: `mockup/` and its
+  sums stay as they are, and no PNG is re-exported since the hero PNGs
+  freeze RIDE (spec 007).

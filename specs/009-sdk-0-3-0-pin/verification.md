@@ -165,4 +165,7 @@ line 70 ("every 0.2.0 `--ws-*` keeps its value"). This report adds
   `!ACCESS_KEY` branch as the empty form, so it adds nothing locally.
 - Hover, active and loading states of `Button` and `Input`: not walked.
   The contact controls' computed styles and the full-page pixels are
-  identical to dev.
+  identical to dev. The review (T05) found the `dist/` of `@warastudio/react`
+  0.2.1 identical to 0.2.0, only `package.json` differs (version and the
+  theme dependency), and theme 0.3.0 only adds four tokens, so these
+  states cannot change.

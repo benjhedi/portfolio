@@ -1,6 +1,6 @@
 # Spec 009 - SDK 0.3.0 pin
 
-Branch: `chore-sdk-0-3-0` | Status: clarified (2026-11-16, light flow chosen by Hedi: spec, plan and tasks in one pass)
+Branch: `chore-sdk-0-3-0` | Status: done (2026-11-16, review APPROVED; light flow chosen by Hedi: spec, plan and tasks in one pass)
 Roadmap line: none of its own; prerequisite of Phase 1 "A visitor sees the hero" (spec 007, tokens gate).
 
 ## Why

@@ -6,10 +6,10 @@ Toolchain change, no unit: baseline, pin, record, verify, review. No `[P]`.
 
 ## Tasks
 
-- [ ] T01 baseline on dev: build, `npm run preview`, two captures with `specs/006-sdk-ws-upgrade/capture.mjs` into the scratchpad (noise floor), 0.2.0 `--ws-*` values light and dark from the installed CSS - files: none, no commit - check: the two captures diff to 0 values, pixel floor shown - agent: qa
-- [ ] T02 pin: `npm install --save-exact @warastudio/theme@0.3.0 @warastudio/react@0.2.1` - files: `package.json`, `package-lock.json` - check: `npm ls @warastudio/theme @warastudio/react`, `npm test`, `npm run build` - agent: setup-agent
-- [ ] T03 record: ADR 003 amended (0.3.0 and 0.2.1, date, the four tokens and why), `product/tech-stack.md` table and Design line, `CLAUDE.md` SDK line - files: `docs/adr/003-wara-ds-sdk.md`, `product/tech-stack.md`, `CLAUDE.md` - check: `git grep -n "0.2.0"` on those three files shows only history lines - agent: setup-agent
-- [ ] T04 verify AC-1 to AC-5 - files: `specs/009-sdk-0-3-0-pin/verification.md` - agent: qa
+- [x] T01 baseline on dev: build, `npm run preview`, two captures with `specs/006-sdk-ws-upgrade/capture.mjs` into the scratchpad (noise floor), 0.2.0 `--ws-*` values light and dark from the installed CSS - files: none, no commit - check: the two captures diff to 0 values, pixel floor shown - agent: qa
+- [x] T02 pin: `npm install --save-exact @warastudio/theme@0.3.0 @warastudio/react@0.2.1` - files: `package.json`, `package-lock.json` - check: `npm ls @warastudio/theme @warastudio/react`, `npm test`, `npm run build` - agent: setup-agent
+- [x] T03 record: ADR 003 amended (0.3.0 and 0.2.1, date, the four tokens and why), `product/tech-stack.md` table and Design line, `CLAUDE.md` SDK line - files: `docs/adr/003-wara-ds-sdk.md`, `product/tech-stack.md`, `CLAUDE.md` - check: `git grep -n "0.2.0"` on those three files shows only history lines - agent: setup-agent
+- [x] T04 verify AC-1 to AC-5 - files: `specs/009-sdk-0-3-0-pin/verification.md` - agent: qa
 - [ ] T05 review - diff against dev - agent: review-agent
 
 ## Test plan (derived from the EARS criteria)

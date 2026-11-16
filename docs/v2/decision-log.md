@@ -124,3 +124,9 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
   toggles like a mouse click, and the play/pause toggle also holds the
   "Défiler" hint line, so one control stops every motion of the hero
   (WCAG 2.2.2; spec 007 AC-17).
+- 2026-11-16: Two hero details differ from the validated PNGs on purpose,
+  without a new artifact version: the "Défiler" hint label renders at
+  12 px (`--ws-size-micro`, the rule 50 minimum) instead of 11 px, and the
+  play/pause toggle that follows the cursor is clamped so its center stays
+  26 px inside the ellipse instead of being clipped by the oval. Both are
+  listed in the README known mockup details (spec 007, D2 and D3).

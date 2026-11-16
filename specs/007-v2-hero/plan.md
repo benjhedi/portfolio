@@ -51,9 +51,10 @@ Design
     high with a 48 px rail, 7 px dots, bar widths 72 / 84 / 40 %; shadow
     `0 18px 40px` ink at 45 %; `emerge` keyframes (scale .04 to 1.03, blur
     10 / 4 px, opacity .9, translate 96 / -34 then 130 / -64 px, mobile 34 /
-    -18 then 50 / -34 px)
+    -18 then 50 / -34 px); product sketch rail items 10 px and text lines
+    8 px high
   - halo: radial 60 % at center, transparent 55 %, ink at 35 %; hint line
-    1 x 36 px
+    1 x 36 px; hairline 1 px, oval rim and hint line (added at review, T26)
 - SDK tokens requested from WaraDS-Web (D1 = C), ready to send; ds-agent
   clears the gate, the names are proposals it may change | OPEN
   (2026-11-16: theme 0.3.0 ships the four names and values below, spec 009)

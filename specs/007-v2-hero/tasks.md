@@ -1,6 +1,6 @@
 # Tasks 007 - v2 hero
 
-Plan: `plan.md` (deca53d; one gate BLOCKED: the four SDK tokens of D1) |
+Plan: `plan.md` (deca53d; tokens gate OPEN since spec 009, 2026-11-16) |
 Branch: `feat-v2-hero` off `dev`
 
 Each task: one logical change, one commit `[feat-v2-hero]: ...`, one
@@ -137,13 +137,13 @@ Section (built unmounted: `App.tsx` keeps the v1 hero until T23)
   (import) - check: `npm run build`; `npx vitest run
   src/sdkTokens.test.ts`; `grep -nE "#[0-9a-fA-F]{3,8}\b"
   src/sections/hero/hero.css` empty - about 40 lines - agent: developer -
-  BLOCKED (tokens)
+  now
 - [ ] T20 `hero.css` part 2: vapor objects without notch, `emerge`
   keyframes desktop and mobile, toggle disc, glyph, glide, focus gap and
   ring, `data-held` pausing `.out.go` and the hint line - files:
   `src/sections/hero/hero.css` - check: `npm run build`; `npx vitest run
   src/sdkTokens.test.ts`; hex grep empty - about 40 lines - agent:
-  developer - BLOCKED (tokens)
+  developer - now
 
 Reduced motion
 - [ ] T21 reduced path: `<img>` poster with the video label as `alt`
@@ -153,7 +153,7 @@ Reduced motion
   `?motion` works) - files: `src/sections/hero/Hero.tsx`,
   `src/sections/hero/hero.css` - check: `npm run build`; `npm test`;
   `grep -n "prefers-reduced-motion" src/sections/hero/hero.css` empty -
-  about 25 lines - agent: developer - BLOCKED (tokens, edits `hero.css`)
+  about 25 lines - agent: developer - now
 
 Mockup
 - [x] T22 [P] README known details for the two deviations Hedi decided:

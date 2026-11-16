@@ -7,14 +7,14 @@ d1a645a) | Architecture rule: `.claude/rules/10-architecture.md` | Branch:
 Decisions D1 to D7 taken by Hedi on 2026-11-15 (Risks and decisions). One
 gate stays BLOCKED: the four SDK tokens of D1, requested from WaraDS-Web
 through ds-agent. The tasks that do not read them can start first
-(Sequencing).
+(Sequencing). Update 2026-11-16: that gate is OPEN, spec 009 pinned
+`@warastudio/theme` 0.3.0, which ships the four names as proposed (aeac503).
 
 ## Gates (constitution check) - all must be OPEN before implementation
 
 Design
-- Design system: `@warastudio/theme` 0.2.0 installed and locked
-  (`node_modules/@warastudio/theme/package.json`, `package-lock.json`
-  l.2524-2527), 131 `--ws-*` variables in
+- Design system: `@warastudio/theme` 0.3.0 installed and locked (spec
+  009; 0.2.0 when this plan was written), 135 `--ws-*` variables in
   `node_modules/@warastudio/theme/dist/style.css`, light on `:root`, dark
   on `[data-theme=dark]`; `src/sdkTokens.test.ts` fails on any undefined
   `var(--ws-...)` in `src/**/*.{css,tsx}`, so `sections/hero/hero.css` is
@@ -55,7 +55,8 @@ Design
   - halo: radial 60 % at center, transparent 55 %, ink at 35 %; hint line
     1 x 36 px
 - SDK tokens requested from WaraDS-Web (D1 = C), ready to send; ds-agent
-  clears the gate, the names are proposals it may change | BLOCKED
+  clears the gate, the names are proposals it may change | OPEN
+  (2026-11-16: theme 0.3.0 ships the four names and values below, spec 009)
 
   | Proposed name | Value | Mockup source | Reused by |
   |---|---|---|---|
@@ -101,7 +102,7 @@ Rules and skills
     statement, bottom bar and clients specs (spec Out of scope, d1a645a)
   - 5: under reduced motion an `<img>` poster, no vapor, no toggle, static
     line, everything shown
-  - 7: mockup gate OPEN; tokens gate BLOCKED on the four SDK tokens only
+  - 7: mockup gate OPEN; tokens gate OPEN since spec 009
   - 8: one runnable check per AC (Verification)
   - 9: no dependency added
   - 10: units placed as the rule names them (Architecture)

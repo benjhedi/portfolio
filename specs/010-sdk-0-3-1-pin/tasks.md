@@ -11,7 +11,7 @@ Toolchain change, no unit: baseline, pin, record, verify, review. No `[P]`.
 - [x] T03 record: ADR 003 amended (0.3.1 and 0.2.2, date, the ring values and why), `product/tech-stack.md` table and Design line, `CLAUDE.md` SDK line - files: `docs/adr/003-wara-ds-sdk.md`, `product/tech-stack.md`, `CLAUDE.md` - check: `git grep -n "0\.3\.0\|0\.2\.1"` on those three files shows only history lines - agent: setup-agent
 - [x] T03b textarea ring on the token (AC-6): `focus:ring-sky/40` becomes a 2 px ring in `var(--ws-color-focus-ring)` - files: `src/components/ContactForm.tsx` - check: `grep -n "ring-sky" src/components/ContactForm.tsx` empty; `npm run build`; `npx vitest run src/sdkTokens.test.ts` - agent: developer
 - [x] T04 verify AC-1 to AC-6 - files: `specs/010-sdk-0-3-1-pin/verification.md` - agent: qa
-- [ ] T05 review - diff against dev - agent: review-agent
+- [x] T05 review - diff against dev - agent: review-agent
 
 ## Test plan (derived from the EARS criteria)
 

@@ -1,6 +1,6 @@
 # Spec 010 - SDK 0.3.1 pin
 
-Branch: `chore-sdk-0-3-1` | Status: clarified (2026-11-16, light flow as spec 009: spec, plan and tasks in one pass, Hedi; AC-4, AC-5 and scope amended after the T01 baseline, AC-4 again after T04, Hedi)
+Branch: `chore-sdk-0-3-1` | Status: done (2026-11-16, review APPROVED; the submit button exception and the CI row noted in `verification.md`; light flow as spec 009: spec, plan and tasks in one pass, Hedi; AC-4, AC-5 and scope amended after the T01 baseline, AC-4 again after T04, Hedi)
 Roadmap line: "A keyboard visitor sees every focus ring at 3:1 in both themes" (Phase 1); it gates the next `v*` tag.
 
 ## Why

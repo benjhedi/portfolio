@@ -115,7 +115,7 @@ export function ContactForm() {
           required
           rows={4}
           placeholder={t(contact.form.messagePlaceholder)}
-          className="w-full rounded-btn border border-line bg-raise px-3 py-2.5 text-base text-ink outline-none transition-colors placeholder:text-muted focus:border-skyink focus:ring-2 focus:ring-sky/40"
+          className="w-full rounded-btn border border-line bg-raise px-3 py-2.5 text-base text-ink outline-none transition-colors placeholder:text-muted focus:border-skyink focus:ring-2 focus:ring-[var(--ws-color-focus-ring)]"
         />
       </div>
 

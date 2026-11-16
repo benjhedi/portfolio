@@ -1,5 +1,6 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from "vite";
+import { configDefaults } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
@@ -20,5 +21,7 @@ export default defineConfig({
     // Vitest empties every CSS module it does not list here, ?raw included;
     // src/sdkTokens.test.ts reads stylesheets as text (spec 006 AC-4).
     css: { include: [/\?raw$/] },
+    // Worktrees of other sessions hold their own copies and dependencies.
+    exclude: [...configDefaults.exclude, ".claude/worktrees/**"],
   },
 });

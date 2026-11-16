@@ -7,8 +7,8 @@ Toolchain change, no unit: baseline, scope, verify, review. No `[P]`.
 ## Tasks
 
 - [x] T01 baseline on dev: `npm run preview`, two captures with `specs/006-sdk-ws-upgrade/capture.mjs` into the scratchpad (noise floor), dev CSS kept for the selector diff - files: none, no commit - check: the two captures diff to 0 values, 0 pixels - agent: qa
-- [ ] T02 scope: `@import "tailwindcss" source("../src");` on `src/index.css` line 1, with a comment giving the reason - files: `src/index.css` - check: `npm run build`, grep of AC-1 - agent: setup-agent
-- [ ] T03 verify AC-1 to AC-4 - files: `specs/011-tailwind-source-scope/verification.md` - agent: qa
+- [x] T02 scope: `@import "tailwindcss" source("../src");` on `src/index.css` line 1, with a comment giving the reason - files: `src/index.css` - check: `npm run build`, grep of AC-1 - agent: setup-agent
+- [x] T03 verify AC-1 to AC-4 - files: `specs/011-tailwind-source-scope/verification.md` - agent: qa
 - [ ] T04 review - diff against dev - agent: review-agent
 
 ## Test plan (derived from the EARS criteria)

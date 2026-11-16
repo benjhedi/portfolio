@@ -60,11 +60,17 @@ export function Hero() {
   const [vapor, setVapor] = useState<{ index: number; run: number } | null>(null);
   useEffect(() => {
     if (!clock) return;
-    return clock.onTime((seconds) => {
+    const off = clock.onTime((seconds) => {
       const { clock: next, release } = tickVapor(vaporClock.current, seconds, heroV2.vapor.length);
       vaporClock.current = next;
       if (release !== null) setVapor({ index: release, run: next.released });
     });
+    // The video unmounts under reduced motion; a kept release would replay at
+    // t = 0 when it comes back instead of waiting for the exhale (AC-4).
+    return () => {
+      off();
+      setVapor(null);
+    };
   }, [clock]);
   const bar = (
     <i className="bar">
@@ -121,7 +127,13 @@ export function Hero() {
   };
 
   return (
-    <section id="top" className="hero" aria-labelledby={titleId} data-held={view.held || undefined}>
+    <section
+      id="top"
+      className="hero"
+      aria-labelledby={titleId}
+      data-held={view.held || undefined}
+      data-reduced={state.reduced || undefined}
+    >
       <div
         {...oval}
         className="oval"
@@ -130,51 +142,58 @@ export function Hero() {
         onPointerLeave={onOvalPointerLeave}
       >
         <div className="media">
-          <video
-            ref={setVideo}
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster={heroV2.media.poster}
-            aria-label={t(heroV2.videoLabel)}
-          >
-            <source src={heroV2.media.webm} type="video/webm" />
-            <source src={heroV2.media.mp4} type="video/mp4" />
-          </video>
+          {/* Reduced motion keeps the poster only, so the video never loads (AC-6) */}
+          {state.reduced ? (
+            <img src={heroV2.media.poster} alt={t(heroV2.videoLabel)} />
+          ) : (
+            <video
+              ref={setVideo}
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster={heroV2.media.poster}
+              aria-label={t(heroV2.videoLabel)}
+            >
+              <source src={heroV2.media.webm} type="video/webm" />
+              <source src={heroV2.media.mp4} type="video/mp4" />
+            </video>
+          )}
           <i className="tint" aria-hidden="true" />
-          <div className="vapor" aria-hidden="true">
-            {heroV2.vapor.map((object, index) => {
-              const go = vapor?.index === index;
-              return (
-                <span key={go ? `${index}-${vapor.run}` : index} className={`out ${object.kind}${go ? " go" : ""}`}>
-                  {object.kind === "site" && bar}
-                  {object.kind !== "product" ? (
-                    <img src={object.src} alt="" />
-                  ) : (
-                    <>
-                      {bar}
-                      <div className="ui">
-                        <div className="side">
-                          <u />
-                          <u />
-                          <u />
-                          <u />
+          {!state.reduced && (
+            <div className="vapor" aria-hidden="true">
+              {heroV2.vapor.map((object, index) => {
+                const go = vapor?.index === index;
+                return (
+                  <span key={go ? `${index}-${vapor.run}` : index} className={`out ${object.kind}${go ? " go" : ""}`}>
+                    {object.kind === "site" && bar}
+                    {object.kind !== "product" ? (
+                      <img src={object.src} alt="" />
+                    ) : (
+                      <>
+                        {bar}
+                        <div className="ui">
+                          <div className="side">
+                            <u />
+                            <u />
+                            <u />
+                            <u />
+                          </div>
+                          <div className="main">
+                            <em />
+                            <em />
+                            <em />
+                            <em />
+                            <strong>{t(heroV2.productLabel)}</strong>
+                          </div>
                         </div>
-                        <div className="main">
-                          <em />
-                          <em />
-                          <em />
-                          <em />
-                          <strong>{t(heroV2.productLabel)}</strong>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </span>
-              );
-            })}
-          </div>
+                      </>
+                    )}
+                  </span>
+                );
+              })}
+            </div>
+          )}
         </div>
         <div className="halo" aria-hidden="true" />
         {view.toggle !== "hidden" && (

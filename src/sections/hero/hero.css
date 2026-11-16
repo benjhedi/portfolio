@@ -146,7 +146,8 @@
   position: absolute;
   inset: 0;
 }
-.hero .media video {
+/* Child only: the vapor images inside .media keep their own sizing */
+.hero .media > :is(video, img) {
   display: block;
   width: 100%;
   height: 100%;
@@ -389,6 +390,18 @@
 .hero [data-in] {
   opacity: 1;
   transform: none;
+}
+
+/* Reduced motion (AC-6): Hero.tsx sets data-reduced from the motion preference
+   service rather than a media query, so ?motion still plays the loop (AC-7).
+   Everything shows at once; the hint line stays drawn, at its unscaled length. */
+.hero[data-reduced] :is(.oval, .name, .role, .scroll) {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.hero[data-reduced] .scroll i {
+  animation: none;
 }
 
 /* The mockup's mobile breakpoint, 900 px included (AC-2) */

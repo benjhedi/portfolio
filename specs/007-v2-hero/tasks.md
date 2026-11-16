@@ -146,7 +146,7 @@ Section (built unmounted: `App.tsx` keeps the v1 hero until T23)
   developer - now
 
 Reduced motion
-- [ ] T21 reduced path: `<img>` poster with the video label as `alt`
+- [x] T21 reduced path: `<img>` poster with the video label as `alt`
   instead of the video, no vapor layer, no toggle, `data-reduced` on the
   root; `hero.css` drops animations and transitions under `data-reduced`,
   reveal elements shown, hint line static (no `@media` query, so

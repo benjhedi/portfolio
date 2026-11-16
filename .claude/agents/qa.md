@@ -5,7 +5,8 @@ description: >
   EARS criterion, the greps of the plan, captures each screen in both
   themes against its mockup, walks the scenarios on simulator or emulator,
   and writes specs/NNN/verification.md with a PASS or FAIL verdict backed
-  by evidence. Use it from /verify as the last task before review. It
+  by evidence. Use it from /verify when an independent verification context
+  helps. It
   changes no production file; a failure goes back to the task.
 tools: Read, Grep, Glob, Write, Bash
 skills: verify

@@ -13,7 +13,7 @@ order, writing style, git, dependencies, security, spec-driven flow).
 with `.ts`, `.tsx`, `.css` files; 50 and 60 cover tokens and mockups;
 `90-project-web-stack.md` keeps Vite + React + Tailwind over Astro.
 
-## Agents (the main session delegates; agents never delegate)
+## Agents (optional; the main session owns the work, agents never delegate)
 
 | Agent | Use it when |
 |---|---|
@@ -32,8 +32,9 @@ with `.ts`, `.tsx`, `.css` files; 50 and 60 cover tokens and mockups;
 
 Product: `/plan-product`, `/analyze-product`, `/architecture-study`,
 `/from-codebase`, `/init`, `/adopt`. Per change: `/specify`, `/clarify`,
-`/plan`, `/tasks`, `/implement`, `/verify`. Session: `/session-start`,
-`/commit`, `/adr`, `/handoff`. Design: `/design-system`, `/design-to-code`.
+`/plan`, `/tasks`, `/implement`, `/verify`. Session: `/start`, `/next`
+(default resume), `/session-start` (full rebuild), `/commit`, `/adr`,
+`/handoff`, `/upgrade-kit`. Design: `/design-system`, `/design-to-code`.
 
 ## Project specifics
 

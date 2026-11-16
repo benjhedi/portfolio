@@ -1,10 +1,9 @@
 ---
 name: tasks
 description: >
-  Turns an approved plan into specs/NNN/tasks.md: ordered bounded tasks in
-  the architecture rule's construction order, each with files, check and
-  agent, plus one test row per EARS criterion, [P] when parallel. Use it
-  after /plan. Pass the spec number.
+  Turns an approved plan into specs/NNN/tasks.md: bounded tasks with explicit
+  dependencies, responsibility, file scope and checks. Marks independent
+  ready tasks for parallel work. Use after /plan. Pass the spec number.
 user-invocable: true
 allowed-tools: Read, Grep, Glob, Write, Bash(ls *)
 ---
@@ -14,36 +13,39 @@ allowed-tools: Read, Grep, Glob, Write, Bash(ls *)
 Input: `$ARGUMENTS`, the spec number, plan with all gates OPEN. Output:
 `tasks.md` from `.claude/templates/tasks.md`. Also the test-planning step.
 
-## 1. Construction order
+## 1. Define work units
 
-Read the units and order in `.claude/rules/10-architecture.md`. Typical
-shapes: types and protocols, then adapters, then logic units, then state
-holder, then screen, then wiring. A simple architecture yields fewer
-tasks; never add a unit the rule does not name.
+Read the architecture rule and split the approved plan into bounded tasks.
+Respect real dependencies; do not impose a full serial order just because
+tasks appear in a sequence. Avoid units not named by the architecture rule.
 
-## 2. One task, one commit, one check
+## 2. Record scope and dependencies
 
-For each task: what, the files (paths that respect the module map), the
-check the agent runs and shows (build, filtered test, grep, preview), the
-agent (developer, test-coder, qa, review-agent). Tasks under forty lines
-of change where possible; a bigger one is split.
+For every task record: outcome, acceptance, files or research scope, owner,
+check, and `depends on` task IDs (or `none`). Owner is a responsibility such
+as `main`, `implementation`, `test-writing`, `design` or `review`, not a
+required agent profile. The main session maps that responsibility to a local
+Claude agent or a Codex native subagent when useful. Otherwise it does the
+task itself. Split work that is too large for one clear owner or check.
 
-Wiring into the composition root or its equivalent is its own task,
-marked "approved separately", last before verify.
+Mark `[P]` when, after its listed dependencies are complete, a task can run
+with another ready task without overlapping write scopes. The marker does
+not remove dependencies. If tasks need the same files, sequence them or use
+separate worktrees with a clear integration step. Composition-root wiring is
+a separate task and stays gated if the approved plan requires it.
 
-## 3. Test plan from the criteria
+## 3. Derive checks from acceptance
 
-One row per acceptance criterion: scenario in plain words, type (unit on
-which unit, UI, snapshot, manual with who), test name in the house
-convention (verb, condition, result). A criterion with no testable row is
-sent back to `/clarify`. Rows become test-coder tasks placed right after
-the unit they test, not at the end.
+Include one test-plan row per acceptance criterion: scenario, test type and
+name. Create test implementation tasks where code tests are needed; they
+depend on the production tasks they test and own separate test files. A
+criterion without a check returns to `/clarify`. Make verification and review
+depend on the implementation tasks they need to inspect.
 
-## 4. Parallelism and close
+## 4. Approval and handoff
 
-`[P]` only when two tasks share no file and no ordering constraint; each
-names its worktree if the project uses them. The last two tasks are always
-qa verify (criterion checks green, screenshots side by side) and review
-(diff against dev, gates reread). "Done when" lists the four conditions
-from the template. Show the list, wait for approval, write. Next:
-`/implement`.
+Always include integration, verification and diff review. Show the complete
+task graph and wait for approval before writing `tasks.md`. After approval,
+start `/implement` in Claude Code or `$implement` in Codex in a fresh
+session. It may start ready independent tasks together when the host supports
+safe delegation.

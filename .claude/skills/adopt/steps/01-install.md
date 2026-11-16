@@ -1,19 +1,21 @@
 # Step 1 - Install the kit files without breaking the flow
 
-Branch `chore-adopt-kit` (or the project's own format). List every file you
-will add, move or retire, then wait. Nothing is deleted without an explicit
+Use the branch convention found in the audit. List every file to add, move
+or retire, then wait. Nothing is deleted without an explicit
 go; retired files move to `docs/archive/` with a dated note.
 
-## Rules and agents
+## Rules and available workers
 
-- `.claude/rules/`: the kit rules are already copied by `install.sh`. Add
+- `.claude/rules/`: the shared kit rules are copied by `install.sh`. Add
   `9N-project-<topic>.md` for each deliberate divergence from the gap table,
   stating the override and its source.
-- `.claude/agents/`: keep existing agents that have no kit equivalent.
-  Where both exist (an older feature agent versus `developer`), diff them; keep project
-  specifics in the kit version and retire the old file.
-- Agent files longer than 50 lines: split the project-specific checks into
-  a rule or a reference file the agent names.
+- Claude Code agents in `.claude/agents/`: keep project agents with no kit
+  equivalent. Diff overlapping agents and preserve project-specific checks.
+- Codex uses native subagents and does not require project role files. Keep
+  existing `.codex/agents/` files if the project already uses them; do not
+  create or edit global agent profiles.
+- Split long project-specific checks into a rule or reference file rather
+  than expanding a role prompt.
 
 ## Scripts, hooks, CI
 
@@ -26,11 +28,11 @@ go; retired files move to `docs/archive/` with a dated note.
 
 ## Settings and design material
 
-`.claude/settings.json` from the template, merged with existing allow rules
-that are broad and stable; `settings.local.json` trimmed of one-off entries
-and ignored (`gitignore.snippet`). Point `AGENTS.md` to the existing handoff
-folder; when the token table lives only in code, extract it into a handoff
-`CLAUDE.md` (design-system template) marked "extracted, to validate".
+For Claude Code, merge `.claude/settings.json` with broad, stable allow
+rules; trim one-off entries from `settings.local.json` and ignore it.
+Do not modify Codex user settings. Point `AGENTS.md` to the existing handoff
+folder; when the token table lives only in code, extract it into the design
+handoff marked "extracted, to validate".
 
 ## Documents
 
@@ -43,6 +45,6 @@ folder; when the token table lives only in code, extract it into a handoff
 ## Commits
 
 One per group: rules, agents, scripts and hooks, settings, documents.
-`[chore-adopt-kit]: <group>`. No code change in this branch.
+Use the project's commit convention. No code change in this branch.
 
 Stop. Step 2 after an explicit go.

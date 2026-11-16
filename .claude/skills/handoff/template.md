@@ -5,8 +5,9 @@ Last update: <date>, by <session or person>.
 
 ## State
 
-- `dev`: last commit `<sha> <subject>`, tests <green / red: which>.
-- Branch `<type-title>`: <N> commits ahead of `dev`, <merged / open PR / wip>.
+- Base branch <name or unknown>, last known commit <sha and subject>.
+- Current branch <name or detached HEAD>, relation to base <verified or unknown>.
+- Tests <command and result>, PR <verified status or unknown>.
 - Generator: `<tuist generate / xcodegen generate / npm install>` needed on a
   fresh clone: yes / no.
 
@@ -15,11 +16,10 @@ Last update: <date>, by <session or person>.
 Three to six lines, at intent level. What the user or the codebase gained,
 not the file list (the diff carries that).
 
-## Next steps, in order
+## Next tasks and dependencies
 
-1. <step> - <agent or skill> - <branch>
-2. <step> - <agent or skill> - <branch>
-3. <step>
+1. <task> - <installed skill or responsible role> - <scope> - <prerequisites>
+2. <independent task when ready> - <scope> - <prerequisites>
 
 ## Open decisions
 
@@ -32,8 +32,6 @@ not the file list (the diff carries that).
 
 ## Resume
 
-```
-/session-start <spec number or branch>
-```
-
-Then: <the first concrete action, one line>.
+In a fresh session, run <one installed skill, /name for Claude Code or $name
+for Codex>. Use `next` when the next phase is unclear.
+Relevant spec or branch <reference>. Expected outcome <one line>.

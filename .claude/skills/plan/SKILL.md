@@ -12,7 +12,8 @@ allowed-tools: Read, Grep, Glob, Write, Bash(ls *), Bash(find *), Bash(grep *)
 # Plan
 
 Input: `$ARGUMENTS`, the spec number, status clarified. Output: `plan.md`
-from `.claude/templates/plan.md`, gates first. Agent: planner.
+from `.claude/templates/plan.md`, gates first. The main session owns the
+plan; use planner when repository research would clutter the main context.
 
 ## 1. Gates, from the repo
 

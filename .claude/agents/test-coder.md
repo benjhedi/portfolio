@@ -5,7 +5,7 @@ description: >
   test plan, on the unit the row names (state holder, logic unit, adapter
   contract), with doubles for the dependencies the architecture rule puts
   behind protocols. Never touches production code. Use it from /implement
-  right after the unit it tests exists. A failing test on correct
+  for an isolated test task when a separate context helps. A failing test on correct
   expectations is a bug report, not something to adjust.
 tools: Read, Grep, Glob, Write, Edit, Bash
 ---

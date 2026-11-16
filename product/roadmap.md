@@ -7,7 +7,7 @@ Sources: [log] `docs/v2/decision-log.md`; [mockup] `docs/v2/mockup/`, frozen fro
 - [x] A visitor reads the bilingual v1 site, dark mode, projects, contact form: v1.0.0 to v1.6.0, 2026-06-03 to 2026-07-01 (`git tag`).
 - [x] Agents work under wara-kit 2.1.1 (PR benjhedi/portfolio#24, 1e085e5).
 - [x] Inventory, architecture rule, Vitest, ADR 001 and `product/` (PR benjhedi/portfolio#25, 40a3dd6).
-- [ ] Kit adopted: project rule 90, CONTRIBUTING, ADRs 002 and 003, AGENTS.md and CLAUDE.md (`chore-adopt-kit`).
+- [x] Kit adopted: project rule 90, CONTRIBUTING, ADRs 002 and 003, AGENTS.md and CLAUDE.md (PR benjhedi/portfolio#26, c1753e1).
 - [x] npm audit is clean on the dev toolchain and the local install matches CI (spec 003, `chore-npm-audit-fix`).
 
 ## Phase 1 - v2 redesign, in the [log] section order

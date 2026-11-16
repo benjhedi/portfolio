@@ -25,7 +25,7 @@ with their justification; toolchain configs (`.swiftlint.yml`,
 hooks and CI workflows; `.gitignore`; one ADR per infrastructure decision.
 
 Before any file: what, which files, why (which constraint or decision).
-Wait for approval. Work on `chore-<title>` off `dev`.
+Wait for approval. Follow the project's branch convention.
 
 ## Generator rules
 

@@ -3,8 +3,8 @@ name: developer
 description: >
   Builds one task of specs/NNN/tasks.md at a time: the unit named by the
   project's architecture rule, in the files the task allows, with the check
-  the task names run and shown. Use it from /implement for every
-  construction task (types, adapters, logic, state holders, screens,
+  the task names run and shown. Use it from /implement for bounded tasks
+  that benefit from a separate context (types, adapters, logic, state holders, screens,
   wiring). It follows the architecture rule of the project as written and
   stops when a file outside its list or a missing mockup or token is needed.
 tools: Read, Grep, Glob, Edit, Write, Bash

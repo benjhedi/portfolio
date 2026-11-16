@@ -3,6 +3,8 @@
 Extracted on 2026-11-07 by `/analyze-product` step 1, from `dev` at 1e085e5.
 Facts with evidence only. The gap table (step 2) is appended after review.
 
+Adoption: complete | 2026-11-09 | PR 26 (c1753e1) merged; AGENTS.md and CLAUDE.md filled, product/ and 10-architecture.md present, hooks via .githooks
+
 ## 1. Layout
 
 | Item | Evidence | State |

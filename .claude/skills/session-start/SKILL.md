@@ -1,10 +1,9 @@
 ---
 name: session-start
 description: >
-  Orients a new Claude Code session: reads the project documents in order,
-  inspects the real git and project state, produces a short session report
-  and asks what to work on. Use it as the first action of every session, or
-  when resuming after a long pause. It touches no file.
+  Rebuilds full context when resuming a complex handoff: reads the project
+  documents in order and summarizes the state. For an ordinary session start
+  or the next command, use /next. It touches no file.
 user-invocable: true
 disable-model-invocation: true
 allowed-tools: Read, Grep, Glob, Bash(git *), Bash(ls *), Bash(cat *)

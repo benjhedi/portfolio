@@ -20,7 +20,7 @@ Toolchain change, no unit: baseline, pin, record, verify, review. No `[P]`.
 | AC-1 | exact pins in the manifest, `npm ci` clean on Node 22, CI green on the PR | shell, CI | `pinsSdkExactly` |
 | AC-2 | ring `#2f7fc4` light and `#41c0f2` dark; every other 0.3.0 `--ws-*` keeps its value | diff on installed CSS | `changesOnlyFocusRingToken` |
 | AC-3 | computed JSON equal to dev, screenshots within the floor, 1440 and 390, both themes | capture script | `rendersUnchangedOutsideFocus` |
-| AC-4 | form fields, hint, submit top and sides, toggle ring against gap or video, at 3:1 or more, both themes; submit bottom edge recorded; form behavior unchanged | keyboard pass over CDP | `paintsFocusRingAtThreeToOne` |
+| AC-4 | form fields, hint, submit top, toggle ring against gap or video, at 3:1 or more, both themes; submit side and bottom edges recorded; form behavior unchanged | keyboard pass over CDP | `paintsFocusRingAtThreeToOne` |
 | AC-6 | the textarea paints `--ws-color-focus-ring`; no `ring-sky` left in the form | keyboard pass and grep | `drawsTextareaRingFromToken` |
 | AC-5 | diff limited to the listed files; `npm test`, `npm run build` exit 0 | shell | `limitsDiffToPinAndRecords` |
 

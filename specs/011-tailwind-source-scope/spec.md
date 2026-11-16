@@ -1,6 +1,6 @@
 # Spec 011 - Tailwind source scope
 
-Branch: `chore-tailwind-source-scope` | Status: in progress (light flow: spec and tasks in one pass, Hedi approved the allowlist on 2026-11-16)
+Branch: `chore-tailwind-source-scope` | Status: done (2026-11-16, review APPROVED; light flow: spec and tasks in one pass, Hedi approved the allowlist and the reworded AC-1 and AC-3)
 Roadmap line: none, toolchain hygiene found by the spec 010 review.
 
 ## Why
@@ -30,7 +30,7 @@ attribute and needs no `@source`.
 - AC-2 THE production CSS SHALL keep every selector the dev build emits for a class `src/` uses: the selectors removed against dev all come from files outside `src/`, and no selector is added.
 - AC-3 WHEN each section is rendered in light and dark at 1440 and 390 THE page SHALL show no visible difference from dev: full-page screenshots and computed values equal dev within the noise floor of two captures of dev (spec 006 capture script), except Tailwind theme variables that no utility in `src/` reads, which Tailwind stops emitting (`--color-slate`, `--ease-out`).
 
-AC-1 and AC-3 were reworded after the first capture, once Hedi had approved the spec: AC-1 because the dev tree has no Markdown that quotes a bare `ring-sky/40`, so a probe is needed to tell the two lines apart; AC-3 because two unread theme variables disappear with zero pixel change. Both changes wait for Hedi's acknowledgement on the PR.
+AC-1 and AC-3 were reworded after the first capture, once Hedi had approved the spec: AC-1 because the dev tree has no Markdown that quotes a bare `ring-sky/40`, so a probe is needed to tell the two lines apart; AC-3 because two unread theme variables disappear with zero pixel change. Hedi acknowledged both on 2026-11-16, before the PR.
 - AC-4 THE diff against dev SHALL touch only `src/index.css` line 1 and its comment, and this spec folder; `npm test` and `npm run build` pass.
 
 ## Screens and states

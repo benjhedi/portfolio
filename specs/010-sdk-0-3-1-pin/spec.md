@@ -1,6 +1,6 @@
 # Spec 010 - SDK 0.3.1 pin
 
-Branch: `chore-sdk-0-3-1` | Status: clarified (2026-11-16, light flow as spec 009: spec, plan and tasks in one pass, Hedi)
+Branch: `chore-sdk-0-3-1` | Status: clarified (2026-11-16, light flow as spec 009: spec, plan and tasks in one pass, Hedi; AC-4, AC-5 and scope amended after the T01 baseline, Hedi)
 Roadmap line: "A keyboard visitor sees every focus ring at 3:1 in both themes" (Phase 1); it gates the next `v*` tag.
 
 ## Why
@@ -17,8 +17,9 @@ The spec 007 verification measured the SDK focus ring `--ws-color-focus-ring` at
 - AC-1 THE manifest SHALL depend on `@warastudio/theme` 0.3.1 and `@warastudio/react` 0.2.2, pinned with no range, and `npm ci` SHALL install them on Node 22 locally and in CI with `WARA_DS_TOKEN`.
 - AC-2 THE installed theme CSS SHALL define `--ws-color-focus-ring` as `#2f7fc4` in light and `#41c0f2` in dark, and every other `--ws-*` that 0.3.0 defined with the same value in light and dark.
 - AC-3 WHEN each section is rendered without focus in light and dark at 1440 and 390 THE page SHALL show no visible difference from dev: the computed custom properties on `html` and the contact `Button` and `Input` styles equal dev's, and the full-page screenshots differ by no pixel beyond the noise floor of two captures of dev (spec 006 capture script).
-- AC-4 WHEN a keyboard visitor focuses the contact form fields and button, the hero toggle and the hero hint THE focus ring SHALL paint the new token and reach at least 3:1 against the color next to it, in light and dark: the page or surface behind the form fields, the button and the hint, and the porcelain gap around the hero toggle; the contact form SHALL otherwise behave as on dev (render, focus order, states, submit).
-- AC-5 THE diff against dev SHALL touch only `package.json`, `package-lock.json`, this spec folder, the lines that name the SDK version (ADR 003, `product/tech-stack.md`, `CLAUDE.md`) and the roadmap focus ring line; `npm test` and `npm run build` pass.
+- AC-4 WHEN a keyboard visitor focuses the contact form fields and button, the hero toggle and the hero hint THE focus ring SHALL paint `--ws-color-focus-ring` and reach at least 3:1 against the color next to it, in light and dark: the page or surface behind the form fields and the hint; the page on the top and side edges of the submit button, whose own glow darkens the bottom edge (measured and recorded, accepted until the v2 contact spec redoes the button); for the hero toggle, a two-color indicator (WCAG technique C40): the ring against the porcelain gap or against the video around it. The contact form SHALL otherwise behave as on dev (render, focus order, states, submit).
+- AC-6 THE message textarea of the contact form SHALL draw its focus ring from `--ws-color-focus-ring` like the SDK fields, instead of the accent-hover color at 40 % (`src/components/ContactForm.tsx`, found by the T01 baseline at 1.23:1 light and 2.38:1 dark).
+- AC-5 THE diff against dev SHALL touch only `package.json`, `package-lock.json`, this spec folder, the lines that name the SDK version (ADR 003, `product/tech-stack.md`, `CLAUDE.md`), the roadmap focus ring line and the textarea class of AC-6; `npm test` and `npm run build` pass.
 
 ## Screens and states
 
@@ -30,7 +31,7 @@ No data. Rule 05 (dependency recorded in ADR 003 and `product/tech-stack.md`), r
 
 ## Out of scope
 
-Any change in `src/`; the `@warastudio/motion` package (not a site dependency); the manual Safari, Firefox and keyboard rows of spec 007, which Hedi runs on a Cloudflare preview before the tag; the `v*` tag itself.
+Any change in `src/` beyond the AC-6 textarea class; the submit button glow (v2 contact spec); the `@warastudio/motion` package (not a site dependency); the manual Safari, Firefox and keyboard rows of spec 007, which Hedi runs on a Cloudflare preview before the tag; the `v*` tag itself.
 
 ## Open points
 

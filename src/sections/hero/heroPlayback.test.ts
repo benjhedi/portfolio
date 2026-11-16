@@ -91,7 +91,11 @@ describe("heroPlayback", () => {
 
     const paused = run(fixture({ visitorPaused: true }), reducedOn, reducedOff);
     expect(paused).toEqual(fixture({ status: "loading", visitorPaused: true }));
-    expect(heroView(paused).shouldPlay).toBe(false);
+    expect(heroView(paused)).toEqual({ shouldPlay: false, toggle: "play", held: true });
+
+    const resumed = run(paused, toggled);
+    expect(resumed).toEqual(fixture({ status: "loading" }));
+    expect(heroView(resumed).shouldPlay).toBe(true);
 
     const running = run(fixture(), reducedOn, reducedOff);
     expect(running).toEqual(fixture({ status: "loading" }));

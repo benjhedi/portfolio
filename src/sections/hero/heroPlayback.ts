@@ -54,7 +54,9 @@ export function heroView(state: HeroPlayback): {
   held: boolean;
 } {
   const { reduced, status, visitorPaused, watchable } = state;
-  const hidden = reduced || status === "loading" || status === "failed";
+  // A visitor pause carried over a reduced-off remount leaves status at
+  // loading with nothing playing; the toggle shows play so the pause can end.
+  const hidden = reduced || status === "failed" || (status === "loading" && !visitorPaused);
   return {
     shouldPlay:
       !reduced && watchable && !visitorPaused && (status === "loading" || status === "playing"),

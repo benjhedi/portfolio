@@ -138,7 +138,7 @@ Section (built unmounted: `App.tsx` keeps the v1 hero until T23)
   src/sdkTokens.test.ts`; `grep -nE "#[0-9a-fA-F]{3,8}\b"
   src/sections/hero/hero.css` empty - about 40 lines - agent: developer -
   now
-- [ ] T20 `hero.css` part 2: vapor objects without notch, `emerge`
+- [x] T20 `hero.css` part 2: vapor objects without notch, `emerge`
   keyframes desktop and mobile, toggle disc, glyph, glide, focus gap and
   ring, `data-held` pausing `.out.go` and the hint line - files:
   `src/sections/hero/hero.css` - check: `npm run build`; `npx vitest run

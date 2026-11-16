@@ -1,4 +1,6 @@
-@import "tailwindcss";
+/* Only src/ may produce utilities: without source(), Tailwind scans the
+   whole repo and emits classes quoted in specs and docs (spec 011). */
+@import "tailwindcss" source("../src");
 
 /* Self-hosted variable font (charte Wara Studio : Hanken Grotesk) */
 @import "@fontsource-variable/hanken-grotesk";

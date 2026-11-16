@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { AppProvider } from "./app/AppContext";
 import { Nav } from "./components/Nav";
-import { Hero } from "./components/Hero";
+import { Hero } from "./sections/hero/Hero";
 import { About } from "./components/About";
 import { Offers } from "./components/Offers";
 import { Process } from "./components/Process";

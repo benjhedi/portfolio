@@ -166,7 +166,7 @@ Mockup
   && shasum -a 256 -c)` passes) - agent: design-agent - now
 
 Wiring, approved separately
-- [ ] T23 composition root: `main.tsx` wraps `App` in `ServiceProvider`
+- [x] T23 composition root: `main.tsx` wraps `App` in `ServiceProvider`
   with `createMediaQueryMotionPreference(window)` and
   `createHtmlVideoClock`; `App.tsx` renders `sections/hero/Hero`;
   `components/Hero.tsx` and the v1 hero block of `src/index.css`

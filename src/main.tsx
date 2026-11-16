@@ -9,9 +9,19 @@ import "./index.css";
 import "@warastudio/theme/style.css";
 import "@warastudio/react/style.css";
 import App from "./App";
+import { ServiceProvider, type Services } from "./app/ServiceContext";
+import { createMediaQueryMotionPreference } from "./services/mediaQueryMotionPreference";
+import { createHtmlVideoClock } from "./services/htmlVideoClock";
+
+const services: Services = {
+  motionPreference: createMediaQueryMotionPreference(window),
+  createVideoClock: createHtmlVideoClock,
+};
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <ServiceProvider services={services}>
+      <App />
+    </ServiceProvider>
   </StrictMode>
 );

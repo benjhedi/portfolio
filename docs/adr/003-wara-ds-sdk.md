@@ -70,3 +70,11 @@ Follow-up:
   0.2.0 `--ws-*` keeps its value in both themes. The reveal rise reuses
   `--ws-space-24` instead of a token (Hedi, 2026-11-15). Exact pin and
   decision A unchanged.
+- 2026-11-16, spec 010: the site pins `@warastudio/theme` 0.3.1 and
+  `@warastudio/react` 0.2.2 (tokens 0.3.1), published from WaraDS-Web
+  after benjhedi/WaraDS#4. `--ws-color-focus-ring` becomes opaque,
+  `#2f7fc4` (sky.500) in light and `#41c0f2` (sky.400) in dark, because
+  the 45 % and 50 % alpha ring measured 1.3:1 on the light page and
+  2.999:1 on the dark surface, under the 3:1 of WCAG 1.4.11 (spec 007
+  verification; option A, Hedi). No other value changes. Exact pin and
+  decision A unchanged.

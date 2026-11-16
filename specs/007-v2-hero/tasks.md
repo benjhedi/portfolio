@@ -178,7 +178,7 @@ Wiring, approved separately
   motion and reduced, screenshots beside the eight `01-hero*.png` -
   about 12 lines added, about 380 deleted - approved separately - agent:
   developer - BLOCKED (after T19 to T21)
-- [ ] T24 remove the v1 hero media, own commit (D6); it waits for T23
+- [x] T24 remove the v1 hero media, own commit (D6); it waits for T23
   because `components/Hero.tsx` reads them until then - files:
   `public/hero/hero-1.mp4`, `public/hero/hero-1.jpg` (deleted) - check:
   `grep -rn "hero-1" src index.html` empty; `npm run build`; `ls

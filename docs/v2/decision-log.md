@@ -145,10 +145,10 @@ Repo local : /Users/wara/Documents/Developpement/Personnel/IA/Projects/Portfolio
   like spec 009, and that pin gates the next `v*` tag. No local override
   in `hero.css` (rule 50).
 - 2026-11-16: The SDK focus ring is opaque since theme 0.3.1 (spec 010,
-  option A: sky.500 light, sky.400 dark), at 3:1 or more on every focus
-  ring of the site except the v1 contact submit button in light, whose
-  glow darkens its side and bottom edges (2.37 to 2.99:1). That button is
-  accepted as is because the v2 contact spec replaces it before the next
-  `v*` tag; that spec measures its own button ring. The hero toggle reads
-  as a two-color indicator (WCAG C40): ring against the video, 4.76:1
-  light and 9.64:1 dark.
+  option A: sky.500 light, sky.400 dark), at 3:1 or more on every ring
+  the token draws (contact form, hero toggle and hint), except the v1
+  contact submit button in light, whose glow darkens its side and bottom
+  edges (2.37 to 2.99:1). That button is accepted as is because the v2
+  contact spec replaces it before the next `v*` tag; that spec measures
+  its own button ring. The hero toggle reads as a two-color indicator
+  (WCAG C40): ring against the video, 4.76:1 light and 9.64:1 dark.

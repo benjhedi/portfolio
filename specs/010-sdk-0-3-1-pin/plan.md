@@ -21,4 +21,4 @@ Spec: `spec.md` (clarified) | Architecture rule: `.claude/rules/10-architecture.
 
 - A value other than the ring changed between 0.3.0 and 0.3.1: AC-2 and AC-3 catch it; stop and report.
 - The hero toggle ring sits on a porcelain gap: the opaque dark ring measures about 1.75:1 there (T01 estimate), so AC-4 reads the toggle as a two-color indicator (C40), ring against the gap or the video (Hedi, 2026-11-16).
-- The submit button glow darkens the page under its bottom edge: about 2.4:1 there in light (T01 estimate), 3.3:1 on the other edges. Recorded and accepted until the v2 contact spec (Hedi, 2026-11-16).
+- The submit button glow darkens the page under its bottom edge: about 2.4:1 there in light (T01 estimate). T04 measured the side edges at 2.84 to 2.99:1 too; AC-4 is amended and `verification.md` records the decision: side and bottom edges accepted until the v2 contact spec (Hedi, 2026-11-16).

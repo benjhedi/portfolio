@@ -242,15 +242,15 @@ spec folder. Green.
 
 ## Decision after this report (2026-11-16)
 
-Hedi accepted the red row: the submit button's side edges in light
-(2.84 to 2.99:1) join its bottom edge (2.37:1) as recorded and accepted,
+Hedi accepted the red row: the submit button's side edges in light (2.84
+to 2.99:1) join its bottom edge (2.37:1) as recorded and accepted,
 because the 28 px glow of the v1 `Button` variant darkens the page on
-every edge but the top (3.06:1) and the v2 contact spec replaces this
-button before the next `v*` tag. `spec.md` AC-4 is amended to read so.
-With that amendment every AC-4 row measured above is green or recorded,
-and the verdict reads PASS with this accepted exception. The roadmap
-focus ring line stays unchecked until the v2 contact spec measures its
-own button.
+every edge but the top (3.06:1; its offset gap reads 2.90:1) and the v2
+contact spec replaces this button before the next `v*` tag. `spec.md`
+AC-4 is amended to read so. With that amendment every AC-4 row measured
+above is green or recorded, and the verdict reads PASS with this
+accepted exception. The roadmap focus ring line stays unchecked until
+the v2 contact spec measures its own button.
 
 ## Not verified
 

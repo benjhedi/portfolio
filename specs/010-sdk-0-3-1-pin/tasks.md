@@ -28,4 +28,4 @@ Toolchain change, no unit: baseline, pin, record, verify, review. No `[P]`.
 
 - All boxes checked, each with its commit on the branch (T01 has none).
 - qa report attached; review verdict APPROVED.
-- `spec.md` status set to done; the roadmap focus ring line checked.
+- `spec.md` status set to done; the roadmap focus ring line stays unchecked until the v2 contact spec (Hedi, 2026-11-16, after T04).

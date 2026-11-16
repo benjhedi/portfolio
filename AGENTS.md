@@ -2,6 +2,8 @@
 
 Entry point for any coding agent (Claude Code imports this file; Codex,
 Cline, Gemini and Copilot read it directly). Full rules: `.claude/rules/`.
+Resume with `/next` in a fresh session, onboard with `/start`; in Codex
+use `$name`, and an agent name is a role given to a native subagent.
 
 ## Product in one paragraph
 
@@ -30,10 +32,9 @@ If a request contradicts these documents, flag it instead of executing it.
 Every change goes through `specs/NNN-name/`: spec with EARS acceptance
 criteria, plan with a Gates section filled from the repo (mockups, tokens,
 rules, architecture, verification), tasks in the build order of the
-architecture rule, then implement and verify. No code outside this flow
-except a one-line fix with an obvious diff.
-
-## Working mode
+architecture rule, then implement and verify. Only a one-line fix with an
+obvious diff skips it, unless it touches a mockup, a token or a rule. This
+overrides the small and medium paths of `07-sdd-flow.md`.
 
 Never write code without explicit approval: what will change, why, which
 files, then stop. Reading, answering and proposing need no approval. Ask

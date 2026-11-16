@@ -32,8 +32,8 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 
 | Package | Version | Imported by | Decision |
 |---|---|---|---|
-| `@warastudio/theme` | 0.2.0, exact | `main.tsx`, `index.css`, `sdkTokens.test.ts` (`style.css?raw`) | ADR 003 |
-| `@warastudio/react` | 0.2.0, exact | `main.tsx`, `components/ContactForm.tsx` | ADR 003 |
+| `@warastudio/theme` | 0.3.0, exact | `main.tsx`, `index.css`, `sdkTokens.test.ts` (`style.css?raw`) | ADR 003 |
+| `@warastudio/react` | 0.2.1, exact | `main.tsx`, `components/ContactForm.tsx` | ADR 003 |
 | `motion` | 11.18.2 | `App.tsx`, `app/useReduce.ts`, 7 files in `components/` | none yet |
 | `gsap` | 3.15.0 | `components/Work.tsx` (static import, not a lazy chunk) | none yet |
 | `lucide-react` | 1.17.0 | 6 files in `components/` | none yet |
@@ -42,6 +42,6 @@ Versions resolved in `package-lock.json`; importers from `docs/audit/inventory.m
 
 ## Design
 
-- Tokens from `@warastudio/theme`, aliased to `--color-*` in `index.css`; dark = Midnight via `data-theme` (`main.tsx`, inventory section 6). SDK 0.2.0 exposes `--ws-*` with the brand names the v2 mockup uses, pinned exactly; `src/sdkTokens.test.ts` fails on an undefined one (spec 006, ADR 003).
+- Tokens from `@warastudio/theme`, aliased to `--color-*` in `index.css`; dark = Midnight via `data-theme` (`main.tsx`, inventory section 6). SDK theme 0.3.0 (spec 009) exposes `--ws-*` with the brand names the v2 mockup uses, plus the four shared motion and label tokens of spec 007, pinned exactly; `src/sdkTokens.test.ts` fails on an undefined one (specs 006 and 009, ADR 003).
 - Type: Hanken Grotesk 400 / 600, JetBrains Mono for indexes and tags; icons Lucide (former `CLAUDE.md` (a3d1bda), v2 decision log).
 - Mockup: `docs/v2/mockup/`, frozen from claude.ai artifact BDrsQCHWzgfQRLqBGn9FJM at version 1794759302-6b38 (spec 001, refrozen by specs 005 and 008).

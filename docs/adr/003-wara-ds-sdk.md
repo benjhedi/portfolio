@@ -61,3 +61,12 @@ Follow-up:
   requests for the four local tokens are not opened: the v2 mockup uses
   none of them, so each v2 spec that needs one reopens the request (Hedi,
   2026-11-10 and 2026-11-15).
+- 2026-11-16, spec 009: the site pins `@warastudio/theme` 0.3.0 and
+  `@warastudio/react` 0.2.1 (tokens 0.3.0), published from WaraDS-Web
+  after benjhedi/WaraDS#3. The release adds four tokens every v2 screen
+  reuses, requested for spec 007: `--ws-motion-reveal` (.8s),
+  `--ws-motion-stagger` (.1s), `--ws-ease-emphasized`
+  (cubic-bezier(.16, 1, .3, 1)) and `--ws-track-label` (.14em); every
+  0.2.0 `--ws-*` keeps its value in both themes. The reveal rise reuses
+  `--ws-space-24` instead of a token (Hedi, 2026-11-15). Exact pin and
+  decision A unchanged.

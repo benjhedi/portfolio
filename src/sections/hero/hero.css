@@ -1,0 +1,172 @@
+/* v2 hero, ported from docs/v2/mockup/index.html (spec 007). Colors, spacing,
+   type roles and motion come from the SDK; the values below have no token and
+   are fixed by the plan (Gates: values fixed by a decision, composition values). */
+.hero {
+  /* At least one viewport tall, in svh so mobile browser chrome never crops it (AC-1) */
+  --hero-height: 100svh;
+  /* Bottom bar height, reserved before the bar ships (AC-2, d1a645a) */
+  --hero-bar: 56px;
+  /* Name, role and hint stacked under the oval, so the hero ends above the bar (spec 005) */
+  --hero-stack: 364px;
+  /* Oval width as a share of the viewport, wider than 900 px (AC-2) */
+  --hero-oval-vw: 78vw;
+  /* Oval width cap (AC-2) */
+  --hero-oval-max: 860px;
+  /* Oval width over height, wider than 900 px (AC-2) */
+  --hero-oval-ratio: 1.5;
+  /* Oval width at 900 px and narrower (AC-2) */
+  --hero-oval-vw-narrow: 92vw;
+  /* Oval width over height at 900 px and narrower (AC-2) */
+  --hero-oval-ratio-narrow: 1.25;
+  /* Video crop that keeps the head in frame (AC-2) */
+  --hero-crop: 50% 28%;
+  /* Sky tint strength in light, the v1 duotone; the SDK has no opacity token (spec 008 D1) */
+  --hero-tint: 0.62;
+  /* Sky tint strength in dark (spec 008 D1) */
+  --hero-tint-dark: 0.5;
+  /* Ink vignette darkening the oval rim (D1 = C) */
+  --hero-halo: radial-gradient(60% 60% at 50% 50%, transparent 55%, color-mix(in srgb, var(--ws-ref-ink) 35%, transparent) 100%);
+  /* Name size, fluid with the viewport; no SDK type role spans 22 to 30 px (D1 = C) */
+  --hero-name-size: clamp(22px, 2.4vw, 30px);
+  /* Name tracking (D1 = C) */
+  --hero-name-track: -0.01em;
+  /* Name line height (D1 = C) */
+  --hero-name-leading: 1.2;
+  /* Role size from the body role to the card role, fluid with the viewport */
+  --hero-role-size: clamp(var(--ws-size-body), 1.6vw, var(--ws-size-card));
+  /* Hairline width: oval rim and hint line (D1 = C) */
+  --hero-hairline: 1px;
+  /* Hint line length (D1 = C) */
+  --hero-line-length: 36px;
+  /* One draw-and-retract cycle of the hint line (D1 = C) */
+  --hero-line-cycle: 2.2s;
+  /* Focus ring width (AC-12); the SDK has no ring-width token */
+  --hero-ring: 2px;
+
+  min-height: var(--hero-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Top: the mockup's 64 px nav plus a gap, kept until the nav spec */
+  padding: calc(var(--ws-space-64) + var(--ws-space-32)) var(--ws-space-20) var(--ws-space-48);
+  text-align: center;
+}
+
+.hero .oval {
+  position: relative;
+  width: min(var(--hero-oval-vw), var(--hero-oval-max), calc((var(--hero-height) - var(--hero-bar) - var(--hero-stack)) * var(--hero-oval-ratio)));
+  aspect-ratio: var(--hero-oval-ratio);
+  border-radius: 50%;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--ws-ref-ink);
+  box-shadow: 0 0 0 var(--hero-hairline) var(--ws-color-border);
+}
+.hero .media,
+.hero .tint,
+.hero .halo {
+  position: absolute;
+  inset: 0;
+}
+.hero .media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--hero-crop);
+}
+.hero .tint {
+  pointer-events: none;
+  background: var(--ws-color-accent);
+  mix-blend-mode: color;
+  opacity: var(--hero-tint);
+}
+[data-theme="dark"] .hero .tint {
+  opacity: var(--hero-tint-dark);
+}
+.hero .halo {
+  pointer-events: none;
+  background: var(--hero-halo);
+}
+
+.hero .name {
+  display: block;
+  margin-top: var(--ws-space-40);
+  color: var(--ws-color-text);
+  font-size: var(--hero-name-size);
+  font-weight: var(--ws-w-regular);
+  letter-spacing: var(--hero-name-track);
+  line-height: var(--hero-name-leading);
+}
+.hero .name strong {
+  font-weight: var(--ws-w-semi);
+}
+.hero .role {
+  display: block;
+  margin-top: var(--ws-space-4);
+  color: var(--ws-color-text-muted);
+  font-size: var(--hero-role-size);
+  font-weight: var(--ws-w-regular);
+  line-height: var(--ws-lh-body);
+}
+
+/* D2: the hint sits on --ws-size-micro, one pixel above the mockup's 11 px */
+.hero .scroll {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ws-space-8);
+  margin-top: var(--ws-space-48);
+  color: var(--ws-color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--ws-size-micro);
+  letter-spacing: var(--ws-track-label);
+  text-transform: uppercase;
+}
+.hero .scroll:focus-visible {
+  outline: none;
+  border-radius: var(--ws-r-standard);
+  box-shadow: 0 0 0 var(--hero-ring) var(--ws-color-focus-ring);
+}
+.hero .scroll i {
+  display: block;
+  width: var(--hero-hairline);
+  height: var(--hero-line-length);
+  background: var(--ws-color-border-strong);
+  transform-origin: top;
+  animation: hero-line var(--hero-line-cycle) var(--ws-ease-emphasized) infinite;
+}
+@keyframes hero-line {
+  0% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* Reveal, once per element on its first entry into the viewport (AC-8) */
+.hero :is(.oval, .name, .role, .scroll) {
+  opacity: 0;
+  transform: translateY(var(--ws-space-24));
+  transition:
+    opacity var(--ws-motion-reveal) var(--ws-ease-emphasized),
+    transform var(--ws-motion-reveal) var(--ws-ease-emphasized);
+}
+.hero .name { transition-delay: var(--ws-motion-stagger); }
+.hero .role { transition-delay: calc(var(--ws-motion-stagger) * 2); }
+.hero .scroll { transition-delay: calc(var(--ws-motion-stagger) * 3); }
+.hero [data-in] {
+  opacity: 1;
+  transform: none;
+}
+
+/* The mockup's mobile breakpoint, 900 px included (AC-2) */
+@media (max-width: 900px) {
+  .hero {
+    /* The mockup's 56 px mobile nav plus a gap */
+    padding-top: calc(var(--ws-space-56) + var(--ws-space-24));
+  }
+  .hero .oval {
+    width: var(--hero-oval-vw-narrow);
+    aspect-ratio: var(--hero-oval-ratio-narrow);
+  }
+}

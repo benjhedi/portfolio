@@ -129,7 +129,7 @@ Section (built unmounted: `App.tsx` keeps the v1 hero until T23)
   mouse-only `pointermove` through `clampToOval`, `pointerleave` reset -
   files: `src/sections/hero/Hero.tsx` - check: `npm run build`; AC-9 grep
   empty - about 35 lines - agent: developer - now
-- [ ] T19 `hero.css` part 1 and its import: hero column, oval box with
+- [x] T19 `hero.css` part 1 and its import: hero column, oval box with
   the 56 px bar reserved, media, tint, halo, name, role, hint at
   `--ws-size-micro` (D2), hint line, focus ring, reveal on `data-in`,
   mobile rules; composition values named at the top with a comment each

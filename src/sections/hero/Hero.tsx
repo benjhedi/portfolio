@@ -7,6 +7,7 @@ import { heroV2, identity } from "../../content/content";
 import { heroPlayback, heroView } from "./heroPlayback";
 import { clampToOval, TOGGLE_INSET_PX } from "./ovalGeometry";
 import { tickVapor, type VaporClock } from "./vaporSchedule";
+import "./hero.css";
 
 // Each element reveals once, on its own first entry into the viewport (AC-8).
 function useReveal<T extends Element>() {

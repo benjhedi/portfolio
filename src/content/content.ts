@@ -11,7 +11,7 @@ export type IconName =
   | "Gauge" | "Users" | "MessagesSquare" | "Sparkles";
 
 export const identity = {
-  name: "Hedi Benjahouach",
+  name: "Hedi Jahouach",
   initials: "HB",
   role: {
     fr: "Consultant iOS senior, freelance",
@@ -57,6 +57,34 @@ export const hero = {
     { t: { fr: "De l'idée à l'App Store", en: "From idea to the App Store" }, d: { fr: "Cadrage, dev, mise en ligne", en: "Scoping, dev, release" } },
     { t: { fr: "Disponible", en: "Available" }, d: { fr: "Missions, forfait ou régie", en: "Projects, fixed-price or staffing" } },
   ] as { t: L; d: L }[],
+};
+
+export type VaporObject =
+  | { kind: "phone" | "site"; src: string }
+  | { kind: "product" };
+
+export const heroV2 = {
+  // The section right after the hero; becomes "intro" once the statement spec lands (AC-11).
+  next: "apropos",
+  hint: { fr: "Défiler", en: "Scroll" } as L,
+  videoLabel: {
+    fr: "Portrait animé de Hedi Jahouach, silhouette qui tourne et souffle une vapeur",
+    en: "Animated portrait of Hedi Jahouach, a silhouette turning and breathing out vapor",
+  } as L,
+  productLabel: { fr: "Compagnon de réunion", en: "Meeting companion" } as L,
+  toggle: {
+    play: { fr: "Lecture", en: "Play" } as L,
+    pause: { fr: "Pause", en: "Pause" } as L,
+  },
+  media: { webm: "/hero/hero.webm", mp4: "/hero/hero.mp4", poster: "/hero/hero-poster.webp" },
+  // Release order of AC-4: RIDE, site, franceinfo, product, GearTrack, then RIDE again.
+  vapor: [
+    { kind: "phone", src: "/hero/vapor/ride.webp" },
+    { kind: "site", src: "/hero/vapor/site.webp" },
+    { kind: "phone", src: "/hero/vapor/franceinfo.webp" },
+    { kind: "product" },
+    { kind: "phone", src: "/hero/vapor/geartrack.webp" },
+  ] as VaporObject[],
 };
 
 export const clientsIntro = { fr: "Ils m'ont fait confiance", en: "Trusted by" } as L;

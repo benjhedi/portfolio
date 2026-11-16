@@ -189,7 +189,7 @@ Close
   eight PNGs, axe both themes, keyboard pass, Safari and Firefox rows
   with Hedi - files: `specs/007-v2-hero/verification.md` - agent: qa -
   BLOCKED (after T24)
-- [ ] T26 review - diff against `dev`, gates reread (tokens gate OPEN by
+- [x] T26 review - diff against `dev`, gates reread (tokens gate OPEN by
   then), rule 10 signals (effect API outside `services/`, section
   importing a section, import in `content.ts`, literal timing outside the
   named composition values); once APPROVED the main session sets

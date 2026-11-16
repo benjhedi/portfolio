@@ -14,7 +14,7 @@ Sources: [log] `docs/v2/decision-log.md`; [mockup] `docs/v2/mockup/`, frozen fro
 
 - [x] Wave 0: the v2 log, the mockup and its media, and `SEO-accueil.md` are versioned in `docs/`, so every screen has an in-repo mockup ([inv] refactor specs). Sources in `docs/v2/` since spec 001, mockup fixed by spec 005, 52 PNGs (one per section, light and dark, desktop and mobile) in `docs/v2/ecrans/` since spec 004.
 - [x] Wave 0: the Wara DS SDK is upgraded from `--wara-*` (0.1.0) to the `--ws-*` version the mockup uses, before the first v2 screen spec (`product/tech-stack.md`, Hedi 2026-11-07). Done with SDK 0.2.0, pinned exactly (spec 006).
-- [ ] A visitor sees the hero: oval with the looping portrait video, an app, the site or a product leaving the vapor at each loop, name and role below; poster under reduced motion. Needs the mockup. Open: oval background, loop crossfade ([log]).
+- [x] A visitor sees the hero: oval with the looping portrait video, an app, the site or a product leaving the vapor at each loop, name and role below; poster under reduced motion. Done by spec 007 (2026-11-16); its Safari, Firefox and keyboard rows run on a Cloudflare preview before the next `v*` tag ([log]).
 - [ ] A visitor reads the statement: name and role in two columns, mono note, four-line statement, proof chips. Needs the mockup. Open: capitals or sentence case ([log]).
 - [ ] A visitor sees the clients marquee. Needs the mockup ([log], [mockup]).
 - [ ] A visitor browses 6 full-screen project blocks with a giant marquee title, mono tags, "Voir le projet", then a grid of the 9 others; images light. Needs the mockup. Open: the "Voir le projet" target, as no store URL exists and GearTrack is B2B ([log], `docs/architecture-study.md`).

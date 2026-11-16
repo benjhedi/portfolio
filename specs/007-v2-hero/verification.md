@@ -405,3 +405,11 @@ No difference is a bug or a spec gap.
 - Eco mode: the product has none.
 - Real tab switching: `visibilityState` was stubbed on `document`, as
   the plan allows; `Page.setWebLifecycleState` was not used.
+
+## Review acknowledgement (T26)
+
+Review APPROVED on 2026-11-16 with warning W1: the three manual rows
+above (Safari and Firefox, Safari low power, Hedi's keyboard pass).
+Hedi acknowledged W1 for the merge into `dev` the same day: he runs them
+on a Cloudflare preview deploy, not local `wrangler dev` (finding 2),
+before the next `v*` tag, which the SDK focus ring already gates.

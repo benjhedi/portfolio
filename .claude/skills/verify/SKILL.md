@@ -12,7 +12,8 @@ allowed-tools: Read, Grep, Glob, Write, Bash
 # Verify
 
 Input: `$ARGUMENTS`, the spec number. Output: `specs/NNN/verification.md`
-and a verdict. Agent: qa.
+and a verdict. The main session verifies by default; delegate to local qa
+when a separate verification context helps.
 
 ## 1. Checks, from the test plan
 

@@ -2,7 +2,7 @@
 name: handoff
 description: >
   Writes or updates the handoff that lets the next session resume without
-  guessing: state of dev, shipped, next steps, open decisions, pitfalls,
+  guessing: repository state, shipped work, next steps, open decisions, pitfalls,
   from the real git state. Use it at the end of a session or before a pause
   of more than a day.
 user-invocable: true
@@ -16,9 +16,11 @@ from verified state, not from recollection. Template: `template.md`.
 
 ## 1. Collect the real state
 
-`git branch --show-current`, `git status --short`, `git log dev..HEAD
---oneline`, `git log -15 --oneline`, then the test command the project
-declares. Record pass or fail honestly.
+Read `git branch --show-current`, `git status --short` and
+`git log -15 --oneline`. Identify the base branch from the project's
+instructions or the current PR when available. Compare `<base>..HEAD` only
+when that base is known and exists locally. Otherwise record it as unknown.
+Run the test command the project declares and record its result.
 
 ## 2. Write or update
 
@@ -26,11 +28,10 @@ File: `HANDOFF.md` at the root, or the project's existing `handoff-*.md`.
 One live handoff per repo. When a chantier ends, the previous handoff is
 kept for history with a line at the top saying what replaced it.
 
-Sections, in this order: state of `dev` and of the current branch; what was
-done this session (intent level, not file by file); next steps, ordered,
-each with the agent or skill that does it; open decisions, each with the
-options and who decides; pitfalls met, each with the workaround; commands
-to resume.
+Record the current branch and known base, work completed, next tasks and
+their dependencies, open decisions and their owners, pitfalls and workarounds,
+and the command to resume. Name locally available skills. The main session
+coordinates independent tasks using the current host's available agents.
 
 ## 3. Rules
 
@@ -42,7 +43,9 @@ to resume.
 
 ## 4. Closing line
 
-End the session message with the one command the next session runs first
-(`/session-start` plus the spec number or branch name).
+End with one command to run in a fresh session. Name the next phase's skill
+when it is clear, otherwise use `/next` in Claude Code or `$next` in Codex.
+Check that the skill is installed for this host. If it is missing, give the
+next task in plain language. Record the relevant spec or branch in the handoff.
 
 `$ARGUMENTS` may name the chantier or the branch being handed off.

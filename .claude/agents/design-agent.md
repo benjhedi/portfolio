@@ -46,5 +46,5 @@ the closest existing screen to reuse its structure.
 ## Output and git
 
 PNG paths produced; one line per screen (what it shows, which variant);
-every rule you had to assume, flagged as a question for Hedi. Branch
-`chore-mockup-<name>` off `dev`; never merge, Hedi validates PNGs first.
+every rule you had to assume, flagged as a question for Hedi. Follow the
+project's branch convention; never merge, Hedi validates PNGs first.

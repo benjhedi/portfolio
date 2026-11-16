@@ -1,11 +1,9 @@
 ---
 name: implement
 description: >
-  Executes specs/NNN/tasks.md: creates the branch, hands each task to its
-  agent in order (developer, test-coder), reviews the diff after each,
-  commits in the house format, ends with qa verify and review-agent. The
-  main session conducts; the orchestrator agent is consulted first for
-  sequence and blockers. Use it after /tasks. Pass the spec number.
+  Executes approved tasks from specs/NNN/tasks.md. Starts independent ready
+  tasks together when the tool and workspace support safe parallel work.
+  Integrates results and hands off to verification. Pass the spec number.
 user-invocable: true
 disable-model-invocation: true
 allowed-tools: Read, Grep, Glob, Edit, Write, Bash
@@ -13,36 +11,48 @@ allowed-tools: Read, Grep, Glob, Edit, Write, Bash
 
 # Implement
 
-Input: `$ARGUMENTS`, the spec number, tasks approved. The main session runs
-this; agents receive one task each and never delegate.
+Input: `$ARGUMENTS`, the spec number, tasks approved. The main session owns
+the work and may delegate bounded tasks to agents supported by the current
+host.
 
-## 1. Orchestrator first, then the branch
+## 1. Check blockers, then the branch
 
-Ask the orchestrator agent for the sequence: task order, agent per task,
-blockers (branch exists, mockup missing, open ADR, dev behind origin),
-conventions to remind at each hand-off. It returns a plan, writes nothing.
-Then `git pull origin dev && git checkout -b feat-<name> dev`; never on
-dev or main; in a Cowork sandbox, hand the git commands to Hedi.
+Read the spec, plan, tasks, project architecture and current git
+conventions. Check for open gates, missing mockups, unresolved decisions,
+and an existing branch. Consult a local orchestrator only when one exists
+and task order or blockers are genuinely unclear. Follow this repository's
+branch convention; do not assume a `dev` branch. In a Cowork sandbox, hand
+git commands to Hedi.
 
-## 2. One task at a time
+## 2. Work from the dependency graph
 
-1. Brief the agent with exactly: the criteria it serves, the task line,
-   the architecture rule, the files it may touch, the check to run.
-2. The agent works, runs its check, shows the output.
-3. Review the diff with Hedi (he may say "go" for a batch). `/commit`.
-   Tick the box in tasks.md.
-4. `[P]` tasks may run as parallel agents in separate worktrees; merge
-   their commits in order.
+1. Find unchecked tasks whose dependencies are complete. Report the ready
+   set, owners, file scopes and checks before starting.
+2. Start independent tasks together only when the current tool supports
+   delegation and their write scopes do not overlap. Use separate worktrees
+   for concurrent code edits when needed; otherwise serialize overlapping
+   tasks. Never let two workers edit the same file at once.
+3. Give each worker the task outcome, acceptance, dependencies, allowed files
+   and check. Claude Code may use local kit agents; Codex may use native
+   subagents. If delegation is unavailable or not useful, the main session
+   handles the task.
+4. Collect each result and check. Mark completed tasks in `tasks.md` and
+   unlock their dependents without waiting for unrelated work to finish.
+5. If one task reveals a gap, stop that task and its dependents. Continue
+   other ready tasks unless they rely on the same decision or files. Update
+   the affected spec or plan through `/clarify` or `/plan` before resuming.
 
-A task that reveals a gap in the spec or the plan stops the loop:
-`/clarify` or `/plan` is updated first, then the loop resumes.
+Do not exceed the approved task files. Composition-root wiring stays gated
+when the plan marks it for separate approval. `/commit` follows the project's
+conventions and the user's approved scope.
 
-## 3. Verify, review, close
+## 3. Integrate and hand off
 
-qa runs `/verify`. review-agent on `git diff dev...HEAD`, gates reread;
-CHANGES REQUESTED loops back to the task concerned. Then spec status done,
-roadmap line checked, PR to dev with Summary and Test plan copied from
-tasks.md, `/handoff` if the session ends before the merge.
+Integrate worktrees and review the combined diff. Record changed files,
+checks, completed tasks and unresolved issues. Name `/verify <number>` in
+Claude Code or `$verify <number>` in Codex as the next command for a fresh
+session; do not run another workflow command in this session. Verification
+and closure follow the project's branch and PR rules.
 
 Rules: no file outside the task's list (an agent that needs another file
 stops and says so); composition root wiring approved separately; never

@@ -1,27 +1,52 @@
 # Tasks NNN - <Feature name>
 
-Plan: `plan.md` (all gates OPEN) | Branch: `feat-<kebab-title>` off `dev`
+Plan: `plan.md` (all relevant gates OPEN)
+Branch: `<project branch convention>`
 
-Each task: one logical change, one commit, one check. Order follows the
-construction order of the architecture rule. `[P]` marks tasks that can run
-in parallel (no shared file). An agent takes one task at a time.
+Each task has explicit dependencies, one responsibility owner, a bounded
+scope and an acceptance check. `none` means it has no prerequisite. `[P]`
+marks a task that can run alongside another ready task without overlapping
+write scopes. The main session maps responsibility to a suitable worker.
 
-## Tasks
+## Task graph
 
-- [ ] T01 <unit from the architecture rule, e.g. domain types and
-  protocol> - files: <paths> - check: `swift build` - agent: developer
-- [ ] T02 <next unit> - files: <paths> - check: <command> - agent: developer
-- [ ] T03 [P] <tests for T01 units> - files: <test paths> - check:
-  `swift test --filter <Suite>` - agent: test-coder
-- [ ] T04 <state holder> - files: <paths> - check: <command> - agent: developer
-- [ ] T05 <screen, name = mockup name> - files: <paths> - check: preview
-  both themes, screenshot vs `<NN-name.png>` - agent: developer
-- [ ] T06 <wiring in the composition root or equivalent> - approved
-  separately - agent: developer
-- [ ] T07 verify - all AC checks below green - agent: qa
-- [ ] T08 review - diff against dev, gates reread - agent: review-agent
+- [ ] T01 <domain types and protocol>
+  - Depends on: none
+  - Owner: implementation
+  - Files / scope: `<paths>`
+  - Acceptance / check: `swift build`
+- [ ] T02 [P] <adapter>
+  - Depends on: T01
+  - Owner: implementation
+  - Files / scope: `<paths>`
+  - Acceptance / check: `<command>`
+- [ ] T03 [P] <tests for T01>
+  - Depends on: T01
+  - Owner: test-writing
+  - Files / scope: `<test paths>`
+  - Acceptance / check: `swift test --filter <Suite>`
+- [ ] T04 <screen, name = mockup name>
+  - Depends on: T02
+  - Owner: implementation
+  - Files / scope: `<paths>`
+  - Acceptance / check: preview and screenshot against `<NN-name.png>`
+- [ ] T05 <composition-root wiring>
+  - Depends on: T02, T04
+  - Owner: implementation
+  - Files / scope: `<paths>`; approved separately if required
+  - Acceptance / check: `<command>`
+- [ ] T06 [P] verify
+  - Depends on: T01, T02, T03, T04, T05
+  - Owner: verification
+  - Files / scope: acceptance criteria
+  - Acceptance / check: all AC checks pass
+- [ ] T07 [P] review
+  - Depends on: T01, T02, T03, T04, T05
+  - Owner: review
+  - Files / scope: diff against integration branch
+  - Acceptance / check: review verdict APPROVED
 
-## Test plan (derived from the EARS criteria)
+## Test plan
 
 | AC | Scenario | Type | Test name |
 |---|---|---|---|
@@ -29,11 +54,12 @@ in parallel (no shared file). An agent takes one task at a time.
 | AC-2 | Eco mode on, no animation | unit on animation token | `returnsNoAnimationWhenEcoOn` |
 | AC-3 | phone matches existing client, asks before merge | unit | `asksBeforeMergeOnPhoneMatch` |
 
-Every AC has at least one row. A row without a test name is not planned.
+Every acceptance criterion has at least one check. A row without a test name
+is not planned.
 
 ## Done when
 
-- All boxes checked, each with its commit on the branch.
-- qa report attached (build, tests, scenarios, screenshots).
-- review verdict APPROVED, gates reread.
-- `spec.md` status set to done, roadmap line checked.
+- All implementation tasks are complete with their checks recorded.
+- QA evidence is attached when the change needs a separate QA pass.
+- Review is APPROVED and all relevant gates are rechecked.
+- `spec.md` status is done and the roadmap line is checked when applicable.

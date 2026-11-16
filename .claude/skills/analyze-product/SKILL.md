@@ -21,7 +21,13 @@ evidence, never from assumptions. Steps in `steps/`.
 
 `steps/01-inventory.md`: layout, instruction files, documents, git
 conventions in use, toolchain, dependencies, secrets present, design
-material. Output: `docs/audit/inventory.md`, facts with paths.
+material, and evidence-based AI integration details when found. Output:
+`docs/audit/inventory.md`, facts with paths. If AI evidence is absent, say so
+for this repository; do not infer that external systems have no AI.
+
+This audit may run in a fresh session after `/start` in Claude Code or
+`$start` in Codex. Inspect the repository again; do not rely on the earlier
+session's report.
 
 ## 2. Extract the product layer
 
@@ -47,4 +53,6 @@ after an explicit go.
 
 Rules: facts with evidence; a convention the code applies consistently
 wins over the kit default; secrets found are reported in one line, never
-copied; `$ARGUMENTS` may name the app folder. Next: `/adopt`.
+copied; `$ARGUMENTS` may name the app folder. After validating the audit,
+architecture rule and gap table, run `/adopt` in Claude Code or `$adopt` in
+Codex. `/next` or `$next` reports what remains.

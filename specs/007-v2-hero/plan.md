@@ -293,6 +293,11 @@ export function heroView(state: HeroPlayback):
 // toggle: hidden when reduced, loading or failed (D4); "play" when visitorPaused or refused
 // held (vapor and hint line paused) = visitorPaused || status === "refused"
 // reducedChanged to false: status back to loading (video remounts), visitorPaused kept (AC-18)
+// toggled does what the visible toggle shows (Hedi, 2026-11-16, at T05): on "play" it
+//   clears visitorPaused and moves refused to loading; on "pause" it sets visitorPaused;
+//   while the toggle is hidden (reduced, loading, failed) it is a no-op
+// started after failed: playing, the late success wins (AC-15)
+// reducedChanged to true: only reduced changes; heroView hides everything under it
 
 // sections/hero/ovalGeometry.ts (D3)
 export const TOGGLE_INSET_PX = 26;   // half the 44 px target plus the 4 px ring
